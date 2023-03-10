@@ -1,4 +1,4 @@
-# Finite Difference Methods for Partial Differential Equations
+# Partial Differential Equations
 
 ## Outline
 
