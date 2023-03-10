@@ -9,8 +9,11 @@ execute:
     execute_notebooks: cache
 html:
   home_page_in_navbar: false
-#  use_repository_button: true
+  use_repository_button: true
 launch_buttons:
   jupyterhub_url: https://ubc.syzygy.ca/jupyter
-# repository:
-#  url: https://github.com/UBCMath/math316
+repository:
+  url: https://github.com/UBCMath/math316
+  branch: main
+
+# ghp-import -n -p -f _build/html

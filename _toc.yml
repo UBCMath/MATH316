@@ -1,6 +1,9 @@
 format: jb-book
 root: index
 parts:
+  - caption: Fourier Series
+    chapters:
+    - file: fourier/series.ipynb
   - caption: Finite Difference Method
     chapters:
     - file: fd/formulas.md
