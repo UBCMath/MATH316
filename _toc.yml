@@ -2,17 +2,23 @@ format: jb-book
 root: index
 parts:
   - caption: Fourier Series
+    numbered: True
     chapters:
     - file: fourier/series.ipynb
+    - file: fourier/separation.md
   - caption: Finite Difference Method
+    numbered: True
     chapters:
     - file: fd/formulas.md
   - caption: Heat Equation
+    numbered: True
     chapters:
     - file: heat/heat.ipynb
   - caption: Laplace Equation
+    numbered: True
     chapters:
     - file: laplace/laplace.md
   - caption: Wave Equation
+    numbered: True
     chapters:
     - file: wave/wave.md

@@ -12,6 +12,7 @@ html:
   use_repository_button: true
 launch_buttons:
   jupyterhub_url: https://ubc.syzygy.ca/jupyter
+  notebook_interface: "jupyterlab"
 repository:
   url: https://github.com/UBCMath/math316
   branch: main
