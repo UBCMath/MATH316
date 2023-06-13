@@ -1,6 +1,14 @@
 format: jb-book
 root: index
 parts:
+  - caption: Ordinary Differential Equations
+    numbered: True
+    chapters:
+    - file: odes/review.md
+    - file: odes/series.md
+    - file: odes/rsps.md
+    - file: odes/frobenius.md
+    - file: odes/bessel.md
   - caption: Fourier Series
     numbered: True
     chapters:
