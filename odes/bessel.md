@@ -4,27 +4,13 @@ $$
 \newcommand{\mat}[1]{{\mathbf #1}}
 \newcommand{\vect}[1]{\underline{#1}}
 \newcommand{\njump}[1]{[|#1|]}
-\newcommand{\pa}{\partial}
-\newcommand{\De}{\Delta}
-\newcommand{\ra}{\rightarrow}
-\newcommand{\dst}{\displaystyle}
-\newcommand{\la}{\lambda}
-\newcommand{\al}{\alpha}
-\newcommand{\rme}{{\rm e}}
-\newcommand{\rmi}{{\rm i}}
-\newcommand{\R}{\mathbb{R}}
 \newcommand{\bke}[1]{\left ( #1 \right )}
 \newcommand{\bkt}[1]{\left [ #1 \right ]}
 \newcommand{\bket}[1]{\left \{ #1 \right \}}
 \newcommand{\norm}[1]{\left \| #1 \right \|}
 \newcommand{\bka}[1]{\left \langle #1 \right \rangle}
-\renewcommand{\th}{\theta}
-\newcommand{\om}{\omega}
-\newcommand{\pd}{\partial}
-\newcommand{\dis}{\displaystyle}
 \newcommand{\ve}[1]{\mathbf{#1}}
 \newcommand{\what}[1]{\widehat{#1}}
-\newcommand{\tint}{\int\kern-.6em\int\kern-.6em\int}
 $$
 
 # Bessel's Equation and Bessel Functions
@@ -48,7 +34,7 @@ $$
 \begin{equation}
 Ly=x^2y^{\prime\prime}+xy^\prime +(x^2-\nu^2)y=0
 \end{equation}
-$$(ref0)
+$$(ref-odes-bessel-0)
 
 $x=0$ is a regular Singular Point: therefore let $\displaystyle
 y=\sum\limits_{n=0}^\infty a_nx^{n+r}$.
@@ -60,7 +46,7 @@ $$
 & &\, m=n+2\quad n=m-2  \notag \\
 & &\, n=0\Rightarrow m=2  \notag
 \end{eqnarray}
-$$(ref1)
+$$(ref-odes-bessel-1)
 
 $$
 \begin{eqnarray}
@@ -68,7 +54,7 @@ $$
 +a_{m-2}\right\} x^{m+r} & + & a_0\left\{ r^2-\nu^2\right\} x^r \\
 & &\quad +\, a_1\left\{ (1+r)^2-\nu^2\right\} x^{r+1}  \notag
 \end{eqnarray}
-$$(ref2)
+$$(ref-odes-bessel-2)
 
 $$
 \begin{eqnarray}
@@ -79,7 +65,7 @@ x^{r+1}> & a_1\big\{ r^2+2r+1-\nu^2\big\} =0,\quad
 x^{m+r}> & a_m=\displaystyle -\frac{a_{m-2}}{(m+r)^2-\nu^2}\quad m\geq 2
 \end{array}
 \end{eqnarray}
-$$(ref3)
+$$(ref-odes-bessel-3)
 
 $r=\nu$:
 
@@ -94,7 +80,7 @@ y_1(x) & = & x^\nu \sum\limits_{m=0}^\infty \frac{(-1)^m(x/2)^{2m}}{m!(1+\nu
 )(2+\nu )\ldots (m+\nu )}\quad \overset{x\rightarrow 0}{\rightarrow 0}
 \notag
 \end{eqnarray}
-$$(ref4)
+$$(ref-odes-bessel-4)
 
 $r=-\nu$:
 
@@ -108,7 +94,7 @@ y_2(x) & = & x^{-\nu}\sum\limits_{m=0}^\infty\frac{(-1)^m(x/2)^{2m}}{
 m!(1-\nu )\ldots (m-\nu )}\quad\overset{x\rightarrow 0}{\rightarrow\infty}
 \notag
 \end{eqnarray}
-$$(ref5)
+$$(ref-odes-bessel-5)
 
 ### Bessel's Function of Order $\nu =0$ - Repeated Roots
 
@@ -127,7 +113,7 @@ x^{n+r}+a_nx^{n+r+2}=0  \notag \\
 0 & = & \sum\limits_{n=2}^\infty \big[ a_n(n+r)^2+a_{n-2}\big] x^{n+r}+a_0
 \big[ r(r-1)+r\big] x^r+a_1\big[ (r+1)r+r+1\big] x^{r+1}=0  \notag
 \end{eqnarray}
-$$(ref6)
+$$(ref-odes-bessel-6)
 
 The indicial equation is: $a_0r^2=0\quad r_{1,2}=0,0\quad$ a double root.
 
@@ -143,7 +129,7 @@ a_2=-\displaystyle\frac{a_0}{2^2}; \quad a_4=-\frac{a_2}{4^2}=\frac{a_0}{
 }{2^24^26^28^2}
 \end{array}
 \end{eqnarray}
-$$(ref7)
+$$(ref-odes-bessel-7)
 
 $$
 \begin{eqnarray}
@@ -151,7 +137,7 @@ a_{2m} & = & \frac{(-1)^m}{2^{2m}(m!)^2}a_0 \\
 y_1(x) & = & \left\{ 1+\sum\limits_{m=1}^\infty\frac{(-1)^mx^{2m}}{
 2^{2m}(m!)^2}\right\} = J_0(x)  \notag
 \end{eqnarray}
-$$(ref8)
+$$(ref-odes-bessel-8)
 
 ```{figure} ../img/odes/zeroth_order_bessel.png
 :name: bessel-functions
@@ -172,7 +158,7 @@ y(x,r) & = & a_0x^r\left\{ 1-\frac{x^2}{(2+r)^2}+\frac{x^4}{(2+r)^2(4+r)^2}
 xy_1(x)+a_0x^r\sum\limits_{m=1}^\infty (-1)^mx^{2m}\frac{\partial}{\partial r
 }\left\{\frac{1}{(2+r)^2\ldots (2m+r)^2}\right\} .  \notag
 \end{eqnarray}
-$$(ref9)
+$$(ref-odes-bessel-9)
 
 Let
 
@@ -185,7 +171,7 @@ a_{2m}^\prime (0) & = & \left. \left( -\frac{2}{2+r}-\frac{2}{4+r}\cdots -
 & = & \left( -1-\frac{1}{2}- \ldots -\frac{1}{m}\right)
 a_{2m}(0)=-H_ma_{2m}(0).  \notag
 \end{eqnarray}
-$$(ref10)
+$$(ref-odes-bessel-10)
 
 Let $H_m=1+\displaystyle\frac{1}{2}+\cdots +\frac{1}{m}$. Therefore
 
@@ -194,7 +180,7 @@ $$
 y_2(x)=J_0(x)\ln x+\sum\limits_{m=1}^\infty \frac{(-1)^{m+1}H_m}{2^{2m}(m!)^2
 }x^{2m}\quad x>0.
 \end{equation}
-$$(ref11)
+$$(ref-odes-bessel-11)
 
 It is conventional to define
 
@@ -202,7 +188,7 @@ $$
 \begin{equation}
 Y_0(x)=\frac{2}{\pi}\big[ y_2(x)+(\gamma -\log 2)J_0(x)\big]
 \end{equation}
-$$(ref12)
+$$(ref-odes-bessel-12)
 
 where
 
@@ -212,7 +198,7 @@ $$
 \mbox{Euler's Constant}  \notag \\
 y(x) & = & c_1J_0(x)+c_2Y_0(x).
 \end{eqnarray}
-$$(ref13)
+$$(ref-odes-bessel-13)
 
 ### Bessel's Function of Order $\nu =\frac{1}{2}$
 
@@ -223,7 +209,7 @@ $$
 \begin{equation}
 y=\sum\limits_{n=0}^\infty a_nx^{n+r}
 \end{equation}
-$$(ref14)
+$$(ref-odes-bessel-14)
 
 $$
 \begin{eqnarray}
@@ -239,7 +225,7 @@ Ly & = & a_0\left\{ r^2-\frac{1}{4}\right\} x^r +a_1\left\{ (r+1)^2-\frac{1}{4}
 \right\} x^{r+1} +\sum\limits_{n=2}^\infty \left[ a_n\left\{ (n+r)^2-\frac{1}{4}
 \right\} +a_{n-2}\right] x^{n+r}=0.  \notag
 \end{eqnarray}
-$$(ref15)
+$$(ref-odes-bessel-15)
 
 __Indicial Equation:__ $r^2-\displaystyle\frac{1}{4}=0,\quad r=\pm
 \displaystyle\frac{1}{2}\quad$ Roots differ by an integer.
@@ -262,7 +248,7 @@ y_1(x)=\displaystyle x^{\frac{1}{2}}\sum\limits_{n=0}^\infty \frac{
 (-1)^nx^{2n+1}}{(2n+1)!}=x^{-\frac{1}{2}}\sin x
 \end{array}
 \end{eqnarray}
-$$(ref16)
+$$(ref-odes-bessel-16)
 
 $r_2=-\displaystyle\frac{1}{2}$:
 
@@ -276,7 +262,7 @@ n=1\Rightarrow a_1\displaystyle\left\{\left( -\frac{1}{2}+1\right)^2 -\frac{1
 arbitrary}.
 \end{array}
 \end{eqnarray}
-$$(ref17)
+$$(ref-odes-bessel-17)
 
 $a_0$:
 
@@ -285,7 +271,7 @@ $$
 a_2= - \frac{a_0}{2.1}\quad a_4=\frac{(-1)^2a_0}{4.3.2.1}\ldots\quad a_{2n}=
 \frac{(-1)^na_0}{(2n)!}
 \end{equation}
-$$(ref18)
+$$(ref-odes-bessel-18)
 
 $a_1$:
 
@@ -294,7 +280,7 @@ $$
 a_3= - \frac{a_1}{3.2}\quad a_5=\frac{(-1)^2a_1}{5.4.3.2}\quad a_{2n+1}=
 \frac{(-1)^na_1}{(2n+1)!}
 \end{equation}
-$$(ref19)
+$$(ref-odes-bessel-19)
 
 $$
 \begin{eqnarray}
@@ -304,7 +290,7 @@ y_2(x) & = & a_0x^{-\frac{1}{2}}\sum\limits_{n=0}^\infty \frac{(-1)^nx^{2n}}{
 & = & a_0x^{-\frac{1}{2}}\cos x+a_1x^{-\frac{1}{2}}\sin x \\
 & &\hspace{1.2in}\nwarrow\mbox{ included in $y_1(x)$}.  \notag
 \end{eqnarray}
-$$(ref20)
+$$(ref-odes-bessel-20)
 
 ````{note}
 In this case the recursion spawns another solution
@@ -319,6 +305,7 @@ solution.
 ### The Roots Differ by an Integer - An Example for Enrichment
 
 ````{prf:example}
+:label: example-odes-bessel-0
 Let $Ly=xy^{\prime\prime}-y=0,\quad x=0$ is a regular singular point.
 
 $$
@@ -332,7 +319,7 @@ $$
 -1)-c_{n-1}\right\} x^{n+\alpha -1}+c_0(\alpha -1)\alpha x^{\alpha -1}=0
 \notag
 \end{eqnarray}
-$$(ref21)
+$$(ref-odes-bessel-21)
 
 __Indicial Equation:__ $(\alpha -1) \alpha =0 \ \Rightarrow \
 \alpha =0,1\quad$ differ by integer.
@@ -351,18 +338,18 @@ $$
 \begin{equation}
 y_1(x)=c_0x \left( 1+\frac{x}{2}+\frac{x^2}{12}+\cdots \right) =c_0u_1(x).
 \end{equation}
-$$(ref22)
+$$(ref-odes-bessel-22)
 
 __Second Solution:__
 
 $$
 \begin{eqnarray}
-\bar{y}(x,\alpha ) & = & \alpha y(x,\alpha )=c_0x^\al\left\{\alpha +\frac{x}{
+\bar{y}(x,\alpha ) & = & \alpha y(x,\alpha )=c_0x^\alpha\left\{\alpha +\frac{x}{
 1+\alpha}+\frac{x^2}{(1+\alpha )(2+\alpha )(1+\alpha )}+\cdots\right\}
 \notag \\
-\frac{\partial\bar{y}}{\partial\alpha} & = & c_0x^\al\ln x\left\{\alpha +
+\frac{\partial\bar{y}}{\partial\alpha} & = & c_0x^\alpha\ln x\left\{\alpha +
 \frac{x}{1+\alpha}+\cdots\right\} \\
-& &\quad +\, c_0x^\al \left\{ 1-\frac{x}{(1+\alpha )^2}-\frac{x^2}{(1+\alpha
+& &\quad +\, c_0x^\alpha \left\{ 1-\frac{x}{(1+\alpha )^2}-\frac{x^2}{(1+\alpha
 )^2(2+\alpha )} \left[\frac{2}{(1+\alpha )}+\frac{1}{(2+\alpha )}\right]
 +\cdots\right\}  \notag \\
 \left. \frac{\partial\bar{y}}{\partial\alpha}\right|_{\alpha =0}& = &
@@ -371,5 +358,5 @@ c_0\left\{ x+\frac{x^2}{2}+\frac{x^3}{12}+\cdots\right\}\ln x+c_0 \left\{
 \mbox{Therefore }y(x) & = & (A+B\ln x)\left( x+\frac{x^2}{2}+\frac{x^3}{12}
 +\cdots \right) + B\left( 1-x-\frac{5}{4}x^2-\cdots\right) .  \notag
 \end{eqnarray}
-$$(ref23)
+$$(ref-odes-bessel-23)
 ````
