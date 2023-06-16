@@ -97,7 +97,6 @@ To motivate how to proceed near singular points let us
 consider the following example.
 
 ````{prf:example}
-:label: example-odes-frobenius-0
 :label: rsp-example
 
 $$
@@ -256,7 +255,7 @@ $p(x)=(x-x_0)\frac{Q(x)}{P(x)}$ and $(x-x_0)^2\frac{R(x)}{P(x)}$ are
 not analytic, then $x_0$ is called an irregular singular point.
 
 ````{prf:example}
-:label: example-odes-frobenius-1
+:label: example-odes-frobenius-0
 $x=0$ is an irregular point of the second order equation 
 
 $$
@@ -268,7 +267,7 @@ which could not be captured by a Frobenius expansion.
 ````
 
 ````{prf:example}
-:label: example-odes-frobenius-2
+:label: example-odes-frobenius-1
 $x=0$ is an irregular point of the first order equation 
 
 $$
@@ -283,7 +282,6 @@ Frobenius expansion about $x_0=0$.
 ### Frobenius Series Expansion
 
 ````{prf:example}
-:label: example-odes-frobenius-3
 :label: frobenius-example
 
 We revisit {prf:ref}`rsp-example` by using a Frobenius series to solve the
