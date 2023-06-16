@@ -4,27 +4,13 @@ $$
 \newcommand{\mat}[1]{{\mathbf #1}}
 \newcommand{\vect}[1]{\underline{#1}}
 \newcommand{\njump}[1]{[|#1|]}
-\newcommand{\pa}{\partial}
-\newcommand{\De}{\Delta}
-\newcommand{\ra}{\rightarrow}
-\newcommand{\dst}{\displaystyle}
-\newcommand{\la}{\lambda}
-\newcommand{\al}{\alpha}
-\newcommand{\rme}{{\rm e}}
-\newcommand{\rmi}{{\rm i}}
-\newcommand{\R}{\mathbb{R}}
 \newcommand{\bke}[1]{\left ( #1 \right )}
 \newcommand{\bkt}[1]{\left [ #1 \right ]}
 \newcommand{\bket}[1]{\left \{ #1 \right \}}
 \newcommand{\norm}[1]{\left \| #1 \right \|}
 \newcommand{\bka}[1]{\left \langle #1 \right \rangle}
-\renewcommand{\th}{\theta}
-\newcommand{\om}{\omega}
-\newcommand{\pd}{\partial}
-\newcommand{\dis}{\displaystyle}
 \newcommand{\ve}[1]{\mathbf{#1}}
 \newcommand{\what}[1]{\widehat{#1}}
-\newcommand{\tint}{\int\kern-.6em\int\kern-.6em\int}
 $$
 
 # Frobenius Series About Regular Singular Points
@@ -55,7 +41,7 @@ $$
 \begin{equation}
 P(x)y^{\prime\prime}+Q(x)y^\prime +R(x)y=0
 \end{equation}
-$$(ref0)
+$$(ref-odes-frobenius-0)
 Divide by $P(x)$:
 
 $$
@@ -93,7 +79,7 @@ $$
 \begin{equation}
 y(x)=\sum\limits_{n=0}^\infty a_n(x-x_0)^n
 \end{equation}
-$$(ref3)
+$$(ref-odes-frobenius-3)
 
 whose radii of convergence are at least as large as those of $p$ and
 $q$ in {eq}`OPexpansionofpandq` - i.e., the circle of
@@ -117,7 +103,7 @@ $$
 \begin{eqnarray}
 Ly & = & 2x^2y^{\prime\prime}-xy^\prime +(1+x)y=0\quad x=0\mbox{ is a RSP.}\nonumber\\
 \end{eqnarray}
-$$(ref4)
+$$(ref-odes-frobenius-4)
 
 We observe that this equation is ``almost Equidimensional" but for the additional
 $xy$ term. Let us rearrange this equation as follows
@@ -138,7 +124,7 @@ $$
 L_0 y = 2x^2y^{\prime\prime}-xy^\prime +y=0,\  \mbox{whose general
 solution is } y\left( x\right) =C_{1}x+C_{2}\sqrt{x}
 \end{equation}
-$$(ref6)
+$$(ref-odes-frobenius-6)
 
 Now take this solution and substitute it on the right side of
 {eq}`recursion`
@@ -150,7 +136,7 @@ C_{1}x+C_{2}\sqrt{x}\right),\  \mbox{whose general solution is }
 y\left( x\right) =C_{1}\left( x-\frac{1}{3} x^{2}\right)
 +C_{2}\sqrt{x}\left( 1-x\right)
 \end{equation}
-$$(ref7)
+$$(ref-odes-frobenius-7)
 
 Substituting this term again on the right side of {eq}`recursion` we obtain
 
@@ -162,7 +148,7 @@ x-\frac{1}{3} x^{2}\right)+C_{2}\sqrt{x}\left( 1-x\right)\right)\nonumber\\
 x-\frac{1}{3}x^{2}+\frac{1}{30}x^{3}\right) +C_{2}\sqrt{x}\left(
 1-x+\frac{1}{6}x^{2}\right)
 \end{eqnarray}
-$$(ref8)
+$$(ref-odes-frobenius-8)
 
 We observe that this procedure is generates a series
 expansion of the form:
@@ -225,7 +211,7 @@ $$
 \begin{equation}
 (x-x_0)^2 Ly=(x-x_0)^2y^{\prime\prime}+(x-x_0)p_0y^\prime +q_0y+
 \overbrace{(x-x_0)\left\{ p_1 (x-x_0) y^\prime +q_1y+p_2 (x-x_0)^2
-y'+q_2(x-x_0)y+\cdots\right\}}^{\mbox{small as }x\ra x_0} = 0
+y'+q_2(x-x_0)y+\cdots\right\}}^{\mbox{small as }x\rightarrow x_0} = 0
 \label{eq:expandedLoperatorforRSP}
 \end{equation}
 $$(expandedLoperatorforRSP)
@@ -252,7 +238,7 @@ $$
 y(x)=(x-x_0)^r\sum\limits_{n=0}^\infty
 c_n(x-x_0)^n=\sum\limits_{n=0}^\infty c_n(x-x_0)^{n+r},
 \end{equation}
-$$(ref14)
+$$(ref-odes-frobenius-14)
 
 which is known as a Frobenius Series.
 
@@ -269,6 +255,7 @@ $p(x)=(x-x_0)\frac{Q(x)}{P(x)}$ and $(x-x_0)^2\frac{R(x)}{P(x)}$ are
 not analytic, then $x_0$ is called an irregular singular point.
 
 ````{prf:example}
+:label: example-odes-frobenius-0
 $x=0$ is an irregular point of the second order equation 
 
 $$
@@ -280,6 +267,7 @@ which could not be captured by a Frobenius expansion.
 ````
 
 ````{prf:example}
+:label: example-odes-frobenius-1
 $x=0$ is an irregular point of the first order equation 
 
 $$
@@ -304,7 +292,7 @@ $$
 Ly & = & 2x^2y^{\prime\prime}-xy^\prime +(1+x)y=0\quad x=0\mbox{ is a RSP.}\nonumber\\
 y & = & \sum\limits_{n=0}^\infty a_nx^{n+r}
 \end{eqnarray}
-$$(ref15)
+$$(ref-odes-frobenius-15)
 
 $$
 \begin{eqnarray}
@@ -314,14 +302,14 @@ Ly & = & 2x^2\sum\limits_{n=0}^\infty a_n(n+r)(n+r-1)x^{n+r-2}
 & &\sum\limits_{n=0}^\infty a_n\left\{ 2(n+r)(n+r-1)-(n+r)+1\right\}
    x^{n+r}\nonumber\\
 & &\quad\quad +\, \sum\limits_{n=0}^\infty a_nx^{n+r+1}=0\\
-& & \quad\quad m=n+1\quad n=0\ra m=1\nonumber\\
+& & \quad\quad m=n+1\quad n=0\rightarrow m=1\nonumber\\
 & & \quad\quad n=m-1\nonumber\\
 \mbox{Therefore }& & a_0\left\{ 2r(r-1)-r+1\right\} x^r +
    \sum\limits_{n=1}^\infty \left[ a_n\left\{ 2(n+r)(n+r-1)\right.\right.\nonumber\\
 & &\quad\quad -\, \left.\left. (n+r)+1\right\} +a_{n-1}\right]
 x^{n+r} =0.\nonumber
 \end{eqnarray}
-$$(ref16)
+$$(ref-odes-frobenius-16)
 
 $x^r>$ Indicial Equation: $2r^2-3r+1=(2r-1)(r-1)=0\quad
 r=\frac{1}{2}, \quad r=1$.
@@ -332,7 +320,7 @@ Recursion
 
 $$
 \begin{equation} a_n=\frac{-a_{n-1}}{(2n+2r-3)(n+r)+1}\end{equation}
-$$(ref17)
+$$(ref-odes-frobenius-17)
 
 Let $r=1/2$:
 
@@ -347,7 +335,7 @@ a_n & = & \frac{(-1)^na_0}{n!1.3.5.(2n-1)}=\frac{(-1)^n2^{(n-1)}a_0}{n(2n-1)!}\n
 y_1(x) &= & x^{1/2}\sum\limits_{n=0}^\infty
 \frac{(-1)^n2^{(n-1)}}{n(2n-1)!}x^n\nonumber
 \end{eqnarray}
-$$(ref18)
+$$(ref-odes-frobenius-18)
 
 $r=1$:
 
@@ -362,7 +350,7 @@ a_n & = & \frac{(-1)^na_0}{n!3.5.7. (2n+1)}=
 y_2(x) & = & x\sum\limits_{n=0}^\infty
 \frac{(-1)^n2^n}{(2n+1)!}x^n\nonumber
 \end{eqnarray}
-$$(ref19)
+$$(ref-odes-frobenius-19)
 
 __General Solution:__ $y(x)=c_1y_1(x)+c_2y_2(x)$
 Radius of Convergence $\infty$.
