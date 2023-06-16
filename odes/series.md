@@ -4,28 +4,13 @@ $$
 \newcommand{\mat}[1]{{\mathbf #1}}
 \newcommand{\vect}[1]{\underline{#1}}
 \newcommand{\njump}[1]{[|#1|]}
-\newcommand{\pa}{\partial}
-\newcommand{\De}{\Delta}
-\newcommand{\ra}{\rightarrow}
-\newcommand{\dst}{\displaystyle}
-\newcommand{\la}{\lambda}
-\newcommand{\al}{\alpha}
-\newcommand{\rme}{{\rm e}}
-\newcommand{\rmi}{{\rm i}}
-
-\newcommand{\R}{\mathbb{R}}
 \newcommand{\bke}[1]{\left ( #1 \right )}
 \newcommand{\bkt}[1]{\left [ #1 \right ]}
 \newcommand{\bket}[1]{\left \{ #1 \right \}}
 \newcommand{\norm}[1]{\left \| #1 \right \|}
 \newcommand{\bka}[1]{\left \langle #1 \right \rangle}
-\renewcommand{\th}{\theta}
-\newcommand{\om}{\omega}
-\newcommand{\pd}{\partial}
-\newcommand{\dis}{\displaystyle}
 \newcommand{\ve}[1]{\mathbf{#1}}
 \newcommand{\what}[1]{\widehat{#1}}
-\newcommand{\tint}{\int\kern-.6em\int\kern-.6em\int}
 $$
 
 # Series Solutions To ODEs With Variable Coefficients
@@ -54,10 +39,11 @@ $$
 f(x) & = & a_0+a_1x+a_2x^2+\cdots +a_nx^n+\cdots\mbox{ Power Series}\nonumber\\
 & = & \sum\limits_{n=0}^\infty a_nx^n
 \end{eqnarray}
-$$(ref0)
+$$(ref-odes-series-0)
 
 ````{prf:example}
-$\rme^x=1+\frac{x}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots
+:label: example-odes-series-0
+$\{\rm\ e\}^x=1+\frac{x}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots
 +\frac{x^n}{n!}+\cdots =\sum\limits_{n=0}^\infty \frac{x^n}{n!}$.
 ````
 
@@ -68,7 +54,7 @@ $$
 f(x) & = & \sum\limits_{n=0}^\infty
 a_n(x-x_0)^n=a_0+a_1(x-x_0)+a_2(x-x_0)^2+\cdots\
 \end{eqnarray}
-$$(ref1)
+$$(ref-odes-series-1)
 
 ### Taylor Series
 
@@ -89,7 +75,7 @@ f^{(n)}(x_0) & = & n!a_n\Rightarrow a_n=\frac{f^{(n)}(x_0)}{n!}\nonumber\\
 \mbox{Therefore } f(x) & = & \sum\limits_{n=0}^\infty
 \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
 \end{eqnarray}
-$$(ref2)
+$$(ref-odes-series-2)
 
 Alternative Form of Taylor Series:
 
@@ -98,47 +84,49 @@ $$
 f(x_0+h)=\sum\limits_{n=0}^\infty
 \frac{f^{(n)}(x_0)}{n!}h^n
 \end{equation}
-$$(ref3)
+$$(ref-odes-series-3)
 
-````{prf:example} Taylor-Maclauren expansions of common functions.
+````{prf:example}
+:label: example-odes-series-1 Taylor-Maclauren expansions of common functions.
 $$
 \begin{eqnarray}
-\rme^x & = & \sum\limits_{n=0}^\infty \frac{x^n}{n!}\nonumber\\
+\{\rm\ e\}^x & = & \sum\limits_{n=0}^\infty \frac{x^n}{n!}\nonumber\\
 \sin x  & = & \sum\limits_{n=0}^\infty (-1)^n\frac{x^{2n+1}}{(2n+1)!}\quad \sinh x=\sum\limits_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!}\\
 \cos x & = & \sum\limits_{n=0}^\infty
 (-1)^n\frac{x^{2n}}{(2n)!}\hspace{.5in} \cosh
 x=\sum\limits_{n=0}^\infty \frac{x^{2n}}{(2n)!}\nonumber
 \end{eqnarray}
-$$(ref4)
+$$(ref-odes-series-4)
 
 $$
 \begin{eqnarray}
-\rme^{i\theta} & = & 1+i\theta +\frac{(i\theta )^2}{2!}+\frac{(i\theta )^3}{3!}+\cdots\nonumber\\
+\{\rm\ e\}^{i\theta} & = & 1+i\theta +\frac{(i\theta )^2}{2!}+\frac{(i\theta )^3}{3!}+\cdots\nonumber\\
 & = & \left( 1-\frac{\theta^2}{2!}+\frac{\theta^4}{4!}-\cdots\right) +i\left(\theta -\frac{\theta^3}{3!}+\cdots\right)\\
 & = & \cos\theta +i \sin\theta\nonumber
 \end{eqnarray}
-$$(ref5)
+$$(ref-odes-series-5)
 
 $$
 \begin{eqnarray}
-\rme^{x} & = & 1+x +\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\nonumber\\
+\{\rm\ e\}^{x} & = & 1+x +\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\nonumber\\
 & = & \left( 1+\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots\right) +\left(x +\frac{x^3}{3!}+\cdots\right)\nonumber\\
 & = & \cosh x + \sinh x \nonumber
 \end{eqnarray}
-$$(ref6)
+$$(ref-odes-series-6)
 
 $$
 \begin{eqnarray}
-\rme^{-x} & = & \cosh x - \sinh x \nonumber\\
-\cosh x & = & (\rme^{x}+\rme^{-x})/2\nonumber \\
-\sinh x & = & (\rme^{x}-\rme^{-x})/2\nonumber
+\{\rm\ e\}^{-x} & = & \cosh x - \sinh x \nonumber\\
+\cosh x & = & (\{\rm\ e\}^{x}+\{\rm\ e\}^{-x})/2\nonumber \\
+\sinh x & = & (\{\rm\ e\}^{x}-\{\rm\ e\}^{-x})/2\nonumber
 \end{eqnarray}
-$$(ref7)
+$$(ref-odes-series-7)
 ````
 
 ### Series Solution To A Constant Coefficient ODE
 
 ````{prf:example}
+:label: example-odes-series-2
 In this example we use power series to solve the linear ODE.
 
 $$
@@ -158,7 +146,7 @@ y'&=&\sum\limits_{n=1}^\infty a_nnx^{n-1}\\
 \mbox{Therefore }\quad y^{\prime}+2y&=&\sum\limits_{n=1}^\infty
 a_nnx^{n-1}+\sum\limits_{n=0}^\infty 2a_nx^n=0\nonumber
 \end{eqnarray}
-$$(ref9)
+$$(ref-odes-series-9)
 
 In the first sum let
 
@@ -166,7 +154,7 @@ $$
 \begin{eqnarray*}\begin{array}{ll}
 m=n-1\quad &n=1\Rightarrow m=0\\
 n=m+1 &\end{array}\end{eqnarray*}
-$$(ref10)
+$$(ref-odes-series-10)
 
 $$
 \begin{eqnarray}\begin{array}{rcl}
@@ -175,7 +163,7 @@ a_{m+1}(m+1)x^m+\sum\limits_{n=0}^\infty 2a_nx^n &= &0\\
 n\Leftrightarrow m:\quad\sum\limits_{m=0}^\infty\left\{
 a_{m+1}(m+1)+2a_m\right\} x^m &= &0\end{array}
 \end{eqnarray}
-$$(ref11)
+$$(ref-odes-series-11)
 
 $$
 \begin{eqnarray}\begin{array}{c}
@@ -186,14 +174,15 @@ a_1=-2a_0,a_2= + \frac{2}{2}\frac{2}{1}a_0,a_3= - \frac{2}{3}\cdot\frac{2}{2}\cd
 \ldots ,a_m=(-1)^m\frac{2^m}{m!}a_0\\
 \\
 \mbox{Therefore }y(x)=a_0\sum\limits_{m=0}^\infty
-\frac{(-2x)^m}{m!}=a_0\rme^{-2x}\end{array}
+\frac{(-2x)^m}{m!}=a_0\{\rm\ e\}^{-2x}\end{array}
 \end{eqnarray}
-$$(ref12)
+$$(ref-odes-series-12)
 ````
 
 ### Variable Coefficient ODEs: Ordinary And Singular Points
 
 ````{prf:example}
+:label: example-odes-series-3
 We consider the following Cauchy-Euler equation:
 
 $$
@@ -232,7 +221,7 @@ y^{(3)} &=&-\frac{y^{\prime \prime }}{x-1}+\frac{y^{\prime }}{\left(
 x-1\right) ^{2}}\Longrightarrow y^{(3)}(0)=+y^{\prime \prime
 }(0)+y^{\prime }(0)=2y^{\prime }(0)
 \end{eqnarray*}
-$$(ref15)
+$$(ref-odes-series-15)
 
 Substituting this into Taylor's formula $y(x)=y(0)+xy^{\prime }(0)+\frac{
 x^{2}}{2}y^{\prime \prime }(0)+\frac{x^{3}}{3!}y^{(3)}(0)+\cdots $
@@ -264,7 +253,7 @@ y(x)=\sum\limits_{n=0}^\infty c_nx^n,\quad y^\prime
 =\sum\limits_{n=1}^\infty nc_nx^{n-1},\quad y^{\prime\prime}
 =\sum\limits_{n=2}^\infty c_nn(n-1)x^{n-2}
 \end{equation}
-$$(ref17)
+$$(ref-odes-series-17)
 
 $$
 \begin{eqnarray}
@@ -274,7 +263,7 @@ m-1=n-2\Rightarrow m=n-1\quad n=2\Rightarrow m=1\quad n=m+1\nonumber\\
 -c_2\cdot 2\cdot 1+c_1+\sum\limits_{m=2}^\infty \left[
 -c_{m+1}(m+1)m+c_mm^2\right] x^{m-1}=0\nonumber
 \end{eqnarray}
-$$(ref18)
+$$(ref-odes-series-18)
 
 where $c_0$ and $c_1$ are arbitrary:
 
@@ -284,7 +273,7 @@ c_{m+1} & = & \frac{m}{m+1}c_m\quad m\geq 2\quad c_2=\frac{c_1}{2}\nonumber\\
 c_3 & = & \frac{2}{3}c_2=\frac{c_1}{3}\quad
 c_4=\frac{3}{4}c_3=\frac{c_1}{4}\ldots c_n=\frac{c_1}{n} \nonumber
 \end{eqnarray}
-$$(ref19)
+$$(ref-odes-series-19)
 
 Therefore
 
@@ -307,7 +296,7 @@ $$
 \frac{1}{1-x} & = & 1+x+x^2+\cdots\quad\int\frac{1}{1-x}\, dx=-\ln |1-x|=x+\frac{x^2}{2}+\frac{x^3}{3}+\cdots\nonumber\\
 y(x) & = & A+B\ln |x-1|
 \end{eqnarray}
-$$(ref21)
+$$(ref-odes-series-21)
 ````
 
 Thus the series solution is identical to the solution {eq}`SingularPointExampleSol` provided $|x|\le1$.
@@ -324,7 +313,7 @@ $$
 P(x)y^{\prime\prime}+Q(x)y^\prime +R(x)y=0\mbox{ Homogeneous Eq.}
 \label{variablecoeff}
 \end{equation}
-$$(ref22)
+$$(ref-odes-series-22)
 
 Divide through by $P(x)$:
 
@@ -353,7 +342,7 @@ $$
  &q(x)=q_0+q_1(x-x_0)+\cdots &= &\sum\limits_{k=0}^\infty
  q_k(x-x_0)^k\end{array}
 \end{eqnarray*}
-$$(ref24)
+$$(ref-odes-series-24)
 
 ___Ordinary points:___
 
@@ -381,7 +370,7 @@ y & = & \sum\limits_{n=0}^\infty c_nx^n, y_n^\prime =\sum\limits_{n=1}^\infty c_
 & &\quad +\, \left(\sum\limits_{n=0}^\infty q_n
 x^n\right)\left(\sum\limits_{n=0}^\infty c_nx^n\right)\nonumber
 \end{eqnarray}
-$$(ref26)
+$$(ref-odes-series-26)
 
 $$
 \begin{eqnarray}
@@ -389,7 +378,7 @@ $$
 p_0(m+1)c_{m+1}+\cdots +p_mc_1\big)\right.\nonumber\\
 & &\quad +\, \left.\left( q_0c_m+\cdots +q_mc_0\right)\right\} x^m=0
 \end{eqnarray}
-$$(ref27)
+$$(ref-odes-series-27)
 yields a non-degenerate recursion for the $c_m$. At an ordinary
 point $x_0$ we can obtain two linearly independent solutions  of the
 form {eq}`PowerSeries1`.
@@ -409,14 +398,15 @@ large as the radius of convergence of each of the series expansions
 for $p(x)=Q/P$ and $q(x)=R/P$, i.e., up to the closest singularity
 to $x_0$.
 
-````{prf:example} The Airy Equation
+````{prf:example}
+:label: example-odes-series-4 The Airy Equation
 Consider the Airy equation, which arises in Quantum Mechanics:
 
 $$
 \begin{equation}
 Ly = y^{\prime\prime} - xy=0 \label{eq:Airy}
 \end{equation}
-$$(ref28)
+$$(ref-odes-series-28)
 
 We observe that $x =0$ is an ordinary point.
 
@@ -429,10 +419,10 @@ c_22x^0+\sum\limits_{m=0}^\infty \big[ c_{m+3}(m+3)(m+2)-c_m\big] x^{m+1}=0\\
 c_2=0\quad c_{m+3}=\frac{c_m}{(m+3)(m+2)}\quad
 m=0,1,\ldots\end{array}
 \end{eqnarray}
-$$(ref29)
+$$(ref-odes-series-29)
 
 
-1. $c_0\ra c_3\ra c_6$.
+1. $c_0\rightarrow c_3\rightarrow c_6$.
 
 $$
 \begin{eqnarray}
@@ -441,16 +431,16 @@ c_{3n} & = & \frac{c_0}{(3n)(3n-1)(3n-3)(3n-4)\ldots 9.8.6.5.3.2}\\
 y_0(x) & = & 1+\frac{x^3}{3.2}+\frac{x^6}{6.5.3.2}+\cdots
 +\frac{x^{3n}}{(3n)(3n-1)\ldots 3.2}+\ldots\nonumber
 \end{eqnarray}
-$$(ref30)
+$$(ref-odes-series-30)
 
-2. $c_1\ra c_4\ra c_7\ra c_10$.
+2. $c_1\rightarrow c_4\rightarrow c_7\rightarrow c_10$.
 
 $$
 \begin{equation}
 c_4=\frac{c_1}{4.3}\quad c_7=\frac{c_1}{7.6.4.3}\quad
 c_{10}=\frac{c_1}{(10.9)(7.6)(4.3)}
 \end{equation}
-$$(ref31)
+$$(ref-odes-series-31)
 
 $$
 \begin{eqnarray}
@@ -458,98 +448,99 @@ c_{3n+1} & = &\frac{c_1}{(3n+1)(3n)(3n-2)(3n-3)\ldots (7.6)(4.3)}\nonumber\\
 y_1(x) & = & x+\frac{x^4}{4.3}+\frac{x^7}{7.6.4.3}+\cdots +\frac{x^{3n+1}}{(3n+1)(3n)\ldots 4.3}\\
 y(x) & = & c_0y_0(x)+c_1y_1(x)\nonumber
 \end{eqnarray}
-$$(ref32)
+$$(ref-odes-series-32)
 ````
 
 ___Radius of Convergence:___
 
 $$
 \begin{equation}
-\lim_{m\ra\infty}\frac{c_{m+3}}{c_m}|x|^3
-=\lim_{m\ra\infty}\frac{|x|^3}{(m+3)(m+2)}=0<1\quad\rho =\infty .
+\lim_{m\rightarrow\infty}\frac{c_{m+3}}{c_m}|x|^3
+=\lim_{m\rightarrow\infty}\frac{|x|^3}{(m+3)(m+2)}=0<1\quad\rho =\infty .
 \end{equation}
-$$(ref33)
+$$(ref-odes-series-33)
 
 See B\&D for expansion of Airy Solution about $x_0=1$:,
 i.e. $y(x)=\sum a_n(x-1)^n$. It is useful to write $x=(x-1)+1$.
 
 $$
 \begin{equation}y^{\prime\prime}=(x-1)y+y\end{equation}
-$$(ref34)
+$$(ref-odes-series-34)
 
-````{prf:example} The Hermite Equation
+````{prf:example}
+:label: example-odes-series-5 The Hermite Equation
 Consider the Hermite equation, which has application in Quantum
 mechanics and numerical analysis:
 
 $$
 \begin{equation}
-Ly=y^{\prime\prime}-2xy^\prime +\la y=0 \label{eq:Hermite}
+Ly=y^{\prime\prime}-2xy^\prime +\lambda y=0 \label{eq:Hermite}
 \end{equation}
-$$(ref35)
+$$(ref-odes-series-35)
 
-Since $x=0$ is an ordinary point let $\dst
+Since $x=0$ is an ordinary point let $\displaystyle
 y(x)=\sum\limits_{n=0}^\infty a_nx^n$ then
 
 $$
 \begin{equation}
 Ly=\sum\limits_{n=2}^\infty
 a_nn(n-1)x^{n-2}-2\sum\limits_{n=1}^\infty
-a_nnx^n+\la\sum\limits_{n=0}^\infty a_nx^n=0.
+a_nnx^n+\lambda\sum\limits_{n=0}^\infty a_nx^n=0.
 \end{equation}
-$$(ref36)
+$$(ref-odes-series-36)
 
 $$
 \begin{eqnarray*}\begin{array}{lll}
-m=n-2\ra n=m+2\quad &m\leftarrow n\quad &m\leftarrow n\\
+m=n-2\rightarrow n=m+2\quad &m\leftarrow n\quad &m\leftarrow n\\
 n=2\Rightarrow m=0 & &\end{array}
 \end{eqnarray*}
-$$(ref37)
+$$(ref-odes-series-37)
 
 Therefore
 
 $$
 \begin{equation}
-\sum\limits_{m=1}^\infty \big[ a_{m+2}(m+2)(m+1)-2a_mm+\la a_m\big]
-x^m+\left[ a_2 2+\la a_0\right] x^0=0.
+\sum\limits_{m=1}^\infty \big[ a_{m+2}(m+2)(m+1)-2a_mm+\lambda a_m\big]
+x^m+\left[ a_2 2+\lambda a_0\right] x^0=0.
 \end{equation}
-$$(ref38)
+$$(ref-odes-series-38)
 $x^0:$
 
 $$
-\begin{equation} a_2=-\la a_0/2
+\begin{equation} a_2=-\lambda a_0/2
 \end{equation}
-$$(ref39)
+$$(ref-odes-series-39)
 $x^m:$
 
 $$
-\begin{equation} a_{m+2}=\frac{(2m-\la )a_m}{(m+1)(m+2)} \quad m\geq 1
+\begin{equation} a_{m+2}=\frac{(2m-\lambda )a_m}{(m+1)(m+2)} \quad m\geq 1
 \end{equation}
-$$(ref40)
+$$(ref-odes-series-40)
 
 $a_0$:
 
 $$
 \begin{eqnarray}
-a_2 & = & -\frac{\la}{2}a_0, a_4=\frac{(4-\la )}{4.3}
-a_2=\frac{(4-\la )(-\la )}{4.3.2}a_0,
-a_6=\frac{(8-\la )(4-\la )(-\la )}{6.5.4.3.2}a_0\nonumber\\
-&\phantom{=} & \quad a_{2k} =\frac{[4(k-1)-\la ][4(k-2)-\la ]\ldots
-[-\la] }{(2k)!}a_0\\
-y_0 & = & a_0\left[ 1-\frac{\la}{2}x^2+\frac{(\la -4)\la}{4!}
-x^4+\frac{(8-\la )(4-\la )(-\la )}{6!}x^6+\cdots \right]\nonumber
+a_2 & = & -\frac{\lambda}{2}a_0, a_4=\frac{(4-\lambda )}{4.3}
+a_2=\frac{(4-\lambda )(-\lambda )}{4.3.2}a_0,
+a_6=\frac{(8-\lambda )(4-\lambda )(-\lambda )}{6.5.4.3.2}a_0\nonumber\\
+&\phantom{=} & \quad a_{2k} =\frac{[4(k-1)-\lambda ][4(k-2)-\lambda ]\ldots
+[-\lambda] }{(2k)!}a_0\\
+y_0 & = & a_0\left[ 1-\frac{\lambda}{2}x^2+\frac{(\lambda -4)\lambda}{4!}
+x^4+\frac{(8-\lambda )(4-\lambda )(-\lambda )}{6!}x^6+\cdots \right]\nonumber
 \end{eqnarray}
-$$(ref41)
+$$(ref-odes-series-41)
 
 $a_1$:
 
 $$
 \begin{eqnarray}
-a_3 & = & \frac{(2-\la)}{3.2}a_1; a_5=\frac{(6-\la )}{5!}(2-\la )a_1; a_7=\frac{(10-\la )(6-\la )(2-\la )}{7!}a_1, \ldots\\
-y_1 & = & a_1\left[ x+\frac{(2-\la )}{3!}x^3+\frac{(6-\la )(2-\la
-)}{5!}x^5+\frac{(10-\la )(6-\la )(2-\la
+a_3 & = & \frac{(2-\lambda)}{3.2}a_1; a_5=\frac{(6-\lambda )}{5!}(2-\lambda )a_1; a_7=\frac{(10-\lambda )(6-\lambda )(2-\lambda )}{7!}a_1, \ldots\\
+y_1 & = & a_1\left[ x+\frac{(2-\lambda )}{3!}x^3+\frac{(6-\lambda )(2-\lambda
+)}{5!}x^5+\frac{(10-\lambda )(6-\lambda )(2-\lambda
 )x^7}{7!}+\cdots\right]\nonumber
 \end{eqnarray}
-$$(ref42)
+$$(ref-odes-series-42)
 
 The general solution is of the form
 
@@ -557,11 +548,11 @@ $$
 \begin{equation}
 y(x)=Ay_0(x)+By_1(x)
 \end{equation}
-$$(ref43)
+$$(ref-odes-series-43)
 ````
 
 ````{note}
-(a) If $\la =2n$ then the recursion yields $a_{m+2}=0=a_{m+4}=\cdots $ for $m=n$.
+(a) If $\lambda =2n$ then the recursion yields $a_{m+2}=0=a_{m+4}=\cdots $ for $m=n$.
 Thus if $n$ is an even integer then the series solution $y_0$ will
 terminate and become a polynomial of degree $n$.
 
@@ -573,7 +564,7 @@ y_0(x) &=& a_0\left[ 1-nx^2+n(n-2)2^2\frac{x^4}{4!}-n(n-2)(n-4)\frac{2^3x^6}{6!}
 & &\quad \left. +\, (-1)^{n/2} n(n-2)\ldots 2.\big(2^{n/2}\big)
 \frac{x^n}{n!}\right] .
 \end{eqnarray}
-$$(ref44)
+$$(ref-odes-series-44)
 
 On the other hand if $n$ is an odd integer then the series solution
 $y_1(x)$ will terminate and become a polynomial of degree $n$. In
@@ -586,11 +577,11 @@ y_1(x) & = & a_1\left[ x-2(n-1)\frac{x^3}{3!}+2^2(n-1)(n-3)\frac{x^5}{5!}\right.
 & &\quad \left. +\, (n-1)(n-3) \ldots
 3.1(-2)^{\frac{(n-1)}{2}}\frac{x^n}{n!}\right]\nonumber
 \end{eqnarray}
-$$(ref45)
+$$(ref-odes-series-45)
 
-(b) For example in the special case $\la =4=2n$ then $n=2$.
+(b) For example in the special case $\lambda =4=2n$ then $n=2$.
 
 $$
 \begin{equation} y_0(x)=a_0[1-2x^2].\end{equation}
-$$(ref46)
+$$(ref-odes-series-46)
 ````
