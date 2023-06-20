@@ -37,3 +37,6 @@ parts:
     numbered: True
     chapters:
     - file: wave/wave.md
+    - file: wave/1d.md
+    - file: wave/dalembert.md
+    - file: wave/finite.md
