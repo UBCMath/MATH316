@@ -4,6 +4,8 @@ author: UBC Math
 sphinx:
   config:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  extra_extensions:
+    - sphinx_proof
 only_build_toc_files: true
 execute:
     execute_notebooks: cache
