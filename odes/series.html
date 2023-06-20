@@ -1,0 +1,1045 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2. Series Solutions To ODEs With Variable Coefficients &#8212; MATH 316</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'odes/series';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Regular Singular Points" href="rsps.html" />
+    <link rel="prev" title="1. Review Of Methods To Solve Ordinary Differential Equations" href="review.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MATH 316</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="review.html">1. Review Of Methods To Solve Ordinary Differential Equations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Series Solutions To ODEs With Variable Coefficients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rsps.html">3. Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessel.html">5. Bessel’s Equation and Bessel Functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fourier Series</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fourier/series.html">6. Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fourier/separation.html">7. Separation of Variables and Fourier Series</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">8. Finite Difference Formulas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../heat/heat.html">9. Heat Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">10. Laplace Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">11. Wave Equation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/UBCMath/math316" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/odes/series.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Series Solutions To ODEs With Variable Coefficients</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-solution-of-odes">2.1. Series Solution Of Odes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-series">2.1.1. Power Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taylor-series">2.1.2. Taylor Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-solution-to-a-constant-coefficient-ode">2.1.3. Series Solution To A Constant Coefficient ODE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-coefficient-odes-ordinary-and-singular-points">2.1.4. Variable Coefficient ODEs: Ordinary And Singular Points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-series-solution-of-general-variable-coefficient-linear-odes">2.1.5. Power Series Solution of General Variable Coefficient Linear ODEs</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="math notranslate nohighlight">
+\[
+\newcommand{\N}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\mat}[1]{{\mathbf #1}}
+\newcommand{\vect}[1]{\underline{#1}}
+\newcommand{\njump}[1]{[|#1|]}
+\newcommand{\bke}[1]{\left ( #1 \right )}
+\newcommand{\bkt}[1]{\left [ #1 \right ]}
+\newcommand{\bket}[1]{\left \{ #1 \right \}}
+\newcommand{\norm}[1]{\left \| #1 \right \|}
+\newcommand{\bka}[1]{\left \langle #1 \right \rangle}
+\newcommand{\ve}[1]{\mathbf{#1}}
+\newcommand{\what}[1]{\widehat{#1}}
+\]</div>
+<section class="tex2jax_ignore mathjax_ignore" id="series-solutions-to-odes-with-variable-coefficients">
+<h1><span class="section-number">2. </span>Series Solutions To ODEs With Variable Coefficients<a class="headerlink" href="#series-solutions-to-odes-with-variable-coefficients" title="Permalink to this headline">#</a></h1>
+<p>In this lecture we will introduce series methods for the solution of
+variable coefficient ODE. We introduce the concepts of ordinary
+points about which Taylor series solutions are obtained and singular
+points about which more general solutions are required.</p>
+<div class="admonition-key-concepts admonition">
+<p class="admonition-title">Key Concepts</p>
+<p>Variable coefficient ODE, Series
+Solutions, Ordinary Points and Taylor Series, Singular Points,
+radius of convergence of power series.</p>
+</div>
+<section id="series-solution-of-odes">
+<h2><span class="section-number">2.1. </span>Series Solution Of Odes<a class="headerlink" href="#series-solution-of-odes" title="Permalink to this headline">#</a></h2>
+<section id="power-series">
+<h3><span class="section-number">2.1.1. </span>Power Series<a class="headerlink" href="#power-series" title="Permalink to this headline">#</a></h3>
+<p><span class="math notranslate nohighlight">\(f(x)=a_0+a_1x+a_2x^2+\cdots +a_nx^n\)</span> polynomial approximation.</p>
+<p>Idea: Extend the polynomial to include infinitely many terms.</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-0">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-ref-odes-series-0" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+f(x) &amp; = &amp; a_0+a_1x+a_2x^2+\cdots +a_nx^n+\cdots\mbox{ Power Series}\nonumber\\
+&amp; = &amp; \sum\limits_{n=0}^\infty a_nx^n
+\end{eqnarray}
+\end{split}\]</div>
+<div class="proof example admonition" id="example-odes-series-0">
+<p class="admonition-title"><span class="caption-number">Example 2.1 </span></p>
+<section class="example-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(\{\rm\ e\}^x=1+\frac{x}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots
++\frac{x^n}{n!}+\cdots =\sum\limits_{n=0}^\infty \frac{x^n}{n!}\)</span>.</p>
+</section>
+</div><p>More General Power Series:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-1">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-ref-odes-series-1" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+f(x) &amp; = &amp; \sum\limits_{n=0}^\infty
+a_n(x-x_0)^n=a_0+a_1(x-x_0)+a_2(x-x_0)^2+\cdots\
+\end{eqnarray}
+\]</div>
+</section>
+<section id="taylor-series">
+<h3><span class="section-number">2.1.2. </span>Taylor Series<a class="headerlink" href="#taylor-series" title="Permalink to this headline">#</a></h3>
+<p>If we know all the derivatives of a function <span class="math notranslate nohighlight">\(f(x)\)</span> at a single
+point <span class="math notranslate nohighlight">\(x_0\)</span> then we can solve for the coefficients of a power series
+that represents the function at neighboring points <span class="math notranslate nohighlight">\(x\)</span> as follows:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-2">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-ref-odes-series-2" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+f(x) &amp; = &amp; \sum\limits_{n=0}^\infty a_n(x-x_0)^n=a_0+a_1(x-x_0)+a_2(x-x_0)^2+\cdots\nonumber\\
+f^\prime (x) &amp; = &amp; a_1+2a_2(x-x_0)+3a_3(x-x_0)^2+\cdots +na_n(x-x_0)^n+\cdots\nonumber\\
+&amp; &amp;\quad\Rightarrow f^\prime (x_0)=a_1\nonumber\\
+f^{\prime\prime} (x) &amp; = &amp; 2a_2+3\cdot2a_3(x-x_0)+\cdots +n(n-1)a_n(x-x_0)^{n-2}+\cdots\nonumber\\
+&amp; &amp;\quad\Rightarrow f^{\prime\prime} (x_0)=2a_2\nonumber\\
+f^{(3)}(x) &amp; = &amp; 3!a_3+4\cdot 3\cdot 2(x-x_0)+\cdots +n(n-1)(n-2)a_n(x-x_0)^{n-3}+\cdots\nonumber\\
+&amp; &amp;\quad\Rightarrow f^{(3)}(x_0)=3!a_3\nonumber\\
+f^{(n)}(x_0) &amp; = &amp; n!a_n\Rightarrow a_n=\frac{f^{(n)}(x_0)}{n!}\nonumber\\
+\mbox{Therefore } f(x) &amp; = &amp; \sum\limits_{n=0}^\infty
+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
+\end{eqnarray}
+\end{split}\]</div>
+<p>Alternative Form of Taylor Series:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-3">
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-ref-odes-series-3" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+f(x_0+h)=\sum\limits_{n=0}^\infty
+\frac{f^{(n)}(x_0)}{n!}h^n
+\end{equation}
+\]</div>
+<div class="proof example admonition" id="example-odes-series-1 Taylor-Maclauren expansions of common functions.">
+<p class="admonition-title"><span class="caption-number">Example 2.2 </span></p>
+<section class="example-content" id="proof-content">
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-4">
+<span class="eqno">(2.5)<a class="headerlink" href="#equation-ref-odes-series-4" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\{\rm\ e\}^x &amp; = &amp; \sum\limits_{n=0}^\infty \frac{x^n}{n!}\nonumber\\
+\sin x  &amp; = &amp; \sum\limits_{n=0}^\infty (-1)^n\frac{x^{2n+1}}{(2n+1)!}\quad \sinh x=\sum\limits_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!}\\
+\cos x &amp; = &amp; \sum\limits_{n=0}^\infty
+(-1)^n\frac{x^{2n}}{(2n)!}\hspace{.5in} \cosh
+x=\sum\limits_{n=0}^\infty \frac{x^{2n}}{(2n)!}\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-5">
+<span class="eqno">(2.6)<a class="headerlink" href="#equation-ref-odes-series-5" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\{\rm\ e\}^{i\theta} &amp; = &amp; 1+i\theta +\frac{(i\theta )^2}{2!}+\frac{(i\theta )^3}{3!}+\cdots\nonumber\\
+&amp; = &amp; \left( 1-\frac{\theta^2}{2!}+\frac{\theta^4}{4!}-\cdots\right) +i\left(\theta -\frac{\theta^3}{3!}+\cdots\right)\\
+&amp; = &amp; \cos\theta +i \sin\theta\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-6">
+<span class="eqno">(2.7)<a class="headerlink" href="#equation-ref-odes-series-6" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\{\rm\ e\}^{x} &amp; = &amp; 1+x +\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\nonumber\\
+&amp; = &amp; \left( 1+\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots\right) +\left(x +\frac{x^3}{3!}+\cdots\right)\nonumber\\
+&amp; = &amp; \cosh x + \sinh x \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-7">
+<span class="eqno">(2.8)<a class="headerlink" href="#equation-ref-odes-series-7" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\{\rm\ e\}^{-x} &amp; = &amp; \cosh x - \sinh x \nonumber\\
+\cosh x &amp; = &amp; (\{\rm\ e\}^{x}+\{\rm\ e\}^{-x})/2\nonumber \\
+\sinh x &amp; = &amp; (\{\rm\ e\}^{x}-\{\rm\ e\}^{-x})/2\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+</div></section>
+<section id="series-solution-to-a-constant-coefficient-ode">
+<h3><span class="section-number">2.1.3. </span>Series Solution To A Constant Coefficient ODE<a class="headerlink" href="#series-solution-to-a-constant-coefficient-ode" title="Permalink to this headline">#</a></h3>
+<div class="proof example admonition" id="example-odes-series-2">
+<p class="admonition-title"><span class="caption-number">Example 2.3 </span></p>
+<section class="example-content" id="proof-content">
+<p>In this example we use power series to solve the linear ODE.</p>
+<div class="math notranslate nohighlight" id="equation-eg1">
+<span class="eqno">(2.9)<a class="headerlink" href="#equation-eg1" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+y'+2y=0  \label{EG1}
+\end{equation}
+\]</div>
+<p>which we solved by integrating factor in the previous
+lecture. Since the unknown solution <span class="math notranslate nohighlight">\(y(x)\)</span> and all its derivatives
+are defined implicitly by the ODE <span class="math notranslate nohighlight">\(y'=-2y\)</span>, let us look for a series
+solution of the form: <span class="math notranslate nohighlight">\(y(x)=\sum\limits_{n=0}^\infty a_nx^n\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-9">
+<span class="eqno">(2.10)<a class="headerlink" href="#equation-ref-odes-series-9" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+y'&amp;=&amp;\sum\limits_{n=1}^\infty a_nnx^{n-1}\\
+\mbox{Therefore }\quad y^{\prime}+2y&amp;=&amp;\sum\limits_{n=1}^\infty
+a_nnx^{n-1}+\sum\limits_{n=0}^\infty 2a_nx^n=0\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>In the first sum let</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-10">
+<span class="eqno">(2.11)<a class="headerlink" href="#equation-ref-odes-series-10" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray*}\begin{array}{ll}
+m=n-1\quad &amp;n=1\Rightarrow m=0\\
+n=m+1 &amp;\end{array}\end{eqnarray*}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-11">
+<span class="eqno">(2.12)<a class="headerlink" href="#equation-ref-odes-series-11" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{rcl}
+\mbox{Therefore }\sum\limits_{m=0}^\infty
+a_{m+1}(m+1)x^m+\sum\limits_{n=0}^\infty 2a_nx^n &amp;= &amp;0\\
+n\Leftrightarrow m:\quad\sum\limits_{m=0}^\infty\left\{
+a_{m+1}(m+1)+2a_m\right\} x^m &amp;= &amp;0\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-12">
+<span class="eqno">(2.13)<a class="headerlink" href="#equation-ref-odes-series-12" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{c}
+a_{m+1}= - \frac{2}{(m+1)}a_m\\
+\\
+a_1=-2a_0,a_2= + \frac{2}{2}\frac{2}{1}a_0,a_3= - \frac{2}{3}\cdot\frac{2}{2}\cdot\frac{2}{1}a_0=(-1)^3\frac{2^3}{3!}a_0,\\
+\\
+\ldots ,a_m=(-1)^m\frac{2^m}{m!}a_0\\
+\\
+\mbox{Therefore }y(x)=a_0\sum\limits_{m=0}^\infty
+\frac{(-2x)^m}{m!}=a_0\{\rm\ e\}^{-2x}\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+</div></section>
+<section id="variable-coefficient-odes-ordinary-and-singular-points">
+<h3><span class="section-number">2.1.4. </span>Variable Coefficient ODEs: Ordinary And Singular Points<a class="headerlink" href="#variable-coefficient-odes-ordinary-and-singular-points" title="Permalink to this headline">#</a></h3>
+<div class="proof example admonition" id="example-odes-series-3">
+<p class="admonition-title"><span class="caption-number">Example 2.4 </span></p>
+<section class="example-content" id="proof-content">
+<p>We consider the following Cauchy-Euler equation:</p>
+<div class="math notranslate nohighlight" id="equation-singularpointexample">
+<span class="eqno">(2.14)<a class="headerlink" href="#equation-singularpointexample" title="Permalink to this equation">#</a></span>\[
+\begin{equation}(x-1)y^{\prime\prime}+y^\prime
+\label{eq:SingularPointExample} =0\end{equation}
+\]</div>
+<p>whose solution is obtained as follows</p>
+<div class="math notranslate nohighlight" id="equation-singularpointexamplesol">
+<span class="eqno">(2.15)<a class="headerlink" href="#equation-singularpointexamplesol" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+y&amp; = &amp; (x-1)^r\Rightarrow r(r-1)+r=r^2=0\quad r=0,0.\nonumber\\
+\mbox{So that } y(x) &amp; = &amp; A+B\ln |x-1| \mbox{ is the general solution} 
+\label{eq:SingularPointExampleSol}
+\end{eqnarray}
+\end{split}\]</div>
+<p><em><strong>Method I:</strong></em></p>
+<p>The first method we consider for obtaining a series solution to
+<a class="reference internal" href="#equation-singularpointexample">(2.14)</a> is to use the ODE to calculate all
+the derivatives of <span class="math notranslate nohighlight">\(y(x)\)</span> by direct differentiation and then to
+substitute these derivatives into Taylor’s formula. Although this
+method can, in principle, be applied to any suitable ODE, we will
+see that the computations can rapidly become tedious. However, this
+method does highlight when the power series method will fail.</p>
+<p>Assume that <span class="math notranslate nohighlight">\(y(0)\)</span> and <span class="math notranslate nohighlight">\(y^{\prime }(0)\)</span> are given, then</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-15">
+<span class="eqno">(2.16)<a class="headerlink" href="#equation-ref-odes-series-15" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray*}
+y^{\prime \prime } &amp;=&amp;-\frac{y^{\prime }}{x-1}\Rightarrow y^{\prime
+\prime
+}(0)=y^{\prime }(0) \\
+y^{(3)} &amp;=&amp;-\frac{y^{\prime \prime }}{x-1}+\frac{y^{\prime }}{\left(
+x-1\right) ^{2}}\Longrightarrow y^{(3)}(0)=+y^{\prime \prime
+}(0)+y^{\prime }(0)=2y^{\prime }(0)
+\end{eqnarray*}
+\end{split}\]</div>
+<p>Substituting this into Taylor’s formula <span class="math notranslate nohighlight">\(y(x)=y(0)+xy^{\prime }(0)+\frac{
+x^{2}}{2}y^{\prime \prime }(0)+\frac{x^{3}}{3!}y^{(3)}(0)+\cdots \)</span></p>
+<div class="math notranslate nohighlight" id="equation-singularpointexamplesol1">
+<span class="eqno">(2.17)<a class="headerlink" href="#equation-singularpointexamplesol1" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+y(x)=y(0)+y^{\prime }(0)\left\{
+x+\frac{x^{2}}{2}+\frac{x^{3}}{3}+\cdots \right\}
+\label{eq:SingularPointExampleSol1}
+\end{equation}
+\]</div>
+<p>We observe that this process works for equation <a class="reference internal" href="#equation-singularpointexample">(2.14)</a>
+using the expansion point <span class="math notranslate nohighlight">\(x_{0}=0,\)</span> but will not work for <span class="math notranslate nohighlight">\(x_{0}=1,\)</span>
+which is called a <strong>singular point</strong>. In fact, a power series expansion is possible for
+all points <span class="math notranslate nohighlight">\(x_{0}\neq 1,\)</span> which are called ordinary points.</p>
+<p><em><strong>Method II:</strong></em></p>
+<p>We now consider an alternative, and more convenient, method for
+determining the coefficients of a power series solution to the ODE,
+by substituting the power series into the ODE and determining
+recursion formulae for these coefficients. Expand around the
+ordinary point <span class="math notranslate nohighlight">\(x_0=0\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-17">
+<span class="eqno">(2.18)<a class="headerlink" href="#equation-ref-odes-series-17" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+y(x)=\sum\limits_{n=0}^\infty c_nx^n,\quad y^\prime
+=\sum\limits_{n=1}^\infty nc_nx^{n-1},\quad y^{\prime\prime}
+=\sum\limits_{n=2}^\infty c_nn(n-1)x^{n-2}
+\end{equation}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-18">
+<span class="eqno">(2.19)<a class="headerlink" href="#equation-ref-odes-series-18" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+(x-1)\sum\limits_{n=2}^\infty c_nn(n-1)x^{n-2}+\sum\limits_{n=1}^\infty nc_nx^{n-1}=0\nonumber\\
+-\sum\limits_{n=2}^\infty c_nn(n-1)x^{n-2}+\sum\limits_{n=2}^\infty c_n\left\{ n(n-1)+n\right\} x^{n-1}+c_1=0\\
+m-1=n-2\Rightarrow m=n-1\quad n=2\Rightarrow m=1\quad n=m+1\nonumber\\
+-c_2\cdot 2\cdot 1+c_1+\sum\limits_{m=2}^\infty \left[
+-c_{m+1}(m+1)m+c_mm^2\right] x^{m-1}=0\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_0\)</span> and <span class="math notranslate nohighlight">\(c_1\)</span> are arbitrary:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-19">
+<span class="eqno">(2.20)<a class="headerlink" href="#equation-ref-odes-series-19" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+c_{m+1} &amp; = &amp; \frac{m}{m+1}c_m\quad m\geq 2\quad c_2=\frac{c_1}{2}\nonumber\\
+c_3 &amp; = &amp; \frac{2}{3}c_2=\frac{c_1}{3}\quad
+c_4=\frac{3}{4}c_3=\frac{c_1}{4}\ldots c_n=\frac{c_1}{n} \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-singularpointexamplesol2">
+<span class="eqno">(2.21)<a class="headerlink" href="#equation-singularpointexamplesol2" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+y(x) = c_0+c_1\sum\limits_{n=1}^\infty \frac{x^n}{n}.
+\label{eq:SingularPointExampleSol2}
+\end{equation}
+\]</div>
+</section>
+</div><p>We observe that the solutions <a class="reference internal" href="#equation-singularpointexamplesol1">(2.17)</a>
+and <a class="reference internal" href="#equation-singularpointexamplesol2">(2.21)</a> obtained by the two
+different methods are identical.</p>
+<div class="tip admonition">
+<p class="admonition-title">Recall</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-21">
+<span class="eqno">(2.22)<a class="headerlink" href="#equation-ref-odes-series-21" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\frac{1}{1-x} &amp; = &amp; 1+x+x^2+\cdots\quad\int\frac{1}{1-x}\, dx=-\ln |1-x|=x+\frac{x^2}{2}+\frac{x^3}{3}+\cdots\nonumber\\
+y(x) &amp; = &amp; A+B\ln |x-1|
+\end{eqnarray}
+\end{split}\]</div>
+</div>
+<p>Thus the series solution is identical to the solution <a class="reference internal" href="#equation-singularpointexamplesol">(2.15)</a> provided <span class="math notranslate nohighlight">\(|x|\le1\)</span>.
+We note that the radius of convergence of convergence for the power series <a class="reference internal" href="#equation-singularpointexamplesol1">(2.17)</a>
+is <span class="math notranslate nohighlight">\(1\)</span>, which corresponds to the distance between the expansion point <span class="math notranslate nohighlight">\(x_{0}=0\)</span>
+and the nearest singular point <span class="math notranslate nohighlight">\(x=1.\)</span></p>
+</section>
+<section id="power-series-solution-of-general-variable-coefficient-linear-odes">
+<h3><span class="section-number">2.1.5. </span>Power Series Solution of General Variable Coefficient Linear ODEs<a class="headerlink" href="#power-series-solution-of-general-variable-coefficient-linear-odes" title="Permalink to this headline">#</a></h3>
+<p>Consider solving variable coefficient linear ODEs of the form:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-22">
+<span class="eqno">(2.23)<a class="headerlink" href="#equation-ref-odes-series-22" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+P(x)y^{\prime\prime}+Q(x)y^\prime +R(x)y=0\mbox{ Homogeneous Eq.}
+\label{variablecoeff}
+\end{equation}
+\]</div>
+<p>Divide through by <span class="math notranslate nohighlight">\(P(x)\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-lyoverpeq">
+<span class="eqno">(2.24)<a class="headerlink" href="#equation-lyoverpeq" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+Ly=y^{\prime\prime}+p(x)y^\prime +q(x)y=0\quad p(x)=Q/P, \quad q(x)
+= R/P \label{LyoverPEQ}
+\end{equation}
+\]</div>
+<p>In order to calculate the higher derivatives of <span class="math notranslate nohighlight">\(y(x)\)</span> to substitute
+into Taylor’s formula, we rewrite <a class="reference internal" href="#equation-lyoverpeq">(2.24)</a> as follows:
+<span class="math notranslate nohighlight">\(y^{\prime \prime }=-p(x)y^{\prime }-q(x)y\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(y(x_{0})\)</span> and <span class="math notranslate nohighlight">\(y^{\prime }(x_{0})\)</span> are given, then <span class="math notranslate nohighlight">\(y^{\prime
+\prime }(x_{0})\)</span> can be obtained directly from the ODE. Higher
+derivatives of <span class="math notranslate nohighlight">\(y\)</span> can, in turn, be obtained by differentiating the
+ODE repeatedly. This process will be successful provided <span class="math notranslate nohighlight">\(p(x)\)</span> and
+<span class="math notranslate nohighlight">\(q(x)\)</span> are infinitely differentiable at <span class="math notranslate nohighlight">\(x=x_{0}\)</span>. In this case
+<span class="math notranslate nohighlight">\(p(x)\)</span> and <span class="math notranslate nohighlight">\(q(x)\)</span> are said to be analytic at <span class="math notranslate nohighlight">\(x_{0}\)</span> and have Taylor
+expansions of the form</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-24">
+<span class="eqno">(2.25)<a class="headerlink" href="#equation-ref-odes-series-24" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray*}\begin{array}{lrcl}
+\mbox{i.e. } &amp;p(x)=p_0+p_1(x-x_0)+\cdots &amp;=
+&amp;\sum\limits_{k=0}^\infty p_k(x-x_0)^k\\
+ &amp;q(x)=q_0+q_1(x-x_0)+\cdots &amp;= &amp;\sum\limits_{k=0}^\infty
+ q_k(x-x_0)^k\end{array}
+\end{eqnarray*}
+\end{split}\]</div>
+<p><em><strong>Ordinary points:</strong></em></p>
+<p>The expansion point <span class="math notranslate nohighlight">\(x_0\)</span> is said to be an ordinary point of
+<a class="reference internal" href="#equation-lyoverpeq">(2.24)</a> if <span class="math notranslate nohighlight">\(p(x)=Q/P\)</span> and <span class="math notranslate nohighlight">\(q(x)=R/P\)</span> are analytic at
+<span class="math notranslate nohighlight">\(x_0\)</span>. If <span class="math notranslate nohighlight">\(x_0\)</span> is an ordinary point  it is possible to obtain power
+series expansions of the solution <span class="math notranslate nohighlight">\(y(x)\)</span> of the form:</p>
+<div class="math notranslate nohighlight" id="equation-powerseries1">
+<span class="eqno">(2.26)<a class="headerlink" href="#equation-powerseries1" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+y(x)=\sum\limits_{n=0}^\infty c_n(x-x_0)^n. \label{PowerSeries1}
+\end{equation}
+\]</div>
+<p>The idea is to substitute the expansion <a class="reference internal" href="#equation-powerseries1">(2.26)</a> into <a class="reference internal" href="#equation-lyoverpeq">(2.24)</a> and solve for the unknown coefficients <span class="math notranslate nohighlight">\(c_n\)</span>
+in order to determine a solution.</p>
+<div class="proof observation admonition" id="observation-4">
+<p class="admonition-title"><span class="caption-number">Observation 2.1 </span></p>
+<section class="observation-content" id="proof-content">
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(P\)</span>, <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(R\)</span> are polynomials then a point <span class="math notranslate nohighlight">\(x_0\)</span> such that <span class="math notranslate nohighlight">\(P(x_0)\not= 0\)</span> is an ordinary point.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(x_0=0\)</span> is an ordinary point then we assume</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-26">
+<span class="eqno">(2.27)<a class="headerlink" href="#equation-ref-odes-series-26" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+y &amp; = &amp; \sum\limits_{n=0}^\infty c_nx^n, y_n^\prime =\sum\limits_{n=1}^\infty c_nnx^{n-1}, y_n^{\prime\prime}=\sum\limits_{n=2}^\infty c_nn(n-1)x^{n-2}\nonumber\\
+0=Ly &amp; = &amp; \sum\limits_{n=2}^\infty c_nn(n-1)x^{n-2}+\left(\sum\limits_{n=0}^\infty p_n x^n\right) \sum\limits_{n=1}^\infty nc_nx^{n-1}\\
+&amp; &amp;\quad +\, \left(\sum\limits_{n=0}^\infty q_n
+x^n\right)\left(\sum\limits_{n=0}^\infty c_nx^n\right)\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-27">
+<span class="eqno">(2.28)<a class="headerlink" href="#equation-ref-odes-series-27" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+&amp; &amp;\sum\limits_{m=0}^\infty\left\{ (m+2)(m+1)c_{m+2}+\big(
+p_0(m+1)c_{m+1}+\cdots +p_mc_1\big)\right.\nonumber\\
+&amp; &amp;\quad +\, \left.\left( q_0c_m+\cdots +q_mc_0\right)\right\} x^m=0
+\end{eqnarray}
+\end{split}\]</div>
+<p>yields a non-degenerate recursion for the <span class="math notranslate nohighlight">\(c_m\)</span>. At an ordinary
+point <span class="math notranslate nohighlight">\(x_0\)</span> we can obtain two linearly independent solutions  of the
+form <a class="reference internal" href="#equation-powerseries1">(2.26)</a>.</p>
+</section>
+</div><p><em><strong>Singular Points:</strong></em></p>
+<p>If <span class="math notranslate nohighlight">\(p(x)\)</span> or <span class="math notranslate nohighlight">\(q(x)\)</span> are not analytic at <span class="math notranslate nohighlight">\(x_0\)</span>, then <span class="math notranslate nohighlight">\(x_0\)</span> is said to
+be a singular point of <a class="reference internal" href="#equation-lyoverpeq">(2.24)</a>. For example if <span class="math notranslate nohighlight">\(P\)</span>, <span class="math notranslate nohighlight">\(Q\)</span>
+and <span class="math notranslate nohighlight">\(R\)</span> are polynomials and <span class="math notranslate nohighlight">\(P(x_0)=0\)</span> and <span class="math notranslate nohighlight">\(Q(x_0)\not= 0\)</span> or
+<span class="math notranslate nohighlight">\(R(x_0)\not= 0\)</span> then <span class="math notranslate nohighlight">\(x_0\)</span> is a singular point. Or if
+<span class="math notranslate nohighlight">\(p(x)=\sqrt(x)\)</span> and <span class="math notranslate nohighlight">\(q(x)=2\)</span>, then <span class="math notranslate nohighlight">\(x_0=0\)</span> is a singular point
+because <span class="math notranslate nohighlight">\(p(x)\)</span> is not differentiable at <span class="math notranslate nohighlight">\(x=0\)</span>.</p>
+<p>The radius of convergence of <a class="reference internal" href="#equation-powerseries1">(2.26)</a> is at least as
+large as the radius of convergence of each of the series expansions
+for <span class="math notranslate nohighlight">\(p(x)=Q/P\)</span> and <span class="math notranslate nohighlight">\(q(x)=R/P\)</span>, i.e., up to the closest singularity
+to <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<div class="proof example admonition" id="example-odes-series-4 The Airy Equation">
+<p class="admonition-title"><span class="caption-number">Example 2.5 </span></p>
+<section class="example-content" id="proof-content">
+<p>Consider the Airy equation, which arises in Quantum Mechanics:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-28">
+<span class="eqno">(2.29)<a class="headerlink" href="#equation-ref-odes-series-28" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+Ly = y^{\prime\prime} - xy=0 \label{eq:Airy}
+\end{equation}
+\]</div>
+<p>We observe that <span class="math notranslate nohighlight">\(x =0\)</span> is an ordinary point.</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-29">
+<span class="eqno">(2.30)<a class="headerlink" href="#equation-ref-odes-series-29" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{c}
+y=\sum\limits_{n=0}^\infty c_nx^n,\quad y^\prime =\sum\limits_{n=1}^\infty c_nnx^{n-1},\quad y^{\prime\prime}=\sum\limits_{n=2}^\infty c_nn(n-1)x^{n-2}\\
+\sum\limits_{n=2}^\infty c_nn(n-1)x^{n-2}=\sum\limits_{n=0}^\infty c_nx^{n+1}\\
+m+1=n-2\quad n=m+3\quad n=2\Rightarrow m=-1\\
+c_22x^0+\sum\limits_{m=0}^\infty \big[ c_{m+3}(m+3)(m+2)-c_m\big] x^{m+1}=0\\
+c_2=0\quad c_{m+3}=\frac{c_m}{(m+3)(m+2)}\quad
+m=0,1,\ldots\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(c_0\rightarrow c_3\rightarrow c_6\)</span>.</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-30">
+<span class="eqno">(2.31)<a class="headerlink" href="#equation-ref-odes-series-30" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+c_3 &amp; = &amp; \frac{c_0}{3.2}, c_6=\frac{c_3}{6.5}=\frac{c_0}{6.5.3.2},c_9=\frac{c_0}{9.8.6.5.3.2}\nonumber\\
+c_{3n} &amp; = &amp; \frac{c_0}{(3n)(3n-1)(3n-3)(3n-4)\ldots 9.8.6.5.3.2}\\
+y_0(x) &amp; = &amp; 1+\frac{x^3}{3.2}+\frac{x^6}{6.5.3.2}+\cdots
++\frac{x^{3n}}{(3n)(3n-1)\ldots 3.2}+\ldots\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<ol class="arabic simple" start="2">
+<li><p><span class="math notranslate nohighlight">\(c_1\rightarrow c_4\rightarrow c_7\rightarrow c_10\)</span>.</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-31">
+<span class="eqno">(2.32)<a class="headerlink" href="#equation-ref-odes-series-31" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+c_4=\frac{c_1}{4.3}\quad c_7=\frac{c_1}{7.6.4.3}\quad
+c_{10}=\frac{c_1}{(10.9)(7.6)(4.3)}
+\end{equation}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-32">
+<span class="eqno">(2.33)<a class="headerlink" href="#equation-ref-odes-series-32" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+c_{3n+1} &amp; = &amp;\frac{c_1}{(3n+1)(3n)(3n-2)(3n-3)\ldots (7.6)(4.3)}\nonumber\\
+y_1(x) &amp; = &amp; x+\frac{x^4}{4.3}+\frac{x^7}{7.6.4.3}+\cdots +\frac{x^{3n+1}}{(3n+1)(3n)\ldots 4.3}\\
+y(x) &amp; = &amp; c_0y_0(x)+c_1y_1(x)\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+</div><p><em><strong>Radius of Convergence:</strong></em></p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-33">
+<span class="eqno">(2.34)<a class="headerlink" href="#equation-ref-odes-series-33" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\lim_{m\rightarrow\infty}\frac{c_{m+3}}{c_m}|x|^3
+=\lim_{m\rightarrow\infty}\frac{|x|^3}{(m+3)(m+2)}=0&lt;1\quad\rho =\infty .
+\end{equation}
+\]</div>
+<p>See B&amp;D for expansion of Airy Solution about <span class="math notranslate nohighlight">\(x_0=1\)</span>:,
+i.e. <span class="math notranslate nohighlight">\(y(x)=\sum a_n(x-1)^n\)</span>. It is useful to write <span class="math notranslate nohighlight">\(x=(x-1)+1\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-34">
+<span class="eqno">(2.35)<a class="headerlink" href="#equation-ref-odes-series-34" title="Permalink to this equation">#</a></span>\[
+\begin{equation}y^{\prime\prime}=(x-1)y+y\end{equation}
+\]</div>
+<div class="proof example admonition" id="example-odes-series-5 The Hermite Equation">
+<p class="admonition-title"><span class="caption-number">Example 2.6 </span></p>
+<section class="example-content" id="proof-content">
+<p>Consider the Hermite equation, which has application in Quantum
+mechanics and numerical analysis:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-35">
+<span class="eqno">(2.36)<a class="headerlink" href="#equation-ref-odes-series-35" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+Ly=y^{\prime\prime}-2xy^\prime +\lambda y=0 \label{eq:Hermite}
+\end{equation}
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(x=0\)</span> is an ordinary point let <span class="math notranslate nohighlight">\(\displaystyle
+y(x)=\sum\limits_{n=0}^\infty a_nx^n\)</span> then</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-36">
+<span class="eqno">(2.37)<a class="headerlink" href="#equation-ref-odes-series-36" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+Ly=\sum\limits_{n=2}^\infty
+a_nn(n-1)x^{n-2}-2\sum\limits_{n=1}^\infty
+a_nnx^n+\lambda\sum\limits_{n=0}^\infty a_nx^n=0.
+\end{equation}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-37">
+<span class="eqno">(2.38)<a class="headerlink" href="#equation-ref-odes-series-37" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray*}\begin{array}{lll}
+m=n-2\rightarrow n=m+2\quad &amp;m\leftarrow n\quad &amp;m\leftarrow n\\
+n=2\Rightarrow m=0 &amp; &amp;\end{array}
+\end{eqnarray*}
+\end{split}\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-38">
+<span class="eqno">(2.39)<a class="headerlink" href="#equation-ref-odes-series-38" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\sum\limits_{m=1}^\infty \big[ a_{m+2}(m+2)(m+1)-2a_mm+\lambda a_m\big]
+x^m+\left[ a_2 2+\lambda a_0\right] x^0=0.
+\end{equation}
+\]</div>
+<p><span class="math notranslate nohighlight">\(x^0:\)</span></p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-39">
+<span class="eqno">(2.40)<a class="headerlink" href="#equation-ref-odes-series-39" title="Permalink to this equation">#</a></span>\[
+\begin{equation} a_2=-\lambda a_0/2
+\end{equation}
+\]</div>
+<p><span class="math notranslate nohighlight">\(x^m:\)</span></p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-40">
+<span class="eqno">(2.41)<a class="headerlink" href="#equation-ref-odes-series-40" title="Permalink to this equation">#</a></span>\[
+\begin{equation} a_{m+2}=\frac{(2m-\lambda )a_m}{(m+1)(m+2)} \quad m\geq 1
+\end{equation}
+\]</div>
+<p><span class="math notranslate nohighlight">\(a_0\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-41">
+<span class="eqno">(2.42)<a class="headerlink" href="#equation-ref-odes-series-41" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+a_2 &amp; = &amp; -\frac{\lambda}{2}a_0, a_4=\frac{(4-\lambda )}{4.3}
+a_2=\frac{(4-\lambda )(-\lambda )}{4.3.2}a_0,
+a_6=\frac{(8-\lambda )(4-\lambda )(-\lambda )}{6.5.4.3.2}a_0\nonumber\\
+&amp;\phantom{=} &amp; \quad a_{2k} =\frac{[4(k-1)-\lambda ][4(k-2)-\lambda ]\ldots
+[-\lambda] }{(2k)!}a_0\\
+y_0 &amp; = &amp; a_0\left[ 1-\frac{\lambda}{2}x^2+\frac{(\lambda -4)\lambda}{4!}
+x^4+\frac{(8-\lambda )(4-\lambda )(-\lambda )}{6!}x^6+\cdots \right]\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(a_1\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-42">
+<span class="eqno">(2.43)<a class="headerlink" href="#equation-ref-odes-series-42" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+a_3 &amp; = &amp; \frac{(2-\lambda)}{3.2}a_1; a_5=\frac{(6-\lambda )}{5!}(2-\lambda )a_1; a_7=\frac{(10-\lambda )(6-\lambda )(2-\lambda )}{7!}a_1, \ldots\\
+y_1 &amp; = &amp; a_1\left[ x+\frac{(2-\lambda )}{3!}x^3+\frac{(6-\lambda )(2-\lambda
+)}{5!}x^5+\frac{(10-\lambda )(6-\lambda )(2-\lambda
+)x^7}{7!}+\cdots\right]\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>The general solution is of the form</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-43">
+<span class="eqno">(2.44)<a class="headerlink" href="#equation-ref-odes-series-43" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+y(x)=Ay_0(x)+By_1(x)
+\end{equation}
+\]</div>
+</section>
+</div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>(a) If <span class="math notranslate nohighlight">\(\lambda =2n\)</span> then the recursion yields <span class="math notranslate nohighlight">\(a_{m+2}=0=a_{m+4}=\cdots \)</span> for <span class="math notranslate nohighlight">\(m=n\)</span>.
+Thus if <span class="math notranslate nohighlight">\(n\)</span> is an even integer then the series solution <span class="math notranslate nohighlight">\(y_0\)</span> will
+terminate and become a polynomial of degree <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>In this case:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-44">
+<span class="eqno">(2.45)<a class="headerlink" href="#equation-ref-odes-series-44" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+y_0(x) &amp;=&amp; a_0\left[ 1-nx^2+n(n-2)2^2\frac{x^4}{4!}-n(n-2)(n-4)\frac{2^3x^6}{6!}+\cdots\right.\nonumber\\
+&amp; &amp;\quad \left. +\, (-1)^{n/2} n(n-2)\ldots 2.\big(2^{n/2}\big)
+\frac{x^n}{n!}\right] .
+\end{eqnarray}
+\end{split}\]</div>
+<p>On the other hand if <span class="math notranslate nohighlight">\(n\)</span> is an odd integer then the series solution
+<span class="math notranslate nohighlight">\(y_1(x)\)</span> will terminate and become a polynomial of degree <span class="math notranslate nohighlight">\(n\)</span>. In
+this case</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-45">
+<span class="eqno">(2.46)<a class="headerlink" href="#equation-ref-odes-series-45" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+y_1(x) &amp; = &amp; a_1\left[ x-2(n-1)\frac{x^3}{3!}+2^2(n-1)(n-3)\frac{x^5}{5!}\right.\nonumber\\
+&amp; &amp;\quad -\, (n-1)(n-3)(n-5)2^3\frac{x^7}{7!}+\cdots\\
+&amp; &amp;\quad \left. +\, (n-1)(n-3) \ldots
+3.1(-2)^{\frac{(n-1)}{2}}\frac{x^n}{n!}\right]\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>(b) For example in the special case <span class="math notranslate nohighlight">\(\lambda =4=2n\)</span> then <span class="math notranslate nohighlight">\(n=2\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-series-46">
+<span class="eqno">(2.47)<a class="headerlink" href="#equation-ref-odes-series-46" title="Permalink to this equation">#</a></span>\[
+\begin{equation} y_0(x)=a_0[1-2x^2].\end{equation}
+\]</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./odes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="review.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Review Of Methods To Solve Ordinary Differential Equations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="rsps.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Regular Singular Points</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-solution-of-odes">2.1. Series Solution Of Odes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-series">2.1.1. Power Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taylor-series">2.1.2. Taylor Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-solution-to-a-constant-coefficient-ode">2.1.3. Series Solution To A Constant Coefficient ODE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-coefficient-odes-ordinary-and-singular-points">2.1.4. Variable Coefficient ODEs: Ordinary And Singular Points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-series-solution-of-general-variable-coefficient-linear-odes">2.1.5. Power Series Solution of General Variable Coefficient Linear ODEs</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

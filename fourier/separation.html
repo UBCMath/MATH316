@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2. Separation of Variables and Fourier Series &#8212; MATH 316</title>
+    <title>7. Separation of Variables and Fourier Series &#8212; MATH 316</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -65,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'fourier/separation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Finite Difference Formulas" href="../fd/formulas.html" />
-    <link rel="prev" title="1. Fourier Series" href="series.html" />
+    <link rel="next" title="8. Finite Difference Formulas" href="../fd/formulas.html" />
+    <link rel="prev" title="6. Fourier Series" href="series.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -143,26 +144,34 @@ const thebe_selector_output = ".output, .cell_output"
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fourier Series</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../odes/review.html">1. Review Of Methods To Solve Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/series.html">2. Series Solutions To ODEs With Variable Coefficients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/rsps.html">3. Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/bessel.html">5. Bessel’s Equation and Bessel Functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fourier Series</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="series.html">1. Fourier Series</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Separation of Variables and Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="series.html">6. Fourier Series</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Separation of Variables and Fourier Series</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">Finite Difference Formulas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">8. Finite Difference Formulas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../heat/heat.html">Heat Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/heat.html">9. Heat Equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">10. Laplace Equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">11. Wave Equation</a></li>
 </ul>
 
     </div>
@@ -324,14 +333,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-heat-diffusion-equation-and-dispersion-relation">2.1. The Heat/Diffusion equation and dispersion relation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-initial-boundary-value-problems-for-the-heat-equation">2.2. Types of Initial-Boundary Value Problems for the heat equation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-boundary-conditions">2.2.1. Dirichlet Boundary Conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">2.2.2. Neumann Boundary Conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-conditions">2.2.3. Mixed Boundary Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-heat-diffusion-equation-and-dispersion-relation">7.1. The Heat/Diffusion equation and dispersion relation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-initial-boundary-value-problems-for-the-heat-equation">7.2. Types of Initial-Boundary Value Problems for the heat equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-boundary-conditions">7.2.1. Dirichlet Boundary Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">7.2.2. Neumann Boundary Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-conditions">7.2.3. Mixed Boundary Conditions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separation-of-variables-fourier-sine-series">2.3. Separation of Variables - Fourier sine Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separation-of-variables-fourier-sine-series">7.3. Separation of Variables - Fourier sine Series</a></li>
 </ul>
             </nav>
         </div>
@@ -344,72 +353,72 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="separation-of-variables-and-fourier-series">
-<h1><span class="section-number">2. </span>Separation of Variables and Fourier Series<a class="headerlink" href="#separation-of-variables-and-fourier-series" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">7. </span>Separation of Variables and Fourier Series<a class="headerlink" href="#separation-of-variables-and-fourier-series" title="Permalink to this headline">#</a></h1>
 <p>In this lecture we will introduce the method of separation of variables by using it to solve the heat equation, which reduces the solution of the PDE to solving two ODEs, one in time and one in space. The time ODE represents the exponential decay of the solution, while the second order spatial ODE along with the boundary conditions give rise to an eigenvalue problem, which needs to be solved to identify the so-called “separation” constant. Super-position of the resulting solutions leads naturally to the expansion of the initial temperature distribution <span class="math notranslate nohighlight">\(f(x)\)</span> in terms of a series of sine functions - known as a Fourier Series.</p>
 <div class="admonition-key-concepts admonition">
 <p class="admonition-title">Key Concepts</p>
 <p>Heat equation; boundary conditions; Separation of variables; Eigenvalue problems for ODE; Fourier Series.</p>
 </div>
 <section id="the-heat-diffusion-equation-and-dispersion-relation">
-<h2><span class="section-number">2.1. </span>The Heat/Diffusion equation and dispersion relation<a class="headerlink" href="#the-heat-diffusion-equation-and-dispersion-relation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.1. </span>The Heat/Diffusion equation and dispersion relation<a class="headerlink" href="#the-heat-diffusion-equation-and-dispersion-relation" title="Permalink to this headline">#</a></h2>
 <p>We consider the heat equation (or diffusion equation)</p>
 <div class="math notranslate nohighlight" id="equation-eq-heat">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-eq-heat" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-eq-heat" title="Permalink to this equation">#</a></span>\[
 \frac{\partial u}{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2} 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha^2\)</span> is the thermal conductivity. If we look for exponential solutions of the form</p>
 <div class="math notranslate nohighlight" id="equation-eq-exponentialspacetimesolution">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-eq-exponentialspacetimesolution" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-eq-exponentialspacetimesolution" title="Permalink to this equation">#</a></span>\[
 u(x,t) = e^{i k x + \sigma t}
 \]</div>
 <p>we obtain the dispersion relation <span class="math notranslate nohighlight">\(\sigma=-k^2 \alpha^2\)</span> and corresponding solutions</p>
 <div class="math notranslate nohighlight" id="equation-eq-exponentialspacetimesolutionafterdispersionrel">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-eq-exponentialspacetimesolutionafterdispersionrel" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-eq-exponentialspacetimesolutionafterdispersionrel" title="Permalink to this equation">#</a></span>\[
 u(x,t) = e^{-k^2 \alpha^2 t} e^{i k x}
 \]</div>
 <p>We observe that in this family of solutions, which are parameterized by <span class="math notranslate nohighlight">\(k\)</span>, the solution is decomposed into the product of a time function that decays exponentially with increasing <span class="math notranslate nohighlight">\(t\)</span> and a spatial function comprising <span class="math notranslate nohighlight">\(\sin(kx)\)</span> and <span class="math notranslate nohighlight">\(\cos(kx)\)</span>. The parameter <span class="math notranslate nohighlight">\(k\)</span>, which is called the <em>wavenumber</em>, needs to be determined in
 order to match the boundary conditions in the problem. We will see that for problem defined on a finite domain there are a countable infinity of admissible <span class="math notranslate nohighlight">\(k\)</span> values, which we will determine by solving an eigenvalue problem involving an ordinary differential operator.</p>
 </section>
 <section id="types-of-initial-boundary-value-problems-for-the-heat-equation">
-<h2><span class="section-number">2.2. </span>Types of Initial-Boundary Value Problems for the heat equation<a class="headerlink" href="#types-of-initial-boundary-value-problems-for-the-heat-equation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.2. </span>Types of Initial-Boundary Value Problems for the heat equation<a class="headerlink" href="#types-of-initial-boundary-value-problems-for-the-heat-equation" title="Permalink to this headline">#</a></h2>
 <p>We consider the heat equation subject to the following initial and boundary conditions:</p>
 <section id="dirichlet-boundary-conditions">
-<h3><span class="section-number">2.2.1. </span>Dirichlet Boundary Conditions<a class="headerlink" href="#dirichlet-boundary-conditions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.2.1. </span>Dirichlet Boundary Conditions<a class="headerlink" href="#dirichlet-boundary-conditions" title="Permalink to this headline">#</a></h3>
 <figure class="align-default" id="dirichletbar">
 <a class="reference internal image-reference" href="../_images/DirichletBar.png"><img alt="../_images/DirichletBar.png" src="../_images/DirichletBar.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Consider a conducting bar with thermal conductivity <span class="math notranslate nohighlight">\(\alpha^2\)</span> that has an initial temperature distribution <span class="math notranslate nohighlight">\(u(x,0)=f(x)\)</span> and whose endpoints are maintained at <span class="math notranslate nohighlight">\(0^{\circ }C\)</span>, i.e. embedded in ice</span><a class="headerlink" href="#dirichletbar" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text">Consider a conducting bar with thermal conductivity <span class="math notranslate nohighlight">\(\alpha^2\)</span> that has an initial temperature distribution <span class="math notranslate nohighlight">\(u(x,0)=f(x)\)</span> and whose endpoints are maintained at <span class="math notranslate nohighlight">\(0^{\circ }C\)</span>, i.e. embedded in ice</span><a class="headerlink" href="#dirichletbar" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>What do you expect the solution to look like as <span class="math notranslate nohighlight">\(t \to \infty\)</span>?</p>
 </section>
 <section id="neumann-boundary-conditions">
-<h3><span class="section-number">2.2.2. </span>Neumann Boundary Conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.2.2. </span>Neumann Boundary Conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Permalink to this headline">#</a></h3>
 <figure class="align-default" id="neumannbar">
 <a class="reference internal image-reference" href="../_images/NeumannBar.png"><img alt="../_images/NeumannBar.png" src="../_images/NeumannBar.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.2 </span><span class="caption-text">Consider a conducting bar with thermal conductivity <span class="math notranslate nohighlight">\(\alpha^2\)</span> that has an initial temperature distribution <span class="math notranslate nohighlight">\(u(x,0)=f(x)\)</span> and whose endpoints are insulated</span><a class="headerlink" href="#neumannbar" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 7.2 </span><span class="caption-text">Consider a conducting bar with thermal conductivity <span class="math notranslate nohighlight">\(\alpha^2\)</span> that has an initial temperature distribution <span class="math notranslate nohighlight">\(u(x,0)=f(x)\)</span> and whose endpoints are insulated</span><a class="headerlink" href="#neumannbar" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>What do you expect the solution to look like as <span class="math notranslate nohighlight">\(t \to \infty\)</span>?</p>
 </section>
 <section id="mixed-boundary-conditions">
-<h3><span class="section-number">2.2.3. </span>Mixed Boundary Conditions<a class="headerlink" href="#mixed-boundary-conditions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.2.3. </span>Mixed Boundary Conditions<a class="headerlink" href="#mixed-boundary-conditions" title="Permalink to this headline">#</a></h3>
 <figure class="align-default" id="mixedbar">
 <a class="reference internal image-reference" href="../_images/MixedBar.png"><img alt="../_images/MixedBar.png" src="../_images/MixedBar.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Consider a conducting bar with thermal conductivity <span class="math notranslate nohighlight">\(\alpha^2\)</span> that has an initial temperature distribution <span class="math notranslate nohighlight">\(u(x,0)=f(x)\)</span> and whose left endpoint is held at <span class="math notranslate nohighlight">\(^{\circ }C\)</span> (i.e., embedded in a block of ice) while the right endpoint is insulated</span><a class="headerlink" href="#mixedbar" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 7.3 </span><span class="caption-text">Consider a conducting bar with thermal conductivity <span class="math notranslate nohighlight">\(\alpha^2\)</span> that has an initial temperature distribution <span class="math notranslate nohighlight">\(u(x,0)=f(x)\)</span> and whose left endpoint is held at <span class="math notranslate nohighlight">\(^{\circ }C\)</span> (i.e., embedded in a block of ice) while the right endpoint is insulated</span><a class="headerlink" href="#mixedbar" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>What do you expect the solution to look like as <span class="math notranslate nohighlight">\(t \to \infty\)</span>?</p>
 </section>
 </section>
 <section id="separation-of-variables-fourier-sine-series">
-<h2><span class="section-number">2.3. </span>Separation of Variables - Fourier sine Series<a class="headerlink" href="#separation-of-variables-fourier-sine-series" title="Permalink to this headline">#</a></h2>
-<p>Consider the heat conduction in an insulated rod whose endpoints are held at zero degrees for all time and within which the initial temperature is given by <span class="math notranslate nohighlight">\(f(x)\)</span> as shown in <a class="reference internal" href="#dirichletbar"><span class="std std-numref">Figure 2.1</span></a>.</p>
+<h2><span class="section-number">7.3. </span>Separation of Variables - Fourier sine Series<a class="headerlink" href="#separation-of-variables-fourier-sine-series" title="Permalink to this headline">#</a></h2>
+<p>Consider the heat conduction in an insulated rod whose endpoints are held at zero degrees for all time and within which the initial temperature is given by <span class="math notranslate nohighlight">\(f(x)\)</span> as shown in <a class="reference internal" href="#dirichletbar"><span class="std std-numref">Figure 7.1</span></a>.</p>
 <p><em>Fourier’s Guess:</em></p>
 <div class="math notranslate nohighlight" id="equation-eq-separation1">
-<span class="eqno">(2.4)<a class="headerlink" href="#equation-eq-separation1" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(7.4)<a class="headerlink" href="#equation-eq-separation1" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align}
 u(x,t) &amp;= X(x)T(t) \\
 u_t &amp;= X(x) \dot{T}(t) = \alpha^2 u_{xx} = \alpha^2 X''(x) T(t)
@@ -417,12 +426,12 @@ u_t &amp;= X(x) \dot{T}(t) = \alpha^2 u_{xx} = \alpha^2 X''(x) T(t)
 \end{split}\]</div>
 <p><span class="math notranslate nohighlight">\(\div \alpha^2 XT\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-separation2">
-<span class="eqno">(2.5)<a class="headerlink" href="#equation-eq-separation2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(7.5)<a class="headerlink" href="#equation-eq-separation2" title="Permalink to this equation">#</a></span>\[
 \frac{X''(x)}{X(x)} = \frac{\dot{T}(t)}{\alpha^2 T(t)} = \mbox{ Constant } = -\lambda^2.
 \]</div>
 <p><span class="math notranslate nohighlight">\(-&gt;\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-separation3">
-<span class="eqno">(2.6)<a class="headerlink" href="#equation-eq-separation3" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(7.6)<a class="headerlink" href="#equation-eq-separation3" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align}
 T'(t) &amp;= -\alpha^2 \lambda^2 T(t) \\
 \frac{dT}{T} &amp;= -\alpha^2 \lambda^2 dt \\
@@ -432,7 +441,7 @@ T(t) &amp;= D e^{-\alpha^2 \lambda^2 t}
 \end{split}\]</div>
 <p><span class="math notranslate nohighlight">\(x&gt;\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-separation4">
-<span class="eqno">(2.7)<a class="headerlink" href="#equation-eq-separation4" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(7.7)<a class="headerlink" href="#equation-eq-separation4" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align}
 X''(x) + \lambda^2 X(x) &amp;= 0 \\
 \Rightarrow X(x) &amp;= c_1 e^{i \lambda x} + c_{2} e^{-i \lambda x} \\
@@ -441,7 +450,7 @@ X''(x) + \lambda^2 X(x) &amp;= 0 \\
 \end{split}\]</div>
 <p><em>Impose the boundary conditions:</em></p>
 <div class="math notranslate nohighlight" id="equation-eq-separation5">
-<span class="eqno">(2.8)<a class="headerlink" href="#equation-eq-separation5" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(7.8)<a class="headerlink" href="#equation-eq-separation5" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{array}{lcrclcl}
 0&amp;=&amp;u(0,t)&amp;=&amp;X(0)T(t)&amp;=&amp;BT(t)\Rightarrow B=0\\
 0&amp;=&amp;u(L,t)&amp;=&amp;X(L)T(t)&amp;=&amp;(A\sin\lambda L)T(t)
@@ -449,22 +458,22 @@ X''(x) + \lambda^2 X(x) &amp;= 0 \\
 \end{split}\]</div>
 <p>Now we do not want the trivial solution so <span class="math notranslate nohighlight">\(A\not= 0\)</span>. Thus we look for values of <span class="math notranslate nohighlight">\(\lambda\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-separation6">
-<span class="eqno">(2.9)<a class="headerlink" href="#equation-eq-separation6" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(7.9)<a class="headerlink" href="#equation-eq-separation6" title="Permalink to this equation">#</a></span>\[
 \sin\lambda L = 0 \Rightarrow \lambda = \left( \frac{n\pi}{L} \right) \quad n=1,2,\ldots
 \]</div>
 <p>Thus</p>
 <div class="math notranslate nohighlight" id="equation-eq-separation7">
-<span class="eqno">(2.10)<a class="headerlink" href="#equation-eq-separation7" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(7.10)<a class="headerlink" href="#equation-eq-separation7" title="Permalink to this equation">#</a></span>\[
 u_n(x,t) = e^{-\alpha^2 {\left( \frac{n\pi}{L} \right)}^2 t} \sin\left(\frac{n\pi x}{L} \right) \quad n=1,2,\ldots
 \]</div>
 <p>are all solutions of the heat equation <span class="math notranslate nohighlight">\(u_t = \alpha^2u_{xx}\)</span>. Since the heat equation is linear, a linear combination of solutions is again a solution. Thus the most general solution is</p>
 <div class="math notranslate nohighlight" id="equation-eq-heatsolution">
-<span class="eqno">(2.11)<a class="headerlink" href="#equation-eq-heatsolution" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(7.11)<a class="headerlink" href="#equation-eq-heatsolution" title="Permalink to this equation">#</a></span>\[
 u(x,t) = \sum_{n=1}^\infty b_n \sin\left(\frac{n \pi x}{L}\right) e^{\alpha^2{\left(\frac{n\pi}{L}\right)}^2 t}
 \]</div>
 <p>What about the initial condition <span class="math notranslate nohighlight">\(u(x,0)=f(x)\)</span>? Given <span class="math notranslate nohighlight">\(f(x)\)</span> we need to find the <span class="math notranslate nohighlight">\(b_n\)</span> such that the infinite series of functions</p>
 <div class="math notranslate nohighlight" id="equation-eq-heatsolutioninitial">
-<span class="eqno">(2.12)<a class="headerlink" href="#equation-eq-heatsolutioninitial" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(7.12)<a class="headerlink" href="#equation-eq-heatsolutioninitial" title="Permalink to this equation">#</a></span>\[
 \sum_{n=1}^\infty b_n\sin\left(\frac{n\pi x}{L}\right)
 \]</div>
 <p>agrees with <span class="math notranslate nohighlight">\(f\)</span> on <span class="math notranslate nohighlight">\([0,L]\)</span>. Note that <span class="math notranslate nohighlight">\(f(x)\)</span> may not be periodic <span class="math notranslate nohighlight">\(f(x+2L) \not= f(x)\)</span> but the series is periodic since</p>
@@ -513,7 +522,7 @@ u(x,t) = \sum_{n=1}^\infty b_n \sin\left(\frac{n \pi x}{L}\right) e^{\alpha^2{\l
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Fourier Series</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Fourier Series</p>
       </div>
     </a>
     <a class="right-next"
@@ -521,7 +530,7 @@ u(x,t) = \sum_{n=1}^\infty b_n \sin\left(\frac{n \pi x}{L}\right) e^{\alpha^2{\l
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Finite Difference Formulas</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Finite Difference Formulas</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -543,14 +552,14 @@ u(x,t) = \sum_{n=1}^\infty b_n \sin\left(\frac{n \pi x}{L}\right) e^{\alpha^2{\l
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-heat-diffusion-equation-and-dispersion-relation">2.1. The Heat/Diffusion equation and dispersion relation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-initial-boundary-value-problems-for-the-heat-equation">2.2. Types of Initial-Boundary Value Problems for the heat equation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-boundary-conditions">2.2.1. Dirichlet Boundary Conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">2.2.2. Neumann Boundary Conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-conditions">2.2.3. Mixed Boundary Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-heat-diffusion-equation-and-dispersion-relation">7.1. The Heat/Diffusion equation and dispersion relation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-initial-boundary-value-problems-for-the-heat-equation">7.2. Types of Initial-Boundary Value Problems for the heat equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-boundary-conditions">7.2.1. Dirichlet Boundary Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">7.2.2. Neumann Boundary Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-conditions">7.2.3. Mixed Boundary Conditions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separation-of-variables-fourier-sine-series">2.3. Separation of Variables - Fourier sine Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separation-of-variables-fourier-sine-series">7.3. Separation of Variables - Fourier sine Series</a></li>
 </ul>
   </nav></div>
 

@@ -1,0 +1,804 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4. Frobenius Series About Regular Singular Points &#8212; MATH 316</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'odes/frobenius';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Bessel’s Equation and Bessel Functions" href="bessel.html" />
+    <link rel="prev" title="3. Regular Singular Points" href="rsps.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MATH 316</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="review.html">1. Review Of Methods To Solve Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="series.html">2. Series Solutions To ODEs With Variable Coefficients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rsps.html">3. Regular Singular Points</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Frobenius Series About Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessel.html">5. Bessel’s Equation and Bessel Functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fourier Series</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fourier/series.html">6. Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fourier/separation.html">7. Separation of Variables and Fourier Series</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">8. Finite Difference Formulas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../heat/heat.html">9. Heat Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">10. Laplace Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">11. Wave Equation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/UBCMath/math316" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/odes/frobenius.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Frobenius Series About Regular Singular Points</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fobenius-series-expansions-about-regular-singular-points">4.1. Fobenius Series Expansions About Regular Singular Points</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-expansion-summary">4.1.1. Series Expansion Summary:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frobenius-series-expansion">4.1.2. Frobenius Series Expansion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="math notranslate nohighlight">
+\[
+\newcommand{\N}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\mat}[1]{{\mathbf #1}}
+\newcommand{\vect}[1]{\underline{#1}}
+\newcommand{\njump}[1]{[|#1|]}
+\newcommand{\bke}[1]{\left ( #1 \right )}
+\newcommand{\bkt}[1]{\left [ #1 \right ]}
+\newcommand{\bket}[1]{\left \{ #1 \right \}}
+\newcommand{\norm}[1]{\left \| #1 \right \|}
+\newcommand{\bka}[1]{\left \langle #1 \right \rangle}
+\newcommand{\ve}[1]{\mathbf{#1}}
+\newcommand{\what}[1]{\widehat{#1}}
+\]</div>
+<section class="tex2jax_ignore mathjax_ignore" id="frobenius-series-about-regular-singular-points">
+<h1><span class="section-number">4. </span>Frobenius Series About Regular Singular Points<a class="headerlink" href="#frobenius-series-about-regular-singular-points" title="Permalink to this headline">#</a></h1>
+<p>In this lecture we will summarize the classification of expansion
+points <span class="math notranslate nohighlight">\(x_0\)</span> for series as ordinary points for which Taylor Series
+approximations are appropriate, regular singular points for which
+Frobenius series expansions will work, and irregular singular points
+for which neither power series expansions work. We also discuss the
+radius of convergence of series expansions of ODE, which is at least
+as large as the minimum distance from <span class="math notranslate nohighlight">\(x_0\)</span> to the nearest other
+singularity in the complex plane.</p>
+<div class="admonition-key-concepts admonition">
+<p class="admonition-title">Key Concepts</p>
+<p>Series Solutions; Ordinary Points and
+Taylor Series; Regular Singular Points and Frobenius Series;
+Irregular Singular Points; radii of convergence of power series
+solutions of ODE.</p>
+</div>
+<section id="fobenius-series-expansions-about-regular-singular-points">
+<h2><span class="section-number">4.1. </span>Fobenius Series Expansions About Regular Singular Points<a class="headerlink" href="#fobenius-series-expansions-about-regular-singular-points" title="Permalink to this headline">#</a></h2>
+<section id="series-expansion-summary">
+<h3><span class="section-number">4.1.1. </span>Series Expansion Summary:<a class="headerlink" href="#series-expansion-summary" title="Permalink to this headline">#</a></h3>
+<p>Consider</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-0">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-ref-odes-frobenius-0" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+P(x)y^{\prime\prime}+Q(x)y^\prime +R(x)y=0
+\end{equation}
+\]</div>
+<p>Divide by <span class="math notranslate nohighlight">\(P(x)\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-oplequation">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-oplequation" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+L y = y^{\prime\prime}+
+   \frac{Q(x)}{P(x)}y^\prime +
+   \frac{R(x)}{P(x)}y=0, \label{eq:OPLequation}
+\end{equation}
+\]</div>
+<p>and define the functions <span class="math notranslate nohighlight">\(p(x)=\frac{Q(x)}{P(x)}\)</span> and
+<span class="math notranslate nohighlight">\(q(x)=\frac{R(x)}{P(x)}\)</span>. We observe that <a class="reference internal" href="#equation-oplequation">(4.2)</a> can
+be used to generate <span class="math notranslate nohighlight">\(y''(x_0)\)</span> and all higher derivatives by
+differentiating the ODE repeatedly. This can be used to generate a
+Taylor series expansion, provided <span class="math notranslate nohighlight">\(P(x_0)\ne 0\)</span>, or more genreally
+if <span class="math notranslate nohighlight">\(p(x)\)</span> and <span class="math notranslate nohighlight">\(q(x)\)</span> are analytic at <span class="math notranslate nohighlight">\(x_0\)</span>, which leads to the
+following definition.</p>
+<p><em><strong>Ordinary Points:</strong></em></p>
+<p><span class="math notranslate nohighlight">\(x_0\)</span> is an ordinary point if <span class="math notranslate nohighlight">\(p(x)\)</span> and <span class="math notranslate nohighlight">\(q(x)\)</span> are analytic at
+<span class="math notranslate nohighlight">\(x_0\)</span> i.e.,</p>
+<div class="math notranslate nohighlight" id="equation-opexpansionofpandq">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-opexpansionofpandq" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+p(x) &amp; = &amp; p_0+p_1(x-x_0)+\cdots\nonumber\\
+q(x) &amp; = &amp; q_0+q_1(x-x_0)+\cdots \label{eq:OPexpansionofpandq}.
+\end{eqnarray}
+\end{split}\]</div>
+<p>About an ordinary point <span class="math notranslate nohighlight">\(x_0\)</span> we can obtain 2 linearly independent
+solutions of the form</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-3">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-ref-odes-frobenius-3" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+y(x)=\sum\limits_{n=0}^\infty a_n(x-x_0)^n
+\end{equation}
+\]</div>
+<p>whose radii of convergence are at least as large as those of <span class="math notranslate nohighlight">\(p\)</span> and
+<span class="math notranslate nohighlight">\(q\)</span> in <a class="reference internal" href="#equation-opexpansionofpandq">(4.3)</a> - i.e., the circle of
+convergence extends at least as far as the singularity closest to
+<span class="math notranslate nohighlight">\(x_0\)</span> in the complex plane.</p>
+<p><em><strong>Singular Points:</strong></em></p>
+<p>If <span class="math notranslate nohighlight">\(P(x_0)=0\)</span> then <span class="math notranslate nohighlight">\(p(x)\)</span> and <span class="math notranslate nohighlight">\(q(x)\)</span> may
+fail to be analytic in which case <span class="math notranslate nohighlight">\(x_0\)</span> is a singular point.</p>
+<p>Regular Singular Points - an example:</p>
+<p>To motivate how to proceed near singular points let us
+consider the following example.</p>
+<div class="proof example admonition" id="rsp-example">
+<p class="admonition-title"><span class="caption-number">Example 4.1 </span></p>
+<section class="example-content" id="proof-content">
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-4">
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-ref-odes-frobenius-4" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+Ly &amp; = &amp; 2x^2y^{\prime\prime}-xy^\prime +(1+x)y=0\quad x=0\mbox{ is a RSP.}\nonumber\\
+\end{eqnarray}
+\end{split}\]</div>
+<p>We observe that this equation is ``almost Equidimensional” but for the additional
+<span class="math notranslate nohighlight">\(xy\)</span> term. Let us rearrange this equation as follows</p>
+<div class="math notranslate nohighlight" id="equation-recursion">
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-recursion" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+L_0y = 2x^2y^{\prime\prime}-xy^\prime +y=-xy \label{recursion}
+\end{equation}
+\]</div>
+<p>As <span class="math notranslate nohighlight">\(x\rightarrow 0\)</span> we observe that <span class="math notranslate nohighlight">\(xy\ll y\)</span>, so that the
+term on the right side of <a class="reference internal" href="#equation-recursion">(4.6)</a> is much less than those
+on the left. Thus (throwing away the small term for the moment) we
+solve the homogeneous equidimensional equation <span class="math notranslate nohighlight">\(L_0y=0\)</span></p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-6">
+<span class="eqno">(4.7)<a class="headerlink" href="#equation-ref-odes-frobenius-6" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+L_0 y = 2x^2y^{\prime\prime}-xy^\prime +y=0,\  \mbox{whose general
+solution is } y\left( x\right) =C_{1}x+C_{2}\sqrt{x}
+\end{equation}
+\]</div>
+<p>Now take this solution and substitute it on the right side of
+<a class="reference internal" href="#equation-recursion">(4.6)</a></p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-7">
+<span class="eqno">(4.8)<a class="headerlink" href="#equation-ref-odes-frobenius-7" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+L_0 y=2x^{2}y^{\prime \prime }-xy^{\prime }+y=-x\left(
+C_{1}x+C_{2}\sqrt{x}\right),\  \mbox{whose general solution is }
+y\left( x\right) =C_{1}\left( x-\frac{1}{3} x^{2}\right)
++C_{2}\sqrt{x}\left( 1-x\right)
+\end{equation}
+\]</div>
+<p>Substituting this term again on the right side of <a class="reference internal" href="#equation-recursion">(4.6)</a> we obtain</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-8">
+<span class="eqno">(4.9)<a class="headerlink" href="#equation-ref-odes-frobenius-8" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+L_0 y &amp; = &amp; 2x^2y^{\prime\prime}-xy^\prime +y=-\left(C_{1}\left(
+x-\frac{1}{3} x^{2}\right)+C_{2}\sqrt{x}\left( 1-x\right)\right)\nonumber\\
+\mbox{whose general solution is } y\left( x\right) &amp;=&amp;C_{1}\left(
+x-\frac{1}{3}x^{2}+\frac{1}{30}x^{3}\right) +C_{2}\sqrt{x}\left(
+1-x+\frac{1}{6}x^{2}\right)
+\end{eqnarray}
+\end{split}\]</div>
+<p>We observe that this procedure is generates a series
+expansion of the form:</p>
+<div class="math notranslate nohighlight" id="equation-frobenius">
+<span class="eqno">(4.10)<a class="headerlink" href="#equation-frobenius" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+y(x) = x^r \sum\limits_{n=0}^\infty a_n x^{n} \label{Frobenius}
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> is one of the roots of the indicial equation
+associated with the equidimensional part of the ODE.</p>
+</section>
+</div><div class="proof observation admonition" id="observation-1">
+<p class="admonition-title"><span class="caption-number">Observation 4.1 </span></p>
+<section class="observation-content" id="proof-content">
+<ol class="arabic simple">
+<li><p>Singular points that can be treated by this procedure are
+known as Regular Singular Points</p></li>
+<li><p>The form of the series <a class="reference internal" href="#equation-frobenius">(4.10)</a> that is suitable for
+determining the behavior of the solutions to ODE around such regular
+singular points are called Frobenius Series.</p></li>
+<li><p>Rather than proceed with this recursive approach, which can
+rapidly become complicated, we will adopt a procedure in which we
+substitute the series of the form <a class="reference internal" href="#equation-frobenius">(4.10)</a> directly into
+the ODE and solve for the unknown coefficients. This procedure is
+illustrated in <a class="reference internal" href="#frobenius-example">Example 4.4</a> below, which yields the same solution.</p></li>
+</ol>
+</section>
+</div><p><em><strong>Regular Singular points for general second order linear ODE</strong></em></p>
+<p>Motivated by the previous example we consider the more general second
+order linear ODE. In this case we consider <span class="math notranslate nohighlight">\((x-x_0)^2 L y\)</span></p>
+<div class="math notranslate nohighlight" id="equation-rsplequation">
+<span class="eqno">(4.11)<a class="headerlink" href="#equation-rsplequation" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+(x-x_0)^2 L y= (x-x_0)^2y^{\prime\prime} +(x-x_0)\left\{ (x-x_0)
+   \frac{Q(x)}{P(x)}\right\} y^\prime
+   +\left\{(x-x_0)^2\frac{R(x)}{P(x)}\right\}y=0 \label{eq:RSPLequation}
+\end{equation}
+\]</div>
+<p>and define coefficient functions <span class="math notranslate nohighlight">\(p(x)=\left\{ (x-x_0) \frac{Q(x)}{P(x)}\right\}\)</span>
+and <span class="math notranslate nohighlight">\(q(x)=\left\{(x-x_0)^2\frac{R(x)}{P(x)}\right\}\)</span>. A point <span class="math notranslate nohighlight">\(x_0\)</span> is a
+regular singular point if <span class="math notranslate nohighlight">\(p(x)\)</span> and <span class="math notranslate nohighlight">\(q(x)\)</span> are both analytic at <span class="math notranslate nohighlight">\(x_0\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight" id="equation-rspexpansionofpandq">
+<span class="eqno">(4.12)<a class="headerlink" href="#equation-rspexpansionofpandq" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+p(x)&amp;=&amp;(x-x_0)\frac{Q(x)}{P(x)}= p_0+p_1(x-x_0)+\cdots \nonumber\\
+q(x)&amp;=&amp;(x-x_0)^2\frac{R(x)}{P(x)}= q_0+q_1(x-x_0)+\cdots
+\label{eq:RSPexpansionofpandq}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Now substituting the expansions defined in
+<a class="reference internal" href="#equation-rspexpansionofpandq">(4.12)</a> into <a class="reference internal" href="#equation-rsplequation">(4.11)</a> and
+collecting powers of <span class="math notranslate nohighlight">\((x-x_0)\)</span>, we obtain:</p>
+<div class="math notranslate nohighlight" id="equation-expandedloperatorforrsp">
+<span class="eqno">(4.13)<a class="headerlink" href="#equation-expandedloperatorforrsp" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+(x-x_0)^2 Ly=(x-x_0)^2y^{\prime\prime}+(x-x_0)p_0y^\prime +q_0y+
+\overbrace{(x-x_0)\left\{ p_1 (x-x_0) y^\prime +q_1y+p_2 (x-x_0)^2
+y'+q_2(x-x_0)y+\cdots\right\}}^{\mbox{small as }x\rightarrow x_0} = 0
+\label{eq:expandedLoperatorforRSP}
+\end{equation}
+\]</div>
+<p>Thus, in the limit as <span class="math notranslate nohighlight">\(x \rightarrow x_0\)</span> the operator <span class="math notranslate nohighlight">\((x-x_0)^2 Ly
+\approx L_0 y\)</span>, where</p>
+<div class="math notranslate nohighlight" id="equation-l0equation">
+<span class="eqno">(4.14)<a class="headerlink" href="#equation-l0equation" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+L_0 y=(x-x_0)^2y^{\prime\prime}+(x-x_0)p_0y^\prime +q_0y=0
+\label{eq:L0equation}
+\end{equation}
+\]</div>
+<p>This implies that close to the expansion point <span class="math notranslate nohighlight">\(x_0\)</span>, the operator <span class="math notranslate nohighlight">\(L y\)</span> has singularities no worse than
+the Euler Equation <a class="reference internal" href="#equation-l0equation">(4.14)</a>. Since the higher order
+terms (designated as small in <a class="reference internal" href="#equation-expandedloperatorforrsp">(4.13)</a>)
+cannot introduce more singular terms but rather corrections that are
+higher powers in <span class="math notranslate nohighlight">\((x-x_0)\)</span>, we are motivated to look for solutions
+of the form</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-14">
+<span class="eqno">(4.15)<a class="headerlink" href="#equation-ref-odes-frobenius-14" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+y(x)=(x-x_0)^r\sum\limits_{n=0}^\infty
+c_n(x-x_0)^n=\sum\limits_{n=0}^\infty c_n(x-x_0)^{n+r},
+\end{equation}
+\]</div>
+<p>which is known as a Frobenius Series.</p>
+<p><em><strong>Radius of convergence:</strong></em></p>
+<p>The radius of convergence of this series is greater than or equal
+to the distance between <span class="math notranslate nohighlight">\(x_0\)</span> and the nearest singular point in the
+complex plane.</p>
+<p><em><strong>Irregular Singular Points:</strong></em></p>
+<p>If <span class="math notranslate nohighlight">\(x_0\)</span> is a singular point and
+<span class="math notranslate nohighlight">\(p(x)=(x-x_0)\frac{Q(x)}{P(x)}\)</span> and <span class="math notranslate nohighlight">\((x-x_0)^2\frac{R(x)}{P(x)}\)</span> are
+not analytic, then <span class="math notranslate nohighlight">\(x_0\)</span> is called an irregular singular point.</p>
+<div class="proof example admonition" id="example-odes-frobenius-0">
+<p class="admonition-title"><span class="caption-number">Example 4.2 </span></p>
+<section class="example-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(x=0\)</span> is an irregular point of the second order equation</p>
+<div class="math notranslate nohighlight">
+\[
+Ly=x^2 y''+(1+3x)y'+y=0
+\]</div>
+<p>In this case the leading behavior of <span class="math notranslate nohighlight">\(y(x)\)</span> as <span class="math notranslate nohighlight">\(x \rightarrow 0\)</span> is <span class="math notranslate nohighlight">\(y(x)\approx c x e^{1/x}\)</span>,
+which could not be captured by a Frobenius expansion.</p>
+</section>
+</div><div class="proof example admonition" id="example-odes-frobenius-1">
+<p class="admonition-title"><span class="caption-number">Example 4.3 </span></p>
+<section class="example-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(x=0\)</span> is an irregular point of the first order equation</p>
+<div class="math notranslate nohighlight">
+\[
+Ly=x^2 y'+y=0
+\]</div>
+<p>The solution of this first order linear equation can be obtained by means of an integrating factor
+<span class="math notranslate nohighlight">\(F=e^{-1/x}\)</span>, which yields the solution <span class="math notranslate nohighlight">\(y(x)= c e^{1/x}\)</span>, which could not be captured by a
+Frobenius expansion about <span class="math notranslate nohighlight">\(x_0=0\)</span>.</p>
+</section>
+</div></section>
+<section id="frobenius-series-expansion">
+<h3><span class="section-number">4.1.2. </span>Frobenius Series Expansion<a class="headerlink" href="#frobenius-series-expansion" title="Permalink to this headline">#</a></h3>
+<div class="proof example admonition" id="frobenius-example">
+<p class="admonition-title"><span class="caption-number">Example 4.4 </span></p>
+<section class="example-content" id="proof-content">
+<p>We revisit <a class="reference internal" href="#rsp-example">Example 4.1</a> by using a Frobenius series to solve the
+equations directly.</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-15">
+<span class="eqno">(4.16)<a class="headerlink" href="#equation-ref-odes-frobenius-15" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+Ly &amp; = &amp; 2x^2y^{\prime\prime}-xy^\prime +(1+x)y=0\quad x=0\mbox{ is a RSP.}\nonumber\\
+y &amp; = &amp; \sum\limits_{n=0}^\infty a_nx^{n+r}
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-16">
+<span class="eqno">(4.17)<a class="headerlink" href="#equation-ref-odes-frobenius-16" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+Ly &amp; = &amp; 2x^2\sum\limits_{n=0}^\infty a_n(n+r)(n+r-1)x^{n+r-2}
+  -x\sum\limits_{n=0}^\infty a_n(n+r)x^{n+r-1}\nonumber\\
+&amp; &amp;\quad\quad +\, (1+x)\sum\limits_{n=0}^\infty a_nx^{n+r} = 0\nonumber\\
+&amp; &amp;\sum\limits_{n=0}^\infty a_n\left\{ 2(n+r)(n+r-1)-(n+r)+1\right\}
+   x^{n+r}\nonumber\\
+&amp; &amp;\quad\quad +\, \sum\limits_{n=0}^\infty a_nx^{n+r+1}=0\\
+&amp; &amp; \quad\quad m=n+1\quad n=0\rightarrow m=1\nonumber\\
+&amp; &amp; \quad\quad n=m-1\nonumber\\
+\mbox{Therefore }&amp; &amp; a_0\left\{ 2r(r-1)-r+1\right\} x^r +
+   \sum\limits_{n=1}^\infty \left[ a_n\left\{ 2(n+r)(n+r-1)\right.\right.\nonumber\\
+&amp; &amp;\quad\quad -\, \left.\left. (n+r)+1\right\} +a_{n-1}\right]
+x^{n+r} =0.\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(x^r&gt;\)</span> Indicial Equation: <span class="math notranslate nohighlight">\(2r^2-3r+1=(2r-1)(r-1)=0\quad
+r=\frac{1}{2}, \quad r=1\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(a_0\)</span> arbitrary</p>
+<p>Recursion</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-17">
+<span class="eqno">(4.18)<a class="headerlink" href="#equation-ref-odes-frobenius-17" title="Permalink to this equation">#</a></span>\[
+\begin{equation} a_n=\frac{-a_{n-1}}{(2n+2r-3)(n+r)+1}\end{equation}
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(r=1/2\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-18">
+<span class="eqno">(4.19)<a class="headerlink" href="#equation-ref-odes-frobenius-18" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+a_n &amp; = &amp; \frac{-a_{n-1}}{(2n-2)(n+1/2)+1}
+   =\frac{-a_{n-1}}{(n-1)(2n+1)+1}=\frac{-a_{n-1}}{n(2n-1)}\nonumber\\
+n=1:\quad a_1 &amp; = &amp; \frac{-a_0}{1};\quad n=2: a_2=\frac{-a_1}{2.3}=\frac{+a_0}{2.3}\nonumber\\
+a_3 &amp; = &amp; \frac{-a_2}{3.5}=\frac{-a_0}{1.(2.3)(3.5)};\quad
+   a_4=\frac{-a_3}{4.7}=\frac{+a_0}{1(2.3)(3.5)(4.7)}\\
+a_n &amp; = &amp; \frac{(-1)^na_0}{n!1.3.5.(2n-1)}=\frac{(-1)^n2^{(n-1)}a_0}{n(2n-1)!}\nonumber\\
+y_1(x) &amp;= &amp; x^{1/2}\sum\limits_{n=0}^\infty
+\frac{(-1)^n2^{(n-1)}}{n(2n-1)!}x^n\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(r=1\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-ref-odes-frobenius-19">
+<span class="eqno">(4.20)<a class="headerlink" href="#equation-ref-odes-frobenius-19" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+a_n &amp; = &amp; \frac{-a_{n-1}}{(2n-1)(n+1)+1}=\frac{-a_{n-1}}{(2n+1)n}\nonumber\\
+a_1 &amp; = &amp; \frac{-a_0}{3.1},\quad
+a_2=\frac{-a_1}{5.2}=\frac{+a_0}{(1.3)(2.5)};\quad
+   a_3=\frac{-a_2}{3.7}=\frac{-a_0}{(1.3)(2.5)(3.7)}\nonumber\\
+a_n &amp; = &amp; \frac{(-1)^na_0}{n!3.5.7. (2n+1)}=
+   \frac{(-1)^n2^na_0}{(2n+1)!}\\
+y_2(x) &amp; = &amp; x\sum\limits_{n=0}^\infty
+\frac{(-1)^n2^n}{(2n+1)!}x^n\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p><strong>General Solution:</strong> <span class="math notranslate nohighlight">\(y(x)=c_1y_1(x)+c_2y_2(x)\)</span>
+Radius of Convergence <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
+</section>
+</div></section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./odes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="rsps.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Regular Singular Points</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bessel.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Bessel’s Equation and Bessel Functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fobenius-series-expansions-about-regular-singular-points">4.1. Fobenius Series Expansions About Regular Singular Points</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-expansion-summary">4.1.1. Series Expansion Summary:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frobenius-series-expansion">4.1.2. Frobenius Series Expansion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
