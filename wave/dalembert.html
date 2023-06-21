@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>12. Finite Difference Formulas &#8212; MATH 316</title>
+    <title>17. Interpretating D’Alembert’s Solution in Space-Time &#8212; MATH 316</title>
   
   
   
@@ -63,11 +63,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'fd/formulas';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'wave/dalembert';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="13. Heat Equation" href="../heat/heat.html" />
-    <link rel="prev" title="11. Solving the Heat, Laplace and Wave Equations Using Finite Difference Methods" href="pdes.html" />
+    <link rel="next" title="18. The Wave Equation On Finite Domains - Solution By Separation Of Variables" href="finite.html" />
+    <link rel="prev" title="16. The 1D Wave Equation and D’Alembert’s Solution" href="1d.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -164,9 +164,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../fourier/separation.html">10. Separation of Variables and Fourier Series</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="pdes.html">11. Solving the Heat, Laplace and Wave Equations Using Finite Difference Methods</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Finite Difference Formulas</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fd/pdes.html">11. Solving the Heat, Laplace and Wave Equations Using Finite Difference Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">12. Finite Difference Formulas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
 <ul class="nav bd-sidenav">
@@ -177,11 +177,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">14. Laplace Equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">15. Wave Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">16. The 1D Wave Equation and D’Alembert’s Solution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">17. Interpretating D’Alembert’s Solution in Space-Time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">18. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="wave.html">15. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1d.html">16. The 1D Wave Equation and D’Alembert’s Solution</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Interpretating D’Alembert’s Solution in Space-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finite.html">18. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
 </ul>
 
     </div>
@@ -251,7 +251,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/fd/formulas.md" target="_blank"
+      <li><a href="../_sources/wave/dalembert.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +320,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -331,11 +333,23 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Finite Difference Formulas</h1>
+    <h1>Interpretating D’Alembert’s Solution in Space-Time</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#space-time-interpretation-of-d-alembert-s-solution">17.1. Space-Time Interpretation of D’Alembert’s Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics">17.1.1. Characteristics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-of-influence-and-domain-of-dependence">17.1.2. Region of Influence and Domain of Dependence</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -345,12 +359,160 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="finite-difference-formulas">
-<h1><span class="section-number">12. </span>Finite Difference Formulas<a class="headerlink" href="#finite-difference-formulas" title="Permalink to this headline">#</a></h1>
-<div class="math notranslate nohighlight">
+  <div class="math notranslate nohighlight">
 \[
-f(x + h) = f(x) + f'(x)h + \frac{f''(x)}h^2 + \cdots
+\newcommand{\N}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\mat}[1]{{\mathbf #1}}
+\newcommand{\vect}[1]{\underline{#1}}
+\newcommand{\njump}[1]{[|#1|]}
+\newcommand{\bke}[1]{\left ( #1 \right )}
+\newcommand{\bkt}[1]{\left [ #1 \right ]}
+\newcommand{\bket}[1]{\left \{ #1 \right \}}
+\newcommand{\norm}[1]{\left \| #1 \right \|}
+\newcommand{\bka}[1]{\left \langle #1 \right \rangle}
+\newcommand{\ve}[1]{\mathbf{#1}}
+\newcommand{\what}[1]{\widehat{#1}}
 \]</div>
+<section class="tex2jax_ignore mathjax_ignore" id="interpretating-d-alembert-s-solution-in-space-time">
+<h1><span class="section-number">17. </span>Interpretating D’Alembert’s Solution in Space-Time<a class="headerlink" href="#interpretating-d-alembert-s-solution-in-space-time" title="Permalink to this headline">#</a></h1>
+<p>In this lecture we discuss the physical interpretation of the
+D’Alembert solution in terms of space-time plots. In particular we
+identify the left and right-moving characteristics as well as
+the domain of dependence of a given point <span class="math notranslate nohighlight">\((x_0,t_0)\)</span> in space-time
+and the region of influence of a given initial value specified at
+the point (<span class="math notranslate nohighlight">\(x_1\)</span>,0). We discuss the evolution of a few simple pulses
+and track the regions in space-time that are carved out by the
+intersecting characteristics.</p>
+<div class="admonition-key-concepts admonition">
+<p class="admonition-title">Key Concepts</p>
+<p>The one dimensional Wave Equation;
+D’Alembert’s Solution, Characteristics, Domain of Dependence, Region
+of Influence.</p>
+</div>
+<p>Reference Section: Boyce and Di Prima Section 10.7</p>
+<section id="space-time-interpretation-of-d-alembert-s-solution">
+<h2><span class="section-number">17.1. </span>Space-Time Interpretation of D’Alembert’s Solution<a class="headerlink" href="#space-time-interpretation-of-d-alembert-s-solution" title="Permalink to this headline">#</a></h2>
+<p>In this lecture we discuss the interpretation of D’Alembert’s solution</p>
+<div class="math notranslate nohighlight" id="equation-dalem">
+<span class="eqno">(17.1)<a class="headerlink" href="#equation-dalem" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u(x,t)=\frac{1}{2}\left[ u_0(x-ct)+u_0(x+ct)\right]
+   +\frac{1}{2c}\int\limits_{x-ct}^{x+ct} v_0(s)ds  \label{DAlem}
+\end{eqnarray}
+\]</div>
+<p>to the one dimensional wave equation</p>
+<div class="math notranslate nohighlight" id="equation-ref-wave-dalembert-1">
+<span class="eqno">(17.2)<a class="headerlink" href="#equation-ref-wave-dalembert-1" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+\frac{\partial^2 u}{\partial t^2}=c^2\frac{\partial^2 u}{\partial x^2} \label{eq1DW}
+\end{eqnarray}
+\]</div>
+<section id="characteristics">
+<h3><span class="section-number">17.1.1. </span>Characteristics<a class="headerlink" href="#characteristics" title="Permalink to this headline">#</a></h3>
+<p>In the <span class="math notranslate nohighlight">\(x-t\)</span> plane the lines</p>
+<div class="math notranslate nohighlight" id="equation-ref-wave-dalembert-2">
+<span class="eqno">(17.3)<a class="headerlink" href="#equation-ref-wave-dalembert-2" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+x-ct=x_0\mbox{ and }x+ct=x_0
+\end{eqnarray}
+\]</div>
+<p>are called the characteristics that emanate from the point
+<span class="math notranslate nohighlight">\((x_0,0)\)</span> in space-time (see figure {numref}{wave_characteristics}). Characteristics
+are the lines (or curves of more general hyperbolic problems) along
+which information is propagated by the equation. To interpret the
+characteristic lines in the <span class="math notranslate nohighlight">\(x-t\)</span> plane, it is useful to rewrite the
+characteristic equations in the form</p>
+<div class="math notranslate nohighlight" id="equation-ref-wave-dalembert-3">
+<span class="eqno">(17.4)<a class="headerlink" href="#equation-ref-wave-dalembert-3" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{lcl}
+x-ct=x_0 &amp;\Rightarrow &amp;t=\phantom{-}\displaystyle\frac{1}{c}x-\frac{1}{c}x_0\\
+\\
+x+ct=x_0 &amp;\Rightarrow &amp;t=-\displaystyle\frac{1}{c}x+\frac{1}{c}x_0\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<figure class="align-center" id="wave-characteristics">
+<img alt="wave_characteristics" src="../_images/wave_characteristics.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 17.1 </span><span class="caption-text">The characteristics that emanate from.</span><a class="headerlink" href="#wave-characteristics" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="region-of-influence-and-domain-of-dependence">
+<h3><span class="section-number">17.1.2. </span>Region of Influence and Domain of Dependence<a class="headerlink" href="#region-of-influence-and-domain-of-dependence" title="Permalink to this headline">#</a></h3>
+<p><strong>Region of influence:</strong> The lines <span class="math notranslate nohighlight">\(x+ct=x_1\)</span> and <span class="math notranslate nohighlight">\(x-ct=x_1\)</span> bound the region of
+influence of the function values at the initial point <span class="math notranslate nohighlight">\((x_1,0)\)</span>.
+Thus all the solution values <span class="math notranslate nohighlight">\(u(x,t)\)</span> within this region can be
+influenced by the value at the point  <span class="math notranslate nohighlight">\((x_1,0)\)</span>.</p>
+<p><strong>Domain of Dependence:</strong> The lines <span class="math notranslate nohighlight">\(x=x_0-ct_0\)</span> and <span class="math notranslate nohighlight">\(x=x_0+ct_0\)</span> that pass through
+the point <span class="math notranslate nohighlight">\((x_0,t_0)\)</span> bound the domain of dependence. Thus the
+solution <span class="math notranslate nohighlight">\(u(x_0,t_0)\)</span> depends on all the function values in the
+shaded region.</p>
+<figure class="align-center" id="region-of-influence">
+<img alt="region_of_influence" src="../_images/region_of_influence.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 17.2 </span><span class="caption-text">Space-time Region of Influence of the point <span class="math notranslate nohighlight">\((x_1,0)\)</span> and
+Domain of Dependence of the point <span class="math notranslate nohighlight">\((x0,t0)\)</span>, both of which can be
+determined from D’Alembert’s Solution <a class="reference internal" href="#equation-dalem">(17.1)</a>.</span><a class="headerlink" href="#region-of-influence" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="proof example admonition" id="example-wave-dalembert-0 A Rectangular Pulse">
+<p class="admonition-title"><span class="caption-number">Example 17.1 </span></p>
+<section class="example-content" id="proof-content">
+<div class="math notranslate nohighlight" id="equation-rectanngularp">
+<span class="eqno">(17.5)<a class="headerlink" href="#equation-rectanngularp" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(x,0)=\left\{\begin{array}{ll}1&amp;|x|&lt;1\\0&amp;|x|&gt;1\end{array}\right\}=u_0(x)
+\label{RectanngularP}
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref-wave-dalembert-5">
+<span class="eqno">(17.6)<a class="headerlink" href="#equation-ref-wave-dalembert-5" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u(x,t)=\frac{1}{2}\left[ u_0(x-ct)+u_0(x+ct)\right]
+\end{eqnarray}
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(c=1\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{t=\frac{1}{2}}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-ref-wave-dalembert-6">
+<span class="eqno">(17.7)<a class="headerlink" href="#equation-ref-wave-dalembert-6" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{lclll}
+x_r-\displaystyle\frac{1}{2}=1 &amp;\Rightarrow &amp;x_r=\displaystyle\frac{3}{2}&amp;x_R+\displaystyle\frac{1}{2}=1&amp;x_R=\displaystyle\frac{1}{2}\\
+\\
+x_\ell -\displaystyle\frac{1}{2}=-1 &amp;\Rightarrow &amp;x_\ell =-\displaystyle\frac{1}{2}
+  &amp;x_L+\displaystyle\frac{1}{2}=-1 &amp;x_L=-\displaystyle\frac{3}{2}\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{t=1}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-ref-wave-dalembert-7">
+<span class="eqno">(17.8)<a class="headerlink" href="#equation-ref-wave-dalembert-7" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{lcllcl}
+x_r-1=1 &amp;\Rightarrow &amp;x_r=2&amp;x_R+1=1&amp;\Rightarrow &amp;x_R=0\\
+x_\ell -1=-1&amp;\Rightarrow &amp;x_\ell =0 &amp;x_\ell +1=-1 &amp;\Rightarrow
+&amp;x_L=-2\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{t=2}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-ref-wave-dalembert-8">
+<span class="eqno">(17.9)<a class="headerlink" href="#equation-ref-wave-dalembert-8" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{lcllcl}
+x_r-2=1 &amp;\Rightarrow &amp;x_r=3 &amp;x_R+2=1 &amp;\Rightarrow &amp;x_R=-1\\
+x_\ell -2=-1 &amp;\Rightarrow &amp;x_\ell =1 &amp;x_L+2=-1 &amp;\Rightarrow
+&amp;x_L=-3\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+</div><figure class="align-center" id="wave-spreader">
+<img alt="wave_spreader" src="../_images/wave_spreader.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 17.3 </span><span class="caption-text">Top: Space-time representation of the regions in which the
+solution takes on different values for the rectangular pulse
+<a class="reference internal" href="#equation-rectanngularp">(17.5)</a>. Bottom: Cross sections of the solution
+<span class="math notranslate nohighlight">\(u(x,t)\)</span> at times <span class="math notranslate nohighlight">\(t=0,\ 1/2c,\ 1/c, \)</span>, and <span class="math notranslate nohighlight">\( t&gt;1/c\)</span></span><a class="headerlink" href="#wave-spreader" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -366,7 +528,7 @@ f(x + h) = f(x) + f'(x)h + \frac{f''(x)}h^2 + \cdots
         },
         kernelOptions: {
             name: "python3",
-            path: "./fd"
+            path: "./wave"
         },
         predefinedOutput: true
     }
@@ -385,20 +547,20 @@ f(x + h) = f(x) + f'(x)h + \frac{f''(x)}h^2 + \cdots
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pdes.html"
+       href="1d.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>Solving the Heat, Laplace and Wave Equations Using Finite Difference Methods</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>The 1D Wave Equation and D’Alembert’s Solution</p>
       </div>
     </a>
     <a class="right-next"
-       href="../heat/heat.html"
+       href="finite.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>Heat Equation</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>The Wave Equation On Finite Domains - Solution By Separation Of Variables</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -411,6 +573,24 @@ f(x + h) = f(x) + f'(x)h + \frac{f''(x)}h^2 + \cdots
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#space-time-interpretation-of-d-alembert-s-solution">17.1. Space-Time Interpretation of D’Alembert’s Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics">17.1.1. Characteristics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-of-influence-and-domain-of-dependence">17.1.2. Region of Influence and Domain of Dependence</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>9. Heat Equation &#8212; MATH 316</title>
+    <title>13. Heat Equation &#8212; MATH 316</title>
   
   
   
@@ -66,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'heat/heat';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. Laplace Equation" href="../laplace/laplace.html" />
-    <link rel="prev" title="8. Finite Difference Formulas" href="../fd/formulas.html" />
+    <link rel="next" title="14. Laplace Equation" href="../laplace/laplace.html" />
+    <link rel="prev" title="12. Finite Difference Formulas" href="../fd/formulas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -152,26 +152,36 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../odes/frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/bessel.html">5. Bessel’s Equation and Bessel Functions</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Partial Differential Equations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../intro/initial.html">6. Introduction To Partial Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/continued.html">7. Introduction To Partial Differential Equations (Continued)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/separation.html">8. Separation Of Variables And Fourier Series</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fourier Series</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../fourier/series.html">6. Fourier Series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fourier/separation.html">7. Separation of Variables and Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fourier/series.html">9. Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fourier/separation.html">10. Separation of Variables and Fourier Series</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">8. Finite Difference Formulas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/pdes.html">11. Solving the Heat, Laplace and Wave Equations Using Finite Difference Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">12. Finite Difference Formulas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Heat Equation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Heat Equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">10. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">14. Laplace Equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">11. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">15. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">16. The 1D Wave Equation and D’Alembert’s Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">17. Interpretating D’Alembert’s Solution in Space-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">18. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
 </ul>
 
     </div>
@@ -364,9 +374,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-solution">9.1. General Solution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-stability">9.2. Numerical Stability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-difference-method">9.3. Forward Difference Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-solution">13.1. General Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-stability">13.2. Numerical Stability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-difference-method">13.3. Forward Difference Method</a></li>
 </ul>
             </nav>
         </div>
@@ -379,7 +389,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="heat-equation">
-<h1><span class="section-number">9. </span>Heat Equation<a class="headerlink" href="#heat-equation" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">13. </span>Heat Equation<a class="headerlink" href="#heat-equation" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -389,21 +399,21 @@ document.write(`
 </div>
 </div>
 <section id="general-solution">
-<h2><span class="section-number">9.1. </span>General Solution<a class="headerlink" href="#general-solution" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">13.1. </span>General Solution<a class="headerlink" href="#general-solution" title="Permalink to this headline">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial u}{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2}
 \]</div>
 </section>
 <section id="numerical-stability">
-<h2><span class="section-number">9.2. </span>Numerical Stability<a class="headerlink" href="#numerical-stability" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">13.2. </span>Numerical Stability<a class="headerlink" href="#numerical-stability" title="Permalink to this headline">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \Delta t \leq \frac{(\Delta x)^2}{2 \alpha^2}
 \]</div>
 </section>
 <section id="forward-difference-method">
-<h2><span class="section-number">9.3. </span>Forward Difference Method<a class="headerlink" href="#forward-difference-method" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">13.3. </span>Forward Difference Method<a class="headerlink" href="#forward-difference-method" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">heat1D</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span><span class="n">Nt</span><span class="o">=</span><span class="mi">10001</span><span class="p">):</span>
@@ -531,7 +541,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">8. </span>Finite Difference Formulas</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Finite Difference Formulas</p>
       </div>
     </a>
     <a class="right-next"
@@ -539,7 +549,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Laplace Equation</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Laplace Equation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -561,9 +571,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-solution">9.1. General Solution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-stability">9.2. Numerical Stability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-difference-method">9.3. Forward Difference Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-solution">13.1. General Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-stability">13.2. Numerical Stability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-difference-method">13.3. Forward Difference Method</a></li>
 </ul>
   </nav></div>
 
