@@ -17,6 +17,7 @@ parts:
   - caption: Finite Difference Method
     numbered: True
     chapters:
+    - file: fd/pdes.md
     - file: fd/formulas.md
   - caption: Heat Equation
     numbered: True
