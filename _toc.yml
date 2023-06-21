@@ -9,6 +9,12 @@ parts:
     - file: odes/rsps.md
     - file: odes/frobenius.md
     - file: odes/bessel.md
+  - caption: Introduction to Partial Differential Equations
+    numbered: True
+    chapters:
+    - file: intro/initial.md
+    - file: intro/continued.md
+    - file: intro/separation.md
   - caption: Fourier Series
     numbered: True
     chapters:
@@ -31,3 +37,6 @@ parts:
     numbered: True
     chapters:
     - file: wave/wave.md
+    - file: wave/1d.md
+    - file: wave/dalembert.md
+    - file: wave/finite.md
