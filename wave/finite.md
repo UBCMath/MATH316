@@ -4,27 +4,13 @@ $$
 \newcommand{\mat}[1]{{\mathbf #1}}
 \newcommand{\vect}[1]{\underline{#1}}
 \newcommand{\njump}[1]{[|#1|]}
-\newcommand{\pa}{\partial}
-\newcommand{\De}{\Delta}
-\newcommand{\ra}{\rightarrow}
-\newcommand{\dst}{\displaystyle}
-\newcommand{\la}{\lambda}
-\newcommand{\al}{\alpha}
-\newcommand{\rme}{{\rm e}}
-\newcommand{\rmi}{{\rm i}}
-\newcommand{\R}{\mathbb{R}}
 \newcommand{\bke}[1]{\left ( #1 \right )}
 \newcommand{\bkt}[1]{\left [ #1 \right ]}
 \newcommand{\bket}[1]{\left \{ #1 \right \}}
 \newcommand{\norm}[1]{\left \| #1 \right \|}
 \newcommand{\bka}[1]{\left \langle #1 \right \rangle}
-\renewcommand{\th}{\theta}
-\newcommand{\om}{\omega}
-\newcommand{\pd}{\partial}
-\newcommand{\dis}{\displaystyle}
 \newcommand{\ve}[1]{\mathbf{#1}}
 \newcommand{\what}[1]{\widehat{#1}}
-\newcommand{\tint}{\int\kern-.6em\int\kern-.6em\int}
 $$
 
 # The Wave Equation On Finite Domains - Solution By Separation Of Variables
@@ -62,36 +48,37 @@ Reference Section: Boyce and Di Prima Section 10.7
 ### Solution By Separation of Variables
 
 ````{prf:example}
+:label: example-wave-finite-0
 $$
 \begin{eqnarray}
 u_{tt} & = & c^2u_{xx}\qquad 0<x<L,\quad t>0\\
 \mbox{BC: } u(0,t) & = & 0,\quad u(L,t)=0\\
 \mbox{IC: } u(x,0)& = & f(x),\quad u_t(x,0)=g(x)
 \end{eqnarray}
-$$(ref0)
+$$(ref-wave-finite-0)
 
-For a guitar string $\dst c=\sqrt{\frac{T_0}{\rho_0}}$ whereas for an elastic bar $\dst c=\sqrt{\frac{E}{\rho}}$.
+For a guitar string $\displaystyle c=\sqrt{\frac{T_0}{\rho_0}}$ whereas for an elastic bar $\displaystyle c=\sqrt{\frac{E}{\rho}}$.
 
 __Separate Variables__  $u(x,t)=X(x)T(t)$
 
 $$
 \begin{eqnarray}
-\frac{\ddot{T}(t)}{c^2T(t)}=\frac{X^{\prime\prime}(x)}{X(x)}=-\la^2
+\frac{\ddot{T}(t)}{c^2T(t)}=\frac{X^{\prime\prime}(x)}{X(x)}=-\lambda^2
 \end{eqnarray}
-$$(ref1)
+$$(ref-wave-finite-1)
 
 $$
 \begin{eqnarray}
-\ddot{T}(t)+\la^2 c^2T(t) =0 & \Rightarrow &T(t)=c_1\cos (\la ct)+c_2\sin (\la ct)\\
-\left. \begin{array}{l}X^{\prime\prime}+\la^2 X=0\\
+\ddot{T}(t)+\lambda^2 c^2T(t) =0 & \Rightarrow &T(t)=c_1\cos (\lambda ct)+c_2\sin (\lambda ct)\\
+\left. \begin{array}{l}X^{\prime\prime}+\lambda^2 X=0\\
 X(0)=0=X(L)\end{array}\right\}
-   & \Rightarrow &\left. \begin{array}{l}X(x)=A\cos (\la x)+B\sin\la x  \nonumber\\
-        X(0)=A=0\; X(L)=B\sin\la L=0\end{array}\right\}  \nonumber\\
-& &\hspace{.55in}\begin{array}{lcl}\la _n&=&\dst\frac{n\pi}{L}\quad n=1,2,\ldots\\
-   X_n &=&\sin\left(\dst\frac{n\pi x}{L}\right)\end{array}.
+   & \Rightarrow &\left. \begin{array}{l}X(x)=A\cos (\lambda x)+B\sin\lambda x  \nonumber\\
+        X(0)=A=0\; X(L)=B\sin\lambda L=0\end{array}\right\}  \nonumber\\
+& &\hspace{.55in}\begin{array}{lcl}\lambda _n&=&\displaystyle\frac{n\pi}{L}\quad n=1,2,\ldots\\
+   X_n &=&\sin\left(\displaystyle\frac{n\pi x}{L}\right)\end{array}.
    \nonumber
 \end{eqnarray}
-$$(ref2)
+$$(ref-wave-finite-2)
 
 Therefore
 
@@ -118,7 +105,7 @@ u_t(x,0) & = & \sum\limits_{n=1}^\infty B_n \left(\frac{n\pi c}
   \sin\left(\frac{n\pi x}{L}\right)\, dx$}\, .\nonumber
 \\
 \end{eqnarray}
-$$(ref3)
+$$(ref-wave-finite-3)
 
 Therefore
 
@@ -133,25 +120,26 @@ $$(eq1DweqFSsol)
 ````
 
 ````{prf:observation}
+:label: observation-wave-finite-0
 1. Period and Frequency of Vibration.
 
 $$
 \begin{eqnarray}
 \cos\left(\frac{n\pi c}{L}(t+T)\right) =\cos\left(\frac{n\pi
 ct}{L}\right)
-   \mbox{ provided $\dst\frac{n\pi cT}{L}=2\pi$}
+   \mbox{ provided $\displaystyle\frac{n\pi cT}{L}=2\pi$}
 \end{eqnarray}
-$$(ref5)
+$$(ref-wave-finite-5)
 
-thus $\dst T_n=\left(\frac{2L}{c}\right)\frac{1}{n}$ is the period
-(seconds per cycle) of mode $n$. $\dst
+thus $\displaystyle T_n=\left(\frac{2L}{c}\right)\frac{1}{n}$ is the period
+(seconds per cycle) of mode $n$. $\displaystyle
 f_n=\frac{1}{T_n}=n\left(\frac{c}{2L}\right)$ are the natural
 frequencies of vibration.
 
-2. Modes of Vibration: Standing Waves of Wavelength $\la _n=\dst\frac{2L}{n}$.
+2. Modes of Vibration: Standing Waves of Wavelength $\lambda _n=\displaystyle\frac{2L}{n}$.
 
 In the following four figures we plot the fist four modes of vibration. The first, known as 
-the fundamental mode of vibration, is associated with the lowest frequency $ \dst
+the fundamental mode of vibration, is associated with the lowest frequency $ \displaystyle
 f_1=\frac{1}{T_1}=\left(\frac{c}{2L}\right)$. All higher
 frequencies, also known as overtones, are integer multiples of
 this fundamental frequency. The nodes  in these modal plots
@@ -219,7 +207,7 @@ $$
    & = & \frac{1}{2}\left\{\cos\frac{n\pi }{L} (x-ct)-\cos\frac{n\pi}{L}
    (x+ct)\right\}
 \end{eqnarray}
-$$(ref11)
+$$(ref-wave-finite-11)
 
 Now
 
@@ -244,7 +232,7 @@ $$
    \sin\left(\frac{n\pi x}{L}\right) =\frac{1}{2}\sum\limits_{n=1}^\infty
    B_n\left[\cos\frac{n\pi}{L} (x-ct)-\cos\frac{n\pi}{L} (x+ct)\right]=\frac{1}{2}\left[G(x-ct)-G(x+ct)\right]\phantom{\int} .
 \end{eqnarray}
-$$(ref13)
+$$(ref-wave-finite-13)
 
 where
 
@@ -254,7 +242,7 @@ G(x):=\frac{1}{2}\sum\limits_{n=1}^\infty B_n\cos(\frac{n\pi}{L} x)
 \quad \mbox{and} \quad  B_n=\frac{b^g_n}{\lambda_n c L}=\int_0^L
 g(x) \sin \lambda_n x dx
 \end{eqnarray}
-$$(ref14)
+$$(ref-wave-finite-14)
 
 $$
 \begin{eqnarray*}
@@ -265,7 +253,7 @@ G(x) &:&=\sum\limits_{n=1}^{\infty }B_{n}\cos (\frac{n\pi }{L}x)\quad
 n\pi }{L}x)\quad \mbox{and}\quad
 b_{n}^{g}=\frac{2}{L}\int_{0}^{L}g(x)\sin \lambda _{n}xdx
 \end{eqnarray*}
-$$(ref15)
+$$(ref-wave-finite-15)
 
 therefore
 
@@ -301,8 +289,8 @@ D'ALembert's solution
 
 $$
 \begin{eqnarray}
-\framebox{$u(x,t)=\dst\frac{1}{2}\left[ f_o(x+ct)+f_o(x-ct)\right]
-    +\dst\frac{1}{2c}\int\limits_{x-ct}^{x+ct} g_o(s)\, ds$}
+\framebox{$u(x,t)=\displaystyle\frac{1}{2}\left[ f_o(x+ct)+f_o(x-ct)\right]
+    +\displaystyle\frac{1}{2c}\int\limits_{x-ct}^{x+ct} g_o(s)\, ds$}
     \label{eqDAlemGuitar}
 \end{eqnarray}
 $$(eqDAlemGuitar)
@@ -319,9 +307,10 @@ g_o(x) & = & \left\{\begin{array}{rrll}
 g(x) &0<x<L &\mbox{ and }&g_o(x+2L)=g_o(x)\\
 -g(-x) &-L<x<0 &&\end{array}\right. .
 \end{eqnarray}
-$$(ref18)
+$$(ref-wave-finite-18)
 
 ````{prf:observation}
+:label: observation-wave-finite-1
 1. Equation {eq}`eqDAlemGuitar` above shows that the Wave Equation Solution for a
 string tied down at its ends is given by D'Alembert's Solution (see
 (23.25) in Lecture 23) in which the initial displacement function is
@@ -334,8 +323,8 @@ const $\quad x-ct=$ const.
 \vspace{1in}
 
 3. Observe that the time dependence of the solution involves
-$\dst\sin\left(\frac{n\pi ct}{L}\right)$ and
-$\cos\left(\dst\frac{n\pi ct}{L}\right)$ which do not decay with
+$\displaystyle\sin\left(\frac{n\pi ct}{L}\right)$ and
+$\cos\left(\displaystyle\frac{n\pi ct}{L}\right)$ which do not decay with
 time. Thus the solutions to the Wave Equation persist with time,
 whereas the solutions to the Heat Equation typically decay
 exponentially with time.

@@ -4,27 +4,13 @@ $$
 \newcommand{\mat}[1]{{\mathbf #1}}
 \newcommand{\vect}[1]{\underline{#1}}
 \newcommand{\njump}[1]{[|#1|]}
-\newcommand{\pa}{\partial}
-\newcommand{\De}{\Delta}
-\newcommand{\ra}{\rightarrow}
-\newcommand{\dst}{\displaystyle}
-\newcommand{\la}{\lambda}
-\newcommand{\al}{\alpha}
-\newcommand{\rme}{{\rm e}}
-\newcommand{\rmi}{{\rm i}}
-\newcommand{\R}{\mathbb{R}}
 \newcommand{\bke}[1]{\left ( #1 \right )}
 \newcommand{\bkt}[1]{\left [ #1 \right ]}
 \newcommand{\bket}[1]{\left \{ #1 \right \}}
 \newcommand{\norm}[1]{\left \| #1 \right \|}
 \newcommand{\bka}[1]{\left \langle #1 \right \rangle}
-\renewcommand{\th}{\theta}
-\newcommand{\om}{\omega}
-\newcommand{\pd}{\partial}
-\newcommand{\dis}{\displaystyle}
 \newcommand{\ve}[1]{\mathbf{#1}}
 \newcommand{\what}[1]{\widehat{#1}}
-\newcommand{\tint}{\int\kern-.6em\int\kern-.6em\int}
 $$
 
 # Interpretating D'Alembert's Solution in Space-Time
@@ -61,9 +47,9 @@ to the one dimensional wave equation
 
 $$
 \begin{eqnarray}
-\frac{\pa^2 u}{\pa t^2}=c^2\frac{\pa^2 u}{\pa x^2} \label{eq1DW}
+\frac{\partial^2 u}{\partial t^2}=c^2\frac{\partial^2 u}{\partial x^2} \label{eq1DW}
 \end{eqnarray}
-$$(ref1)
+$$(ref-wave-dalembert-1)
 
 ### Characteristics
 
@@ -73,7 +59,7 @@ $$
 \begin{eqnarray}
 x-ct=x_0\mbox{ and }x+ct=x_0
 \end{eqnarray}
-$$(ref2)
+$$(ref-wave-dalembert-2)
 
 are called the characteristics that emanate from the point
 $(x_0,0)$ in space-time (see figure {numref}{wave_characteristics}). Characteristics
@@ -84,11 +70,11 @@ characteristic equations in the form
 
 $$
 \begin{eqnarray}\begin{array}{lcl}
-x-ct=x_0 &\Rightarrow &t=\phantom{-}\dst\frac{1}{c}x-\frac{1}{c}x_0\\
+x-ct=x_0 &\Rightarrow &t=\phantom{-}\displaystyle\frac{1}{c}x-\frac{1}{c}x_0\\
 \\
-x+ct=x_0 &\Rightarrow &t=-\dst\frac{1}{c}x+\frac{1}{c}x_0\end{array}
+x+ct=x_0 &\Rightarrow &t=-\displaystyle\frac{1}{c}x+\frac{1}{c}x_0\end{array}
 \end{eqnarray}
-$$(ref3)
+$$(ref-wave-dalembert-3)
 
 ```{figure} ../img/wave/wave_characteristics.png
 :name: wave_characteristics
@@ -120,7 +106,8 @@ Domain of Dependence of the point $(x0,t0)$, both of which can be
 determined from D'Alembert's Solution {eq}`DAlem`.
 ```
 
-````{prf:example} A Rectangular Pulse
+````{prf:example}
+:label: example-wave-dalembert-0 A Rectangular Pulse
 
 $$
 \begin{eqnarray}
@@ -133,7 +120,7 @@ $$
 \begin{eqnarray}
 u(x,t)=\frac{1}{2}\left[ u_0(x-ct)+u_0(x+ct)\right]
 \end{eqnarray}
-$$(ref5)
+$$(ref-wave-dalembert-5)
 
 Let $c=1$.
 
@@ -141,12 +128,12 @@ $\mathbf{t=\frac{1}{2}}$:
 
 $$
 \begin{eqnarray}\begin{array}{lclll}
-x_r-\dst\frac{1}{2}=1 &\Rightarrow &x_r=\dst\frac{3}{2}&x_R+\dst\frac{1}{2}=1&x_R=\dst\frac{1}{2}\\
+x_r-\displaystyle\frac{1}{2}=1 &\Rightarrow &x_r=\displaystyle\frac{3}{2}&x_R+\displaystyle\frac{1}{2}=1&x_R=\displaystyle\frac{1}{2}\\
 \\
-x_\ell -\dst\frac{1}{2}=-1 &\Rightarrow &x_\ell =-\dst\frac{1}{2}
-  &x_L+\dst\frac{1}{2}=-1 &x_L=-\dst\frac{3}{2}\end{array}
+x_\ell -\displaystyle\frac{1}{2}=-1 &\Rightarrow &x_\ell =-\displaystyle\frac{1}{2}
+  &x_L+\displaystyle\frac{1}{2}=-1 &x_L=-\displaystyle\frac{3}{2}\end{array}
 \end{eqnarray}
-$$(ref6)
+$$(ref-wave-dalembert-6)
 
 $\mathbf{t=1}$:
 
@@ -156,7 +143,7 @@ x_r-1=1 &\Rightarrow &x_r=2&x_R+1=1&\Rightarrow &x_R=0\\
 x_\ell -1=-1&\Rightarrow &x_\ell =0 &x_\ell +1=-1 &\Rightarrow
 &x_L=-2\end{array}
 \end{eqnarray}
-$$(ref7)
+$$(ref-wave-dalembert-7)
 
 $\mathbf{t=2}$:
 
@@ -166,7 +153,7 @@ x_r-2=1 &\Rightarrow &x_r=3 &x_R+2=1 &\Rightarrow &x_R=-1\\
 x_\ell -2=-1 &\Rightarrow &x_\ell =1 &x_L+2=-1 &\Rightarrow
 &x_L=-3\end{array}
 \end{eqnarray}
-$$(ref8)
+$$(ref-wave-dalembert-8)
 ````
 
 ```{figure} ../img/wave/wave_spreader.png
