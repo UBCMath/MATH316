@@ -29,6 +29,10 @@ parts:
     numbered: True
     chapters:
     - file: heat/heat.ipynb
+    - file: heat/circular.md
+    - file: heat/inhomogeneous.md
+    - file: heat/distributed.md
+    - file: heat/eigenfunctions.md
   - caption: Laplace Equation
     numbered: True
     chapters:
