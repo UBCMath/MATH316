@@ -37,6 +37,10 @@ parts:
     numbered: True
     chapters:
     - file: laplace/laplace.md
+    - file: laplace/2d.md
+    - file: laplace/rectangular.md
+    - file: laplace/circular.md
+    - file: laplace/wedges.md
   - caption: Wave Equation
     numbered: True
     chapters:
