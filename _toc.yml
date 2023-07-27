@@ -48,3 +48,9 @@ parts:
     - file: wave/1d.md
     - file: wave/dalembert.md
     - file: wave/finite.md
+  - caption: Sturm-Liouville Theory
+    numbered: True
+    chapters:
+    - file: sturm-liouville/sturm-liouville.md
+    - file: sturm-liouville/robin.md
+    - file: sturm-liouville/cauchy-euler.md
