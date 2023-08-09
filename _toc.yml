@@ -4,7 +4,11 @@ parts:
   - caption: Ordinary Differential Equations
     numbered: True
     chapters:
-    - file: odes/review.md
+    - file: odes/review/index.md
+      sections:
+      - file: odes/review/first.md
+      - file: odes/review/second.md
+      - file: odes/review/cauchy.md
     - file: odes/series.md
     - file: odes/rsps.md
     - file: odes/frobenius.md
@@ -14,7 +18,7 @@ parts:
     chapters:
     - file: intro/initial.md
     - file: intro/continued.md
-    - file: intro/separation.md
+    - file: intro/separation.md    
   - caption: Fourier Series
     numbered: True
     chapters:
@@ -23,8 +27,12 @@ parts:
   - caption: Finite Difference Method
     numbered: True
     chapters:
-    - file: fd/pdes.md
-    - file: fd/formulas.md
+    - file: fd/fd.md
+    - file: fd/heat.md
+      sections:
+      - file: fd/heat/heat.md
+    - file: fd/wave.md
+    - file: fd/laplace.md
   - caption: Heat Equation
     numbered: True
     chapters:
