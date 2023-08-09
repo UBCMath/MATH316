@@ -143,7 +143,12 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="odes/review.html">1. Review Of Methods To Solve Ordinary Differential Equations</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="odes/review/index.html">1. Review of Methods to Solve Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="odes/review/first.html">1.1. First Order Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odes/review/second.html">1.2. Second Order Constant Coefficient Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odes/review/cauchy.html">1.3. Cauchy-Euler Equations</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="odes/series.html">2. Series Solutions To ODEs With Variable Coefficients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="odes/rsps.html">3. Regular Singular Points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="odes/frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
@@ -162,27 +167,36 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="fd/pdes.html">11. Solving the Heat, Laplace and Wave Equations Using Finite Difference Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fd/formulas.html">12. Finite Difference Formulas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fd/fd.html">11. Overview and Formulas</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="fd/heat.html">12. Heat Equation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="fd/heat/heat.html">12.1. FTCS Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fd/wave.html">13. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fd/laplace.html">14. Laplace Equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="heat/heat.html">13. Heat Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="heat/circular.html">14. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="heat/inhomogeneous.html">15. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="heat/distributed.html">16. Heat Conduction With Distributed Sources/Sinks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="heat/eigenfunctions.html">17. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heat/heat.html">15. Heat Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heat/circular.html">16. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heat/inhomogeneous.html">17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heat/distributed.html">18. Heat Conduction With Distributed Sources/Sinks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heat/eigenfunctions.html">19. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="laplace/laplace.html">18. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laplace/laplace.html">20. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laplace/2d.html">21. Laplace’s Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laplace/rectangular.html">22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laplace/circular.html">23. Circular Domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laplace/wedges.html">24. Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="wave/wave.html">19. Wave Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wave/1d.html">20. The 1D Wave Equation and D’Alembert’s Solution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wave/dalembert.html">21. Interpretating D’Alembert’s Solution in Space-Time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wave/finite.html">22. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wave/wave.html">25. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wave/1d.html">26. The 1D Wave Equation and D’Alembert’s Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wave/dalembert.html">27. Interpretating D’Alembert’s Solution in Space-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wave/finite.html">28. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
 </ul>
 
     </div>

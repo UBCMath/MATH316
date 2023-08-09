@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>22. The Wave Equation On Finite Domains - Solution By Separation Of Variables &#8212; MATH 316</title>
+    <title>28. The Wave Equation On Finite Domains - Solution By Separation Of Variables &#8212; MATH 316</title>
   
   
   
@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'wave/finite';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="21. Interpretating D’Alembert’s Solution in Space-Time" href="dalembert.html" />
+    <link rel="prev" title="27. Interpretating D’Alembert’s Solution in Space-Time" href="dalembert.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -145,7 +145,12 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../odes/review.html">1. Review Of Methods To Solve Ordinary Differential Equations</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../odes/review.html">1. Review of Methods to Solve Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/first.html">1.1. First Order Ordinary Differential Equations:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/second.html">1.2. Second Order Constant Coefficient Linear Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/cauchy.html">1.3. Cauchy/Euler/Equidimensional Equations:</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/series.html">2. Series Solutions To ODEs With Variable Coefficients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/rsps.html">3. Regular Singular Points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
@@ -164,27 +169,36 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../fd/pdes.html">11. Solving the Heat, Laplace and Wave Equations Using Finite Difference Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">12. Finite Difference Formulas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/fd.html">11. Overview and Formulas</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fd/heat.html">12. Heat Equation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fd/heat/heat.html">12.1. FTCS Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/wave.html">13. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/laplace.html">14. Laplace Equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../heat/heat.html">13. Heat Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../heat/circular.html">14. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../heat/inhomogeneous.html">15. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../heat/distributed.html">16. Heat Conduction With Distributed Sources/Sinks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../heat/eigenfunctions.html">17. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/heat.html">15. Heat Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/circular.html">16. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/inhomogeneous.html">17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/distributed.html">18. Heat Conduction With Distributed Sources/Sinks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/eigenfunctions.html">19. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">18. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">20. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/2d.html">21. Laplace’s Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/rectangular.html">22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/circular.html">23. Circular Domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/wedges.html">24. Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="wave.html">19. Wave Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1d.html">20. The 1D Wave Equation and D’Alembert’s Solution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dalembert.html">21. Interpretating D’Alembert’s Solution in Space-Time</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">22. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wave.html">25. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1d.html">26. The 1D Wave Equation and D’Alembert’s Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dalembert.html">27. Interpretating D’Alembert’s Solution in Space-Time</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">28. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
 </ul>
 
     </div>
@@ -346,9 +360,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-of-the-1d-wave-equation-on-finite-domains">22.1. Solution of the 1D Wave Equation on Finite Domains</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-by-separation-of-variables">22.1.1. Solution By Separation of Variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-the-fourier-series-solution-in-terms-of-d-alembert-s-solution">22.1.2. Interpretation of the Fourier Series Solution in Terms of D’Alembert’s Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-of-the-1d-wave-equation-on-finite-domains">28.1. Solution of the 1D Wave Equation on Finite Domains</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-by-separation-of-variables">28.1.1. Solution By Separation of Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-the-fourier-series-solution-in-terms-of-d-alembert-s-solution">28.1.2. Interpretation of the Fourier Series Solution in Terms of D’Alembert’s Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -378,7 +392,7 @@ document.write(`
 \newcommand{\what}[1]{\widehat{#1}}
 \]</div>
 <section class="tex2jax_ignore mathjax_ignore" id="the-wave-equation-on-finite-domains-solution-by-separation-of-variables">
-<h1><span class="section-number">22. </span>The Wave Equation On Finite Domains - Solution By Separation Of Variables<a class="headerlink" href="#the-wave-equation-on-finite-domains-solution-by-separation-of-variables" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">28. </span>The Wave Equation On Finite Domains - Solution By Separation Of Variables<a class="headerlink" href="#the-wave-equation-on-finite-domains-solution-by-separation-of-variables" title="Permalink to this headline">#</a></h1>
 <p>In this lecture we discuss the solution of the one dimensional wave
 equation on a finite domain using the method of saparation of
 variables. The process proceeds in much the same was as with the
@@ -406,14 +420,14 @@ D’Alembert’s solution for finite domains.</p>
 </div>
 <p>Reference Section: Boyce and Di Prima Section 10.7</p>
 <section id="solution-of-the-1d-wave-equation-on-finite-domains">
-<h2><span class="section-number">22.1. </span>Solution of the 1D Wave Equation on Finite Domains<a class="headerlink" href="#solution-of-the-1d-wave-equation-on-finite-domains" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">28.1. </span>Solution of the 1D Wave Equation on Finite Domains<a class="headerlink" href="#solution-of-the-1d-wave-equation-on-finite-domains" title="Permalink to this headline">#</a></h2>
 <section id="solution-by-separation-of-variables">
-<h3><span class="section-number">22.1.1. </span>Solution By Separation of Variables<a class="headerlink" href="#solution-by-separation-of-variables" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">28.1.1. </span>Solution By Separation of Variables<a class="headerlink" href="#solution-by-separation-of-variables" title="Permalink to this headline">#</a></h3>
 <div class="proof example admonition" id="example-wave-finite-0">
-<p class="admonition-title"><span class="caption-number">Example 22.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 28.1 </span></p>
 <section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight" id="equation-ref-wave-finite-0">
-<span class="eqno">(22.1)<a class="headerlink" href="#equation-ref-wave-finite-0" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(28.1)<a class="headerlink" href="#equation-ref-wave-finite-0" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u_{tt} &amp; = &amp; c^2u_{xx}\qquad 0&lt;x&lt;L,\quad t&gt;0\\
 \mbox{BC: } u(0,t) &amp; = &amp; 0,\quad u(L,t)=0\\
@@ -423,13 +437,13 @@ u_{tt} &amp; = &amp; c^2u_{xx}\qquad 0&lt;x&lt;L,\quad t&gt;0\\
 <p>For a guitar string <span class="math notranslate nohighlight">\(\displaystyle c=\sqrt{\frac{T_0}{\rho_0}}\)</span> whereas for an elastic bar <span class="math notranslate nohighlight">\(\displaystyle c=\sqrt{\frac{E}{\rho}}\)</span>.</p>
 <p><strong>Separate Variables</strong>  <span class="math notranslate nohighlight">\(u(x,t)=X(x)T(t)\)</span></p>
 <div class="math notranslate nohighlight" id="equation-ref-wave-finite-1">
-<span class="eqno">(22.2)<a class="headerlink" href="#equation-ref-wave-finite-1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.2)<a class="headerlink" href="#equation-ref-wave-finite-1" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 \frac{\ddot{T}(t)}{c^2T(t)}=\frac{X^{\prime\prime}(x)}{X(x)}=-\lambda^2
 \end{eqnarray}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ref-wave-finite-2">
-<span class="eqno">(22.3)<a class="headerlink" href="#equation-ref-wave-finite-2" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(28.3)<a class="headerlink" href="#equation-ref-wave-finite-2" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \ddot{T}(t)+\lambda^2 c^2T(t) =0 &amp; \Rightarrow &amp;T(t)=c_1\cos (\lambda ct)+c_2\sin (\lambda ct)\\
 \left. \begin{array}{l}X^{\prime\prime}+\lambda^2 X=0\\
@@ -443,7 +457,7 @@ X(0)=0=X(L)\end{array}\right\}
 \end{split}\]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-wave-finite-3">
-<span class="eqno">(22.4)<a class="headerlink" href="#equation-ref-wave-finite-3" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(28.4)<a class="headerlink" href="#equation-ref-wave-finite-3" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u(x,t) &amp; = &amp; \sum\limits_{n=1}^\infty A_n\cos\left(\frac{n\pi
 ct}{L}\right)
@@ -469,7 +483,7 @@ u_t(x,0) &amp; = &amp; \sum\limits_{n=1}^\infty B_n \left(\frac{n\pi c}
 \end{split}\]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-eq1dweqfssol">
-<span class="eqno">(22.5)<a class="headerlink" href="#equation-eq1dweqfssol" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.5)<a class="headerlink" href="#equation-eq1dweqfssol" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 u(x,t)=\sum\limits_{n=1}^\infty \left\{ A_n\cos\left(\frac{n\pi
 ct}{L}\right)
@@ -479,13 +493,13 @@ ct}{L}\right)
 \]</div>
 </section>
 </div><div class="proof observation admonition" id="observation-wave-finite-0">
-<p class="admonition-title"><span class="caption-number">Observation 22.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Observation 28.1 </span></p>
 <section class="observation-content" id="proof-content">
 <ol class="arabic simple">
 <li><p>Period and Frequency of Vibration.</p></li>
 </ol>
 <div class="math notranslate nohighlight" id="equation-ref-wave-finite-5">
-<span class="eqno">(22.6)<a class="headerlink" href="#equation-ref-wave-finite-5" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.6)<a class="headerlink" href="#equation-ref-wave-finite-5" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 \cos\left(\frac{n\pi c}{L}(t+T)\right) =\cos\left(\frac{n\pi
 ct}{L}\right)
@@ -509,48 +523,48 @@ the displacement associated with a given mode is zero.</p>
 <figure class="align-center" id="vibration-mode-1">
 <img alt="vibration_mode_1" src="../_images/vibration_mode_1.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 22.1 </span><span class="caption-text">The fundamental mode of vibration with 2 nodes,
+<p><span class="caption-number">Fig. 28.1 </span><span class="caption-text">The fundamental mode of vibration with 2 nodes,
 <span class="math notranslate nohighlight">\(X_1(x)=\sin\left(\frac{\pi x}{L}\right) \nonumber\)</span>.</span><a class="headerlink" href="#vibration-mode-1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="vibration-mode-2">
 <img alt="vibration_mode_2" src="../_images/vibration_mode_2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 22.2 </span><span class="caption-text">The second mode of vibration or first overtone with 3 nodes,
+<p><span class="caption-number">Fig. 28.2 </span><span class="caption-text">The second mode of vibration or first overtone with 3 nodes,
 <span class="math notranslate nohighlight">\(X_2(x)=\sin\left(\frac{2\pi x}{L}\right) \nonumber\)</span>.</span><a class="headerlink" href="#vibration-mode-2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="vibration-mode-3">
 <img alt="vibration_mode_3" src="../_images/vibration_mode_3.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 22.3 </span><span class="caption-text">The third mode of vibration with 4 nodes,
+<p><span class="caption-number">Fig. 28.3 </span><span class="caption-text">The third mode of vibration with 4 nodes,
 <span class="math notranslate nohighlight">\(X_3(x)=\sin\left(\frac{3\pi x}{L}\right) \nonumber\)</span>.</span><a class="headerlink" href="#vibration-mode-3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="vibration-mode-4">
 <img alt="vibration_mode_4" src="../_images/vibration_mode_4.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 22.4 </span><span class="caption-text">The fourth mode of vibration with 5 nodes,
+<p><span class="caption-number">Fig. 28.4 </span><span class="caption-text">The fourth mode of vibration with 5 nodes,
 <span class="math notranslate nohighlight">\(X_4(x)=\sin\left(\frac{4\pi x}{L}\right) \nonumber\)</span>.</span><a class="headerlink" href="#vibration-mode-4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 </div></section>
 <section id="interpretation-of-the-fourier-series-solution-in-terms-of-d-alembert-s-solution">
-<h3><span class="section-number">22.1.2. </span>Interpretation of the Fourier Series Solution in Terms of D’Alembert’s Solution<a class="headerlink" href="#interpretation-of-the-fourier-series-solution-in-terms-of-d-alembert-s-solution" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">28.1.2. </span>Interpretation of the Fourier Series Solution in Terms of D’Alembert’s Solution<a class="headerlink" href="#interpretation-of-the-fourier-series-solution-in-terms-of-d-alembert-s-solution" title="Permalink to this headline">#</a></h3>
 <p>Recall the double angle trigonometric identities</p>
 <div class="math notranslate nohighlight" id="equation-doubleangle">
-<span class="eqno">(22.7)<a class="headerlink" href="#equation-doubleangle" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(28.7)<a class="headerlink" href="#equation-doubleangle" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \sin (A\pm B)&amp;=&amp;\sin A\cos B  \pm \cos A\sin B; \nonumber\\
    \cos (A\pm B)&amp;=&amp;\cos A\cos \mp \sin A \sin B, \label{doubleangle}
 \end{eqnarray}
 \end{split}\]</div>
 <p>which we are going to use to interpret the solution
-<a class="reference internal" href="#equation-eq1dweqfssol">(22.5)</a> in terms of D’Alembert’s Solution for an
-infinite domain. Using <a class="reference internal" href="#equation-doubleangle">(22.7)</a> we obtain</p>
+<a class="reference internal" href="#equation-eq1dweqfssol">(28.5)</a> in terms of D’Alembert’s Solution for an
+infinite domain. Using <a class="reference internal" href="#equation-doubleangle">(28.7)</a> we obtain</p>
 <div class="math notranslate nohighlight" id="equation-ref-wave-finite-11">
-<span class="eqno">(22.8)<a class="headerlink" href="#equation-ref-wave-finite-11" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(28.8)<a class="headerlink" href="#equation-ref-wave-finite-11" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \cos\left(\frac{n\pi ct}{L}\right) \sin\left(\frac{n\pi x}{L}\right)
    &amp; = &amp; \frac{1}{2}\left\{\sin\frac{n\pi}{L} (x+ct)+\sin\left(\frac{n\pi}{L}\right)
@@ -562,7 +576,7 @@ infinite domain. Using <a class="reference internal" href="#equation-doubleangle
 \end{split}\]</div>
 <p>Now</p>
 <div class="math notranslate nohighlight" id="equation-displacementterm">
-<span class="eqno">(22.9)<a class="headerlink" href="#equation-displacementterm" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(28.9)<a class="headerlink" href="#equation-displacementterm" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \sum\limits_{n=1}^\infty A_n\cos\left(\frac{n\pi ct}{L}\right)
    \sin\left(\frac{n\pi x}{L}\right)
@@ -576,7 +590,7 @@ infinite domain. Using <a class="reference internal" href="#equation-doubleangle
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_0\)</span> is the odd periodic extension of <span class="math notranslate nohighlight">\(f\)</span>. Similarly,</p>
 <div class="math notranslate nohighlight" id="equation-ref-wave-finite-13">
-<span class="eqno">(22.10)<a class="headerlink" href="#equation-ref-wave-finite-13" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.10)<a class="headerlink" href="#equation-ref-wave-finite-13" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 \sum\limits_{n=1}^\infty B_n\sin\left(\frac{n\pi ct}{L}\right)
    \sin\left(\frac{n\pi x}{L}\right) =\frac{1}{2}\sum\limits_{n=1}^\infty
@@ -585,7 +599,7 @@ infinite domain. Using <a class="reference internal" href="#equation-doubleangle
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight" id="equation-ref-wave-finite-14">
-<span class="eqno">(22.11)<a class="headerlink" href="#equation-ref-wave-finite-14" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.11)<a class="headerlink" href="#equation-ref-wave-finite-14" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 G(x):=\frac{1}{2}\sum\limits_{n=1}^\infty B_n\cos(\frac{n\pi}{L} x)
 \quad \mbox{and} \quad  B_n=\frac{b^g_n}{\lambda_n c L}=\int_0^L
@@ -593,7 +607,7 @@ g(x) \sin \lambda_n x dx
 \end{eqnarray}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ref-wave-finite-15">
-<span class="eqno">(22.12)<a class="headerlink" href="#equation-ref-wave-finite-15" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(28.12)<a class="headerlink" href="#equation-ref-wave-finite-15" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray*}
 G(x) &amp;:&amp;=\sum\limits_{n=1}^{\infty }B_{n}\cos (\frac{n\pi }{L}x)\quad
 \mbox{and}\quad B_{n}=\frac{b_{n}^{g}}{\lambda _{n}c}=\frac{2}{\lambda _{n}cL
@@ -615,7 +629,7 @@ n\pi }{L}x)=-\frac{1}{c}g_{o}(x)
 G(x)=-\frac{1}{c}\int_{0}^{x}g_{o}(s)ds+D
 \]</div>
 <div class="math notranslate nohighlight" id="equation-velocityterm">
-<span class="eqno">(22.13)<a class="headerlink" href="#equation-velocityterm" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(28.13)<a class="headerlink" href="#equation-velocityterm" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \sum\limits_{n=1}^{\infty }B_{n}\sin \left( \frac{n\pi ct}{L}\right)
 \sin \left( \frac{n\pi x}{L}\right)  &amp;=&amp;\frac{1}{2}\left[
@@ -628,12 +642,12 @@ G(x-ct)-G(x+ct)\right]
 \label{velocityterm}
 \end{eqnarray}
 \end{split}\]</div>
-<p>Therefore, combining <a class="reference internal" href="#equation-displacementterm">(22.9)</a> and
-<a class="reference internal" href="#equation-velocityterm">(22.13)</a> we obtain the following expression for the
+<p>Therefore, combining <a class="reference internal" href="#equation-displacementterm">(28.9)</a> and
+<a class="reference internal" href="#equation-velocityterm">(28.13)</a> we obtain the following expression for the
 solution of the wave equation for a finite domain in the form of
 D’ALembert’s solution</p>
 <div class="math notranslate nohighlight" id="equation-eqdalemguitar">
-<span class="eqno">(22.14)<a class="headerlink" href="#equation-eqdalemguitar" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28.14)<a class="headerlink" href="#equation-eqdalemguitar" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 \framebox{$u(x,t)=\displaystyle\frac{1}{2}\left[ f_o(x+ct)+f_o(x-ct)\right]
     +\displaystyle\frac{1}{2c}\int\limits_{x-ct}^{x+ct} g_o(s)\, ds$}
@@ -643,7 +657,7 @@ D’ALembert’s solution</p>
 <p>where <span class="math notranslate nohighlight">\(f_o\)</span> and <span class="math notranslate nohighlight">\(g_o\)</span> are the odd periodic extensions of <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span>
 on <span class="math notranslate nohighlight">\([0,L]\)</span> i.e.</p>
 <div class="math notranslate nohighlight" id="equation-ref-wave-finite-18">
-<span class="eqno">(22.15)<a class="headerlink" href="#equation-ref-wave-finite-18" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(28.15)<a class="headerlink" href="#equation-ref-wave-finite-18" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 f_o(x) &amp; = &amp; \left\{\begin{array}{rrll}
 f(x) &amp;0&lt;x&lt;L &amp;\mbox{ and }&amp;f_0(x+2L)=f_0(x_0)\\
@@ -654,10 +668,10 @@ g(x) &amp;0&lt;x&lt;L &amp;\mbox{ and }&amp;g_o(x+2L)=g_o(x)\\
 \end{eqnarray}
 \end{split}\]</div>
 <div class="proof observation admonition" id="observation-wave-finite-1">
-<p class="admonition-title"><span class="caption-number">Observation 22.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Observation 28.2 </span></p>
 <section class="observation-content" id="proof-content">
 <ol class="arabic simple">
-<li><p>Equation <a class="reference internal" href="#equation-eqdalemguitar">(22.14)</a> above shows that the Wave Equation Solution for a
+<li><p>Equation <a class="reference internal" href="#equation-eqdalemguitar">(28.14)</a> above shows that the Wave Equation Solution for a
 string tied down at its ends is given by D’Alembert’s Solution (see
 (23.25) in Lecture 23) in which the initial displacement function is
 given by the odd periodic extension <span class="math notranslate nohighlight">\(f_0\)</span> of the initial
@@ -715,7 +729,7 @@ exponentially with time.</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">21. </span>Interpretating D’Alembert’s Solution in Space-Time</p>
+        <p class="prev-next-title"><span class="section-number">27. </span>Interpretating D’Alembert’s Solution in Space-Time</p>
       </div>
     </a>
 </div></div>
@@ -736,9 +750,9 @@ exponentially with time.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-of-the-1d-wave-equation-on-finite-domains">22.1. Solution of the 1D Wave Equation on Finite Domains</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-by-separation-of-variables">22.1.1. Solution By Separation of Variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-the-fourier-series-solution-in-terms-of-d-alembert-s-solution">22.1.2. Interpretation of the Fourier Series Solution in Terms of D’Alembert’s Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-of-the-1d-wave-equation-on-finite-domains">28.1. Solution of the 1D Wave Equation on Finite Domains</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-by-separation-of-variables">28.1.1. Solution By Separation of Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-the-fourier-series-solution-in-terms-of-d-alembert-s-solution">28.1.2. Interpretation of the Fourier Series Solution in Terms of D’Alembert’s Solution</a></li>
 </ul>
 </li>
 </ul>

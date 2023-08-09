@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems &#8212; MATH 316</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'laplace/rectangular';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="23. Circular Domains" href="circular.html" />
+    <link rel="prev" title="21. Laplace’s Equation" href="2d.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MATH 316</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../odes/review.html">1. Review of Methods to Solve Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/first.html">1.1. First Order Ordinary Differential Equations:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/second.html">1.2. Second Order Constant Coefficient Linear Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/cauchy.html">1.3. Cauchy/Euler/Equidimensional Equations:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/series.html">2. Series Solutions To ODEs With Variable Coefficients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/rsps.html">3. Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/bessel.html">5. Bessel’s Equation and Bessel Functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Partial Differential Equations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../intro/initial.html">6. Introduction To Partial Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/continued.html">7. Introduction To Partial Differential Equations (Continued)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/separation.html">8. Separation Of Variables And Fourier Series</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fourier Series</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fourier/series.html">9. Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fourier/separation.html">10. Separation of Variables and Fourier Series</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fd/fd.html">11. Overview and Formulas</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fd/heat.html">12. Heat Equation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fd/heat/heat.html">12.1. FTCS Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/wave.html">13. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/laplace.html">14. Laplace Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../heat/heat.html">15. Heat Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/circular.html">16. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/inhomogeneous.html">17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/distributed.html">18. Heat Conduction With Distributed Sources/Sinks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/eigenfunctions.html">19. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="laplace.html">20. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d.html">21. Laplace’s Equation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circular.html">23. Circular Domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wedges.html">24. Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">25. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">26. The 1D Wave Equation and D’Alembert’s Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">27. Interpretating D’Alembert’s Solution in Space-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">28. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/UBCMath/math316" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/laplace/rectangular.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-problem-on-a-rectangle-only-flux-boundary-conditions">22.1. The Neumann Problem On A Rectangle - Only Flux Boundary Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-domains-with-mixed-bc">22.2. Rectangular Domains With Mixed BC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-infinite-strip-problems">22.3. Semi-Infinite Strip Problems</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+\newenvironment{remark}{\begin{Remark}\rm}{\end{Remark}}
+\newenvironment{exercise}{\begin{Exercise}\rm}{\end{Exercise}}
+\newcommand{\N}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\mat}[1]{{\mathbf #1}}
+\newcommand{\vect}[1]{\underline{#1}}
+\newcommand{\njump}[1]{[|#1|]}
+\newcommand{\pa}{\partial}
+\newcommand{\De}{\Delta}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\dst}{\displaystyle}
+\newcommand{\la}{\lambda}
+\newcommand{\al}{\alpha}
+\newcommand{\rme}{{\rm e}}
+\newcommand{\rmi}{{\rm i}}\\\newcommand{\R}{\mathbb{R}}
+\newcommand{\bke}[1]{\left ( #1 \right )}
+\newcommand{\bkt}[1]{\left [ #1 \right ]}
+\newcommand{\bket}[1]{\left \{ #1 \right \}}
+\newcommand{\norm}[1]{\left \| #1 \right \|}
+\newcommand{\bka}[1]{\left \langle #1 \right \rangle}
+\renewcommand{\th}{\theta}
+\newcommand{\om}{\omega}
+\newcommand{\pd}{\partial}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\ve}[1]{\mathbf{#1}}
+\newcommand{\what}[1]{\widehat{#1}}
+\newcommand{\tint}{\int\kern-.6em\int\kern-.6em\int}
+\end{aligned}\end{align} \]</div>
+<section class="tex2jax_ignore mathjax_ignore" id="more-rectangular-domains-neumann-problems-mixed-bcs-and-semi-infinite-strip-problems">
+<h1><span class="section-number">22. </span>More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems<a class="headerlink" href="#more-rectangular-domains-neumann-problems-mixed-bcs-and-semi-infinite-strip-problems" title="Permalink to this headline">#</a></h1>
+<p>In this lecture we Proceed with the solution of Laplace’s equations
+on rectangular domains with Neumann, mixed boundary conditions, and
+on regions which comprise a semi-infinite strip.</p>
+<div class="admonition-key-concepts admonition">
+<p class="admonition-title">Key Concepts</p>
+<p>Laplace’s equation; Rectangular
+domains; The Neumann Problem; Mixed BC and semi-infinite strip
+problems.</p>
+</div>
+<p>Reference Section: Boyce and Di Prima Section 10.8</p>
+<section id="the-neumann-problem-on-a-rectangle-only-flux-boundary-conditions">
+<h2><span class="section-number">22.1. </span>The Neumann Problem On A Rectangle - Only Flux Boundary Conditions<a class="headerlink" href="#the-neumann-problem-on-a-rectangle-only-flux-boundary-conditions" title="Permalink to this headline">#</a></h2>
+<div class="proof example admonition" id="example-0">
+<p class="admonition-title"><span class="caption-number">Example 22.1 </span> (The Neumann Problem)</p>
+<section class="example-content" id="proof-content">
+<figure class="align-center" id="neumann">
+<img alt="../_images/neumann.png" src="../_images/neumann.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 22.1 </span><span class="caption-text">Inhomogeneous Neumann Boundary conditions on a rectangular
+domain as prescribed in (\ref{eqLaplaceNeumannGen}).</span><a class="headerlink" href="#neumann" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight" id="equation-ref0">
+<span class="eqno">(22.1)<a class="headerlink" href="#equation-ref0" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u_{xx}+u_{yy} &amp; = &amp; 0, \qquad 0&lt;x&lt;a\quad 0&lt;y&lt;b\\
+u_x(0,y) &amp; = &amp; 0\quad u_x(a,y)=f(y)\\
+u_y(x,0) &amp; = &amp; 0=u_y(x,b).
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+</div><p>Let <span class="math notranslate nohighlight">\(u(x,y)=X(x)Y(y)\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref1">
+<span class="eqno">(22.2)<a class="headerlink" href="#equation-ref1" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+\frac{X^{\prime\prime}(x)}{X(x)}=
+   -\frac{Y^{\prime\prime}(y)}{Y(y)}=\la ^2
+\end{eqnarray}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-ref2">
+<span class="eqno">(22.3)<a class="headerlink" href="#equation-ref2" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\left.\begin{array}{l}Y^{\prime\prime}(y)+\la^2 Y(y)=0\\
+Y^\prime (0)=0=Y^\prime (b)\end{array}\right\}\quad
+\begin{array}{lcl}
+Y&amp;=&amp;A\cos\la y+B\sin\la y\\
+Y^\prime&amp;=&amp;-A\la\sin\la y+B\la \cos\la y\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref3">
+<span class="eqno">(22.4)<a class="headerlink" href="#equation-ref3" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+Y^\prime (0) &amp; = &amp; \la B=0\quad \la =0\mbox{ or }B=0.\\
+\nonumber\\
+Y^\prime (b) &amp; = &amp; -A\la\sin\la b=0\quad\begin{array}{lcl}
+\la_n &amp;=&amp;(n\pi /b)\quad n=0,1,\ldots\\
+Y_n&amp;=&amp;\cos\left(\dst\frac{n\pi y}{b}\right) ,\quad Y_0=1\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref4">
+<span class="eqno">(22.5)<a class="headerlink" href="#equation-ref4" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+X_n^{\prime\prime} -\la^2 X_n &amp; = &amp; 0\\
+X_n^\prime (0) &amp; = &amp; 0
+\end{eqnarray}
+\end{split}\]</div>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(n=0\)</span>: <span class="math notranslate nohighlight">\(X_0^{\prime\prime}=0\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+   X_0=c_0x+D_0\Rightarrow X_0^\prime
+   =c_0\Rightarrow X_0^\prime (0)=c_0=0
+   \]</div>
+</li>
+<li><p>Choose <span class="math notranslate nohighlight">\(D_0=1\)</span>: <span class="math notranslate nohighlight">\(X_0=1\)</span></p>
+<div class="math notranslate nohighlight" id="equation-ref5">
+<span class="eqno">(22.6)<a class="headerlink" href="#equation-ref5" title="Permalink to this equation">#</a></span>\[\begin{split}
+   \begin{eqnarray}
+   \begin{array}{rcl}
+   n\geq 1\quad X_n&amp;=&amp;c_n\cosh(\la_n x)+D_n\sinh(\la_n x)\\
+   X_n^\prime &amp;=&amp;c_n\la \sinh(\la_n x)+D_n\la\cosh(\la_n x)\\
+   X_n^\prime (0)&amp;=&amp;\la_n D_n=0\end{array}
+   \end{eqnarray}
+   \end{split}\]</div>
+</li>
+<li><p>Choose <span class="math notranslate nohighlight">\(c_n=1\)</span>: <span class="math notranslate nohighlight">\(X_n=\cosh(\la_n x)\)</span></p>
+<p>Thus</p>
+<div class="math notranslate nohighlight" id="equation-ref6">
+<span class="eqno">(22.7)<a class="headerlink" href="#equation-ref6" title="Permalink to this equation">#</a></span>\[\begin{split}
+   \begin{eqnarray}
+   \left. \begin{array}{lclcl}
+   u_n(x,y)&amp;=&amp;X_nY_n&amp;=&amp;\cosh(\la_n x)\cos (\la_n y)\\
+   u_0(x,y)&amp;=&amp;X_0Y_0&amp;=&amp;1\end{array}\right\}\mbox{ satisfy homog.
+   BC.\quad}
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref7">
+<span class="eqno">(22.8)<a class="headerlink" href="#equation-ref7" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   u(x,y)=A_0+\sum\limits_{n=1}^\infty A_n\cosh\left(\frac{n\pi
+   x}{b}\right)\cos\left(\frac{n\pi y}{b}\right) .
+   \end{eqnarray}
+   \]</div>
+<p>Now <span class="math notranslate nohighlight">\(f(y)=u_x(a,y)\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref8">
+<span class="eqno">(22.9)<a class="headerlink" href="#equation-ref8" title="Permalink to this equation">#</a></span>\[\begin{split}
+   \begin{eqnarray}
+   u_x(x,y) &amp; = &amp; \sum\limits_{n=1}^\infty
+   A_n\left(\frac{n\pi}{b}\right)\sinh
+      \left(\frac{n\pi x}{b}\right)\cos\left(\frac{n\pi y}{b}\right)\\
+   u_x(a,y) &amp; = &amp; \sum\limits_{n=1}^\infty \left\{
+   A_n\left(\frac{n\pi}{b}\right) \sinh
+      \left(\frac{n\pi a}{b}\right)\right\} \cos\left(\frac{n\pi y}{b}\right)
+      =f(y)\ldots\phantom{\int\int} \label{eqNeumannExpansion}
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>This is like a Fourier Cosine Series for <span class="math notranslate nohighlight">\(f(y)\)</span> but without the
+constant term <span class="math notranslate nohighlight">\(a_0\)</span>.</p>
+<p>Recall</p>
+<div class="math notranslate nohighlight" id="equation-ref9">
+<span class="eqno">(22.10)<a class="headerlink" href="#equation-ref9" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   f(y)=\frac{a_0}{2}+\sum\limits_{n=1}^\infty a_n\cos\left(\frac{n\pi
+   y}{b}\right) ,\; a_n=\frac{2}{b}\int\limits_0^b
+   f(y)\cos\left(\frac{n\pi y}{b}\right)\, dy.
+   \end{eqnarray}
+   \]</div>
+<p>Thus the expansion (\ref{eqNeumannExpansion}) is consistent only if
+<span class="math notranslate nohighlight">\(a_0=0\)</span>. For this to be true we require that</p>
+<div class="math notranslate nohighlight" id="equation-ref10">
+<span class="eqno">(22.11)<a class="headerlink" href="#equation-ref10" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   \int\limits_0^b f(y)\, dy=0
+   \end{eqnarray}
+   \]</div>
+</li>
+</ul>
+<p>if <span class="math notranslate nohighlight">\(\dst\int\limits_0^b f(y)\, dy\ne 0\)</span> then there is no solution to
+the boundary value problem~1.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic">
+<li><p>If <span class="math notranslate nohighlight">\(\dst\int\limits_0^b f(y)\, dy\ne 0\)</span> there is a {\bf{net flux}}
+into the domain through the right hand boundary and, since the other
+boundaries are insulated, there can be no steady solution – the
+temperature will continually change with time.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\dst\int\limits_0^b f(y)\, dy=0\)</span> there is no net flux
+through the boundary and a steady state can exist. i.e. It is
+possible that <span class="math notranslate nohighlight">\(u_{xx}+u_{yy}=u_t=0\)</span>. If <span class="math notranslate nohighlight">\(\dst\int\limits_0^b f(y)\,
+dy=0\)</span> then</p>
+<div class="math notranslate nohighlight" id="equation-ref11">
+<span class="eqno">(22.12)<a class="headerlink" href="#equation-ref11" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   A_n\left(\frac{n\pi}{b}\right)\sinh\left(\frac{n\pi a}{b}\right)
+      = \frac{2}{b}\int\limits_0^b f(y)\cos\left(\frac{n\pi y}{b}\right)\, dy.
+   \end{eqnarray}
+   \]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref12">
+<span class="eqno">(22.13)<a class="headerlink" href="#equation-ref12" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   A_n=\frac{2}{n\pi\sinh\left(\frac{n\pi a}{b}\right)}
+   \int\limits_0^b f(y)\cos\left(\frac{n\pi y}{b}\right)\, dy\quad n\geq 1
+   \end{eqnarray}
+   \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight" id="equation-ref13">
+<span class="eqno">(22.14)<a class="headerlink" href="#equation-ref13" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   u_\infty (x,y)=A_0+\sum\limits_{n=1}^\infty A_n\cosh
+      \left(\frac{n\pi x}{a}\right) \cos\left(\frac{n\pi y}{b}\right)
+   \end{eqnarray}
+   \]</div>
+<p>where <span class="math notranslate nohighlight">\(A_0\)</span> is undetermined. <span class="math notranslate nohighlight">\(u(x,y)\)</span> is said to be known up to an
+arbitrary constant.</p>
+</li>
+<li><p>If <span class="math notranslate nohighlight">\(u_\infty (x,y)\)</span> is the steady state of a 2D Heat Equation
+<span class="math notranslate nohighlight">\(u_t=u_{xx}+u_{yy}\)</span> with <span class="math notranslate nohighlight">\(u(x,y,0)=u_0(x,y)\)</span> then</p>
+<div class="math notranslate nohighlight" id="equation-ref14">
+<span class="eqno">(22.15)<a class="headerlink" href="#equation-ref14" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   \int\limits_D u_t\, dx\, dy=\int\limits_D \mathbf{\nabla}\cdot
+   \mathbf{\nabla} u\, dx\, dy=\int\limits_{\pa D}\frac{\pa u}{\pa n}\
+   ds=0.
+   \end{eqnarray}
+   \]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref15">
+<span class="eqno">(22.16)<a class="headerlink" href="#equation-ref15" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   \frac{\pa}{\pa t}\left(\int\limits_D u\, dx\, dy\right)
+   =0\Rightarrow\int\limits_D u\, dx\, dy=\mbox{ const for all time
+   }=\int\limits_D u_0(x,y)\, dx\, dy.\phantom{\int}
+   \end{eqnarray}
+   \]</div>
+<p>Now</p>
+<div class="math notranslate nohighlight" id="equation-ref16">
+<span class="eqno">(22.17)<a class="headerlink" href="#equation-ref16" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   \int\limits_{ D} u_\infty (x,y)dx dy =A_0 \times \mbox{
+   area}(D)=\int\limits_{ D} u_0(x,y)\, dx
+   \end{eqnarray}
+   \]</div>
+<p>Which is the condition that determines <span class="math notranslate nohighlight">\(A_0\)</span>.</p>
+</li>
+</ol>
+</div>
+</section>
+<section id="rectangular-domains-with-mixed-bc">
+<h2><span class="section-number">22.2. </span>Rectangular Domains With Mixed BC<a class="headerlink" href="#rectangular-domains-with-mixed-bc" title="Permalink to this headline">#</a></h2>
+<div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span class="caption-number">Example 22.2 </span> (Insulating BC along two sides and specified temperatures on the others)</p>
+<section class="example-content" id="proof-content">
+<figure class="align-center" id="mixed">
+<img alt="../_images/mixed.png" src="../_images/mixed.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 22.2 </span><span class="caption-text">Mixed Boundary conditions on a rectangular domain as
+prescribed in (\ref{eqLaplaceMixed}).</span><a class="headerlink" href="#mixed" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight" id="equation-ref17">
+<span class="eqno">(22.18)<a class="headerlink" href="#equation-ref17" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\De u &amp; = &amp;u_{xx}+u_{yy}=0\\
+0 &amp; = &amp; u_x(0,y)=u_x(a,y)=u(x,0) \label{eqLaplaceMixed}\\
+   &amp;    &amp; u(x,b)=f(x).
+\end{eqnarray}
+\end{split}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(u(x,y)=X(x)Y(y)\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref18">
+<span class="eqno">(22.19)<a class="headerlink" href="#equation-ref18" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+\frac{X^{\prime\prime}}{X}=-\frac{Y^{\prime\prime}}{Y}=\pm \la^2.
+\end{eqnarray}
+\]</div>
+<p>Since we have homogeneous BC on <span class="math notranslate nohighlight">\(X^\prime (0)=0=X^\prime (a)\)</span> choose
+<span class="math notranslate nohighlight">\(-\la^2\)</span>.</p>
+<ol class="arabic">
+<li><p><span class="math notranslate nohighlight">\(X^{\prime\prime}+\la^2 X=0\quad X^{\prime}(0)=0=X^\prime (a)\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref19">
+<span class="eqno">(22.20)<a class="headerlink" href="#equation-ref19" title="Permalink to this equation">#</a></span>\[\begin{split}
+   \begin{eqnarray}\begin{array}{lcl}
+   X(x)&amp;=&amp;A\cos\la x+B\sin\la x\\
+   X^\prime (0)&amp;=&amp;B\la =0\Rightarrow B=0\end{array}\begin{array}{lcl}
+   X^\prime (x)&amp;=&amp;-A\la \sin (\la x)+B\la \cos (\la x)\\
+   X^\prime (a)&amp;=&amp;-A\la\sin (\la a)=0\end{array}
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref20">
+<span class="eqno">(22.21)<a class="headerlink" href="#equation-ref20" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   \la_n =(n\pi /a)\quad n=0,1,2,\ldots\quad
+   X_n(x)=\cos\left(\frac{n\pi y}{a}\right)
+   \end{eqnarray}
+   \]</div>
+<p>are eigenfunctions and eigenvalues.</p>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\la_n \ne 0\)</span>: <span class="math notranslate nohighlight">\(Y^{\prime\prime}-\la^2 Y=0\)</span> and <span class="math notranslate nohighlight">\(Y(0)=0\Rightarrow Y_n(y)=A\sinh\dst\left(\frac{n\pi y}{a}\right)\)</span> <span class="math notranslate nohighlight">\(n\ne 0\)</span>. Thus</p>
+<div class="math notranslate nohighlight" id="equation-ref21">
+<span class="eqno">(22.22)<a class="headerlink" href="#equation-ref21" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   u_n(x,y)=\cos\left(\frac{n\pi x}{a}\right) \sinh\left(\frac{n\pi
+   y}{a}\right)
+   \end{eqnarray}
+   \]</div>
+<p>satisfy homogeneous BC.</p>
+</li>
+</ol>
+<p><span class="math notranslate nohighlight">\({\la_0 =0}\)</span>: In this case the ODE for <span class="math notranslate nohighlight">\(Y_0\)</span> is:</p>
+<div class="math notranslate nohighlight" id="equation-ref22">
+<span class="eqno">(22.23)<a class="headerlink" href="#equation-ref22" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+Y_0^{\prime\prime}&amp;=&amp;0\Rightarrow Y(y)=c_1y+c_2\\
+Y_0(0)&amp;=&amp;c_2=0\Rightarrow Y_0(y)=y
+\end{eqnarray}
+\end{split}\]</div>
+<p>and <span class="math notranslate nohighlight">\(u_0(x,y)=y\cdot 1\)</span> satisfies the homogeneous BC.</p>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref23">
+<span class="eqno">(22.24)<a class="headerlink" href="#equation-ref23" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(x,y) &amp; = &amp; c_0y+\sum\limits_{n=1}^\infty c_n\sinh\left(\frac{n\pi y}{a}\right)\cos\left(\frac{n\pi x}{a}\right)\\
+u(x,b) &amp; = &amp; \frac{(2c_0b)}{2}+\sum\limits_{n=1}^\infty c_n\sinh\left(\frac{n\pi b}{a}\right)\cos\left(\frac{n\pi x}{a}\right) =f(x)\\
+(2c_0b) &amp; = &amp; \frac{2}{a}\int\limits_0^a f(x)\, dx;\
+\begin{array}{l}
+c_n\sinh\left(\frac{n\pi b}{a}\right) =\frac{2}{a}\int\limits_0^a f(x)\cos \left(\frac{n\pi x}{a}\right)\, dx\phantom{\int}\end{array}\\
+c_0 &amp; = &amp; \frac{1}{ab}\int\limits_0^a f(x)\, dx;\ \begin{array}{l}
+c_n=\frac{2}{a\sinh\left(\frac{n\pi b}{a}\right)}\int\limits_0^a
+f(x)\cos\left(\frac{n\pi x}{a}\right)\, dx\end{array}\\
+u(x,y) &amp; = &amp; c_0y+\sum\limits_{n=1}^\infty c_n\sinh\left(\frac{n\pi
+y}{a}\right)\cos\left(\frac{n\pi x}{a}\right) .
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+</div></section>
+<section id="semi-infinite-strip-problems">
+<h2><span class="section-number">22.3. </span>Semi-Infinite Strip Problems<a class="headerlink" href="#semi-infinite-strip-problems" title="Permalink to this headline">#</a></h2>
+<div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 22.3 </span> (A Semi-Infinite Strip with Specified Temperatures)</p>
+<section class="example-content" id="proof-content">
+<figure class="align-center" id="strip">
+<img alt="../_images/strip_homo.png" src="../_images/strip_homo.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 22.3 </span><span class="caption-text">Diriclet Boundary conditions on a semi-infinite strip as
+prescribed in (\ref{semiHomog}).</span><a class="headerlink" href="#strip" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight" id="equation-ref24">
+<span class="eqno">(22.25)<a class="headerlink" href="#equation-ref24" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u_{xx}+u_{yy} &amp; = &amp; 0\qquad 0&lt;x&lt;a,\quad 0&lt;y&lt;\infty\\
+u(0,y) &amp; = &amp; 0=u(a,y)\\
+u(x,0) &amp; = &amp; f(x)\qquad u(x,y)\ra 0\mbox{ as }y\ra\infty
+\label{semiHomog}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(u(x,t)=X(x)T(t)\)</span> and plug into (1a?):</p>
+<div class="math notranslate nohighlight" id="equation-ref25">
+<span class="eqno">(22.26)<a class="headerlink" href="#equation-ref25" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+\frac{X^{\prime\prime}(x)}{X(x)}= -
+\frac{Y^{\prime\prime}(y)}{Y(y)}=-\la^2 \mbox{ since we have
+homogeneous BC on $X$}.
+\end{eqnarray}
+\]</div>
+<ol class="arabic">
+<li><div class="math notranslate nohighlight" id="equation-ref26">
+<span class="eqno">(22.27)<a class="headerlink" href="#equation-ref26" title="Permalink to this equation">#</a></span>\[\begin{split}
+   \begin{eqnarray}\left.\begin{array}{l}
+   X^{\prime\prime}+\la^2 X=0\\
+   X(0)=0=X(a)\end{array}\right\}\quad\begin{array}{lcl}
+   \la_n &amp;=&amp;n\pi /a\quad n=1,2, \ldots\\
+   X_n &amp;=&amp;\sin\left(\dst\frac{n\pi x}{a}\right)\end{array}
+   \end{eqnarray}
+   \end{split}\]</div>
+</li>
+<li><p><span class="math notranslate nohighlight">\(Y^{\prime\prime} -\la^2 Y=0\quad Y(y)=A\rme^{-\la y}+B\rme^{\la y}\)</span>. Since <span class="math notranslate nohighlight">\(u(x,y)\ra 0\)</span> as <span class="math notranslate nohighlight">\(y\ra\infty\)</span> we require <span class="math notranslate nohighlight">\(B=0\)</span>. Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref27">
+<span class="eqno">(22.28)<a class="headerlink" href="#equation-ref27" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   u_n(x,y)=\rme^{-\la_n y}\sin\left(\frac{n\pi x}{a}\right)
+   \end{eqnarray}
+   \]</div>
+<p>satisfy the homogeneous BC and the BC at <span class="math notranslate nohighlight">\(\infty\)</span>. Thus</p>
+<div class="math notranslate nohighlight" id="equation-ref28">
+<span class="eqno">(22.29)<a class="headerlink" href="#equation-ref28" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   u(x,y)=\sum\limits_{n=1}^\infty
+   c_n\rme^{-\left(\frac{n\pi}{a}\right) y}\sin\left(\frac{n\pi
+   x}{a}\right) .
+   \end{eqnarray}
+   \]</div>
+<div class="math notranslate nohighlight" id="equation-ref29">
+<span class="eqno">(22.30)<a class="headerlink" href="#equation-ref29" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   f(x)=u(x,0)=\sum\limits_{n=1}^\infty c_n\sin\left(\frac{n\pi
+   x}{a}\right)\Rightarrow c_n=\frac{2}{a}\int\limits_0^a
+   f(x)\sin\left(\frac{n\pi x}{a}\right)\, dx.\phantom{\int}
+   \end{eqnarray}
+   \]</div>
+</li>
+</ol>
+</section>
+</div><div class="proof example admonition" id="example-3">
+<p class="admonition-title"><span class="caption-number">Example 22.4 </span> (Semi-Infinite Strip with Inhomogeneous BC)</p>
+<section class="example-content" id="proof-content">
+<figure class="align-default" id="strip-inhomo">
+<img alt="../_images/strip_inhomo.png" src="../_images/strip_inhomo.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 22.4 </span><span class="caption-text">Diriclet Boundary conditions on a semi-infinite strip as
+prescribed in (\ref{semiInHomog}).</span><a class="headerlink" href="#strip-inhomo" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight" id="equation-ref30">
+<span class="eqno">(22.31)<a class="headerlink" href="#equation-ref30" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u_{xx}+u_{yy} &amp; = &amp; 0\qquad 0&lt;x&lt;a,\quad 0&lt;y&lt;\infty\\
+u(0,y) &amp; = &amp; A,\quad B=u(a,y)\\
+u(x,0) &amp; = &amp; f(x)\qquad u(x,y)\ra 0\mbox{ as }y\ra\infty
+\label{semiInHomog}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Look for a function <span class="math notranslate nohighlight">\(v(x)\)</span> for which <span class="math notranslate nohighlight">\(v^{\prime\prime}=0\)</span> and which
+satisfies the inhomogeneous BC.</p>
+<p><span class="math notranslate nohighlight">\(v=\al x+\beta\quad v(0)=A=\beta\quad v(a)=\al a+A=B\)</span></p>
+<p>Therefore <span class="math notranslate nohighlight">\(v(x)=\dst\left(\frac{B-A}{a}\right) x+A\)</span>.</p>
+<p>Now let <span class="math notranslate nohighlight">\(u(x,y)=v(x)+w(x,y)\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref31">
+<span class="eqno">(22.32)<a class="headerlink" href="#equation-ref31" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+0 &amp; = &amp; u_{xx}+u_{yy}=v_{xx}\!\!\!\!\!\!\!\nearrow +w_{xx}+v_{yy}\!\!\!\!\!\!\!\nearrow +w_{yy}\Rightarrow\De w=0\\
+A &amp; = &amp; u(0,y)=v(0)+w(0,y)\Rightarrow w(0,y)=0\\
+B &amp; = &amp; u(a,y)=v(a)+w(a,y)\Rightarrow w(a,y)=0\\
+f(x) &amp; = &amp; u(x,0)=v(x)+w(x,0)\Rightarrow w(x,0)=f(x)-v(x).
+\end{eqnarray}
+\end{split}\]</div>
+<p>Thus <span class="math notranslate nohighlight">\(w\)</span> satisfies the same BVP as does <span class="math notranslate nohighlight">\(u\)</span> in Eg.~3 above.</p>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref32">
+<span class="eqno">(22.33)<a class="headerlink" href="#equation-ref32" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u(x,y)=(B-A)(x/a)+A+\sum\limits_{n=1}^\infty
+d_n\rme^{-\left(\frac{n\pi}{a}\right) y}\sin\left(\frac{n\pi
+x}{a}\right)
+\end{eqnarray}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-ref33">
+<span class="eqno">(22.34)<a class="headerlink" href="#equation-ref33" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+d_n=\frac{2}{a}\int\limits_0^a\left\{
+f(x)-v(x)\right\}\sin\left(\frac{n\pi x}{a}\right)\, dx.
+\end{eqnarray}
+\]</div>
+</section>
+</div></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./laplace"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2d.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>Laplace’s Equation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="circular.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Circular Domains</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-problem-on-a-rectangle-only-flux-boundary-conditions">22.1. The Neumann Problem On A Rectangle - Only Flux Boundary Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-domains-with-mixed-bc">22.2. Rectangular Domains With Mixed BC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-infinite-strip-problems">22.3. Semi-Infinite Strip Problems</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

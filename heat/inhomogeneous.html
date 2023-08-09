@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>15. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions &#8212; MATH 316</title>
+    <title>17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions &#8212; MATH 316</title>
   
   
   
@@ -66,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'heat/inhomogeneous';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="16. Heat Conduction With Distributed Sources/Sinks" href="distributed.html" />
-    <link rel="prev" title="14. Heat Equation On A Circular Ring - Full Fourier Series" href="circular.html" />
+    <link rel="next" title="18. Heat Conduction With Distributed Sources/Sinks" href="distributed.html" />
+    <link rel="prev" title="16. Heat Equation On A Circular Ring - Full Fourier Series" href="circular.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -146,7 +146,12 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../odes/review.html">1. Review Of Methods To Solve Ordinary Differential Equations</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../odes/review.html">1. Review of Methods to Solve Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/first.html">1.1. First Order Ordinary Differential Equations:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/second.html">1.2. Second Order Constant Coefficient Linear Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/cauchy.html">1.3. Cauchy/Euler/Equidimensional Equations:</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/series.html">2. Series Solutions To ODEs With Variable Coefficients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/rsps.html">3. Regular Singular Points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
@@ -165,27 +170,36 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../fd/pdes.html">11. Solving the Heat, Laplace and Wave Equations Using Finite Difference Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">12. Finite Difference Formulas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/fd.html">11. Overview and Formulas</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fd/heat.html">12. Heat Equation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fd/heat/heat.html">12.1. FTCS Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/wave.html">13. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/laplace.html">14. Laplace Equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="heat.html">13. Heat Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="circular.html">14. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="distributed.html">16. Heat Conduction With Distributed Sources/Sinks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eigenfunctions.html">17. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heat.html">15. Heat Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circular.html">16. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">18. Heat Conduction With Distributed Sources/Sinks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eigenfunctions.html">19. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">18. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">20. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/2d.html">21. Laplace’s Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/rectangular.html">22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/circular.html">23. Circular Domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/wedges.html">24. Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">19. Wave Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">20. The 1D Wave Equation and D’Alembert’s Solution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">21. Interpretating D’Alembert’s Solution in Space-Time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">22. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">25. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">26. The 1D Wave Equation and D’Alembert’s Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">27. Interpretating D’Alembert’s Solution in Space-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">28. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
 </ul>
 
     </div>
@@ -347,18 +361,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-inhomogeneous-boundary-conditions">15.1. Heat Conduction Problems with Inhomogeneous Boundary Conditions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-summary-of-eigenvalue-boundary-value-problems-and-their-eigenvalues-and-eigenfunctions">15.1.1. A Summary Of Eigenvalue Boundary Value Problems And Their Eigenvalues And Eigenfunctions</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dirichlet-problem">15.1.1.1. The Dirichlet Problem</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-problem">15.1.1.2. The Neumann Problem</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-periodic-boundary-value-problem">15.1.1.3. The Periodic Boundary Value Problem</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-value-problem-type-a">15.1.1.4. Mixed Boundary Value Problem - Type A</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-value-problem-type-b">15.1.1.5. Mixed Boundary Value Problem - Type B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-inhomogeneous-boundary-conditions">17.1. Heat Conduction Problems with Inhomogeneous Boundary Conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-summary-of-eigenvalue-boundary-value-problems-and-their-eigenvalues-and-eigenfunctions">17.1.1. A Summary Of Eigenvalue Boundary Value Problems And Their Eigenvalues And Eigenfunctions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dirichlet-problem">17.1.1.1. The Dirichlet Problem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-problem">17.1.1.2. The Neumann Problem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-periodic-boundary-value-problem">17.1.1.3. The Periodic Boundary Value Problem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-value-problem-type-a">17.1.1.4. Mixed Boundary Value Problem - Type A</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-value-problem-type-b">17.1.1.5. Mixed Boundary Value Problem - Type B</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specified-constant-temperatures">15.1.2. Specified Constant Temperatures</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-with-some-heat-loss-and-inhomogeneous-boundary-conditions">15.1.3. Heat Conduction With Some Heat Loss And Inhomogeneous Boundary Conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-with-inhomogeneous-neumann-boundary-conditions">15.1.4. Heat Conduction with Inhomogeneous Neumann Boundary Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specified-constant-temperatures">17.1.2. Specified Constant Temperatures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-with-some-heat-loss-and-inhomogeneous-boundary-conditions">17.1.3. Heat Conduction With Some Heat Loss And Inhomogeneous Boundary Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-with-inhomogeneous-neumann-boundary-conditions">17.1.4. Heat Conduction with Inhomogeneous Neumann Boundary Conditions</a></li>
 </ul>
 </li>
 </ul>
@@ -388,7 +402,7 @@ document.write(`
 \newcommand{\what}[1]{\widehat{#1}}
 \]</div>
 <section class="tex2jax_ignore mathjax_ignore" id="heat-conduction-problems-with-time-independent-inhomogeneous-boundary-conditions">
-<h1><span class="section-number">15. </span>Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions<a class="headerlink" href="#heat-conduction-problems-with-time-independent-inhomogeneous-boundary-conditions" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">17. </span>Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions<a class="headerlink" href="#heat-conduction-problems-with-time-independent-inhomogeneous-boundary-conditions" title="Permalink to this headline">#</a></h1>
 <p>In this lecture we consider heat conduction problems with
 inhomogeneous boundary conditions. To determine a solution we
 exploit the linearity of the problem, which guarantees that linear
@@ -414,9 +428,9 @@ Expansions.</p>
 </div>
 <p>Reference Sections: Boyce and Di Prima Sections 10.5, 10.6, 11.2, and 11.3.</p>
 <section id="heat-conduction-problems-with-inhomogeneous-boundary-conditions">
-<h2><span class="section-number">15.1. </span>Heat Conduction Problems with Inhomogeneous Boundary Conditions<a class="headerlink" href="#heat-conduction-problems-with-inhomogeneous-boundary-conditions" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">17.1. </span>Heat Conduction Problems with Inhomogeneous Boundary Conditions<a class="headerlink" href="#heat-conduction-problems-with-inhomogeneous-boundary-conditions" title="Permalink to this headline">#</a></h2>
 <section id="a-summary-of-eigenvalue-boundary-value-problems-and-their-eigenvalues-and-eigenfunctions">
-<h3><span class="section-number">15.1.1. </span>A Summary Of Eigenvalue Boundary Value Problems And Their Eigenvalues And Eigenfunctions<a class="headerlink" href="#a-summary-of-eigenvalue-boundary-value-problems-and-their-eigenvalues-and-eigenfunctions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">17.1.1. </span>A Summary Of Eigenvalue Boundary Value Problems And Their Eigenvalues And Eigenfunctions<a class="headerlink" href="#a-summary-of-eigenvalue-boundary-value-problems-and-their-eigenvalues-and-eigenfunctions" title="Permalink to this headline">#</a></h3>
 <p>Thus far we have discussed five fundamental Eigenvalue problems:</p>
 <ol class="arabic simple">
 <li><p>The Dirichlet Problem</p></li>
@@ -441,15 +455,15 @@ the time variables in the separation process, it is necessary to
 consider the new eigenvalue problem in order to determine the
 appropriate eigenfunctions and eigenvalues.</p>
 <section id="the-dirichlet-problem">
-<h4><span class="section-number">15.1.1.1. </span>The Dirichlet Problem<a class="headerlink" href="#the-dirichlet-problem" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">17.1.1.1. </span>The Dirichlet Problem<a class="headerlink" href="#the-dirichlet-problem" title="Permalink to this headline">#</a></h4>
 <figure class="align-center" id="dirichlet-modes">
 <img alt="dirichlet_modes" src="../_images/dirichlet_modes.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15.1 </span><span class="caption-text">Dirichlet BCs, e.g. with ice on both sides.</span><a class="headerlink" href="#dirichlet-modes" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17.1 </span><span class="caption-text">Dirichlet BCs, e.g. with ice on both sides.</span><a class="headerlink" href="#dirichlet-modes" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-0">
-<span class="eqno">(15.1)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-0" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.1)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-0" title="Permalink to this equation">#</a></span>\[\begin{split}
 \left.
 \begin{array}{c}
 X^{\prime \prime }+\lambda ^{2}X=0 \\
@@ -464,15 +478,15 @@ X_{n}(x)=\sin \left( \frac{n\pi x}{L}\right)
 \end{split}\]</div>
 </section>
 <section id="the-neumann-problem">
-<h4><span class="section-number">15.1.1.2. </span>The Neumann Problem<a class="headerlink" href="#the-neumann-problem" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">17.1.1.2. </span>The Neumann Problem<a class="headerlink" href="#the-neumann-problem" title="Permalink to this headline">#</a></h4>
 <figure class="align-center" id="neumann-modes">
 <img alt="neumann_modes" src="../_images/neumann_modes.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15.2 </span><span class="caption-text">Neumann BCs, e.g. with insulation on both sides.</span><a class="headerlink" href="#neumann-modes" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17.2 </span><span class="caption-text">Neumann BCs, e.g. with insulation on both sides.</span><a class="headerlink" href="#neumann-modes" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-1">
-<span class="eqno">(15.2)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-1" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.2)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-1" title="Permalink to this equation">#</a></span>\[\begin{split}
 \left.
 \begin{array}{c}
 X^{\prime \prime }+\lambda ^{2}X=0 \\
@@ -487,15 +501,15 @@ X_{n}(x)=\cos \left( \frac{n\pi x}{L}\right)
 \end{split}\]</div>
 </section>
 <section id="the-periodic-boundary-value-problem">
-<h4><span class="section-number">15.1.1.3. </span>The Periodic Boundary Value Problem<a class="headerlink" href="#the-periodic-boundary-value-problem" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">17.1.1.3. </span>The Periodic Boundary Value Problem<a class="headerlink" href="#the-periodic-boundary-value-problem" title="Permalink to this headline">#</a></h4>
 <figure class="align-center" id="periodic-modes">
 <img alt="periodic_modes" src="../_images/periodic_modes.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15.3 </span><span class="caption-text">Periodic BCs, e.g. a closed ring.</span><a class="headerlink" href="#periodic-modes" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17.3 </span><span class="caption-text">Periodic BCs, e.g. a closed ring.</span><a class="headerlink" href="#periodic-modes" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-2">
-<span class="eqno">(15.3)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-2" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.3)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-2" title="Permalink to this equation">#</a></span>\[\begin{split}
 \left.
 \begin{array}{c}
 X^{\prime \prime }+\lambda ^{2}X=0 \\
@@ -512,15 +526,15 @@ n\pi x}{L}\right) \right\}
 \end{split}\]</div>
 </section>
 <section id="mixed-boundary-value-problem-type-a">
-<h4><span class="section-number">15.1.1.4. </span>Mixed Boundary Value Problem - Type A<a class="headerlink" href="#mixed-boundary-value-problem-type-a" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">17.1.1.4. </span>Mixed Boundary Value Problem - Type A<a class="headerlink" href="#mixed-boundary-value-problem-type-a" title="Permalink to this headline">#</a></h4>
 <figure class="align-center" id="mixed-modes-a">
 <img alt="mixed_modes_A" src="../_images/mixed_modes_A.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15.4 </span><span class="caption-text">Mixed BCs Type A, e.g. ice left and insulation right.</span><a class="headerlink" href="#mixed-modes-a" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17.4 </span><span class="caption-text">Mixed BCs Type A, e.g. ice left and insulation right.</span><a class="headerlink" href="#mixed-modes-a" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-3">
-<span class="eqno">(15.4)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-3" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.4)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-3" title="Permalink to this equation">#</a></span>\[\begin{split}
 \left.
 \begin{array}{c}
 X^{\prime \prime }+\lambda ^{2}X=0 \\
@@ -535,15 +549,15 @@ X_{n}(x)=\sin \left( \frac{(2k+1)\pi }{2L}x\right)
 \end{split}\]</div>
 </section>
 <section id="mixed-boundary-value-problem-type-b">
-<h4><span class="section-number">15.1.1.5. </span>Mixed Boundary Value Problem - Type B<a class="headerlink" href="#mixed-boundary-value-problem-type-b" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">17.1.1.5. </span>Mixed Boundary Value Problem - Type B<a class="headerlink" href="#mixed-boundary-value-problem-type-b" title="Permalink to this headline">#</a></h4>
 <figure class="align-center" id="mixed-modes-b">
 <img alt="mixed_modes_B" src="../_images/mixed_modes_B.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15.5 </span><span class="caption-text">Mixed BCs Type B, e.g. insulation left and ice right.</span><a class="headerlink" href="#mixed-modes-b" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17.5 </span><span class="caption-text">Mixed BCs Type B, e.g. insulation left and ice right.</span><a class="headerlink" href="#mixed-modes-b" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-4">
-<span class="eqno">(15.5)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-4" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.5)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-4" title="Permalink to this equation">#</a></span>\[\begin{split}
 \left.
 \begin{array}{c}
 X^{\prime \prime }+\lambda ^{2}X=0 \\
@@ -559,35 +573,35 @@ X_{n}(x)=\cos \left( \frac{(2k+1)\pi }{2L}x\right)
 </section>
 </section>
 <section id="specified-constant-temperatures">
-<h3><span class="section-number">15.1.2. </span>Specified Constant Temperatures<a class="headerlink" href="#specified-constant-temperatures" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">17.1.2. </span>Specified Constant Temperatures<a class="headerlink" href="#specified-constant-temperatures" title="Permalink to this headline">#</a></h3>
 <div class="proof example admonition" id="example-heat-inhomogeneous-0">
-<p class="admonition-title"><span class="caption-number">Example 15.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 17.1 </span></p>
 <section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight" id="equation-eg16eq1">
-<span class="eqno">(15.6)<a class="headerlink" href="#equation-eg16eq1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.6)<a class="headerlink" href="#equation-eg16eq1" title="Permalink to this equation">#</a></span>\[
 u_t = \alpha^2 u_{xx}\qquad 0&lt;x&lt;L,\quad t&gt;0 \label{eg16eq1}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-eg16eq2">
-<span class="eqno">(15.7)<a class="headerlink" href="#equation-eg16eq2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.7)<a class="headerlink" href="#equation-eg16eq2" title="Permalink to this equation">#</a></span>\[
 \mbox{BC: } u(0,t) = u_0\qquad u(L,t)=u_1\quad u_0,u_1\mbox{ constants} \label{eg16eq2}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-eg16eq3">
-<span class="eqno">(15.8)<a class="headerlink" href="#equation-eg16eq3" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.8)<a class="headerlink" href="#equation-eg16eq3" title="Permalink to this equation">#</a></span>\[
 \mbox{IC: } u(x,0) = g(x). \label{eg16eq3}
 \]</div>
 <figure class="align-center" id="inhomogeneous-dirichlet">
 <img alt="inhomogeneous_dirichlet" src="../_images/inhomogeneous_dirichlet.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15.6 </span><span class="caption-text">Initial, transient, and steady solutions to the heat
-conduction problem <a class="reference internal" href="#equation-eg16eq3">(15.8)</a> with inhomogeneous Dirichlet BC</span><a class="headerlink" href="#inhomogeneous-dirichlet" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17.6 </span><span class="caption-text">Initial, transient, and steady solutions to the heat
+conduction problem <a class="reference internal" href="#equation-eg16eq3">(17.8)</a> with inhomogeneous Dirichlet BC</span><a class="headerlink" href="#inhomogeneous-dirichlet" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>Subtracting out a particular solution:</strong></p>
 <p>Firstly consider the steady-state solution (i.e., when <span class="math notranslate nohighlight">\(u_t=0\)</span>)
-which we denote by <span class="math notranslate nohighlight">\(u_{\infty} (x)\)</span>. In this case <a class="reference internal" href="#equation-eg16eq1">(15.6)</a>
+which we denote by <span class="math notranslate nohighlight">\(u_{\infty} (x)\)</span>. In this case <a class="reference internal" href="#equation-eg16eq1">(17.6)</a>
 becomes</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-6">
-<span class="eqno">(15.9)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-6" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.9)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-6" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray*}
 \alpha^2 u_\infty ^{\prime\prime}(x) &amp; = &amp; 0\Rightarrow u_\infty (x)=A_0x+B_0\\
 u_\infty (0) &amp; = &amp; B_0=u_0\quad u_\infty
@@ -597,33 +611,33 @@ u_\infty (x)=\left(\frac{u_1-u_0}{L}\right) x+u_0\\
 \mbox{steady state solution}\end{array}.
 \end{eqnarray*}
 \end{split}\]</div>
-<p>Let <span class="math notranslate nohighlight">\(u(x,t)=u_\infty (x)+v(x,t)\)</span>. Substitute into <a class="reference internal" href="#equation-eg16eq1">(15.6)</a></p>
+<p>Let <span class="math notranslate nohighlight">\(u(x,t)=u_\infty (x)+v(x,t)\)</span>. Substitute into <a class="reference internal" href="#equation-eg16eq1">(17.6)</a></p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-7">
-<span class="eqno">(15.10)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-7" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.10)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-7" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 u_t= {\big( u_\infty (x)+v(x,t)\big)}_t =\alpha^2 {\big( u_\infty
 (x)+v(x,t)\big)}_{xx} \Rightarrow v_t =\alpha^2 v_{xx}
 \end{equation}
 \]</div>
-<p>since <span class="math notranslate nohighlight">\({\big( u_\infty (x)\big)}_{xx}=0\)</span>. Substitute into <a class="reference internal" href="#equation-eg16eq2">(15.7)</a></p>
+<p>since <span class="math notranslate nohighlight">\({\big( u_\infty (x)\big)}_{xx}=0\)</span>. Substitute into <a class="reference internal" href="#equation-eg16eq2">(17.7)</a></p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-8">
-<span class="eqno">(15.11)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-8" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.11)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-8" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray*}\begin{array}{lclclclclcl}
 u(0,t) &amp;= &amp;u_0 &amp;= &amp;u_\infty (0)+v(0,t) &amp;= &amp;u_0+v(0,t) &amp;\Rightarrow &amp;v(0,t) &amp;= &amp;0\\
 u(L,t) &amp;= &amp;u_1 &amp;= &amp;u_\infty (L)+v(L,t) &amp;= &amp;u_1+v(L,t) &amp;\Rightarrow
 &amp;v(L,t) &amp;= &amp;0.\end{array}
 \end{eqnarray*}
 \end{split}\]</div>
-<p>Substitute into <a class="reference internal" href="#equation-eg16eq3">(15.8)</a></p>
+<p>Substitute into <a class="reference internal" href="#equation-eg16eq3">(17.8)</a></p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-9">
-<span class="eqno">(15.12)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-9" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.12)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-9" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray*}
 u(x,0)=g(x)=u_\infty (x)+v(x,0)\Rightarrow v(x,0)=g(x)-u_\infty (x).
 \end{eqnarray*}
 \]</div>
 <p>Thus we have to solve a new problem for <span class="math notranslate nohighlight">\(v\)</span> which has homogenous BC:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-10">
-<span class="eqno">(15.13)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-10" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.13)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-10" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \begin{array}{lcl}
 v_t &amp; = &amp;\alpha ^2 v_{xx}\\
@@ -635,14 +649,14 @@ v(x,0)&amp; = &amp;g(x)-u_\infty (x).\end{array}
 <p>Separate variables:
 <span class="math notranslate nohighlight">\(v(x,t)=X (x)T(t)\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-11">
-<span class="eqno">(15.14)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-11" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.14)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-11" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray*}
 \frac{\dot{T}(t)}{\alpha^2 T(t)} &amp; = &amp; \frac{X^{\prime\prime}(x)}{X(x)}= -\lambda^2 =\mbox{ const}\\
 T(t) &amp; = &amp; c\{\rm\ e\}^{-\lambda^2\alpha^2 t}
 \end{eqnarray*}
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-12">
-<span class="eqno">(15.15)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-12" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.15)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-12" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray*}
 X^{\prime\prime}+\lambda^2 X=0\quad X(0)=0=X(L)\Rightarrow
 X_n(x)=\sin\left(\frac{n\pi x}{L}\right),\  \lambda_n
@@ -650,7 +664,7 @@ X_n(x)=\sin\left(\frac{n\pi x}{L}\right),\  \lambda_n
 \end{eqnarray*}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-13">
-<span class="eqno">(15.16)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-13" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.16)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-13" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray*}
 \left.
 \begin{array}{c}
@@ -667,7 +681,7 @@ X_{n}(x)=\sin \left( \frac{n\pi x}{L}\right)
 \end{split}\]</div>
 <p>Thus</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-14">
-<span class="eqno">(15.17)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-14" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.17)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-14" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 v(x,t) &amp; = &amp; \sum\limits_{n=1}^\infty b_n\{\rm\ e\}^{-\alpha^2{\left(\frac{n\pi}{L}\right)}^2 t} \sin\left(\frac{n\pi x}{L}\right)\\
 v(x,0) &amp; = &amp; g(x)-u_\infty (x)=\sum\limits_{n=1}^\infty
@@ -678,7 +692,7 @@ b_n=\frac{2}{L}\int\limits_0^L\left\{ g(x)-u_\infty
 \end{split}\]</div>
 <p>Thus the solution to the inhomogeneous problem is:</p>
 <div class="math notranslate nohighlight" id="equation-eg161eqres">
-<span class="eqno">(15.18)<a class="headerlink" href="#equation-eg161eqres" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.18)<a class="headerlink" href="#equation-eg161eqres" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u(x,t) &amp; = &amp; u_\infty (x)+v(x,t)\\
 &amp; = &amp; u_0+\left(\frac{u_1-u_0}{L}\right) x+\sum\limits_{n=1}^\infty
@@ -691,12 +705,12 @@ b_n &amp; = &amp; \frac{2}{L}\int\limits_0^L\left\{ g(x)-u_\infty
 \end{split}\]</div>
 <p><strong>Method II: Solving the Homogeneous Problem using Eigenfunction Expansions</strong></p>
 <p>In order to solve the boundary value problem
-<a class="reference internal" href="#equation-eg16eq1">(15.6)</a>-<a class="reference internal" href="#equation-eg16eq3">(15.8)</a> we could recognize that
+<a class="reference internal" href="#equation-eg16eq1">(17.6)</a>-<a class="reference internal" href="#equation-eg16eq3">(17.8)</a> we could recognize that
 <span class="math notranslate nohighlight">\(\displaystyle{\left\{\sin\left(\frac{n\pi
 x}{L}\right)\right\}}_{n=1}^\infty\)</span> are eigenfunctions of the
 spatial operator:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-16">
-<span class="eqno">(15.19)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-16" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.19)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-16" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 -\frac{\partial^2}{\partial x^2}
 \end{eqnarray}
@@ -704,7 +718,7 @@ spatial operator:</p>
 <p>along with the homogeneous Dirichlet BC <span class="math notranslate nohighlight">\(v(0,t)=0=v(L,t)\)</span>. We
 therefore assume an eigenfunction expansion of the form:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-17">
-<span class="eqno">(15.20)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-17" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.20)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-17" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 v(x,t) &amp; = &amp;\sum\limits_{n=1}^\infty \hat{v}_n(t)\sin\left(\frac{n\pi x}{L}\right)\\
 \frac{\partial v}{\partial t} &amp; = &amp;\sum\limits_{n=1}^\infty
@@ -721,7 +735,7 @@ v_t &amp; = &amp; \alpha^2 v_{xx}\Rightarrow\sum\limits_{n=1}^\infty\left\{
 \end{split}\]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-18">
-<span class="eqno">(15.21)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-18" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.21)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-18" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \dot{\hat{v}}_n(t) &amp; = &amp; -\alpha^2
 {\left(\frac{n\pi}{L}\right)}^2\hat{v}_n(t)\quad
@@ -732,7 +746,7 @@ v_t &amp; = &amp; \alpha^2 v_{xx}\Rightarrow\sum\limits_{n=1}^\infty\left\{
 \end{split}\]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-19">
-<span class="eqno">(15.22)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-19" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.22)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-19" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 v(x,t) &amp; = &amp;\sum\limits_{n=1}^\infty\hat{v}_n(0)\{\rm\ e\}^{-\alpha^2 {\left(\frac{n\pi}{L}\right)}^2 t}\sin\left(\frac{n\pi x}{L}\right)\\
 v(x,0) &amp; = &amp;\sum\limits_{n=1}^\infty \hat{v}_n(0)\sin\left(\frac{n\pi x}{L}\right) = g(x)-u_\infty (x)\\
@@ -740,13 +754,13 @@ v(x,0) &amp; = &amp;\sum\limits_{n=1}^\infty \hat{v}_n(0)\sin\left(\frac{n\pi x}
   g(x)-u_\infty (x)\right\} \sin\left(\frac{n\pi x}{L}\right)\, dx
 \end{eqnarray}
 \end{split}\]</div>
-<p>which is the same solution as that in <a class="reference internal" href="#equation-eg161eqres">(15.18)</a> above.</p>
+<p>which is the same solution as that in <a class="reference internal" href="#equation-eg161eqres">(17.18)</a> above.</p>
 </section>
 </div><div class="proof example admonition" id="example-heat-inhomogeneous-1">
-<p class="admonition-title"><span class="caption-number">Example 15.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 17.2 </span></p>
 <section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-20">
-<span class="eqno">(15.23)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-20" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.23)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-20" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u_t &amp; = &amp; \alpha^2 u_{xx}\qquad 0&lt;x&lt;L,\quad t&gt;0\\
 \mbox{BC: }u(0,t) &amp; = &amp; u_0\quad u_x(L,t)=0\\
@@ -756,13 +770,13 @@ u_t &amp; = &amp; \alpha^2 u_{xx}\qquad 0&lt;x&lt;L,\quad t&gt;0\\
 <figure class="align-center" id="inhomogeneous-mixed">
 <img alt="inhomogeneous_mixed" src="../_images/inhomogeneous_mixed.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15.7 </span><span class="caption-text">Initial, transient, and steady solutions to the heat
-conduction problem <a class="reference internal" href="#equation-eg16eq3">(15.8)</a> with inhomogeneous Mixed BC</span><a class="headerlink" href="#inhomogeneous-mixed" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17.7 </span><span class="caption-text">Initial, transient, and steady solutions to the heat
+conduction problem <a class="reference internal" href="#equation-eg16eq3">(17.8)</a> with inhomogeneous Mixed BC</span><a class="headerlink" href="#inhomogeneous-mixed" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Look for a steady solution: <span class="math notranslate nohighlight">\(u_\infty^{\prime\prime}(x)=0\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-21">
-<span class="eqno">(15.24)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-21" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.24)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-21" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 u_\infty (x)=Ax+B\quad u_\infty (0)=B=u_0\quad u_\infty ^\prime
 (x)=A=0
@@ -770,14 +784,14 @@ u_\infty (x)=Ax+B\quad u_\infty (0)=B=u_0\quad u_\infty ^\prime
 \]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-22">
-<span class="eqno">(15.25)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-22" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.25)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-22" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 u_\infty (x)=u_0.
 \end{eqnarray}
 \]</div>
 <p>Let <span class="math notranslate nohighlight">\(u(x,t)=u_\infty (x)+v(x,t)=u_0+v(x,t)\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-23">
-<span class="eqno">(15.26)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-23" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.26)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-23" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u_t&amp;=&amp;\alpha^2 u_{xx} \Rightarrow   v_t=\alpha^2 v_{xx}\\
 u(0,t)&amp;=&amp; u_0 \Rightarrow   u_0 = u_0+v(0,t)\Rightarrow v(0,t)=0\\
@@ -787,7 +801,7 @@ u(x,0)&amp;=&amp;u_0+v(x,0)=g(x) \Rightarrow   v(x,0)=g(x)-u_0
 \end{split}\]</div>
 <p>Thus <span class="math notranslate nohighlight">\(v(x,t)\)</span> satisfies</p>
 <div class="math notranslate nohighlight" id="equation-eg162veq">
-<span class="eqno">(15.27)<a class="headerlink" href="#equation-eg162veq" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.27)<a class="headerlink" href="#equation-eg162veq" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 v_t&amp;=&amp;\alpha^2 v_{xx} \label{eg162veq}\\
 v(0,t)&amp;= &amp;0=v_x(L,t)\\
@@ -799,9 +813,9 @@ v(x,0)&amp;=&amp;g(x)-u_0.
 \[
 u(x,0)=u_0+v(x,0)=g(x)\Rightarrow v(x,0)=g(x)-u_0.
 \]</div>
-<p>We now need a solution <span class="math notranslate nohighlight">\(v(x,t)=X(x)T(t)\)</span> to <a class="reference internal" href="#equation-eg162veq">(15.27)</a>:</p>
+<p>We now need a solution <span class="math notranslate nohighlight">\(v(x,t)=X(x)T(t)\)</span> to <a class="reference internal" href="#equation-eg162veq">(17.27)</a>:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-25">
-<span class="eqno">(15.28)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-25" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.28)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-25" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \frac{\dot{T}(t)}{\alpha^2 T(t)} &amp; = &amp;\frac{X^{\prime\prime}(x)}{X(x)}=-\lambda^2\nonumber\\
 \dot{T}(t) &amp; = &amp; -\lambda^2 \alpha^2 T(t)\Rightarrow T(t)=c\{\rm\ e\}^{-\lambda^2 \alpha^2 t}\\
@@ -818,7 +832,7 @@ L)=0\Rightarrow
 \end{split}\]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-26">
-<span class="eqno">(15.29)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-26" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.29)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-26" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 v(x,t) &amp; = &amp; \sum\limits_{k=1}^\infty b_k\{\rm\ e\}^{-\lambda_k^2 \alpha^2 t}\sin\left(\frac{(2k-1)}{2L}\pi x\right)\\
 v(x,0) &amp; = &amp; \sum\limits_{k=1}^\infty b_k\sin\left(\frac{(2k-1)}{2L}\pi x\right) =g(x)-u_0\\
@@ -828,7 +842,7 @@ g(x)-u_0\right\} \sin\left(\frac{(2k-1)}{2L}\pi x\right)\, dx.
 \end{split}\]</div>
 <p>Returning to <span class="math notranslate nohighlight">\(u(x,t)=u_0+v(x,t)\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-27">
-<span class="eqno">(15.30)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-27" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.30)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-27" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 u(x,t)=u_0+\sum\limits_{k=1}^\infty b_k\{\rm\ e\}^{-\alpha^2 \lambda_k^2
 t}\sin\left(\frac{(2k-1)}{2L}\pi x\right) .
@@ -837,12 +851,12 @@ t}\sin\left(\frac{(2k-1)}{2L}\pi x\right) .
 </section>
 </div></section>
 <section id="heat-conduction-with-some-heat-loss-and-inhomogeneous-boundary-conditions">
-<h3><span class="section-number">15.1.3. </span>Heat Conduction With Some Heat Loss And Inhomogeneous Boundary Conditions<a class="headerlink" href="#heat-conduction-with-some-heat-loss-and-inhomogeneous-boundary-conditions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">17.1.3. </span>Heat Conduction With Some Heat Loss And Inhomogeneous Boundary Conditions<a class="headerlink" href="#heat-conduction-with-some-heat-loss-and-inhomogeneous-boundary-conditions" title="Permalink to this headline">#</a></h3>
 <div class="proof example admonition" id="example-heat-inhomogeneous-2">
-<p class="admonition-title"><span class="caption-number">Example 15.3 </span> (Heat Equation with some Heat Loss)</p>
+<p class="admonition-title"><span class="caption-number">Example 17.3 </span> (Heat Equation with some Heat Loss)</p>
 <section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-28">
-<span class="eqno">(15.31)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-28" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.31)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-28" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u_t &amp; = &amp; \alpha ^2 u_{xx}-u\qquad 0&lt;x&lt;L,\quad t&gt;0\\
 \mbox{BC: } u(0,t) &amp; = &amp; 0\quad u(L,t)=u_1\\
@@ -852,13 +866,13 @@ u_t &amp; = &amp; \alpha ^2 u_{xx}-u\qquad 0&lt;x&lt;L,\quad t&gt;0\\
 <figure class="align-center" id="heat-loss">
 <img alt="heat_loss" src="../_images/heat_loss.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15.8 </span><span class="caption-text">Bar subject to heat loss all along its length with
+<p><span class="caption-number">Fig. 17.8 </span><span class="caption-text">Bar subject to heat loss all along its length with
 inhomogeneous Mixed BC</span><a class="headerlink" href="#heat-loss" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Look for the steady state solution <span class="math notranslate nohighlight">\(u_\infty (x)\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-29">
-<span class="eqno">(15.32)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-29" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.32)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-29" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}\begin{array}{l}
 \alpha^2 u_\infty ^{\prime\prime}-u_\infty =0\\
 \displaystyle u_\infty (x)=A\cosh\left(\frac{x}{\alpha}\right) +B\sinh\left(\frac{x}{\alpha }\right)\\
@@ -869,7 +883,7 @@ h\left(\frac{L}{\alpha}\right)} .\end{array}
 \end{split}\]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-30">
-<span class="eqno">(15.33)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-30" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.33)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-30" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 u_\infty (x)=u_1\sinh\left.\left(\frac{x}{\alpha}\right)\right/
    \sinh\left(\frac{L}{\alpha }\right) .
@@ -878,12 +892,12 @@ u_\infty (x)=u_1\sinh\left.\left(\frac{x}{\alpha}\right)\right/
 <figure class="align-center" id="steady-state">
 <img alt="steady_state" src="../_images/steady_state.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15.9 </span><span class="caption-text">The steady-state solution.</span><a class="headerlink" href="#steady-state" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17.9 </span><span class="caption-text">The steady-state solution.</span><a class="headerlink" href="#steady-state" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Now let <span class="math notranslate nohighlight">\(u(x,t)=u_\infty (x)+v(x,t)\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-eg154veq">
-<span class="eqno">(15.34)<a class="headerlink" href="#equation-eg154veq" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.34)<a class="headerlink" href="#equation-eg154veq" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 &amp; &amp;\begin{array}{lc}
 u_t=\alpha^2 u_{xx}-u&amp;\Rightarrow\\
@@ -906,10 +920,10 @@ v(L,t)&amp;=&amp;0\\
 v(x,0)&amp;=&amp;g(x)-u_\infty (x).\end{array}\right. \label{eg154veq}
 \end{eqnarray}
 \end{split}\]</div>
-<p>To solve <a class="reference internal" href="#equation-eg154veq">(15.34)</a> we separate variables <span class="math notranslate nohighlight">\(v(x,t)=X(x)T(t)\)</span>.
+<p>To solve <a class="reference internal" href="#equation-eg154veq">(17.34)</a> we separate variables <span class="math notranslate nohighlight">\(v(x,t)=X(x)T(t)\)</span>.
 Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-32">
-<span class="eqno">(15.35)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-32" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.35)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-32" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 \frac{\dot{T}(t)}{T(t)}=\frac{\alpha^2
 X^{\prime\prime}}{X}-1\Rightarrow
@@ -919,7 +933,7 @@ X^{\prime\prime}}{X}-1\Rightarrow
 \]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-33">
-<span class="eqno">(15.36)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-33" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.36)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-33" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \dot{T}(t) &amp; = &amp; -(\lambda^2 \alpha^2+1)T(t)\Rightarrow T(t)=c\{\rm\ e\}^{-(1+\lambda^2 \alpha^2 )t}\\
 X^{\prime\prime} +\lambda^2 X &amp; = &amp; 0\Rightarrow X(x)=A\cos\lambda x+B\sin\lambda x\\
@@ -930,7 +944,7 @@ L)=0\Rightarrow\lambda_n =\left(\frac{n\pi}{L}\right)\nonumber\\
 \end{split}\]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-34">
-<span class="eqno">(15.37)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-34" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.37)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-34" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 v(x,t) &amp; = &amp; \sum\limits_{n=1}^\infty b_n\{\rm\ e\}^{-(1+\lambda_n^2 \alpha^2) t}\sin\left(\frac{\pi x}{L}\right)\\
 v(x,0) &amp; = &amp; g(x)-u_\infty (x)=\sum\limits_{n=1}^\infty
@@ -942,7 +956,7 @@ b_n\\
 \end{split}\]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-35">
-<span class="eqno">(15.38)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-35" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.38)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-35" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 u(x,t)=u_1\sinh\left. \left(\frac{x}{\alpha}\right) \right/ \sin
 h\left(\frac{L}{\alpha}\right) +\sum\limits_{n=1}^\infty b_n
@@ -957,27 +971,27 @@ solution.</p>
 </section>
 </div></section>
 <section id="heat-conduction-with-inhomogeneous-neumann-boundary-conditions">
-<h3><span class="section-number">15.1.4. </span>Heat Conduction with Inhomogeneous Neumann Boundary Conditions<a class="headerlink" href="#heat-conduction-with-inhomogeneous-neumann-boundary-conditions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">17.1.4. </span>Heat Conduction with Inhomogeneous Neumann Boundary Conditions<a class="headerlink" href="#heat-conduction-with-inhomogeneous-neumann-boundary-conditions" title="Permalink to this headline">#</a></h3>
 <div class="proof example admonition" id="example-heat-inhomogeneous-3">
-<p class="admonition-title"><span class="caption-number">Example 15.4 </span> (Inhomogeneous Neumann BC)</p>
+<p class="admonition-title"><span class="caption-number">Example 17.4 </span> (Inhomogeneous Neumann BC)</p>
 <section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight" id="equation-neumannihomog1">
-<span class="eqno">(15.39)<a class="headerlink" href="#equation-neumannihomog1" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.39)<a class="headerlink" href="#equation-neumannihomog1" title="Permalink to this equation">#</a></span>\[\begin{split}
 u_t = \alpha^2 u_{xx}\qquad 0&lt;x&lt;L,\quad t&gt;0\label{NeumannIhomog1}\\
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-neumannihomog2">
-<span class="eqno">(15.40)<a class="headerlink" href="#equation-neumannihomog2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.40)<a class="headerlink" href="#equation-neumannihomog2" title="Permalink to this equation">#</a></span>\[
 \mbox{BC: }u_x(0,t) = A\quad u_x(L,t)=B
 \]</div>
 <div class="math notranslate nohighlight" id="equation-neumannihomog3">
-<span class="eqno">(15.41)<a class="headerlink" href="#equation-neumannihomog3" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.41)<a class="headerlink" href="#equation-neumannihomog3" title="Permalink to this equation">#</a></span>\[
 \mbox{IC: }u(x,0) = g(x) \label{NeumannIhomog3}.
 \]</div>
 <figure class="align-center" id="inhomogeneous-neumann">
 <img alt="inhomogeneous_neumann" src="../_images/inhomogeneous_neumann.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15.10 </span><span class="caption-text">Initial, transient, and steady solutions to the heat
-conduction problem <a class="reference internal" href="#equation-neumannihomog1">(15.39)</a>-<a class="reference internal" href="#equation-neumannihomog3">(15.41)</a>
+<p><span class="caption-number">Fig. 17.10 </span><span class="caption-text">Initial, transient, and steady solutions to the heat
+conduction problem <a class="reference internal" href="#equation-neumannihomog1">(17.39)</a>-<a class="reference internal" href="#equation-neumannihomog3">(17.41)</a>
 with inhomogeneous Neumann BC</span><a class="headerlink" href="#inhomogeneous-neumann" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
@@ -988,7 +1002,7 @@ from the rod at different rates then the temperature does not reach
 a steady state.</p>
 <p>Instead of subtracting off a steady solution we subtract a particular solution which depends on <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span> of the form:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-37">
-<span class="eqno">(15.42)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-37" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.42)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-37" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 w(x,t) &amp; = &amp; ax^2+bx+ct\\
 w_t &amp; = &amp; c=\alpha^2 w_{xx}=2\alpha ^2a\Rightarrow c=2\alpha^2 a.
@@ -996,7 +1010,7 @@ w_t &amp; = &amp; c=\alpha^2 w_{xx}=2\alpha ^2a\Rightarrow c=2\alpha^2 a.
 \end{split}\]</div>
 <p>Then</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-38">
-<span class="eqno">(15.43)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-38" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.43)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-38" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 w(x,t)=ax^2+bx+2\alpha^2 at
 \end{eqnarray}
@@ -1005,21 +1019,21 @@ w(x,t)=ax^2+bx+2\alpha^2 at
 <p>Now we determine the constants <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> so that <span class="math notranslate nohighlight">\(w(x,t)\)</span>
 satisfies the inhomogeneous BC:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-39">
-<span class="eqno">(15.44)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-39" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.44)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-39" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 w_x=2ax+b:\quad w_x(0,t)=b=A,\quad w_x(L,t)=2aL+A=B.
 \end{eqnarray}
 \]</div>
 <p>Therefore <span class="math notranslate nohighlight">\(a=(B-A)/2L\)</span>. Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-40">
-<span class="eqno">(15.45)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-40" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.45)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-40" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 w(x,t)=\frac{(B-A)}{2L}x^2+Ax+\alpha ^2\left(\frac{B-A}{L}\right) t.
 \end{eqnarray}
 \]</div>
 <p>Now let <span class="math notranslate nohighlight">\(u(x,t)=w(x,t)+v(x,t)\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eg171veq">
-<span class="eqno">(15.46)<a class="headerlink" href="#equation-eg171veq" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.46)<a class="headerlink" href="#equation-eg171veq" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \begin{array}{lclcl}
 u_t&amp;=&amp;w_t+v_t=\alpha^2 (w_{xx}+v_{xx}) &amp;\Rightarrow &amp;v_t=\alpha^2 v_{xx}\\
@@ -1029,10 +1043,10 @@ u(x,0) &amp;= &amp;g(x)=w(x,0)+v(x,0) &amp;\Rightarrow
 &amp;v(x,0)=g(x)-w(x,0)\end{array}. \label{eg171veq}
 \end{eqnarray}
 \end{split}\]</div>
-<p>Equations <a class="reference internal" href="#equation-eg171veq">(15.46)</a> represent the homogeneous Neumann BVP
+<p>Equations <a class="reference internal" href="#equation-eg171veq">(17.46)</a> represent the homogeneous Neumann BVP
 seen previously. Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-42">
-<span class="eqno">(15.47)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-42" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(17.47)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-42" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u(x,t) &amp; = &amp; \frac{(B-A)}{2L} x^2+Ax+\alpha
 ^2\left(\frac{B-A}{L}\right)
@@ -1043,7 +1057,7 @@ x}{L}\right)\{\rm\ e\}^{-\alpha^2\left(\frac{n\pi x}{L}\right) t}\nonumber
 \end{split}\]</div>
 <p>where</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-inhomogeneous-43">
-<span class="eqno">(15.48)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-43" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17.48)<a class="headerlink" href="#equation-ref-heat-inhomogeneous-43" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 a_n=\frac{2}{L}\int\limits_0^L\left\{
 g(x)-\left[\frac{(B-A)}{2L}x^2+Ax\right]\right\}\cos\left(\frac{n\pi
@@ -1092,7 +1106,7 @@ x}{L}\right)\, dx.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">14. </span>Heat Equation On A Circular Ring - Full Fourier Series</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Heat Equation On A Circular Ring - Full Fourier Series</p>
       </div>
     </a>
     <a class="right-next"
@@ -1100,7 +1114,7 @@ x}{L}\right)\, dx.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">16. </span>Heat Conduction With Distributed Sources/Sinks</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Heat Conduction With Distributed Sources/Sinks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1122,18 +1136,18 @@ x}{L}\right)\, dx.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-inhomogeneous-boundary-conditions">15.1. Heat Conduction Problems with Inhomogeneous Boundary Conditions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-summary-of-eigenvalue-boundary-value-problems-and-their-eigenvalues-and-eigenfunctions">15.1.1. A Summary Of Eigenvalue Boundary Value Problems And Their Eigenvalues And Eigenfunctions</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dirichlet-problem">15.1.1.1. The Dirichlet Problem</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-problem">15.1.1.2. The Neumann Problem</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-periodic-boundary-value-problem">15.1.1.3. The Periodic Boundary Value Problem</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-value-problem-type-a">15.1.1.4. Mixed Boundary Value Problem - Type A</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-value-problem-type-b">15.1.1.5. Mixed Boundary Value Problem - Type B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-inhomogeneous-boundary-conditions">17.1. Heat Conduction Problems with Inhomogeneous Boundary Conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-summary-of-eigenvalue-boundary-value-problems-and-their-eigenvalues-and-eigenfunctions">17.1.1. A Summary Of Eigenvalue Boundary Value Problems And Their Eigenvalues And Eigenfunctions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dirichlet-problem">17.1.1.1. The Dirichlet Problem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-problem">17.1.1.2. The Neumann Problem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-periodic-boundary-value-problem">17.1.1.3. The Periodic Boundary Value Problem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-value-problem-type-a">17.1.1.4. Mixed Boundary Value Problem - Type A</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-boundary-value-problem-type-b">17.1.1.5. Mixed Boundary Value Problem - Type B</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specified-constant-temperatures">15.1.2. Specified Constant Temperatures</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-with-some-heat-loss-and-inhomogeneous-boundary-conditions">15.1.3. Heat Conduction With Some Heat Loss And Inhomogeneous Boundary Conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-with-inhomogeneous-neumann-boundary-conditions">15.1.4. Heat Conduction with Inhomogeneous Neumann Boundary Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specified-constant-temperatures">17.1.2. Specified Constant Temperatures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-with-some-heat-loss-and-inhomogeneous-boundary-conditions">17.1.3. Heat Conduction With Some Heat Loss And Inhomogeneous Boundary Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-with-inhomogeneous-neumann-boundary-conditions">17.1.4. Heat Conduction with Inhomogeneous Neumann Boundary Conditions</a></li>
 </ul>
 </li>
 </ul>

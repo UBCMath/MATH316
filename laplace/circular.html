@@ -1,0 +1,998 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>23. Circular Domains &#8212; MATH 316</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'laplace/circular';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="24. Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains" href="wedges.html" />
+    <link rel="prev" title="22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems" href="rectangular.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MATH 316</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../odes/review.html">1. Review of Methods to Solve Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/first.html">1.1. First Order Ordinary Differential Equations:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/second.html">1.2. Second Order Constant Coefficient Linear Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/cauchy.html">1.3. Cauchy/Euler/Equidimensional Equations:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/series.html">2. Series Solutions To ODEs With Variable Coefficients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/rsps.html">3. Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/bessel.html">5. Bessel’s Equation and Bessel Functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Partial Differential Equations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../intro/initial.html">6. Introduction To Partial Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/continued.html">7. Introduction To Partial Differential Equations (Continued)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/separation.html">8. Separation Of Variables And Fourier Series</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fourier Series</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fourier/series.html">9. Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fourier/separation.html">10. Separation of Variables and Fourier Series</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fd/fd.html">11. Overview and Formulas</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fd/heat.html">12. Heat Equation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fd/heat/heat.html">12.1. FTCS Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/wave.html">13. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/laplace.html">14. Laplace Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../heat/heat.html">15. Heat Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/circular.html">16. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/inhomogeneous.html">17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/distributed.html">18. Heat Conduction With Distributed Sources/Sinks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/eigenfunctions.html">19. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="laplace.html">20. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d.html">21. Laplace’s Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rectangular.html">22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Circular Domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wedges.html">24. Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">25. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">26. The 1D Wave Equation and D’Alembert’s Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">27. Interpretating D’Alembert’s Solution in Space-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">28. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/UBCMath/math316" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/laplace/circular.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Circular Domains</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-analysis-of-laplace-s-equation-on-circular-domains">23.1. General Analysis of Laplace’s Equation on Circular Domains</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laplacian-in-polar-coordinates">23.1.1. Laplacian in Polar Coordinates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introductory-remarks-about-circular-domains">23.1.2. Introductory Remarks About Circular Domains</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wedge-problems">23.1.3. Wedge Problems</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+\newenvironment{remark}{\begin{Remark}\rm}{\end{Remark}}
+\newenvironment{exercise}{\begin{Exercise}\rm}{\end{Exercise}}
+\newcommand{\N}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\mat}[1]{{\mathbf #1}}
+\newcommand{\vect}[1]{\underline{#1}}
+\newcommand{\njump}[1]{[|#1|]}
+\newcommand{\pa}{\partial}
+\newcommand{\De}{\Delta}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\dst}{\displaystyle}
+\newcommand{\la}{\lambda}
+\newcommand{\al}{\alpha}
+\newcommand{\rme}{{\rm e}}
+\newcommand{\rmi}{{\rm i}}\\\newcommand{\R}{\mathbb{R}}
+\newcommand{\bke}[1]{\left ( #1 \right )}
+\newcommand{\bkt}[1]{\left [ #1 \right ]}
+\newcommand{\bket}[1]{\left \{ #1 \right \}}
+\newcommand{\norm}[1]{\left \| #1 \right \|}
+\newcommand{\bka}[1]{\left \langle #1 \right \rangle}
+\renewcommand{\th}{\theta}
+\newcommand{\om}{\omega}
+\newcommand{\pd}{\partial}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\ve}[1]{\mathbf{#1}}
+\newcommand{\what}[1]{\widehat{#1}}
+\newcommand{\tint}{\int\kern-.6em\int\kern-.6em\int}
+\end{aligned}\end{align} \]</div>
+<section class="tex2jax_ignore mathjax_ignore" id="circular-domains">
+<h1><span class="section-number">23. </span>Circular Domains<a class="headerlink" href="#circular-domains" title="Permalink to this headline">#</a></h1>
+<p>In this lecture we consider the solution of Laplace’s equations on
+domains that have a boundary that has at least one boundary segment
+that comprises a circular arc.</p>
+<div class="admonition-key-concepts admonition">
+<p class="admonition-title">Key Concepts</p>
+<p>Laplace’s equation; Circular domains;
+Pizza Slice-shaped regions, Dirichlet and Mixed BC.</p>
+</div>
+<p>Reference Section: Boyce and Di Prima Section 10.8</p>
+<section id="general-analysis-of-laplace-s-equation-on-circular-domains">
+<h2><span class="section-number">23.1. </span>General Analysis of Laplace’s Equation on Circular Domains<a class="headerlink" href="#general-analysis-of-laplace-s-equation-on-circular-domains" title="Permalink to this headline">#</a></h2>
+<section id="laplacian-in-polar-coordinates">
+<h3><span class="section-number">23.1.1. </span>Laplacian in Polar Coordinates<a class="headerlink" href="#laplacian-in-polar-coordinates" title="Permalink to this headline">#</a></h3>
+<p>For domains whose boundary comprises part of a circle, it is
+convenient to transform to polar coordinates. For this purpose the
+Laplacian is transformed from cartesian coordinates <span class="math notranslate nohighlight">\((x,y)\)</span> to polar
+coordinates <span class="math notranslate nohighlight">\((r,\theta)\)</span> as follows:</p>
+<div class="math notranslate nohighlight" id="equation-ref0">
+<span class="eqno">(23.1)<a class="headerlink" href="#equation-ref0" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray*}
+r^2&amp;=&amp;x^2+y^2\\
+\theta &amp;=&amp;\tan^{-1}\left(\frac{y}{x}\right)
+\end{eqnarray*}
+\end{split}\]</div>
+<p>Differentiating with respect to <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> we obtain:</p>
+<div class="math notranslate nohighlight" id="equation-ref1">
+<span class="eqno">(23.2)<a class="headerlink" href="#equation-ref1" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray*}
+2rr_x&amp;=&amp;2x\quad r_x=\frac{x}{r}\quad r_y=\frac{y}{r}\\
+\theta_x&amp;=&amp;\frac{(-{\frac{y}{x^2})}} {\big( 1+(\frac{y}{x})^2\big)}
+=-\frac{y}{x^2+y^2}=-\frac{y}{r^2}\quad
+\theta_y=\frac{x}{r^2}\\
+u(x,y)&amp;=&amp;U(r,\theta )\\
+u_x&amp;=&amp;U_rr_x+U_\theta \theta_x=U_r\big(\frac{x}{r}\big)
++U_\theta\left( -\frac{y}{r^2}\right)\\
+u_y&amp;=&amp;U_rr_y+U_\theta \theta_y=U_r\left(\frac{y}{r}\right)
++U_\theta\left(\frac{x}{r^2}\right)\\
+u_{xx}&amp;=&amp;(U_r)_x r_x+U_rr_{xx}+(U_\theta
+)_x\theta_x+U_\theta\theta_{xx}\\
+&amp;=&amp;U_{rr}r_x^2+U_{r\theta}\theta_xr_x+U_rr_{xx}+U_{r\theta}r_x
+  \theta_x+U_{\theta\theta}\theta_x^2+U_\theta\theta_{xx}\\
+r_{xx}&amp;=&amp;\frac{r-\left(\frac{x^2}{r}\right)}{r^2}=\frac{y^2}{r^3}\quad
+\theta_{xx}=\frac{2yx}{r^4}\\
+u_{xx}&amp;=&amp;U_{rr}\left(\frac{x^2}{r^2}\right) +2U_{r\theta}\left(
+-\frac{y}{r^2}\right)\left(\frac{x}{r}\right)
++U_{\theta\theta}\frac{y^2}{r^4}+U_r\left(\frac{y^2}{r^3}\right)
++U_\theta\left(\frac{2xy}{r^4}\right)\\
+u_{yy}&amp;=&amp;U_{rr}r_y^2+U_{r\theta}r_y\theta_y+U_rr_{yy}+U_{\theta
+r}r_y\theta_y+U_{\theta\theta}\theta_y^2+U_\theta\theta_{yy}\\
+&amp;=&amp;U_{rr}\left(\frac{y^2}{r^2}\right)
++2U_{r\theta}\left(\frac{x}{r^2}\right)\left(\frac{y}{r}\right)
++U_{\theta\theta}\left(\frac{x^2}{r^4}\right)
++U_r\left(\frac{x^2}{r^3}\right) +U_\theta\left(
+-\frac{2xy}{r^4}\right)
+\end{eqnarray*}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref2">
+<span class="eqno">(23.3)<a class="headerlink" href="#equation-ref2" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray*}
+\framebox{$\displaystyle
+u_{xx}+u_{yy}=U_{rr}+\frac{1}{r}U_r+\frac{1}{r^2} U_{\theta\theta}$}
+\end{eqnarray*}
+\]</div>
+</section>
+<section id="introductory-remarks-about-circular-domains">
+<h3><span class="section-number">23.1.2. </span>Introductory Remarks About Circular Domains<a class="headerlink" href="#introductory-remarks-about-circular-domains" title="Permalink to this headline">#</a></h3>
+<p>Recall the Laplacian in polar coordinates:</p>
+<div class="math notranslate nohighlight" id="equation-ref3">
+<span class="eqno">(23.4)<a class="headerlink" href="#equation-ref3" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+0=\De u=u_{xx}+u_{yy}=u_{rr}+\frac{1}{r}u_r+\frac{1}{r^2}u_{\theta\theta}\quad\begin{array}{l}r=(x^2+y^2)^{1/2}\\
+\theta =\tan^{-1} (y/x)\end{array}.
+\end{eqnarray}
+\end{split}\]</div>
+<p>Let</p>
+<div class="math notranslate nohighlight" id="equation-ref4">
+<span class="eqno">(23.5)<a class="headerlink" href="#equation-ref4" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(r,\theta )&amp;=&amp;R(r)\Theta (\theta )\\
+\frac{r^2R^{\prime\prime}+rR^\prime}{R(r)} &amp;=&amp;
+-\frac{\Theta^{\prime\prime}}{\Theta (\theta )}=\la^2
+\end{eqnarray}
+\end{split}\]</div>
+<p>which leads to <span class="math notranslate nohighlight">\(r^2R^{\prime\prime}+rR^\prime -\la^2 R=0\)</span> and
+<span class="math notranslate nohighlight">\(\Theta^{\prime\prime}+\la^2\Theta =0\)</span>.</p>
+<p>The <span class="math notranslate nohighlight">\(R\)</span> Equation: <span class="math notranslate nohighlight">\(r^2R^{\prime\prime}+rR^\prime-\la^2 R=0\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\la =0}\)</span>: <span class="math notranslate nohighlight">\(r^2R^{\prime\prime}+rR^\prime =0\)</span>,
+<span class="math notranslate nohighlight">\(R=r^\gamma\Rightarrow\gamma(\gamma -1)+\gamma =\gamma^2 =0\Rightarrow R(r)=C+D\ln r\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\la\ne 0}\)</span>: <span class="math notranslate nohighlight">\(r^2R^{\prime\prime}+rR^\prime -\la^2
+=0\)</span>, <span class="math notranslate nohighlight">\(R=r^\gamma\Rightarrow\gamma (\gamma -1)+\gamma -\la^2
+=\gamma^2 -\la^2=0\Rightarrow R(r)=Cr^\la +Dr^{-\la}\)</span>.</p>
+<p>The <span class="math notranslate nohighlight">\(\Theta\)</span> Equation <span class="math notranslate nohighlight">\(\Theta^{\prime\prime}+\la^2\Theta =0\)</span>:
+<span class="math notranslate nohighlight">\(\Theta^{\prime\prime}+\la^2 \Theta =0\)</span>,
+<span class="math notranslate nohighlight">\(\Theta =A\cos\la\theta +B\sin\la\theta\)</span>,
+<span class="math notranslate nohighlight">\(\Theta^\prime =-A\la\sin\la\theta +B\la\cos\la\theta\)</span></p>
+<p>Different Boundary Conditions and Corresponding Eigenfunctions:</p>
+<p><strong>(I)</strong> <span class="math notranslate nohighlight">\(\Theta (0)=0=\Theta (\al )\)</span> <span class="math notranslate nohighlight">\(\la_n=n\pi /\al , \ \)</span>
+<span class="math notranslate nohighlight">\(n=1,2,\ldots, \ \)</span> <span class="math notranslate nohighlight">\(\Theta_n(\theta )=\sin\la_n\theta\)</span></p>
+<p><strong>(II)</strong> <span class="math notranslate nohighlight">\(\Theta^\prime (0)=0=\Theta^\prime (\al ), \ \)</span> <span class="math notranslate nohighlight">\(\la_n=n\pi
+/\al \)</span> <span class="math notranslate nohighlight">\(n=0,1,2,\ldots , \ \)</span> <span class="math notranslate nohighlight">\(\Theta_n (\theta )\in\{
+1,\cos\la_n\theta\}\)</span></p>
+<p><strong>(III)</strong> <span class="math notranslate nohighlight">\(\Theta (0)=0=\Theta^\prime (\al ), \ \)</span> <span class="math notranslate nohighlight">\(\la_n=(2n-1)\pi
+/2\al\)</span> <span class="math notranslate nohighlight">\(n=1,2,\ldots , \ \)</span> <span class="math notranslate nohighlight">\(\Theta_n(\theta )=\sin\la_n \theta\)</span></p>
+<p><strong>(IV)</strong> <span class="math notranslate nohighlight">\(\Theta^\prime (0)=0=\Theta (\al ), \ \)</span> <span class="math notranslate nohighlight">\(\la_n=(2n-1)\pi
+/2\al , \ \)</span> <span class="math notranslate nohighlight">\(n=1,2,\ldots, \ \)</span> <span class="math notranslate nohighlight">\(\Theta_n(\theta )=\cos\la_n\theta\)</span></p>
+<p><strong>(V)</strong> <span class="math notranslate nohighlight">\(\dst\left.\begin{array}{lcl}\Theta (-\pi )&amp;=&amp;\Theta (\pi
+)\\ \Theta^\prime (-\pi )&amp;=&amp;\Theta^\prime (\pi )\end{array}\right\}\)</span>
+<span class="math notranslate nohighlight">\(\la_n=n, \ \)</span> <span class="math notranslate nohighlight">\(n=0,1,2,\ldots, \ \)</span> <span class="math notranslate nohighlight">\(\Theta_n(\theta )\in\{
+1,\cos\la_n\theta ,\sin\la_n\theta\}\)</span>.</p>
+<p>The most general solution is thus of the form</p>
+<div class="math notranslate nohighlight" id="equation-ref5">
+<span class="eqno">(23.6)<a class="headerlink" href="#equation-ref5" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(r,\theta )=\left\{ A_0+\al_0 \ln r\right\}\cdot 1 &amp;+&amp;
+\sum\limits_{n=1}^\infty \left\{ A_nr^{\la_n}+\al_n
+r^{-\la_n}\right\}\cos\la_n\theta\\
+&amp;+&amp;\sum\limits_{n=1}^\infty \left\{
+B_nr^{\la_n}+\beta_nr^{-\la_n}\right\}\sin\la_n\theta .
+\end{eqnarray}
+\end{split}\]</div>
+<div class="proof observation admonition" id="observation-0">
+<p class="admonition-title"><span class="caption-number">Observation 23.1 </span></p>
+<section class="observation-content" id="proof-content">
+<ul class="simple">
+<li><p>For problems that include the origin, the condition
+<span class="math notranslate nohighlight">\(|u|&lt;\infty\)</span> as <span class="math notranslate nohighlight">\(r\ra 0\)</span> dictates that <span class="math notranslate nohighlight">\(\al_0=0\)</span>, <span class="math notranslate nohighlight">\(\al_n=0\)</span> and
+<span class="math notranslate nohighlight">\(\beta_n=0\)</span>.</p></li>
+<li><p>For problems that involve infinite domains the condition
+<span class="math notranslate nohighlight">\(|u|&lt;\infty\)</span> as <span class="math notranslate nohighlight">\(r\ra\infty\)</span> dictates that <span class="math notranslate nohighlight">\(A_n=0\)</span> and <span class="math notranslate nohighlight">\(B_n=0\)</span>.</p></li>
+<li><p>The values of <span class="math notranslate nohighlight">\(\la_n\)</span> and the corresponding eigenfunctions
+depend on the boundary conditions (I)–(V) that apply.</p></li>
+</ul>
+</section>
+</div></section>
+<section id="wedge-problems">
+<h3><span class="section-number">23.1.3. </span>Wedge Problems<a class="headerlink" href="#wedge-problems" title="Permalink to this headline">#</a></h3>
+<div class="proof example admonition" id="EGHomogeneousWedge">
+<p class="admonition-title"><span class="caption-number">Example 23.1 </span> (Wedge with Homogeneous BC on <span class="math notranslate nohighlight">\(\theta =0\)</span>, <span class="math notranslate nohighlight">\(\theta =\al&lt;2\pi\)</span>  )</p>
+<section class="example-content" id="proof-content">
+<figure class="align-center" id="dirichlet-pizza">
+<img alt="../_images/dirichlet_pizza.png" src="../_images/dirichlet_pizza.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 23.1 </span><span class="caption-text">Homogeneous Dirichlet Boundary conditions on a wedge shaped
+domain <a class="reference internal" href="#equation-eqlaplacedirichletwedge">(23.7)</a>.</span><a class="headerlink" href="#dirichlet-pizza" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight" id="equation-eqlaplacedirichletwedge">
+<span class="eqno">(23.7)<a class="headerlink" href="#equation-eqlaplacedirichletwedge" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u_{rr}+\frac{1}{r}u_r+\frac{1}{r^2}u_{\theta\theta}&amp; = &amp; 0
+   \qquad 0&lt;r&lt;a,\quad 0&lt;\theta &lt;\al\\
+u(r,0)=0\quad u(r,\al ) &amp; = &amp; 0, \ u(r,\theta )\mbox{ bounded as
+}r\ra 0,\  u(a,\theta )=f(\theta ) \label{eqLaplaceDirichletWedge}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(u(r,\theta )=R( r ) \cdot\Theta (\theta )\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref7">
+<span class="eqno">(23.8)<a class="headerlink" href="#equation-ref7" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+r^2\frac{(R^{\prime\prime}+\frac{1}{r}R^\prime )}{R}
+   = -\frac{\Theta^{\prime\prime}(\theta )}{\Theta (\theta )}
+   =\la^2\Rightarrow\begin{array}{rcl}
+r^2R^{\prime\prime} +rR^\prime -\la^2 R&amp;=&amp;0\mbox{ Euler Eq.} \nonumber \\
+\Theta^{\prime\prime}+\la^2\Theta&amp;=&amp;0\end{array} \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(u(r,0)=R( r )\Theta (0)=0\Rightarrow\Theta (0)=0\)</span>;
+<span class="math notranslate nohighlight">\(u(r,\al )=R( r )\Theta (\al )=0\Rightarrow\Theta (\al )=0\)</span></p>
+<div class="math notranslate nohighlight" id="equation-ref8">
+<span class="eqno">(23.9)<a class="headerlink" href="#equation-ref8" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\begin{array}{l}\mbox{Eigenvalue}\\ \mbox{Problem}\end{array}
+   \left\{\begin{array}{l}\Theta^{\prime\prime} +\la^2 \Theta =0\\
+   \Theta (0)=0=\Theta (\al )\end{array}\quad\begin{array}{l}
+   \Theta =A\cos\la \theta +B\sin (\la\theta )\\
+   \Theta (0)=A=0\quad \Theta (\al )=B\sin (\la\al )=0\end{array}\right.
+\end{eqnarray}
+\end{split}\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref9">
+<span class="eqno">(23.10)<a class="headerlink" href="#equation-ref9" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+\la_n =(n\pi /\al )\quad n=1,2, \ldots\quad\Theta_n =
+   \sin\left(\frac{n\pi\theta}{\al}\right) .
+\end{eqnarray}
+\]</div>
+<p>To solve the Euler Eq. let <span class="math notranslate nohighlight">\(R( r )=r^\gamma\)</span>, <span class="math notranslate nohighlight">\(R^\prime =\gamma
+r^{\gamma -1}\)</span>, <span class="math notranslate nohighlight">\(R^{\prime\prime}=\gamma (\gamma -1)r^{\gamma -2}\)</span>. Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref10">
+<span class="eqno">(23.11)<a class="headerlink" href="#equation-ref10" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+\gamma (\gamma -1)+\gamma -\la^2 =\gamma^2 -\la^2 =0
+   \Rightarrow\gamma =\pm\la .
+\end{eqnarray}
+\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref11">
+<span class="eqno">(23.12)<a class="headerlink" href="#equation-ref11" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+R( r )=c_1r^\la +c_2r^{-\la}.
+\end{eqnarray}
+\]</div>
+<p>Now since <span class="math notranslate nohighlight">\(u(r,\theta )&lt;\infty\)</span> as <span class="math notranslate nohighlight">\(r\ra 0\)</span> we require <span class="math notranslate nohighlight">\(c_2=0\)</span>. Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref12">
+<span class="eqno">(23.13)<a class="headerlink" href="#equation-ref12" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(r,\theta ) &amp; = &amp; \sum\limits_{n=1}^\infty c_n
+   r^{\left(\frac{n\pi}{\al}\right)} \sin
+   \left(\frac{n\pi\theta}{\al}\right)\\
+u(a,\theta )=f(\theta ) &amp; = &amp; \sum\limits_{n=1}^\infty
+   \left\{ c_na^{\left(\frac{n\pi}{\al}\right)}\right\}
+   \sin\left(\frac{n\pi\theta}{\al}\right) .
+\end{eqnarray}
+\end{split}\]</div>
+<p>This is just a Fourier Sine Series for <span class="math notranslate nohighlight">\(f(\theta )\)</span>: Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref13">
+<span class="eqno">(23.14)<a class="headerlink" href="#equation-ref13" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+c_n a^{\left(\frac{n\pi}{\al}\right)} &amp; = &amp; \frac{2}{\al}
+   \int\limits_0^\al f(\theta )\sin\left(\frac{n\pi\theta}{\al}\right)\, d\theta\\
+c_n &amp; = &amp; \frac{2}{\al} a^{-\left(\frac{n\pi}{\al}\right)}
+   \int\limits_0^\al f(\theta )\sin\left(\frac{n\pi\theta }{\al}\right)\, d\theta .
+\end{eqnarray}
+\end{split}\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref14">
+<span class="eqno">(23.15)<a class="headerlink" href="#equation-ref14" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u(x,\theta ) = \sum\limits_{n=1}^\infty c_n
+r^{\left(\frac{n\pi}{\al}\right)}
+   \sin\left(\frac{n\pi\theta}{\al}\right) .
+\end{eqnarray}
+\]</div>
+</section>
+</div><div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 23.2 </span> (A Wedge with Inhomogeneous BC)</p>
+<section class="example-content" id="proof-content">
+<figure class="align-center" id="inhomo-pizza">
+<img alt="../_images/inhomo_pizza.png" src="../_images/inhomo_pizza.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 23.2 </span><span class="caption-text">Inhomogeneous Dirichlet Boundary conditions on a wedge
+shaped domain <a class="reference internal" href="#equation-eqlaplaceinhomdirichletwedge">(23.17)</a>.</span><a class="headerlink" href="#inhomo-pizza" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight" id="equation-ref15">
+<span class="eqno">(23.16)<a class="headerlink" href="#equation-ref15" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u_{rr}+\frac{1}{r}u_r+\frac{1}{r^2}u_{\theta\theta}
+   =0\qquad 0&lt;r&lt;a,\quad 0&lt;\theta &lt;\al
+\end{eqnarray}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eqlaplaceinhomdirichletwedge">
+<span class="eqno">(23.17)<a class="headerlink" href="#equation-eqlaplaceinhomdirichletwedge" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}\begin{array}{l}
+u(r,0)=u_0,\quad u(r,\al )=u_1,\quad u(r,\theta )&lt;\infty\mbox{ as
+}r\ra 0,\quad u(a,\theta )=f(\theta )
+\label{eqLaplaceInhomDirichletWedge}
+\end{array}
+\end{eqnarray}
+\]</div>
+<p>Let us look for the simplest function of <span class="math notranslate nohighlight">\(\theta\)</span> only that satisfies the
+inhomogeneous BC of the from: <span class="math notranslate nohighlight">\(w(\theta
+)=(u_1-u_0)\dst\frac{\theta}{\al}+u_0\)</span>. Note that
+<span class="math notranslate nohighlight">\(w_{\theta\theta}=0\)</span> and that <span class="math notranslate nohighlight">\(w(0)=u_0\)</span> and <span class="math notranslate nohighlight">\(w(\al )=u_1\)</span>. Then let
+<span class="math notranslate nohighlight">\(u(r,\theta )=w(\theta )+v(r,\theta )\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref17">
+<span class="eqno">(23.18)<a class="headerlink" href="#equation-ref17" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\left.\begin{array}{c}
+u_{rr}+\dst\frac{1}{r}u_r+\dst\frac{1}{r^2}u_{\theta\theta}
+   = v_{rr}+\dst\frac{1}{r}v_r+\dst\frac{1}{r^2}v_{\theta\theta} =0\\
+v(r,0)=0\quad v(r,\al )=0\\
+v(a,\theta )=f(\theta )-w(\theta
+)\end{array}\right\}\begin{array}{l}
+\mbox{Essentially the problem}\\
+\mbox{solved in Example {prf:ref}`EGHomogeneousWedge`\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<p>The solution is</p>
+<div class="math notranslate nohighlight" id="equation-ref18">
+<span class="eqno">(23.19)<a class="headerlink" href="#equation-ref18" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u(r,\theta
+)=(u_1-u_0)\frac{\theta}{\al}+u_0+\sum\limits_{n=1}^\infty
+c_nr^{\left(\frac{n\pi}{\al}\right)}\sin\left(\frac{n\pi\theta}{\al}\right)
+\end{eqnarray}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-ref19">
+<span class="eqno">(23.20)<a class="headerlink" href="#equation-ref19" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+c_n=\frac{2}{\al } a^{-\left(\frac{n\pi}{\al}\right)}
+   \int\limits_0^\infty \big[ f(\theta )-w(\theta )\big]\sin
+   \left(\frac{n\pi\theta}{\al}\right)\, d\theta .
+\end{eqnarray}
+\]</div>
+</section>
+</div><div class="proof example admonition" id="example-3">
+<p class="admonition-title"><span class="caption-number">Example 23.3 </span> (A Wedge with Insulating BC on <span class="math notranslate nohighlight">\(\theta =0\)</span> and <span class="math notranslate nohighlight">\(\theta =\al&lt;2\pi\)</span>)</p>
+<section class="example-content" id="proof-content">
+<figure class="align-center" id="mixed-pizza">
+<img alt="../_images/mixed_pizza.png" src="../_images/mixed_pizza.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 23.3 </span><span class="caption-text">Mixed Boundary conditions on a wedge shaped domain <a class="reference internal" href="#equation-eqlaplacemixedwedge">(23.21)</a>.</span><a class="headerlink" href="#mixed-pizza" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight" id="equation-eqlaplacemixedwedge">
+<span class="eqno">(23.21)<a class="headerlink" href="#equation-eqlaplacemixedwedge" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{l}
+u_{rr}+\dst\frac{1}{r}u_r+\dst\frac{1}{r^2}u_{\theta\theta}=0\\
+u_\theta (r,0)=0, \quad u_\theta (r,\al )=0, \  u(a,\theta
+)=f(\theta )\label{eqLaplaceMixedWedge}\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Let</p>
+<div class="math notranslate nohighlight" id="equation-ref21">
+<span class="eqno">(23.22)<a class="headerlink" href="#equation-ref21" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u(r,\theta )=R( r )\Theta (\theta )\Rightarrow r^2\left(
+R^{\prime\prime} +\frac{1}{r}R^\prime \right) /R( r
+)=-\Theta^{\prime\prime}/\Theta =\la^2
+\end{eqnarray}
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\Theta \mbox{ equation}\rangle}\)</span></p>
+<div class="math notranslate nohighlight" id="equation-ref22">
+<span class="eqno">(23.23)<a class="headerlink" href="#equation-ref22" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+&amp; &amp;\left.\begin{array}{l}
+\Theta^{\prime\prime}+\la^2\Theta =0\\
+\Theta^\prime (0)=0=\Theta^\prime (\al )\end{array}\right\}
+\begin{array}{l}
+\Theta (\theta )=A\cos\la\theta +B\sin (\la\theta )\\
+\Theta^\prime (0)=B\la =0\;\la =0\mbox{ or }B=0;\end{array}\\
+&amp; &amp;\hspace{1in}\begin{array}{l}
+\Theta^\prime (\theta )=-A\la\sin (\la\theta )+B\la\cos (\la\theta )\\
+\Theta^\prime (\al )=-A\la\sin (\la\al )=0\;
+\la_n=\frac{n\pi}{\al};\;
+    n=0,1,\ldots\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{R \mbox{ equation} \rangle}\)</span>
+<span class="math notranslate nohighlight">\(r^2R_n^{\prime\prime}
+   +rR_n^\prime -\la_n^2R_n=0\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{n=0}\)</span>: <span class="math notranslate nohighlight">\(rR_0^{\prime\prime}
+  +R_0^\prime ={(rR_0^\prime )}^\prime =0\Rightarrow rR_0^\prime
+   =d_0\Rightarrow R_0( r )=c_0+d_0\ln r\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{n\geq 1}\)</span>: <span class="math notranslate nohighlight">\(r^2R_n^{\prime\prime}
+   +rR_n^\prime -\la^2 R_n=0\Rightarrow R_n
+   =c_nr^{\la_n}+D_nr^{-\la_n}\)</span>.</p>
+<p>Since <span class="math notranslate nohighlight">\(u(r,\theta )&lt;\infty\)</span> (i.e. must be bounded) as <span class="math notranslate nohighlight">\(r\ra 0\)</span> we
+require <span class="math notranslate nohighlight">\(d_0=0=D_n\)</span>. Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref23">
+<span class="eqno">(23.24)<a class="headerlink" href="#equation-ref23" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(r,\theta ) &amp; = &amp; \frac{c_0}{2}+\sum\limits_{n=1}^\infty c_nr^{\left(\frac{n\pi}{\al}\right)}\cos\left(\frac{n\pi\theta}{\al}\right)\\
+f(\theta )=u(a,\theta ) &amp; = &amp; \frac{c_0}{2}+\sum\limits_{n=1}^\infty c_na^{\left(\frac{n\pi}{\al}\right)}\cos\left(\frac{n\pi\theta }{\al}\right)\\
+c_0 &amp; = &amp; \frac{2}{\al}\int\limits_0^\al f(\theta )d\theta\quad
+   c_n=\frac{2}{\al}a^{-\left(\frac{n\pi}{\al}\right)}\int\limits_0^\al
+   f(\theta )\cos\left(\frac{n\pi\theta}{\al}\right)\, d\theta\phantom{\int\int\int}\\
+u(r,\theta ) &amp; = &amp; \frac{c_0}{2}+\sum\limits_{n=1}^\infty
+c_nr^{\left(\frac{n\pi}{\al}\right)}\cos\left(\frac{n\pi\theta}{\al}\right)
+.
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+</div><div class="proof example admonition" id="example-4">
+<p class="admonition-title"><span class="caption-number">Example 23.4 </span> (Mixed BC - a ‘crack like’ problem.)</p>
+<section class="example-content" id="proof-content">
+<figure class="align-center" id="semicircle">
+<img alt="../_images/semicircle.png" src="../_images/semicircle.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 23.4 </span><span class="caption-text">Mixed crack-like boundary conditions on a circular
+domain as prescribed in <a class="reference internal" href="#equation-eqmixedcrack">(23.26)</a>.</span><a class="headerlink" href="#semicircle" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight" id="equation-ref24">
+<span class="eqno">(23.25)<a class="headerlink" href="#equation-ref24" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+\De u=u_{rr}+\frac{1}{r}u_r+\frac{1}{r^2}u_{\theta\theta}=0
+\end{eqnarray}
+\]</div>
+<p>subject to</p>
+<div class="math notranslate nohighlight" id="equation-eqmixedcrack">
+<span class="eqno">(23.26)<a class="headerlink" href="#equation-eqmixedcrack" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(r,0) &amp; = &amp; 0\quad \frac{\pa u}{\pa\theta}(r,\pi )=0 \label{eqMixedCrack}\\
+u(a,\theta ) &amp; = &amp; f(\theta ). \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(u(r,\theta )=R( r )\Theta (\theta )\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref26">
+<span class="eqno">(23.27)<a class="headerlink" href="#equation-ref26" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+r^2\frac{\left( R^{\prime\prime}+\frac{1}{r}R^\prime\right)}{R}
+   = -\frac{\Theta^{\prime\prime}(\theta )}{\Theta (\theta )}=\la^2
+\end{eqnarray}
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\Theta \mbox{ equation}\rangle}\)</span></p>
+<div class="math notranslate nohighlight" id="equation-ref27">
+<span class="eqno">(23.28)<a class="headerlink" href="#equation-ref27" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{l}
+\Theta^{\prime\prime}+\la^2 \Theta =0\\
+\\
+\Theta (0)=0\quad \Theta^\prime (\pi )=0\end{array}
+\begin{array}{l}
+\Theta =A\cos\la\theta +B\sin\la\theta\quad \Theta^\prime
+   = - A\la\sin\la\theta +B\la\cos\la\theta\\
+\Theta (0)=A=0\quad\Theta^\prime (\pi )=B\la\cos (\la\pi )
+   =0\Rightarrow\pi\la_1 =\dst\frac{\pi}{2}, \dst\frac{3\pi}{2},
+   \ldots\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<p>or <span class="math notranslate nohighlight">\(\la_n =(2n+1)\dst\frac{1}{2}\)</span> <span class="math notranslate nohighlight">\(n=0,1,\ldots \)</span> <span class="math notranslate nohighlight">\(\la\ne 0\)</span> as this
+would be trivial.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{R \mbox{ equation}\rangle}\)</span>
+<span class="math notranslate nohighlight">\(r^2R^{\prime\prime}+rR^\prime -\la^2 R=0\)</span> <span class="math notranslate nohighlight">\(R( r
+)=r^\gamma\Rightarrow\gamma^2 -\la^2 =0\)</span> <span class="math notranslate nohighlight">\(\gamma =\pm\la\)</span>. Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref28">
+<span class="eqno">(23.29)<a class="headerlink" href="#equation-ref28" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u_n(r,\theta )=\left( c_nr^{\la_n}+d_nr^{-\la_n}\right)\sin\la_n
+\theta .
+\end{eqnarray}
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(u\)</span> should be bounded as <span class="math notranslate nohighlight">\(r\ra 0\)</span> we conclude that <span class="math notranslate nohighlight">\(d_n=0\)</span>.
+The general solution is thus</p>
+<div class="math notranslate nohighlight" id="equation-ref29">
+<span class="eqno">(23.30)<a class="headerlink" href="#equation-ref29" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(r,\theta ) &amp; = &amp; \sum\limits_{n=0}^\infty c_nr^{(2n+1)/2}\sin\left(\frac{(2n+1)}{2}\theta\right)\\
+f(\theta ) &amp; = &amp; u(a,\theta )=\sum\limits_{n=0}^\infty
+c_na^{(2n+1)/2}\sin\left(\left(\frac{2n+1}{2}\right)\theta\right) .
+\end{eqnarray}
+\end{split}\]</div>
+<p>Check orthogonality</p>
+<div class="math notranslate nohighlight" id="equation-ref30">
+<span class="eqno">(23.31)<a class="headerlink" href="#equation-ref30" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\int\limits_0^\pi\sin\left(\left(\frac{2m+1}{2}\right)\theta\right)\sin\left(\left(\frac{2n+1}{2}\right)\theta\right)\,
+d\theta =\left\{\begin{array}{ll}0&amp;m\ne n\\ \pi
+/2&amp;m=n\end{array}\right. .
+\end{eqnarray}
+\end{split}\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref31">
+<span class="eqno">(23.32)<a class="headerlink" href="#equation-ref31" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+c_n &amp; = &amp; \frac{2a^{-\left(
+n+\frac{1}{2}\right)}}{\pi}\int\limits_0^\pi f(\theta
+)\sin\left(\left( n+\frac{1}{2}\right)\theta\right)\, d\theta\\
+u(r,\theta ) &amp; = &amp; \sum\limits_{n=0}^\infty c_nr^{\left(
+  n+\frac{1}{2}\right)}\sin\left(\left( n+\frac{1}{2}\right)\theta\right)
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+</div></section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./laplace"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="rectangular.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="wedges.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-analysis-of-laplace-s-equation-on-circular-domains">23.1. General Analysis of Laplace’s Equation on Circular Domains</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laplacian-in-polar-coordinates">23.1.1. Laplacian in Polar Coordinates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introductory-remarks-about-circular-domains">23.1.2. Introductory Remarks About Circular Domains</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wedge-problems">23.1.3. Wedge Problems</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

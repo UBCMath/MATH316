@@ -1,0 +1,943 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>21. Laplace’s Equation &#8212; MATH 316</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'laplace/2d';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems" href="rectangular.html" />
+    <link rel="prev" title="20. Laplace Equation" href="laplace.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MATH 316</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../odes/review.html">1. Review of Methods to Solve Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/first.html">1.1. First Order Ordinary Differential Equations:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/second.html">1.2. Second Order Constant Coefficient Linear Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/cauchy.html">1.3. Cauchy/Euler/Equidimensional Equations:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/series.html">2. Series Solutions To ODEs With Variable Coefficients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/rsps.html">3. Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odes/bessel.html">5. Bessel’s Equation and Bessel Functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Partial Differential Equations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../intro/initial.html">6. Introduction To Partial Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/continued.html">7. Introduction To Partial Differential Equations (Continued)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/separation.html">8. Separation Of Variables And Fourier Series</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fourier Series</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fourier/series.html">9. Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fourier/separation.html">10. Separation of Variables and Fourier Series</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fd/fd.html">11. Overview and Formulas</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fd/heat.html">12. Heat Equation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fd/heat/heat.html">12.1. FTCS Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/wave.html">13. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/laplace.html">14. Laplace Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../heat/heat.html">15. Heat Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/circular.html">16. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/inhomogeneous.html">17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/distributed.html">18. Heat Conduction With Distributed Sources/Sinks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../heat/eigenfunctions.html">19. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="laplace.html">20. Laplace Equation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. Laplace’s Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rectangular.html">22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circular.html">23. Circular Domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wedges.html">24. Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">25. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">26. The 1D Wave Equation and D’Alembert’s Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">27. Interpretating D’Alembert’s Solution in Space-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">28. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/UBCMath/math316" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/laplace/2d.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Laplace’s Equation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-the-equations-we-have-studied-thus-far">21.1. Summary Of The Equations We Have Studied Thus Far</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-solutions-in-higher-dimensions">21.2. Steady State Solutions In Higher Dimensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laplace-s-equation-in-two-dimensions">21.3. Laplace’S Equation In Two Dimensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-domains">21.3.1. Rectangular Domains</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-problem-1a-by-separation-of-variables">21.4. Solution To Problem (1A) By Separation Of Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-considerations-for-solving-problem-1a">21.4.1. Some Considerations for Solving Problem 1A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-to-solving-1a">21.4.2. Back to Solving 1A</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-problem-1b-by-separation-of-variables">21.5. Solution To Problem (1B) By Separation Of Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summarizing">21.6. Summarizing</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="math notranslate nohighlight">
+\[
+\newenvironment{remark}{\begin{Remark}\rm}{\end{Remark}}
+\newenvironment{exercise}{\begin{Exercise}\rm}{\end{Exercise}}
+\newcommand{\N}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\mat}[1]{{\mathbf #1}}
+\newcommand{\vect}[1]{\underline{#1}}
+\newcommand{\njump}[1]{[|#1|]}
+\newcommand{\pa}{\partial}
+\newcommand{\De}{\Delta}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\dst}{\displaystyle}
+\newcommand{\la}{\lambda}
+\newcommand{\al}{\alpha}
+\newcommand{\rme}{{\rm e}}
+\newcommand{\rmi}{{\rm i}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bke}[1]{\left ( #1 \right )}
+\newcommand{\bkt}[1]{\left [ #1 \right ]}
+\newcommand{\bket}[1]{\left \{ #1 \right \}}
+\newcommand{\norm}[1]{\left \| #1 \right \|}
+\newcommand{\bka}[1]{\left \langle #1 \right \rangle}
+\renewcommand{\th}{\theta}
+\newcommand{\om}{\omega}
+\newcommand{\pd}{\partial}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\ve}[1]{\mathbf{#1}}
+\newcommand{\what}[1]{\widehat{#1}}
+\newcommand{\tint}{\int\kern-.6em\int\kern-.6em\int}
+\]</div>
+<section class="tex2jax_ignore mathjax_ignore" id="laplace-s-equation">
+<h1><span class="section-number">21. </span>Laplace’s Equation<a class="headerlink" href="#laplace-s-equation" title="Permalink to this headline">#</a></h1>
+<p>In this lecture we start our study of Laplace’s equation, which
+represents the steady state of a field that depends on two or more
+independent variables, which are typically spatial. We demonstrate
+the decomposition of the inhomogeneous Dirichlet Boundary value
+problem for the Laplacian on a rectangular domain into a sequence of
+four boundary value problems each having only one boundary segment
+that has inhomogeneous boundary conditions and the remainder of the
+boundary is subject to homogeneous boundary conditions. These latter
+problems can then be solved by separation of variables.</p>
+<div class="admonition-key-concepts admonition">
+<p class="admonition-title">Key Concepts</p>
+<p>Laplace’s equation; Steady State
+boundary value problems in two or more dimensions; Linearity;
+Decomposition of a complex boundary value problem into subproblems</p>
+</div>
+<p>Reference Section: Boyce and Di Prima Section 10.8</p>
+<section id="summary-of-the-equations-we-have-studied-thus-far">
+<h2><span class="section-number">21.1. </span>Summary Of The Equations We Have Studied Thus Far<a class="headerlink" href="#summary-of-the-equations-we-have-studied-thus-far" title="Permalink to this headline">#</a></h2>
+<p>In this course we have studied the solution ofthe second order linear PDE.</p>
+<div class="math notranslate nohighlight" id="equation-ref0">
+<span class="eqno">(21.1)<a class="headerlink" href="#equation-ref0" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\begin{array}{llllllll}\dst\frac{\pa u}{\pa t} &amp;= &amp;\al^2 \De u &amp; \mbox{Heat equation:}\quad &amp;\mbox{Parabolic }&amp;T=\al^2 X^2&amp; \mbox{Dispersion Relation}&amp; \sigma=-\al^2 k^2\\
+\\
+\dst\frac{\pa^2u}{\pa t^2} &amp;= &amp;c^2\De u &amp; \mbox{Wave equation:} &amp;\mbox{Hyperbolic}&amp;T^2-c^2X^2=A &amp; \mbox{Dispersion Relation}&amp;\sigma=\pm i c k\\
+\\
+\De u &amp;= &amp;0 &amp;\mbox{Laplace's equation:} &amp;\mbox{Elliptic }&amp;X^2+Y^2=A
+&amp;\mbox{Dispersion Relation}&amp;\sigma=\pm k
+\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<p><strong>Important:</strong></p>
+<ol class="arabic simple">
+<li><p>These equations are second order because they have at most 2nd partial derivatives.</p></li>
+<li><p>These equations are all linear so that a linear combination of solutions is again a solution.</p></li>
+</ol>
+</section>
+<section id="steady-state-solutions-in-higher-dimensions">
+<h2><span class="section-number">21.2. </span>Steady State Solutions In Higher Dimensions<a class="headerlink" href="#steady-state-solutions-in-higher-dimensions" title="Permalink to this headline">#</a></h2>
+<p>Laplace’s Equation arises as a steady state problem for the Heat or
+Wave Equations that do not vary with time so that <span class="math notranslate nohighlight">\(\dst\frac{\pa
+u}{\pa t}=0=\frac{\pa^2 u}{\pa t^2}\)</span>.</p>
+<ol class="arabic">
+<li><p>2D:</p>
+<div class="math notranslate nohighlight" id="equation-ref1">
+<span class="eqno">(21.2)<a class="headerlink" href="#equation-ref1" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   \De u=\frac{\pa^2u}{\pa x^2}+\frac{\pa^2u}{\pa y^2}=0.
+   \end{eqnarray}
+   \]</div>
+</li>
+<li><p>3D:</p>
+<div class="math notranslate nohighlight" id="equation-ref2">
+<span class="eqno">(21.3)<a class="headerlink" href="#equation-ref2" title="Permalink to this equation">#</a></span>\[
+   \begin{eqnarray}
+   \De u=\frac{\pa^2 u}{\pa x^2}+\frac{\pa^2u}{\pa
+   y^2}+\frac{\pa^2u}{\pa z^2}=0.
+   \end{eqnarray}
+   \]</div>
+</li>
+</ol>
+<ul class="simple">
+<li><p>No initial conditions required.</p></li>
+<li><p>Only boundary conditions.</p></li>
+</ul>
+<p><strong>The Laplacian in Polar Coordinates:</strong> <span class="math notranslate nohighlight">\(\dst \De u=\frac{\pa^2u}{\pa r^2}+\frac{1}{r}
+   \frac{\pa u}{\pa r}+\frac{1}{r^2}\frac{\pa^2 u}{\pa\theta^2}=0\)</span>.</p>
+</section>
+<section id="laplace-s-equation-in-two-dimensions">
+<h2><span class="section-number">21.3. </span>Laplace’S Equation In Two Dimensions<a class="headerlink" href="#laplace-s-equation-in-two-dimensions" title="Permalink to this headline">#</a></h2>
+<p>Physical problems in which Laplace’s equation arises</p>
+<ul class="simple">
+<li><p>2D Steady-State Heat Conduction,</p></li>
+<li><p>Static Deflection of a Membrane,</p></li>
+<li><p>Electrostatic Potential.</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-ref3">
+<span class="eqno">(21.4)<a class="headerlink" href="#equation-ref3" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u_t=\al ^2 (u_{xx}+u_{yy})\longrightarrow
+   u(x,y,t)\mbox{ inside a domain $D$.}
+\end{eqnarray}
+\]</div>
+<ul class="simple">
+<li><p>Steady-State Solution satisfies:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-ref4">
+<span class="eqno">(21.5)<a class="headerlink" href="#equation-ref4" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\De u &amp; = &amp; u_{xx}+u_{yy}=0\quad (x,y)\in D\\
+\mbox{BC:} &amp; &amp; u\mbox{ prescribed on $\pa D$}.
+\end{eqnarray}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>We consider domains <span class="math notranslate nohighlight">\(D\)</span> that are rectangular, circular, pizza slices.</p></li>
+</ul>
+<section id="rectangular-domains">
+<h3><span class="section-number">21.3.1. </span>Rectangular Domains<a class="headerlink" href="#rectangular-domains" title="Permalink to this headline">#</a></h3>
+<p>Consider solving the Laplace’s equation on a rectangular
+domain (see figure <a class="reference internal" href="#dirichlet-all"><span class="std std-numref">Fig. 21.1</span></a>) subject to inhomogeneous
+Dirichlet Boundary Conditions</p>
+<div class="math notranslate nohighlight" id="equation-eqlaplacedirichletgen">
+<span class="eqno">(21.6)<a class="headerlink" href="#equation-eqlaplacedirichletgen" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\De u&amp;=&amp;u_{xx}+u_{yy}=0\\
+\mbox{BC:} \quad u(x,0)=f_1(x),\quad u(a,y)&amp;=&amp;g_2(y),\quad
+u(x,b)=f_2(x),\quad u(0,y)=g_1(y) \label{eqLaplaceDirichletGen}
+\end{eqnarray}
+\end{split}\]</div>
+<figure class="align-center" id="dirichlet-all">
+<img alt="dirichlet_all" src="../_images/dirichlet_all.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 21.1 </span><span class="caption-text">Inhomogeneous Dirichlet Boundary conditions on a
+rectangular domain as prescribed in <a class="reference internal" href="#equation-eqlaplacedirichletgen">(21.6)</a>.</span><a class="headerlink" href="#dirichlet-all" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Idea for solution - divide and conquer:</p>
+<ul class="simple">
+<li><p>We want to use separation of variables so we need homogeneous boundary conditions.</p></li>
+<li><p>Since the equation is linear we can break the problem into simpler
+problems which do have sufficient homogeneous BC and use
+superposition to obtain the solution to <a class="reference internal" href="#equation-eqlaplacedirichletgen">(21.6)</a>.</p></li>
+</ul>
+<p><strong>Pictorially:</strong></p>
+<figure class="align-center" id="divide-and-conquer-png">
+<img alt="divide_and_conquer.png" src="../_images/divide_and_conquer.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 21.2 </span><span class="caption-text">Decomposition of the inhomogeneous Dirichlet Boundary value
+problem for the Laplacian on a rectangular domain as prescribed in
+<a class="reference internal" href="#equation-eqlaplacedirichletgen">(21.6)</a> into a sequence of four boundary value
+problems each having only one boundary segment that has
+inhomogeneous boundary conditions and the remainder of the boundary
+is subject to homogeneous boundary conditions.</span><a class="headerlink" href="#divide-and-conquer-png" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="solution-to-problem-1a-by-separation-of-variables">
+<h2><span class="section-number">21.4. </span>Solution To Problem (1A) By Separation Of Variables<a class="headerlink" href="#solution-to-problem-1a-by-separation-of-variables" title="Permalink to this headline">#</a></h2>
+<figure class="align-center" id="problem-1a">
+<img alt="problem_1a" src="../_images/problem_1a.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 21.3 </span><span class="caption-text">Boundary value problem for sub-solution <span class="math notranslate nohighlight">\(u^A(x,y)\)</span>.</span><a class="headerlink" href="#problem-1a" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="some-considerations-for-solving-problem-1a">
+<h3><span class="section-number">21.4.1. </span>Some Considerations for Solving Problem 1A<a class="headerlink" href="#some-considerations-for-solving-problem-1a" title="Permalink to this headline">#</a></h3>
+<div class="math notranslate nohighlight" id="equation-ref6">
+<span class="eqno">(21.7)<a class="headerlink" href="#equation-ref6" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u_{xx}+u_{yy} &amp; = &amp;0\\
+u(0,y) &amp; = &amp; 0=u(a,y)=u(x,b);\quad u(x,0)=f_1(x).
+\end{eqnarray}
+\end{split}\]</div>
+<p>Let</p>
+<div class="math notranslate nohighlight" id="equation-ref7">
+<span class="eqno">(21.8)<a class="headerlink" href="#equation-ref7" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u(x,y)=X(x)Y(y).
+\end{eqnarray}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-ref8">
+<span class="eqno">(21.9)<a class="headerlink" href="#equation-ref8" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+X^{\prime\prime}(x)Y(y)+X(x)Y^{\prime\prime}(y)=0
+\end{eqnarray}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-ref9">
+<span class="eqno">(21.10)<a class="headerlink" href="#equation-ref9" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+\frac{X^{\prime\prime}(x)}{X(x)}=-\frac{Y^{\prime\prime}(y)}{Y(y)}=\mbox{
+const }=\pm\la ^2
+\end{eqnarray}
+\]</div>
+<p><strong>An aside about the choice of sign in front of <span class="math notranslate nohighlight">\(\la ^2\)</span></strong></p>
+<p><span class="math notranslate nohighlight">\(\mathbf{-\la ^2}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-ref10">
+<span class="eqno">(21.11)<a class="headerlink" href="#equation-ref10" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{lcl}
+X^{\prime\prime}+\la ^2X&amp;=&amp;0\\ Y^{\prime\prime}-\la
+^2Y&amp;=&amp;0\end{array} \; \begin{array}{lcl}
+\Rightarrow X&amp;=&amp;A\cos(\la x)+B\sin(\la x)\mbox{ can match } X(0)=0=X(a)\\
+\Rightarrow Y&amp;=&amp;C \cosh(\la y)+D\sinh(\la y) \mbox{ can only match } Y(0)=0 \mbox{ or }Y(b)=0 \end{array}.
+\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Because <span class="math notranslate nohighlight">\(\sin\)</span> and <span class="math notranslate nohighlight">\(\cos\)</span> have an <span class="math notranslate nohighlight">\(\infty\)</span> # of real roots
+<span class="math notranslate nohighlight">\(-\la ^2\)</span> is the appropriate choice for BC’s that appear in Problems (A) and
+(C).</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\mathbf{+\la ^2}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-ref11">
+<span class="eqno">(21.12)<a class="headerlink" href="#equation-ref11" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}\begin{array}{lcl}
+X^{\prime\prime}-\la ^2X&amp;=&amp;0\\ Y^{\prime\prime}+\la
+^2Y&amp;=&amp;0\end{array} \; \begin{array}{lcl}
+\Rightarrow X&amp;=&amp;A\cosh(\la x)+B\sinh(\la x)\mbox{ can only match } X(0)=0 \mbox{ or } X(a)=0\\
+\Rightarrow Y&amp;=&amp;C\cos (\la y)+D\sin (\la y)\mbox{ can match } Y(0)=0=Y(b)\end{array}.
+\nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Again because <span class="math notranslate nohighlight">\(\sin\)</span> and <span class="math notranslate nohighlight">\(\cos\)</span> have an <span class="math notranslate nohighlight">\(\infty\)</span> # of
+real roots <span class="math notranslate nohighlight">\(+\la ^2\)</span> is the appropriate choice for BC’s that appear in Problems
+(B) and (D).</p></li>
+</ul>
+</section>
+<section id="back-to-solving-1a">
+<h3><span class="section-number">21.4.2. </span>Back to Solving 1A<a class="headerlink" href="#back-to-solving-1a" title="Permalink to this headline">#</a></h3>
+<div class="math notranslate nohighlight" id="equation-ref12">
+<span class="eqno">(21.13)<a class="headerlink" href="#equation-ref12" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+X(0) &amp; = &amp; 0\Rightarrow A=0\\
+X(a)&amp;=&amp;B\sin (\la a)=0 \Rightarrow \framebox{
+    $\begin{array}{lcl}\la _n&amp;=&amp;\frac{n\pi}{a}\quad n=1,2,\ldots\\
+X_n(x) &amp;=&amp;\sin\left(\frac{n\pi x}{a}\right) \end{array}$.}\\
+u(x,b) &amp; = &amp; X(x)Y(b)=0\Rightarrow Y(b)=0
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref13">
+<span class="eqno">(21.14)<a class="headerlink" href="#equation-ref13" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+Y(b) &amp; = &amp; C\cosh(\la b)+D\sinh(\la b)=0\Rightarrow C=-D \tanh(\la b)\phantom{int\int}\\
+Y(y) &amp; = &amp; -D\tan h(\la b)\cosh(\la y) +D\sinh(\la y)\\
+&amp; = &amp; D\left\{\frac{
+   \sinh(\la y)\cosh(\la b)-\cosh(\la y)\sinh(\la b)}
+   {\cosh(\la b)}\right\}\\
+&amp; = &amp; \frac{D}{\cosh(\la b)}\sinh\la (y-b) =\bar{D} \sinh\la (y-b).
+\end{eqnarray}
+\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We could save ourselves the time by building the BC
+<span class="math notranslate nohighlight">\(Y(b)=0\)</span> directly into the solution by letting</p>
+<div class="math notranslate nohighlight" id="equation-ref14">
+<span class="eqno">(21.15)<a class="headerlink" href="#equation-ref14" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+Y_n(y)=\bar{D} \sinh\la _n(y-b)
+\end{eqnarray}
+\]</div>
+<p>directly. To motivate this guess. Firstly we note that we need Y(y=b)=0. Since sinh(z) only has one possible root at z=0,
+we have to build a function of a function out of sinh() whose argument goes to zero at y=b – y-b is just such an argument.</p>
+</div>
+<p>Now the functions: <span class="math notranslate nohighlight">\(u_n(x,y)=\sin\dst\left(\frac{n\pi x}{a}\right)
+\sinh \left(\frac{n\pi}{a}(y-b)\right)\)</span> <span class="math notranslate nohighlight">\(n=1,2,\ldots\)</span> satisfy all
+the homogeneous BC of Problem (1A). In order to match the BC
+<span class="math notranslate nohighlight">\(u(x,0)=f_1(x)\)</span> we need to superimpose all these solutions.</p>
+<div class="math notranslate nohighlight" id="equation-ref15">
+<span class="eqno">(21.16)<a class="headerlink" href="#equation-ref15" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(x,y) &amp; = &amp; \sum\limits_{n=1}^\infty B_n \sin\left(\frac{n\pi x}{a}\right)\sinh\left(\frac{n\pi}{a} (y-b)\right)\\
+f_1(x)=u(x,0) &amp; = &amp; \sum\limits_{n=1}^\infty
+   \underbrace{\left\{ -B_n\sinh\left(\frac{n\pi b}{a}\right)\right\}}_{b_n}
+   \sin\left(\frac{n\pi x}{a}\right)
+\end{eqnarray}
+\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-ref16">
+<span class="eqno">(21.17)<a class="headerlink" href="#equation-ref16" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+-B_n\sinh\left(\frac{n\pi b}{a}\right)
+=b_n=\frac{2}{a}\int\limits_0^a f_1(x)\sin\left(\frac{n\pi
+x}{a}\right)\, dx.
+\end{eqnarray}
+\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref17">
+<span class="eqno">(21.18)<a class="headerlink" href="#equation-ref17" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(x,y) &amp; = &amp; \sum\limits_{n=1}^\infty B_n
+\sinh\left(\frac{n\pi}{a}(y-b)\right)\sin\left(\frac{n\pi
+x}{a}\right)
+;\nonumber\\
+\mbox{ where } B_n &amp; = &amp;-\frac{2}{a\sinh\left(\frac{n\pi
+b}{a}\right)}
+   \int\limits_0^a f_1(x)\sin\left(\frac{n\pi x}{a}\right)\, dx \nonumber\\
+\end{eqnarray}
+\end{split}\]</div>
+<div class="proof example admonition" id="example-0">
+<p class="admonition-title"><span class="caption-number">Example 21.1 </span></p>
+<section class="example-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\dst f_L(x)=1=\sum\limits_{n=1}^\infty
+b_n\sin\left(\frac{n\pi x}{a}\right) \)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-ref18">
+<span class="eqno">(21.19)<a class="headerlink" href="#equation-ref18" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+b_n=\frac{2}{an\pi} \left[ 1+(-1)^{n+1}\right]
+    =-B_n\sinh\left(\frac{n\pi b}{a}\right) .
+\end{eqnarray}
+\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-ref19">
+<span class="eqno">(21.20)<a class="headerlink" href="#equation-ref19" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u(x,y)=\frac{1}{a}\sum\limits_{n=1}^\infty -\frac{2}{n\pi}
+   \frac{[1+(-1)^{n+1}]}{\sinh\left(\frac{n\pi b}{a}\right)}
+   \sin\left(\frac{n\pi x}{a}\right)\sinh\left(\frac{n\pi}{a}(y-b)\right) .
+\end{eqnarray}
+\]</div>
+</section>
+</div></section>
+</section>
+<section id="solution-to-problem-1b-by-separation-of-variables">
+<h2><span class="section-number">21.5. </span>Solution To Problem (1B) By Separation Of Variables<a class="headerlink" href="#solution-to-problem-1b-by-separation-of-variables" title="Permalink to this headline">#</a></h2>
+<figure class="align-center" id="problem-1b">
+<img alt="../_images/problem_1b.png" src="../_images/problem_1b.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 21.4 </span><span class="caption-text">Boundary value problem for sub-solution <span class="math notranslate nohighlight">\(u^A(x,y)\)</span>.</span><a class="headerlink" href="#problem-1b" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight" id="equation-ref20">
+<span class="eqno">(21.21)<a class="headerlink" href="#equation-ref20" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\De u &amp; = &amp; u_{xx}+u_{yy}=0\\
+0=u(x,0) &amp; = &amp; u(x,b)=u(0,y);\quad u(b,y)=g_2(y)
+\end{eqnarray}
+\end{split}\]</div>
+<p>Let</p>
+<div class="math notranslate nohighlight" id="equation-ref21">
+<span class="eqno">(21.22)<a class="headerlink" href="#equation-ref21" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(x,y) &amp; = &amp; X(x)Y(y)\\
+\frac{X^{\prime\prime}(x)}{X(x)} &amp; = &amp;
+   -\frac{Y^{\prime\prime}(y)}{Y(y)}=\pm\la^2.
+\end{eqnarray}
+\end{split}\]</div>
+<p>Since we have homogeneous BC at <span class="math notranslate nohighlight">\(y=0\)</span> and <span class="math notranslate nohighlight">\(y=b\)</span> we want the function
+<span class="math notranslate nohighlight">\(Y(y)\)</span> to behave like sines and cosines. So we choose const
+<span class="math notranslate nohighlight">\(=+\la^2\)</span></p>
+<div class="math notranslate nohighlight" id="equation-ref22">
+<span class="eqno">(21.23)<a class="headerlink" href="#equation-ref22" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+\begin{array}{lcl}X^{\prime\prime}-\la^2 X&amp;=&amp;0\\
+Y^{\prime\prime}+\la^2 Y&amp;=&amp;0\end{array}\quad\begin{array}
+{lcl}X&amp;=&amp;c_1 \cosh\la x+c_2\sinh\la x\\
+Y&amp;=&amp; A\cos (\la y)+B\sin (\la y)\end{array}
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ref23">
+<span class="eqno">(21.24)<a class="headerlink" href="#equation-ref23" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+u(x,0) &amp; = &amp; X(x)Y(0)=0\Rightarrow Y(0)=0\Rightarrow Y(0)=A=0\\
+u(x,b) &amp; = &amp; X(x)Y(b)=0\Rightarrow Y(b)=0\Rightarrow Y=B\sin (\la
+b)=0, \, \Rightarrow \framebox{
+    $\begin{array}{lcl}\la _n&amp;=&amp;\frac{n\pi}{b}\quad n=1,2,\ldots\\
+Y_n(y) &amp;=&amp;\sin\left(\frac{n\pi y}{b}\right) \end{array}$.}\\
+u(0,y) &amp; = &amp; X(0)Y(y)=0\Rightarrow X(0)=c_1 =0 \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>Therefore <span class="math notranslate nohighlight">\(\dst X_n(x)=c_2 \sinh\left(\frac{n\pi
+x}{b}\right)\)</span>.</p>
+<p>Therefore <span class="math notranslate nohighlight">\(\dst u_n(x,y)=\sin\left(\frac{n\pi y}{b}\right)
+\sinh\left(\frac{n\pi x}{b}\right)\)</span> satisfy the homogeneous BC.</p>
+<p>Therefore <span class="math notranslate nohighlight">\(\dst u(x,y)=\sum\limits_{n=1}^\infty
+c_n\sinh\left(\frac{n\pi x}{b}\right)\sin\left(\frac{n\pi
+y}{b}\right)\)</span>.</p>
+<p>Now to satisfy the inhomogeneous BC</p>
+<div class="math notranslate nohighlight" id="equation-ref24">
+<span class="eqno">(21.25)<a class="headerlink" href="#equation-ref24" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+g_2(y)=u(a,y)=\sum\limits_{n=1}^\infty
+\underbrace{c_n\sinh\left(\frac{n\pi a}{b}\right)}_{b_n}
+\sin\left(\frac{n\pi y}{b}\right)
+\end{eqnarray}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-ref25">
+<span class="eqno">(21.26)<a class="headerlink" href="#equation-ref25" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+c_n\sinh\left(\frac{n\pi a}{b}\right) =\frac{2}{b}\int\limits_0^b
+g_2(y)\sin \left(\frac{n\pi y}{b}\right)\, dy.
+\end{eqnarray}
+\]</div>
+</section>
+<section id="summarizing">
+<h2><span class="section-number">21.6. </span>Summarizing<a class="headerlink" href="#summarizing" title="Permalink to this headline">#</a></h2>
+<div class="math notranslate nohighlight" id="equation-ref26">
+<span class="eqno">(21.27)<a class="headerlink" href="#equation-ref26" title="Permalink to this equation">#</a></span>\[
+\begin{eqnarray}
+u(x,y)=\sum\limits_{n=1}^\infty c_n\sinh\left(\frac{n\pi
+x}{b}\right)\sin\left(\frac{n\pi y}{b}\right) ;\;
+c_n=\frac{2}{b\sinh\left(\frac{n\pi a}{b}\right)} \int\limits_0^b
+g_2(y)\sin\left(\frac{n\pi y}{b}\right)\, dy.\phantom{\int}
+\end{eqnarray}
+\]</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./laplace"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="laplace.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Laplace Equation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="rectangular.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-the-equations-we-have-studied-thus-far">21.1. Summary Of The Equations We Have Studied Thus Far</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-solutions-in-higher-dimensions">21.2. Steady State Solutions In Higher Dimensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laplace-s-equation-in-two-dimensions">21.3. Laplace’S Equation In Two Dimensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-domains">21.3.1. Rectangular Domains</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-problem-1a-by-separation-of-variables">21.4. Solution To Problem (1A) By Separation Of Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-considerations-for-solving-problem-1a">21.4.1. Some Considerations for Solving Problem 1A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-to-solving-1a">21.4.2. Back to Solving 1A</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-problem-1b-by-separation-of-variables">21.5. Solution To Problem (1B) By Separation Of Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summarizing">21.6. Summarizing</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

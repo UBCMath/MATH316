@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>14. Heat Equation On A Circular Ring - Full Fourier Series &#8212; MATH 316</title>
+    <title>16. Heat Equation On A Circular Ring - Full Fourier Series &#8212; MATH 316</title>
   
   
   
@@ -66,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'heat/circular';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="15. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions" href="inhomogeneous.html" />
-    <link rel="prev" title="13. Heat Equation" href="heat.html" />
+    <link rel="next" title="17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions" href="inhomogeneous.html" />
+    <link rel="prev" title="15. Heat Equation" href="heat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -146,7 +146,12 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../odes/review.html">1. Review Of Methods To Solve Ordinary Differential Equations</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../odes/review.html">1. Review of Methods to Solve Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/first.html">1.1. First Order Ordinary Differential Equations:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/second.html">1.2. Second Order Constant Coefficient Linear Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/cauchy.html">1.3. Cauchy/Euler/Equidimensional Equations:</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/series.html">2. Series Solutions To ODEs With Variable Coefficients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/rsps.html">3. Regular Singular Points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
@@ -165,27 +170,36 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../fd/pdes.html">11. Solving the Heat, Laplace and Wave Equations Using Finite Difference Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">12. Finite Difference Formulas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/fd.html">11. Overview and Formulas</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fd/heat.html">12. Heat Equation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fd/heat/heat.html">12.1. FTCS Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/wave.html">13. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/laplace.html">14. Laplace Equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="heat.html">13. Heat Equation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inhomogeneous.html">15. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="distributed.html">16. Heat Conduction With Distributed Sources/Sinks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eigenfunctions.html">17. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heat.html">15. Heat Equation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inhomogeneous.html">17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributed.html">18. Heat Conduction With Distributed Sources/Sinks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eigenfunctions.html">19. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">18. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">20. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/2d.html">21. Laplace’s Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/rectangular.html">22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/circular.html">23. Circular Domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/wedges.html">24. Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">19. Wave Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">20. The 1D Wave Equation and D’Alembert’s Solution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">21. Interpretating D’Alembert’s Solution in Space-Time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">22. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">25. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">26. The 1D Wave Equation and D’Alembert’s Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">27. Interpretating D’Alembert’s Solution in Space-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">28. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
 </ul>
 
     </div>
@@ -365,7 +379,7 @@ document.write(`
 \newcommand{\what}[1]{\widehat{#1}}
 \]</div>
 <section class="tex2jax_ignore mathjax_ignore" id="heat-equation-on-a-circular-ring-full-fourier-series">
-<h1><span class="section-number">14. </span>Heat Equation On A Circular Ring - Full Fourier Series<a class="headerlink" href="#heat-equation-on-a-circular-ring-full-fourier-series" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">16. </span>Heat Equation On A Circular Ring - Full Fourier Series<a class="headerlink" href="#heat-equation-on-a-circular-ring-full-fourier-series" title="Permalink to this headline">#</a></h1>
 <p>In this lecture we use separation of variables to solve the heat
 equation subject on a thin circular ring with periodic boundary
 conditions. In this case we reduce the problem to expanding the
@@ -380,7 +394,7 @@ Conditions; separation of variables; Full Fourier Series.</p>
 <figure class="align-center" id="circle">
 <img alt="circle" src="../_images/circle.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 14.1 </span><span class="caption-text">Consider a thin conducting ring with thermal conductivity
+<p><span class="caption-number">Fig. 16.1 </span><span class="caption-text">Consider a thin conducting ring with thermal conductivity
 <span class="math notranslate nohighlight">\(\alpha^2\)</span> that has a given initial temperature distribution</span><a class="headerlink" href="#circle" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
@@ -389,7 +403,7 @@ wire in which there is no radial temperature dependence, i.e.,
 <span class="math notranslate nohighlight">\(u(r,\theta)=u(\theta)\)</span> so that <span class="math notranslate nohighlight">\(\displaystyle\frac{\partial u}{\partial
 r}=0\)</span>. In this case the polar Laplacian reduces to</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-circular-0">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-ref-heat-circular-0" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(16.1)<a class="headerlink" href="#equation-ref-heat-circular-0" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \Delta u &amp; = &amp; \frac{\partial^2u}{\partial
 r^2}+\frac{1}{r}\frac{\partial u}{\partial
@@ -402,13 +416,13 @@ r}+\frac{1}{r^2}\frac{\partial^2 u}{\partial\theta^2}\nonumber\\
 ring is determined by the following initial value problem with
 periodic boundary conditions</p>
 <div class="math notranslate nohighlight" id="equation-heat">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-heat" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.2)<a class="headerlink" href="#equation-heat" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 u_t&amp;=&amp;\alpha^2u_{xx} \label{eq:heat}
 \end{eqnarray}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ringheat">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-ringheat" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(16.3)<a class="headerlink" href="#equation-ringheat" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray*}\begin{array}{llcl}
 \mbox{BC:}&amp;   &amp; &amp;\left.\begin{array}{lcl}u(-L,t)&amp;=&amp;u(L,t) \label{eq:ringheat}\\
                     \displaystyle\frac{\partial u}{\partial x}(-L,t)&amp;=&amp;\displaystyle\frac{\partial
@@ -422,23 +436,23 @@ u_t&amp;=&amp;\alpha^2u_{xx} \label{eq:heat}
 <p>Assume <span class="math notranslate nohighlight">\(\displaystyle u(x,t)=X(x)T(t)\)</span>.</p>
 <p>As before:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-circular-3">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-ref-heat-circular-3" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.4)<a class="headerlink" href="#equation-ref-heat-circular-3" title="Permalink to this equation">#</a></span>\[
 \displaystyle\frac{X^{\prime\prime}(x)}{X(x)}=\displaystyle\frac{\dot{T}(t)}{\alpha^2
 T(t)}=-\lambda^2
 \]</div>
 <p>IVP:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-circular-4">
-<span class="eqno">(14.5)<a class="headerlink" href="#equation-ref-heat-circular-4" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.5)<a class="headerlink" href="#equation-ref-heat-circular-4" title="Permalink to this equation">#</a></span>\[
 \displaystyle\frac{\dot{T}(t)}{\alpha^2 T(t)}=-\lambda^2\Rightarrow
 T(t)=c\{\rm\ e\}^{-\lambda^2 t}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ref-heat-circular-5">
-<span class="eqno">(14.6)<a class="headerlink" href="#equation-ref-heat-circular-5" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.6)<a class="headerlink" href="#equation-ref-heat-circular-5" title="Permalink to this equation">#</a></span>\[
 \displaystyle r=\frac{2L}{2\pi}=\frac{L}{\pi}=\mbox{ Constant}
 \]</div>
 <p>BVP:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-circular-6">
-<span class="eqno">(14.7)<a class="headerlink" href="#equation-ref-heat-circular-6" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(16.7)<a class="headerlink" href="#equation-ref-heat-circular-6" title="Permalink to this equation">#</a></span>\[\begin{split}
 \left.\begin{array}{lcl} X^{\prime\prime}+\lambda^2X&amp;=&amp;0\\
 X(-L)&amp;=&amp;X(L)\\ X^\prime (-L)&amp;=&amp;X^\prime (L)\end{array}\right\}
 \quad\begin{array}{l}\mbox{Eigenvalue Problem}\\
@@ -446,7 +460,7 @@ X(-L)&amp;=&amp;X(L)\\ X^\prime (-L)&amp;=&amp;X^\prime (L)\end{array}\right\}
 \mbox{nontrivial $x$ can be found.}\end{array}
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-ref-heat-circular-7">
-<span class="eqno">(14.8)<a class="headerlink" href="#equation-ref-heat-circular-7" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(16.8)<a class="headerlink" href="#equation-ref-heat-circular-7" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 X(x)&amp; = &amp; A\cos (\lambda x)+B\sin (\lambda x)\nonumber\\
 X(-L)&amp; = &amp; A\cos (\lambda L)-B\sin (\lambda L)=A\cos (\lambda L)+B\sin (\lambda
@@ -459,9 +473,9 @@ L)+B\lambda\cos (\lambda L)=X^\prime (L)\nonumber\\
 \mbox{Therefore }\la_nL &amp; = &amp;(n\pi )\quad n=0,1,\ldots .\nonumber
 \end{eqnarray}
 \end{split}\]</div>
-<p>Solutions to <a class="reference internal" href="#equation-heat">(14.2)</a> that satisfy the BC are thus of the form</p>
+<p>Solutions to <a class="reference internal" href="#equation-heat">(16.2)</a> that satisfy the BC are thus of the form</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-circular-8">
-<span class="eqno">(14.9)<a class="headerlink" href="#equation-ref-heat-circular-8" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.9)<a class="headerlink" href="#equation-ref-heat-circular-8" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 u_n(x,t)=\{\rm\ e\}^{-{\left(\frac{n\pi}{L}\right)}^2\alpha^2t}
   \left\{A_n\cos\left(\frac{n\pi x}{L}\right) +B_n\sin
@@ -470,7 +484,7 @@ u_n(x,t)=\{\rm\ e\}^{-{\left(\frac{n\pi}{L}\right)}^2\alpha^2t}
 \]</div>
 <p>Superposition of all these solutions yields the general solution</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-circular-9">
-<span class="eqno">(14.10)<a class="headerlink" href="#equation-ref-heat-circular-9" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.10)<a class="headerlink" href="#equation-ref-heat-circular-9" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 u(x,t)=A_0+\sum\limits_{n=1}^\infty\left\{ A_n\cos\left(\frac{n\pi
 x}{L}\right) +B_n\sin\left(\frac{n\pi
@@ -479,7 +493,7 @@ x}{L}\right)\right\}\{\rm\ e\}^{-{\left(\frac{n\pi}{L}\right)}^2\alpha^2t}.
 \]</div>
 <p>In order to match the IC we have</p>
 <div class="math notranslate nohighlight" id="equation-fourierseries">
-<span class="eqno">(14.11)<a class="headerlink" href="#equation-fourierseries" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.11)<a class="headerlink" href="#equation-fourierseries" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 f(x)=u(x,0)=A_0+\sum\limits_{n=1}^\infty A_n\cos\left(\frac{n\pi
 x}{L}\right) +B_n\sin\left(\frac{n\pi x}{L}\right)
@@ -490,7 +504,7 @@ x}{L}\right) +B_n\sin\left(\frac{n\pi x}{L}\right)
 projecting <span class="math notranslate nohighlight">\(f(x)\)</span> onto <span class="math notranslate nohighlight">\(\displaystyle\sin\left(\frac{n\pi x}{L}\right)\)</span> and
 <span class="math notranslate nohighlight">\(\displaystyle\cos\left(\frac{n\pi x}{L}\right)\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-fourierprojection">
-<span class="eqno">(14.12)<a class="headerlink" href="#equation-fourierprojection" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(16.12)<a class="headerlink" href="#equation-fourierprojection" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \int\limits_{-L}^Lf(x)\left\{\begin{array}{c} \sin\left(\frac{m\pi
 x}{L}\right)\\
@@ -510,7 +524,7 @@ A_n\int\limits_{-L}^L\cos\left(\frac{n\pi x}{L}\right)
 \end{split}\]</div>
 <p>As in the previous example we use the orthogonality relations:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-circular-12">
-<span class="eqno">(14.13)<a class="headerlink" href="#equation-ref-heat-circular-12" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(16.13)<a class="headerlink" href="#equation-ref-heat-circular-12" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \int\limits_{-L}^L\sin\left(\frac{m\pi
 x}{L}\right)\sin\left(\frac{n\pi x}{L}\right)\, dx &amp; = &amp;
@@ -524,9 +538,9 @@ x}{L}\right)\sin\left(\frac{n\pi x}{L}\right)\, dx &amp; = &amp;
     0\quad\forall m,n.\nonumber
 \end{eqnarray}
 \end{split}\]</div>
-<p>Plugging these orthogonality conditions into <a class="reference internal" href="#equation-fourierprojection">(14.12)</a> we obtain</p>
+<p>Plugging these orthogonality conditions into <a class="reference internal" href="#equation-fourierprojection">(16.12)</a> we obtain</p>
 <div class="math notranslate nohighlight" id="equation-fouriercoefficients">
-<span class="eqno">(14.14)<a class="headerlink" href="#equation-fouriercoefficients" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(16.14)<a class="headerlink" href="#equation-fouriercoefficients" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}\left.\begin{array}{lcl}
 A_0 &amp;= &amp;\displaystyle\frac{1}{2L}\int\limits_{-L}^L f(x)\, dx=\mbox{ average
 value of $f(x)$ on $[-L,L]$}\\
@@ -537,19 +551,19 @@ x}{L}\right)\, dx.\end{array}\right\} \label{eq:FourierCoefficients}
 \end{eqnarray}
 \end{split}\]</div>
 <div class="proof observation admonition" id="observation-heat-circular-0">
-<p class="admonition-title"><span class="caption-number">Observation 14.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Observation 16.1 </span></p>
 <section class="observation-content" id="proof-content">
 <ol class="arabic simple">
-<li><p><a class="reference internal" href="#equation-fourierseries">(14.11)</a> and <a class="reference internal" href="#equation-fouriercoefficients">(14.14)</a>
+<li><p><a class="reference internal" href="#equation-fourierseries">(16.11)</a> and <a class="reference internal" href="#equation-fouriercoefficients">(16.14)</a>
 represent the full Fourier Series Expansion
 for <span class="math notranslate nohighlight">\(f(x)\)</span> on the interval <span class="math notranslate nohighlight">\([-L,L]\)</span>.</p></li>
 <li><p>By defining <span class="math notranslate nohighlight">\(\displaystyle a_n=\frac{1}{L}\int\limits_{-L}^L
 f(x)\cos\left(\frac{n\pi x}{L}\right)\, dx=\left\{\begin{array}{c}
 2A_0\\ \\ A_n\end{array}\right.\)</span> and <span class="math notranslate nohighlight">\(b_n=B_n\)</span> the Fourier Series
-<a class="reference internal" href="#equation-fourierseries">(14.11)</a> is often written in the form</p></li>
+<a class="reference internal" href="#equation-fourierseries">(16.11)</a> is often written in the form</p></li>
 </ol>
 <div class="math notranslate nohighlight" id="equation-ref-heat-circular-14">
-<span class="eqno">(14.15)<a class="headerlink" href="#equation-ref-heat-circular-14" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16.15)<a class="headerlink" href="#equation-ref-heat-circular-14" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 f(x)=\frac{a_0}{2}+\sum\limits_{n=1}^\infty a_n\cos\left(\frac{n\pi
 x}{L}\right) +b_n\sin\left(\frac{n\pi x}{L}\right) .
@@ -595,7 +609,7 @@ x}{L}\right) +b_n\sin\left(\frac{n\pi x}{L}\right) .
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>Heat Equation</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Heat Equation</p>
       </div>
     </a>
     <a class="right-next"
@@ -603,7 +617,7 @@ x}{L}\right) +b_n\sin\left(\frac{n\pi x}{L}\right) .
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

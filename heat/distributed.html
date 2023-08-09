@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>16. Heat Conduction With Distributed Sources/Sinks &#8212; MATH 316</title>
+    <title>18. Heat Conduction With Distributed Sources/Sinks &#8212; MATH 316</title>
   
   
   
@@ -66,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'heat/distributed';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="17. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions" href="eigenfunctions.html" />
-    <link rel="prev" title="15. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions" href="inhomogeneous.html" />
+    <link rel="next" title="19. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions" href="eigenfunctions.html" />
+    <link rel="prev" title="17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions" href="inhomogeneous.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -146,7 +146,12 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../odes/review.html">1. Review Of Methods To Solve Ordinary Differential Equations</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../odes/review.html">1. Review of Methods to Solve Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/first.html">1.1. First Order Ordinary Differential Equations:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/second.html">1.2. Second Order Constant Coefficient Linear Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../odes/review/cauchy.html">1.3. Cauchy/Euler/Equidimensional Equations:</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/series.html">2. Series Solutions To ODEs With Variable Coefficients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/rsps.html">3. Regular Singular Points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odes/frobenius.html">4. Frobenius Series About Regular Singular Points</a></li>
@@ -165,27 +170,36 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../fd/pdes.html">11. Solving the Heat, Laplace and Wave Equations Using Finite Difference Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fd/formulas.html">12. Finite Difference Formulas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/fd.html">11. Overview and Formulas</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fd/heat.html">12. Heat Equation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fd/heat/heat.html">12.1. FTCS Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/wave.html">13. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fd/laplace.html">14. Laplace Equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Heat Equation</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="heat.html">13. Heat Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="circular.html">14. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inhomogeneous.html">15. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Heat Conduction With Distributed Sources/Sinks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eigenfunctions.html">17. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heat.html">15. Heat Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circular.html">16. Heat Equation On A Circular Ring - Full Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inhomogeneous.html">17. Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Heat Conduction With Distributed Sources/Sinks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eigenfunctions.html">19. Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laplace Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">18. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/laplace.html">20. Laplace Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/2d.html">21. Laplace’s Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/rectangular.html">22. More Rectangular Domains: Neumann Problems, Mixed BCs, And Semi-Infinite Strip Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/circular.html">23. Circular Domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../laplace/wedges.html">24. Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Wave Equation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">19. Wave Equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">20. The 1D Wave Equation and D’Alembert’s Solution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">21. Interpretating D’Alembert’s Solution in Space-Time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">22. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/wave.html">25. Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/1d.html">26. The 1D Wave Equation and D’Alembert’s Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/dalembert.html">27. Interpretating D’Alembert’s Solution in Space-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave/finite.html">28. The Wave Equation On Finite Domains - Solution By Separation Of Variables</a></li>
 </ul>
 
     </div>
@@ -347,9 +361,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-distributed-sources">16.1. Heat Conduction Problems With Distributed Sources</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-distributed-time-independent-sources">16.1.1. Heat Conduction Problems With Distributed Time-Independent Sources</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-time-dependent-heat-sources-sinks-eigenfunction-expansions">16.1.2. Distributed time-dependent heat sources/sinks - eigenfunction expansions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-distributed-sources">18.1. Heat Conduction Problems With Distributed Sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-distributed-time-independent-sources">18.1.1. Heat Conduction Problems With Distributed Time-Independent Sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-time-dependent-heat-sources-sinks-eigenfunction-expansions">18.1.2. Distributed time-dependent heat sources/sinks - eigenfunction expansions</a></li>
 </ul>
 </li>
 </ul>
@@ -379,7 +393,7 @@ document.write(`
 \newcommand{\what}[1]{\widehat{#1}}
 \]</div>
 <section class="tex2jax_ignore mathjax_ignore" id="heat-conduction-with-distributed-sources-sinks">
-<h1><span class="section-number">16. </span>Heat Conduction With Distributed Sources/Sinks<a class="headerlink" href="#heat-conduction-with-distributed-sources-sinks" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">18. </span>Heat Conduction With Distributed Sources/Sinks<a class="headerlink" href="#heat-conduction-with-distributed-sources-sinks" title="Permalink to this headline">#</a></h1>
 <p>In this lecture we consider heat conduction problems in which there
 is a distributed source or sink function <span class="math notranslate nohighlight">\(s(x,t)\)</span> that applies
 throughout the domain. We first consider the case in which the
@@ -399,14 +413,14 @@ variables, Eigenvalues and Eigenfunctions, Method of Eigenfunction
 Expansions.</p>
 </div>
 <section id="heat-conduction-problems-with-distributed-sources">
-<h2><span class="section-number">16.1. </span>Heat Conduction Problems With Distributed Sources<a class="headerlink" href="#heat-conduction-problems-with-distributed-sources" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">18.1. </span>Heat Conduction Problems With Distributed Sources<a class="headerlink" href="#heat-conduction-problems-with-distributed-sources" title="Permalink to this headline">#</a></h2>
 <section id="heat-conduction-problems-with-distributed-time-independent-sources">
-<h3><span class="section-number">16.1.1. </span>Heat Conduction Problems With Distributed Time-Independent Sources<a class="headerlink" href="#heat-conduction-problems-with-distributed-time-independent-sources" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">18.1.1. </span>Heat Conduction Problems With Distributed Time-Independent Sources<a class="headerlink" href="#heat-conduction-problems-with-distributed-time-independent-sources" title="Permalink to this headline">#</a></h3>
 <div class="proof example admonition" id="example-heat-distributed-0">
-<p class="admonition-title"><span class="caption-number">Example 16.1 </span> (A bar with an external heat source <span class="math notranslate nohighlight">\(s(x)=x\)</span>.)</p>
+<p class="admonition-title"><span class="caption-number">Example 18.1 </span> (A bar with an external heat source <span class="math notranslate nohighlight">\(s(x)=x\)</span>.)</p>
 <section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-0">
-<span class="eqno">(16.1)<a class="headerlink" href="#equation-ref-heat-distributed-0" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.1)<a class="headerlink" href="#equation-ref-heat-distributed-0" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u_t &amp; = &amp; \alpha^2 u_{xx}+x\qquad 0&lt;x&lt;L\\
 \mbox{BC: }u(0,t) &amp; = &amp; 0\quad u(L,t)=B\\
@@ -416,20 +430,20 @@ u_t &amp; = &amp; \alpha^2 u_{xx}+x\qquad 0&lt;x&lt;L\\
 <figure class="align-center" id="time-independent-sources-png">
 <img alt="time_independent sources.png" src="../_images/time_independent_sources.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 16.1 </span><span class="caption-text">Bar subject to a time-independent heat source distributed
+<p><span class="caption-number">Fig. 18.1 </span><span class="caption-text">Bar subject to a time-independent heat source distributed
 along its length with inhomogeneous Dirichlet BC</span><a class="headerlink" href="#time-independent-sources-png" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Steady state problem <span class="math notranslate nohighlight">\(u_t=0\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-1">
-<span class="eqno">(16.2)<a class="headerlink" href="#equation-ref-heat-distributed-1" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.2)<a class="headerlink" href="#equation-ref-heat-distributed-1" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}\begin{array}{l}
 0=\alpha^2 u_\infty^{\prime\prime}+x\\
 u_\infty (0)=0\quad u_\infty (L)=B\end{array}
 \end{eqnarray}
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-2">
-<span class="eqno">(16.3)<a class="headerlink" href="#equation-ref-heat-distributed-2" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.3)<a class="headerlink" href="#equation-ref-heat-distributed-2" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}\begin{array}{l}
 \displaystyle u_\infty^{\prime\prime}=-\frac{x}{\alpha^2}\quad
 u_\infty^\prime
@@ -441,7 +455,7 @@ a=\frac{B}{L}+\frac{L^2}{6\alpha^2}\end{array}
 \end{split}\]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-3">
-<span class="eqno">(16.4)<a class="headerlink" href="#equation-ref-heat-distributed-3" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.4)<a class="headerlink" href="#equation-ref-heat-distributed-3" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 u_\infty
 (x)=-\frac{x^3}{6\alpha^2}+\left(\frac{B}{L}+\frac{L^2}{6\alpha^2}\right)
@@ -450,7 +464,7 @@ x=x\left\{\frac{B}{L}+\frac{1}{6\alpha^2}(L^2-x^2)\right\} .
 \]</div>
 <p>Let <span class="math notranslate nohighlight">\(u(x,t)=u_\infty (x)+v(x,t)\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-4">
-<span class="eqno">(16.5)<a class="headerlink" href="#equation-ref-heat-distributed-4" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.5)<a class="headerlink" href="#equation-ref-heat-distributed-4" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}\begin{array}{lclcl}
 u_t=\alpha^2 u_{xx}+x &amp;\Rightarrow &amp;(u_\infty\!\!\!\!\nearrow +v)_t
   =\alpha^2(u\!\!\!\downarrow _\infty +v)_{xx}+x\!\!\!\!\!\downarrow &amp;\Rightarrow &amp;v_t=\alpha^2 v_{xx}\\
@@ -462,7 +476,7 @@ u(x,0)=g(x) &amp;\Rightarrow &amp;u_\infty (x)+v(x,0)=g(x) &amp;\Rightarrow
 \end{split}\]</div>
 <p>Separation of variables yields:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-5">
-<span class="eqno">(16.6)<a class="headerlink" href="#equation-ref-heat-distributed-5" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.6)<a class="headerlink" href="#equation-ref-heat-distributed-5" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 v(x,t)=\sum\limits_{n=1}^\infty
 b_n\{\rm\ e\}^{-{\left(\frac{n\pi}{L}\right)}^2\alpha^2 t}
@@ -471,7 +485,7 @@ b_n\{\rm\ e\}^{-{\left(\frac{n\pi}{L}\right)}^2\alpha^2 t}
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-6">
-<span class="eqno">(16.7)<a class="headerlink" href="#equation-ref-heat-distributed-6" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.7)<a class="headerlink" href="#equation-ref-heat-distributed-6" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 b_n=\frac{2}{L}\int\limits_0^L\left\{ g(x)-u_\infty (x)\right\}
    \sin\left(\frac{n\pi x}{L}\right)\, dx.
@@ -479,7 +493,7 @@ b_n=\frac{2}{L}\int\limits_0^L\left\{ g(x)-u_\infty (x)\right\}
 \]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-7">
-<span class="eqno">(16.8)<a class="headerlink" href="#equation-ref-heat-distributed-7" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.8)<a class="headerlink" href="#equation-ref-heat-distributed-7" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u(x,t) &amp; = &amp; x\left\{\frac{B}{L}+\frac{1}{6\alpha^2}
 (L^2-x^2)\right\}
@@ -492,7 +506,7 @@ u(x,t) &amp; = &amp; x\left\{\frac{B}{L}+\frac{1}{6\alpha^2}
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-8">
-<span class="eqno">(16.9)<a class="headerlink" href="#equation-ref-heat-distributed-8" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.9)<a class="headerlink" href="#equation-ref-heat-distributed-8" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 \lim\limits_{x\rightarrow\infty}
 u(x,t)=x\left\{\frac{B}{L}+\frac{1}{6\alpha^2} (L^2-x^2)\right\} .
@@ -502,12 +516,12 @@ u(x,t)=x\left\{\frac{B}{L}+\frac{1}{6\alpha^2} (L^2-x^2)\right\} .
 </section>
 </div></section>
 <section id="distributed-time-dependent-heat-sources-sinks-eigenfunction-expansions">
-<h3><span class="section-number">16.1.2. </span>Distributed time-dependent heat sources/sinks - eigenfunction expansions<a class="headerlink" href="#distributed-time-dependent-heat-sources-sinks-eigenfunction-expansions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">18.1.2. </span>Distributed time-dependent heat sources/sinks - eigenfunction expansions<a class="headerlink" href="#distributed-time-dependent-heat-sources-sinks-eigenfunction-expansions" title="Permalink to this headline">#</a></h3>
 <div class="proof example admonition" id="example-heat-distributed-1">
-<p class="admonition-title"><span class="caption-number">Example 16.2 </span> (A Bar with a Time-Varying External Heat Source)</p>
+<p class="admonition-title"><span class="caption-number">Example 18.2 </span> (A Bar with a Time-Varying External Heat Source)</p>
 <section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-9">
-<span class="eqno">(16.10)<a class="headerlink" href="#equation-ref-heat-distributed-9" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.10)<a class="headerlink" href="#equation-ref-heat-distributed-9" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u_t &amp; = &amp; \alpha^2 u_{xx}+\{\rm\ e\}^{-t}\sin\left(\frac{2\pi x}{L}\right)\quad 0&lt;x&lt;L,\quad t&gt;0\\
 \mbox{BC: }u(0,t) &amp; = &amp; 0;\quad u(L,t)=L\\
@@ -518,7 +532,7 @@ u_t &amp; = &amp; \alpha^2 u_{xx}+\{\rm\ e\}^{-t}\sin\left(\frac{2\pi x}{L}\righ
 homogeneous version of the PDE.</p>
 <p>Now let <span class="math notranslate nohighlight">\(u(x,t)=w(x)+v(x,t)\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-10">
-<span class="eqno">(16.11)<a class="headerlink" href="#equation-ref-heat-distributed-10" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.11)<a class="headerlink" href="#equation-ref-heat-distributed-10" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u_t &amp; = &amp; (w\!\!\!\!\!\!\nearrow +v)_t =
 \alpha^2(w\!\!\!\!\!\!\nearrow +v)_{xx}
@@ -533,7 +547,7 @@ x=u(x,0) &amp; = &amp; w(x)+v(x,0)=x+v(x,0)\Rightarrow v(x,0)=0.
 <p>Now assume that <span class="math notranslate nohighlight">\(\displaystyle v(x,t)=\sum\limits_{n=1}^\infty
 \hat{v}_n(t)\sin\left(\frac{n\pi x}{L}\right)\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-11">
-<span class="eqno">(16.12)<a class="headerlink" href="#equation-ref-heat-distributed-11" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.12)<a class="headerlink" href="#equation-ref-heat-distributed-11" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 \frac{\partial v}{\partial t}=\sum\limits_{n=1}^\infty
 \frac{d\hat{v}_n}{dt}(t)\sin\left(\frac{n\pi x}{L}\right),\; \;
@@ -544,7 +558,7 @@ x}{L}\right) \right\} .
 \]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-12">
-<span class="eqno">(16.13)<a class="headerlink" href="#equation-ref-heat-distributed-12" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.13)<a class="headerlink" href="#equation-ref-heat-distributed-12" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 v_t-\alpha^2 v_{xx}-\{\rm\ e\}^{-t}\sin\left(\frac{2\pi x}{L}\right)=\sum\limits_{n=1}^\infty
 \left\{\frac{d\hat{v}_n}{dt}+\alpha^2
@@ -554,7 +568,7 @@ x}{L}\right) =0.
 \]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-13">
-<span class="eqno">(16.14)<a class="headerlink" href="#equation-ref-heat-distributed-13" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.14)<a class="headerlink" href="#equation-ref-heat-distributed-13" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \frac{d\hat{v}_n}{dt} +\alpha^2 {\left(\frac{n\pi}{L}\right)}^2
 \hat{v}_n &amp; = &amp;\{\rm\ e\}^{-t}\delta_{2n}\\
@@ -565,7 +579,7 @@ x}{L}\right) =0.
 \end{split}\]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-14">
-<span class="eqno">(16.15)<a class="headerlink" href="#equation-ref-heat-distributed-14" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.15)<a class="headerlink" href="#equation-ref-heat-distributed-14" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \{\rm\ e\}^{-\alpha^2 \left( \frac{n\pi}{L}\right)^2 t}\hat{v}_n
   &amp; = &amp; \frac{\{\rm\ e\}^{\left[\alpha^2 {\left(\frac{n\pi}{L}\right)}^2 -1\right] t}}
@@ -596,37 +610,37 @@ u(x,t) &amp; = &amp; x+v(x,t)=x+ \left(
 \end{split}\]</div>
 </section>
 </div><div class="proof example admonition" id="example-heat-distributed-2">
-<p class="admonition-title"><span class="caption-number">Example 16.3 </span> (A bar with a general external heat source <span class="math notranslate nohighlight">\(s(x,t)\)</span>)</p>
+<p class="admonition-title"><span class="caption-number">Example 18.3 </span> (A bar with a general external heat source <span class="math notranslate nohighlight">\(s(x,t)\)</span>)</p>
 <section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight" id="equation-eg172a">
-<span class="eqno">(16.16)<a class="headerlink" href="#equation-eg172a" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.16)<a class="headerlink" href="#equation-eg172a" title="Permalink to this equation">#</a></span>\[
 u_t = \alpha^2 u_{xx}+s(x,t) \label{eg172a}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-eg172b">
-<span class="eqno">(16.17)<a class="headerlink" href="#equation-eg172b" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.17)<a class="headerlink" href="#equation-eg172b" title="Permalink to this equation">#</a></span>\[
 \mbox{BC: } u(0,t) = A\quad u(L,t)=B \label{eg172b}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-eg172c">
-<span class="eqno">(16.18)<a class="headerlink" href="#equation-eg172c" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.18)<a class="headerlink" href="#equation-eg172c" title="Permalink to this equation">#</a></span>\[
 \mbox{IC: }u(x,0) = f(x). \label{eg172c}
 \]</div>
 <figure class="align-center" id="general-heat-source">
 <img alt="general_heat_source" src="../_images/general_heat_source.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 16.2 </span><span class="caption-text">Bar subject to a time dependent heat source distributed
+<p><span class="caption-number">Fig. 18.2 </span><span class="caption-text">Bar subject to a time dependent heat source distributed
 along its length with inhomogeneous Dirichlet BC</span><a class="headerlink" href="#general-heat-source" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>We look for a particular solution: <span class="math notranslate nohighlight">\(w(x,t)\)</span> by expanding <span class="math notranslate nohighlight">\(s(x,t)\)</span> as
 a Sine Series. Note that the sine functions are the eigenfunctions
-that correspond to the homogeneous form of the BC in <a class="reference internal" href="#equation-eg172b">(16.17)</a>.
+that correspond to the homogeneous form of the BC in <a class="reference internal" href="#equation-eg172b">(18.17)</a>.
 Thus if we add <span class="math notranslate nohighlight">\(w(x,t)\)</span> to a solution of
-<a class="reference internal" href="#equation-eg172a">(16.16)</a>-<a class="reference internal" href="#equation-eg172b">(16.17)</a> without the source (i.e. with
+<a class="reference internal" href="#equation-eg172a">(18.16)</a>-<a class="reference internal" href="#equation-eg172b">(18.17)</a> without the source (i.e. with
 <span class="math notranslate nohighlight">\(s(x,t)=0\)</span>) we will not affect the BC.</p>
 <p><strong>Eigenfunction Expansion:</strong></p>
 <p>Let</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-16">
-<span class="eqno">(16.19)<a class="headerlink" href="#equation-ref-heat-distributed-16" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.19)<a class="headerlink" href="#equation-ref-heat-distributed-16" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 s(x,t)=\sum\limits_{n=1}^\infty \hat{s}_n(t)\sin\left(\frac{n\pi
 x}{L}\right)
@@ -634,7 +648,7 @@ x}{L}\right)
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-17">
-<span class="eqno">(16.20)<a class="headerlink" href="#equation-ref-heat-distributed-17" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.20)<a class="headerlink" href="#equation-ref-heat-distributed-17" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 \hat{s}_n(t)=\frac{2}{L}\int\limits_0^L s(x,t)\sin\left(\frac{n\pi
 x}{L}\right)\, dx.
@@ -642,7 +656,7 @@ x}{L}\right)\, dx.
 \]</div>
 <p>If we assume</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-18">
-<span class="eqno">(16.21)<a class="headerlink" href="#equation-ref-heat-distributed-18" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.21)<a class="headerlink" href="#equation-ref-heat-distributed-18" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 w(x,t)=\sum\limits_{n=1}^\infty \hat{w}_n(t)\sin\left(\frac{n\pi
 x}{L}\right)
@@ -650,7 +664,7 @@ x}{L}\right)
 \]</div>
 <p>then</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-19">
-<span class="eqno">(16.22)<a class="headerlink" href="#equation-ref-heat-distributed-19" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.22)<a class="headerlink" href="#equation-ref-heat-distributed-19" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 w_t &amp; = &amp; \sum\limits_{n=1}^\infty \hat{w}_n^\prime (t)
   \sin\left(\frac{n\pi x}{L}\right)\\
@@ -661,7 +675,7 @@ w_{xx} &amp; = &amp; -\sum\limits_{n=1}^\infty \hat{w}_n
 <p>Therefore substituting these expansions into <span class="math notranslate nohighlight">\(w_t=\alpha^2
 w_{xx}+s(x,t)\)</span> we obtain:</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-20">
-<span class="eqno">(16.23)<a class="headerlink" href="#equation-ref-heat-distributed-20" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.23)<a class="headerlink" href="#equation-ref-heat-distributed-20" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 \sum\limits_{n=1}^\infty \left\{ \hat{w}_n^\prime +\alpha^2 \left(
 \frac{n\pi}{L}\right)^2 \hat{w}_n- \hat{s}_n (t)\right\}
@@ -670,7 +684,7 @@ w_{xx}+s(x,t)\)</span> we obtain:</p>
 \]</div>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-21">
-<span class="eqno">(16.24)<a class="headerlink" href="#equation-ref-heat-distributed-21" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.24)<a class="headerlink" href="#equation-ref-heat-distributed-21" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 \hat{w}_n^\prime (t)= -\alpha^2 {\left(\frac{n\pi}{L}\right)}^2
 \hat{w}_n (t) +\hat{s}_n(t).
@@ -680,7 +694,7 @@ w_{xx}+s(x,t)\)</span> we obtain:</p>
 \{\rm\ e\}^{\alpha^2 {\left(\displaystyle\frac{n\pi}{L}\right)}^2 t}\)</span>.</p>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-22">
-<span class="eqno">(16.25)<a class="headerlink" href="#equation-ref-heat-distributed-22" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.25)<a class="headerlink" href="#equation-ref-heat-distributed-22" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 w_n(t)=\int\limits_0^t \{\rm\ e\}^{-
 \alpha^2{\left(\frac{n\pi}{L}\right)}^2 (t-\tau )}
@@ -691,7 +705,7 @@ w_n(t)=\int\limits_0^t \{\rm\ e\}^{-
 for a particular solution we choose <span class="math notranslate nohighlight">\(c_n\equiv 0\)</span>.</p>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-23">
-<span class="eqno">(16.26)<a class="headerlink" href="#equation-ref-heat-distributed-23" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.26)<a class="headerlink" href="#equation-ref-heat-distributed-23" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 w(x,t)=\sum\limits_{n=1}^\infty \left( \int\limits_0^t
   \{\rm\ e\}^{-\alpha^2 \left(\frac{n\pi}{L}\right)^2 (t-\tau )}
@@ -701,11 +715,11 @@ w(x,t)=\sum\limits_{n=1}^\infty \left( \int\limits_0^t
 \]</div>
 <p><strong>Exploiting Linearity via Superposition:</strong></p>
 <p>Now that we have a particular solution we exploit the fact that
-the Problem <a class="reference internal" href="#equation-eg172a">(16.16)</a>-<a class="reference internal" href="#equation-eg172b">(16.17)</a> is linear and use
+the Problem <a class="reference internal" href="#equation-eg172a">(18.16)</a>-<a class="reference internal" href="#equation-eg172b">(18.17)</a> is linear and use
 superposition.</p>
 <p>Let</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-24">
-<span class="eqno">(16.27)<a class="headerlink" href="#equation-ref-heat-distributed-24" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.27)<a class="headerlink" href="#equation-ref-heat-distributed-24" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 u(x,t) &amp; = &amp; w(x,t)+v(x,t)\\
 u_t &amp; = &amp; w\!\!\!\!\!\nearrow_{\!\!\!t} +v_t=\alpha^2
@@ -715,7 +729,7 @@ u_t &amp; = &amp; w\!\!\!\!\!\nearrow_{\!\!\!t} +v_t=\alpha^2
 \end{eqnarray}
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-25">
-<span class="eqno">(16.28)<a class="headerlink" href="#equation-ref-heat-distributed-25" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.28)<a class="headerlink" href="#equation-ref-heat-distributed-25" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \begin{array}{lclclclll}
 A&amp;=&amp;u(0,t)&amp;=&amp;w(0,t)+v(0,t)&amp;=&amp;v(0,t)&amp;\mbox{since }&amp;w(0,t)=0\\
@@ -724,14 +738,14 @@ B&amp;=&amp;u(0,t)&amp;=&amp;w(L,t)+v(L,t)&amp;=&amp;v(L,t)&amp;\mbox{since
 \end{eqnarray}
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-26">
-<span class="eqno">(16.29)<a class="headerlink" href="#equation-ref-heat-distributed-26" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.29)<a class="headerlink" href="#equation-ref-heat-distributed-26" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 f(x)=u(x,0)=w(x,0)+v(x,0)\Rightarrow v(x,0)=f(x)-w(x,0)
 \end{equation}
 \]</div>
 <p>thus <span class="math notranslate nohighlight">\(v(x,t)\)</span> satisfies:</p>
 <div class="math notranslate nohighlight" id="equation-eq-homog-dirichlet">
-<span class="eqno">(16.30)<a class="headerlink" href="#equation-eq-homog-dirichlet" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.30)<a class="headerlink" href="#equation-eq-homog-dirichlet" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 \left.\begin{array}{ll}
 &amp;v_t=\alpha^2 v_{xx}\\ \mbox{BC: }&amp;v(0,t)=A\quad v(L,t)=B\\
@@ -739,11 +753,11 @@ f(x)=u(x,0)=w(x,0)+v(x,0)\Rightarrow v(x,0)=f(x)-w(x,0)
 \label{eq_homog_dirichlet}
 \end{eqnarray}
 \end{split}\]</div>
-<p>Now the boundary value problem <a class="reference internal" href="#equation-eq-homog-dirichlet">(16.30)</a> was solved
+<p>Now the boundary value problem <a class="reference internal" href="#equation-eq-homog-dirichlet">(18.30)</a> was solved
 in lecture 19 of the notes.</p>
 <p>Therefore</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-28">
-<span class="eqno">(16.31)<a class="headerlink" href="#equation-ref-heat-distributed-28" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.31)<a class="headerlink" href="#equation-ref-heat-distributed-28" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 u(x,t)&amp; = &amp; \left(\frac{B-A}{L}\right) x+A+\sum\limits_{n=1}^\infty
 \{\rm\ e\}^{-\alpha^2 {\left(\frac{n\pi}{L}\right)}^2 t}\left\{
@@ -754,7 +768,7 @@ x}{L}\right)
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-29">
-<span class="eqno">(16.32)<a class="headerlink" href="#equation-ref-heat-distributed-29" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18.32)<a class="headerlink" href="#equation-ref-heat-distributed-29" title="Permalink to this equation">#</a></span>\[
 \begin{eqnarray}
 b_n=\frac{2}{L}\int\limits_0^L \left\{ f(x)-w(x,0)-\left[\left(
 B-A\right)\frac{x}{L} +A\right]\right\}\sin\left(\frac{n\pi
@@ -763,10 +777,10 @@ x}{L}\right)\, dx.
 \]</div>
 </section>
 </div><div class="proof example admonition" id="example-heat-distributed-3">
-<p class="admonition-title"><span class="caption-number">Example 16.4 </span> (A bar with an external heat source dependent on <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span>: <span class="math notranslate nohighlight">\(S(x,t)=xt\)</span>)</p>
+<p class="admonition-title"><span class="caption-number">Example 18.4 </span> (A bar with an external heat source dependent on <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span>: <span class="math notranslate nohighlight">\(S(x,t)=xt\)</span>)</p>
 <section class="example-content" id="proof-content">
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-30">
-<span class="eqno">(16.33)<a class="headerlink" href="#equation-ref-heat-distributed-30" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.33)<a class="headerlink" href="#equation-ref-heat-distributed-30" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray*}
 u_t&amp;=&amp;\alpha^2 u_{xx}+xt\\
 u(0,t)&amp;=&amp;A\quad u(L,t)=B\\
@@ -776,7 +790,7 @@ u(x,t)&amp;=&amp;f(x)\\
 <p>Let <span class="math notranslate nohighlight">\(q(x)=\left(\frac{B-A}{L}\right) x+A \)</span> and
 <span class="math notranslate nohighlight">\(u(x,t)=q(x)+v(x,t)\)</span> then</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-31">
-<span class="eqno">(16.34)<a class="headerlink" href="#equation-ref-heat-distributed-31" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.34)<a class="headerlink" href="#equation-ref-heat-distributed-31" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray*}
 v_t&amp;=&amp;\alpha^2 v_{xx}+xt\\
 v(0,t)&amp;=&amp;0=v(L,t)\\
@@ -786,7 +800,7 @@ v(x,0)&amp;=&amp;f(x)-q(x).
 <p>Expanding the source <span class="math notranslate nohighlight">\(S(x,t)\)</span> in terms of the eigenfunctions
 of the problem with homogeneous boundary conditions</p>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-32">
-<span class="eqno">(16.35)<a class="headerlink" href="#equation-ref-heat-distributed-32" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.35)<a class="headerlink" href="#equation-ref-heat-distributed-32" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray*}
 S(x,t)=xt&amp;=&amp;\sum\limits_{n=1}^\infty \hat{S}_n(t)\sin (\lambda_nx)\\
 \hat{S}_n(t)&amp;=&amp;\frac{2}{L}\int\limits_0^L xt\sin\left(\frac{n\pi x}{L}\right)\, dx\\
@@ -800,7 +814,7 @@ x}{L}\right)}{\left(\frac{n\pi}{L}\right)}
 \end{eqnarray*}
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-ref-heat-distributed-33">
-<span class="eqno">(16.36)<a class="headerlink" href="#equation-ref-heat-distributed-33" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(18.36)<a class="headerlink" href="#equation-ref-heat-distributed-33" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray*}
 0=v_t-\alpha^2 v_{xx}-xt &amp;=&amp;\sum\limits_{n=1}^\infty\left\{
    \dot{\hat{v}}_n+\alpha^2\lambda_n^2\hat{v}_n-\hat{S}_n(t)\right\}
@@ -872,7 +886,7 @@ f(x)-\left\{\left(\frac{B-A}{L}\right) x+A\right\}\right]\sin
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Heat Conduction Problems With Time-Independent Inhomogeneous Boundary Conditions</p>
       </div>
     </a>
     <a class="right-next"
@@ -880,7 +894,7 @@ f(x)-\left\{\left(\frac{B-A}{L}\right) x+A\right\}\right]\sin
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Heat Conduction With Time Dependent Boundary Conditions Using Eigenfunction Expansions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -902,9 +916,9 @@ f(x)-\left\{\left(\frac{B-A}{L}\right) x+A\right\}\right]\sin
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-distributed-sources">16.1. Heat Conduction Problems With Distributed Sources</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-distributed-time-independent-sources">16.1.1. Heat Conduction Problems With Distributed Time-Independent Sources</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-time-dependent-heat-sources-sinks-eigenfunction-expansions">16.1.2. Distributed time-dependent heat sources/sinks - eigenfunction expansions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-distributed-sources">18.1. Heat Conduction Problems With Distributed Sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-conduction-problems-with-distributed-time-independent-sources">18.1.1. Heat Conduction Problems With Distributed Time-Independent Sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-time-dependent-heat-sources-sinks-eigenfunction-expansions">18.1.2. Distributed time-dependent heat sources/sinks - eigenfunction expansions</a></li>
 </ul>
 </li>
 </ul>
