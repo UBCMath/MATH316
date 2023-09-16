@@ -35,7 +35,7 @@ We consider the heat equation subject to the following initial and boundary cond
 
 ### Dirichlet Boundary Conditions
 
-```{figure} ../img/fourier/DirichletBar.png
+```{figure} ../img/fourier/dirichlet_bar.png
 ---
 width: 80%
 name: DirichletBar
@@ -47,10 +47,10 @@ What do you expect the solution to look like as $t \to \infty$?
 
 ### Neumann Boundary Conditions
 
-```{figure} ../img/fourier/NeumannBar.png
+```{figure} ../img/fourier/neumann_bar.png
 ---
 width: 80%
-name: NeumannBar
+name: neumann_bar
 ---
 Consider a conducting bar with thermal conductivity $\alpha^2$ that has an initial temperature distribution $u(x,0)=f(x)$ and whose endpoints are insulated
 ```
@@ -59,10 +59,10 @@ What do you expect the solution to look like as $t \to \infty$?
 
 ### Mixed Boundary Conditions
 
-```{figure} ../img/fourier/MixedBar.png
+```{figure} ../img/fourier/mixed_bar.png
 ---
 width: 80%
-name: MixedBar
+name: mixed_bar
 ---
 Consider a conducting bar with thermal conductivity $\alpha^2$ that has an initial temperature distribution $u(x,0)=f(x)$ and whose left endpoint is held at $^{\circ }C$ (i.e., embedded in a block of ice) while the right endpoint is insulated
 ```

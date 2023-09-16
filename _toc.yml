@@ -20,6 +20,12 @@ parts:
     chapters:
     - file: fourier/series.ipynb
     - file: fourier/separation.md
+    - file: fourier/sine.md
+    - file: fourier/cosine.md
+    - file: fourier/full.md
+    - file: fourier/half.md
+    - file: fourier/convergence.md
+    - file: fourier/bessel-parseval.md
   - caption: Finite Difference Method
     numbered: True
     chapters:
@@ -54,3 +60,11 @@ parts:
     - file: sturm-liouville/sturm-liouville.md
     - file: sturm-liouville/robin.md
     - file: sturm-liouville/cauchy-euler.md
+  - caption: Notebooks
+    numbered: True
+    chapters:
+    - file: notebooks/heat/dirichlet.ipynb
+    - file: scripts/demo.ipynb
+    - file: scripts/heat_demo.ipynb
+    - file: scripts/wave_demo.ipynb
+    - file: scripts/laplace_demo.ipynb
