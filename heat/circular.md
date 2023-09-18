@@ -113,7 +113,7 @@ X^\prime (x) & = & -A\lambda \sin\lambda x+B\lambda\cos (\lambda x)\\
 X^\prime (-L)& = & +A\lambda\sin (\lambda L)+B\lambda\cos (\lambda L)=-A\lambda\sin (\lambda
 L)+B\lambda\cos (\lambda L)=X^\prime (L)\nonumber\\
 & &\quad\mbox{therefore }2A\lambda\sin (\lambda L)=0\nonumber\\
-\mbox{Therefore }\la_nL & = &(n\pi )\quad n=0,1,\ldots .\nonumber
+\mbox{Therefore }\lambda_nL & = &(n\pi )\quad n=0,1,\ldots .\nonumber
 \end{eqnarray}
 $$(ref-heat-circular-7)
 

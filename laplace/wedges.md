@@ -6,28 +6,13 @@ $$
 \newcommand{\mat}[1]{{\mathbf #1}}
 \newcommand{\vect}[1]{\underline{#1}}
 \newcommand{\njump}[1]{[|#1|]}
-\newcommand{\pa}{\partial}
-\newcommand{\De}{\Delta}
-\newcommand{\ra}{\rightarrow}
-\newcommand{\dst}{\displaystyle}
-\newcommand{\la}{\lambda}
-\newcommand{\al}{\alpha}
-\newcommand{\rme}{{\rm e}}
-\newcommand{\rmi}{{\rm i}}
-
-\newcommand{\R}{\mathbb{R}}
 \newcommand{\bke}[1]{\left ( #1 \right )}
 \newcommand{\bkt}[1]{\left [ #1 \right ]}
 \newcommand{\bket}[1]{\left \{ #1 \right \}}
 \newcommand{\norm}[1]{\left \| #1 \right \|}
 \newcommand{\bka}[1]{\left \langle #1 \right \rangle}
-\renewcommand{\th}{\theta}
-\newcommand{\om}{\omega}
-\newcommand{\pd}{\partial}
-\newcommand{\dis}{\displaystyle}
 \newcommand{\ve}[1]{\mathbf{#1}}
 \newcommand{\what}[1]{\widehat{#1}}
-\newcommand{\tint}{\int\kern-.6em\int\kern-.6em\int}
 $$
 
 # Wedges With Cut-Outs, Dirichlet And Neumann Problems On Circular Domains
@@ -52,7 +37,8 @@ Reference Section: Boyce and Di Prima Section 10.8
 
 ### Wedges with Cut-Outs
 
-````{prf:example} A Circular Wedge with a Cut-Out:
+````{prf:example} A Circular Wedge with a Cut-Out
+:label: example-laplace-wedges-0 
 ```{figure} ../img/laplace/bitten_pizza.png
 :name: bitten_pizza 
 :align: center
@@ -65,11 +51,11 @@ $$
 \begin{eqnarray}
 u_{rr}+\frac{1}{r}u_r+\frac{1}{r^2}u_{\theta\theta} =0
 \end{eqnarray}
-$$(ref0)
+$$(ref-laplace-wedges-0)
 
 $$
 \begin{eqnarray}\begin{array}{ll}
-u_\theta (r,0)=0&u_\theta (r,\al )=0\\
+u_\theta (r,0)=0&u_\theta (r,\alpha )=0\\
 u(b,\theta )=0&u(a,\theta )=f(\theta
 )\end{array}\label{eqLaplaceDirichletWedgeCutout}
 \end{eqnarray}
@@ -81,27 +67,27 @@ $$
 \begin{eqnarray}
 \frac{r^2(R^{\prime\prime}+\frac{1}{r}R)}{R( r
 )}=-\frac{\Theta^{\prime\prime}(\theta )}{\Theta (\theta
-)}=\la^2\Rightarrow\left\{\begin{array}{l}
-r^2R^{\prime\prime}+rR^\prime -\la^2 R=0\\
-\Theta^{\prime\prime}+\la^2 \Theta =0\end{array}\right.
+)}=\lambda^2\Rightarrow\left\{\begin{array}{l}
+r^2R^{\prime\prime}+rR^\prime -\lambda^2 R=0\\
+\Theta^{\prime\prime}+\lambda^2 \Theta =0\end{array}\right.
 \end{eqnarray}
-$$(ref2)
+$$(ref-laplace-wedges-2)
 
 $\mathbf{\Theta \mbox{ equation}\rangle}$
 
 $$
 \begin{eqnarray}
-& &\left.\begin{array}{l}\Theta^{\prime\prime}+\la^2\Theta =0\\
-\Theta^\prime (0)=0=\Theta^\prime (\al )\end{array}\right\}
-\begin{array}{lcl}\Theta &=&A\cos\la\theta +B\sin\la\theta\\
-\Theta^\prime (0)&=&B\la =0\Rightarrow B\mbox{ or }\la =0,\\
+& &\left.\begin{array}{l}\Theta^{\prime\prime}+\lambda^2\Theta =0\\
+\Theta^\prime (0)=0=\Theta^\prime (\alpha )\end{array}\right\}
+\begin{array}{lcl}\Theta &=&A\cos\lambda\theta +B\sin\lambda\theta\\
+\Theta^\prime (0)&=&B\lambda =0\Rightarrow B\mbox{ or }\lambda =0,\\
 \end{array}\\
-& &\quad \begin{array}{lcl}\Theta^\prime &= &-A\la\sin\la\theta +B\la\cos\la\theta\\
-\Theta^\prime (\al ) &= &-A\la\sin\la\al =0,\;
-\la=\frac{n\pi}{\al}\; n=0,1,\ldots
+& &\quad \begin{array}{lcl}\Theta^\prime &= &-A\lambda\sin\lambda\theta +B\lambda\cos\lambda\theta\\
+\Theta^\prime (\alpha ) &= &-A\lambda\sin\lambda\alpha =0,\;
+\lambda=\frac{n\pi}{\alpha}\; n=0,1,\ldots
 \end{array}
 \end{eqnarray}
-$$(ref3)
+$$(ref-laplace-wedges-3)
 
 $\mathbf{R \mbox{ equation}\rangle}$ $\mathbf{n=0}$:
 ${(rR_0^\prime )}^\prime =0$ $rR_0^\prime =B_0$ $R_0=A_0+B_0\ln r$.
@@ -113,25 +99,25 @@ $$
 u_0(b,\theta )=R_0(b)\Theta_0 (\theta )=0\Rightarrow R_0(b)=
    A_0+B_0\ln b=0, A_0=-B_0\ln b.\phantom{\int}
 \end{eqnarray}
-$$(ref4)
+$$(ref-laplace-wedges-4)
 
 Therefore $R_0=B_0\ln (r/b)$. Choose $B_0=1$.
 
 $\mathbf{n\geq 1}$: $r^2R_n^{\prime\prime}+rR_n^\prime
--\la^2 R_n=0$ $R( r )=A_nr^{\la_n}+B_nr^{-\la_n}$
+-\lambda^2 R_n=0$ $R( r )=A_nr^{\lambda_n}+B_nr^{-\lambda_n}$
 
 $$
 \begin{eqnarray}
-R_n(b) & = & A_nb^{\la_n}+B_nb^{-\la_n}
-   =0\Rightarrow B_n=-A_nb^{2\la_n}\\
-R_n( r ) & = & A_n[r^{\la_n}-b^{2\la_n}r^{-\la_n}]\quad
+R_n(b) & = & A_nb^{\lambda_n}+B_nb^{-\lambda_n}
+   =0\Rightarrow B_n=-A_nb^{2\lambda_n}\\
+R_n( r ) & = & A_n[r^{\lambda_n}-b^{2\lambda_n}r^{-\lambda_n}]\quad
    \mbox{ Choose $A_n=1$.}\\
-u_n(r,\theta ) & = & \left[ r^{\left(\frac{n\pi}{\al}\right)}
-   -b^{2\left(\frac{n\pi}{\al}\right)} r^{-\left(\frac{n\pi}{\al}\right)}\right]
-   \cos\left(\frac{n\pi\theta}{\al}\right)\\
+u_n(r,\theta ) & = & \left[ r^{\left(\frac{n\pi}{\alpha}\right)}
+   -b^{2\left(\frac{n\pi}{\alpha}\right)} r^{-\left(\frac{n\pi}{\alpha}\right)}\right]
+   \cos\left(\frac{n\pi\theta}{\alpha}\right)\\
 u_0(r,\theta ) & = & \ln\left(\frac{r}{b}\right) \cdot 1
 \end{eqnarray}
-$$(ref5)
+$$(ref-laplace-wedges-5)
 
 Therefore
 
@@ -139,50 +125,51 @@ $$
 \begin{eqnarray}
 u(r,\theta ) & = & c_0\ln\left(\frac{r}{b}\right)
 +\sum\limits_{n=1}^\infty c_n\left[
-r^{\left(\frac{n\pi}{\al}\right)}-b^{\left(\frac{2n\pi}{\al}\right)}
-r^{-\left(\frac{n\pi}{\al}\right)}\right]\cos\left(\frac{n\pi\theta}{\al}\right)\\
+r^{\left(\frac{n\pi}{\alpha}\right)}-b^{\left(\frac{2n\pi}{\alpha}\right)}
+r^{-\left(\frac{n\pi}{\alpha}\right)}\right]\cos\left(\frac{n\pi\theta}{\alpha}\right)\\
 u(a,\theta ) & = & f(\theta )= 2\frac{\left( c_0\ln\left(
 \frac{a}{b}\right)\right)}{2}+\sum\limits_{n=1}^\infty c_n\left[
-a^{\left(\frac{n\pi}{\al}\right)}
--b^{\left(\frac{2n\pi}{\al}\right)}
-r^{-\left(\frac{n\pi}{\al}\right)}\right]\cos\left(\frac{n\pi\theta}{\al}\right)\phantom{\int\int}\\
+a^{\left(\frac{n\pi}{\alpha}\right)}
+-b^{\left(\frac{2n\pi}{\alpha}\right)}
+r^{-\left(\frac{n\pi}{\alpha}\right)}\right]\cos\left(\frac{n\pi\theta}{\alpha}\right)\phantom{\int\int}\\
 & &\quad\quad =\frac{a_0}{2}+\sum\limits_{n=1}^\infty
-a_n\cos\left(\frac{n\pi\theta}{\al}\right) .
+a_n\cos\left(\frac{n\pi\theta}{\alpha}\right) .
 \end{eqnarray}
-$$(ref6)
+$$(ref-laplace-wedges-6)
 
 Therefore
 
 $$
 \begin{eqnarray}
-2c_0\ln (a/b)=\frac{2}{\al}\int\limits_0^\al f(\theta )\, d\theta .
+2c_0\ln (a/b)=\frac{2}{\alpha}\int\limits_0^\alpha f(\theta )\, d\theta .
 \end{eqnarray}
-$$(ref7)
+$$(ref-laplace-wedges-7)
 
 $$
 \begin{eqnarray}
 c_n & = & \frac{2}{
-  \al\left[ a^{\left(\frac{n\pi}{\al}\right)}
-  -b^{\left(\frac{2n\pi}{\al}\right)}a^{-\frac{n\pi}{\al}}\right] }
-\int\limits_0^\al f(\theta )\cos\left(\frac{n\pi\theta}{\al}\right)\, d\theta\\
-c_0 & = & \frac{1}{\al\ln (a/b)}\int\limits_0^\al f(\theta )\,
+  \alpha\left[ a^{\left(\frac{n\pi}{\alpha}\right)}
+  -b^{\left(\frac{2n\pi}{\alpha}\right)}a^{-\frac{n\pi}{\alpha}}\right] }
+\int\limits_0^\alpha f(\theta )\cos\left(\frac{n\pi\theta}{\alpha}\right)\, d\theta\\
+c_0 & = & \frac{1}{\alpha\ln (a/b)}\int\limits_0^\alpha f(\theta )\,
 d\theta .
 \end{eqnarray}
-$$(ref8)
+$$(ref-laplace-wedges-8)
 ````
 
 ````{prf:observation}
+:label: observation-laplace-wedges-0
 In the special case $f(\theta )=1$,
-$c_0=\dst\frac{1}{\log (a/b)}$, and $c_n=0$ $n\geq 1$. By Fourier
-basis function orthogonality $\int\limits_0^\al 1\cdot
-\cos\left(\dst\frac{n\pi\theta}{\al}\right)\, d\theta =0$ so that
+$c_0=\displaystyle\frac{1}{\log (a/b)}$, and $c_n=0$ $n\geq 1$. By Fourier
+basis function orthogonality $\int\limits_0^\alpha 1\cdot
+\cos\left(\displaystyle\frac{n\pi\theta}{\alpha}\right)\, d\theta =0$ so that
 the solution reduces to:
 
 $$
 \begin{eqnarray}
 u(r,\theta ) = \frac{\log (r/b)}{\log (a/b)}
 \end{eqnarray}
-$$(ref9)
+$$(ref-laplace-wedges-9)
 
 which is purely radial i.e. has no $\theta$ dependence.
 ````
@@ -190,6 +177,7 @@ which is purely radial i.e. has no $\theta$ dependence.
 ### Problems With A Complete Circle As The Boundary
 
 ````{prf:example} Dirichlet Problem in the Interior of a Circle
+:label: example-laplace-wedges-1 
 ```{figure} ../img/laplace/dirichlet_circle.png
 :name: dirichlet_circle
 :align: center
@@ -207,56 +195,56 @@ $$(eqLaplaceDirichletfullCircle)
 
 $$
 \begin{eqnarray}\begin{array}{l}
-\mbox{BC: }u(a,\theta )=f(\theta )\qquad u(r,\theta )<\infty\quad r\ra 0\\
+\mbox{BC: }u(a,\theta )=f(\theta )\qquad u(r,\theta )<\infty\quad r\rightarrow 0\\
 \mbox{Periodicity } u(\theta +2\pi )=u(\theta
 )\quad\mbox{periodic.}\end{array}
 \end{eqnarray}
-$$(ref11)
+$$(ref-laplace-wedges-11)
 
 Let $u(r,\theta )=R( r )\Theta (\theta )$.
 
 $$
 \begin{eqnarray}
 \frac{r^2\left( R^{\prime\prime}+\frac{1}{r}R^\prime\right)} {R( r
-)}=-\frac{\Theta^{\prime\prime}}{\Theta}=+\la^2\Rightarrow
-\begin{array}{l}r^2R^{\prime\prime}+rR^\prime -\la^2R=0\;\mbox{Euler Eq.}\\
-\Theta^{\prime\prime}+\la^2\Theta =0\end{array}
+)}=-\frac{\Theta^{\prime\prime}}{\Theta}=+\lambda^2\Rightarrow
+\begin{array}{l}r^2R^{\prime\prime}+rR^\prime -\lambda^2R=0\;\mbox{Euler Eq.}\\
+\Theta^{\prime\prime}+\lambda^2\Theta =0\end{array}
 \end{eqnarray}
-$$(ref12)
+$$(ref-laplace-wedges-12)
 
 $\mathbf{\Theta \mbox{ equation}\rangle}$
-$\Theta^{\prime\prime}+\la^2\Theta =0$ $\Theta =A\cos (\la\theta
-)+B\sin (\la\theta )$
+$\Theta^{\prime\prime}+\lambda^2\Theta =0$ $\Theta =A\cos (\lambda\theta
+)+B\sin (\lambda\theta )$
 
 $$
 \begin{eqnarray}
-\theta (-\pi ) & = & A\cos (\la\pi )-B\sin (\la\pi )=\Theta (\pi )=A\cos (\la\pi )\\
-& &\quad +B\sin (\la\pi )\Rightarrow 2B\sin (\la\pi )=0\\
-\Theta^\prime (\theta ) & = & -A\la\sin (\la\theta )+B\la\cos (\la\theta )\\
-\Theta^\prime (-\pi ) & = & A\la\sin (\la\pi )+B\la\cos (\la\pi
-)=\Theta^\prime (\pi )=-A\la\sin (\la\pi )\\
-& &\quad +B\la\cos (\la\pi )\Rightarrow 2A\la\sin (\la\pi )=0.
+\theta (-\pi ) & = & A\cos (\lambda\pi )-B\sin (\lambda\pi )=\Theta (\pi )=A\cos (\lambda\pi )\\
+& &\quad +B\sin (\lambda\pi )\Rightarrow 2B\sin (\lambda\pi )=0\\
+\Theta^\prime (\theta ) & = & -A\lambda\sin (\lambda\theta )+B\lambda\cos (\lambda\theta )\\
+\Theta^\prime (-\pi ) & = & A\lambda\sin (\lambda\pi )+B\lambda\cos (\lambda\pi
+)=\Theta^\prime (\pi )=-A\lambda\sin (\lambda\pi )\\
+& &\quad +B\lambda\cos (\lambda\pi )\Rightarrow 2A\lambda\sin (\lambda\pi )=0.
 \end{eqnarray}
-$$(ref13)
+$$(ref-laplace-wedges-13)
 
-Therefore $\la_n=\dst\frac{n\pi}{\pi}=n$; $n=0,1,2,\ldots$
+Therefore $\lambda_n=\displaystyle\frac{n\pi}{\pi}=n$; $n=0,1,2,\ldots$
 $\Theta_n(\theta )=\cos (n\theta )$ and $\sin (n\theta )$.
 
 $\mathbf{R \mbox{ equation}\rangle}$ $\mathbf{n=0}$:
 $\la_0=0\Rightarrow rR_0^{\prime\prime}+R_0^\prime ={(rR_0^\prime
 )}^\prime =0$ $R_0=B_0\ln r+A_0$.
 
-$\mathbf{n\geq 1}$: $\mathbf{\la_n=n}$:
+$\mathbf{n\geq 1}$: $\mathbf{\lambda_n=n}$:
 
 $$
 \begin{eqnarray}\begin{array}{l}
 r^2R_n^{\prime\prime}+rR_n^\prime - (n)^2R_n=0\quad\mbox{Euler Eq.}\\
-R_n=r^\gamma\Rightarrow\gamma (\gamma -1)+\gamma - n^2=0\quad\gamma =\pm\la_n =\pm n\\
+R_n=r^\gamma\Rightarrow\gamma (\gamma -1)+\gamma - n^2=0\quad\gamma =\pm\lambda_n =\pm n\\
 R_n=c_nr^{-n}+d_nr^n.\end{array}
 \end{eqnarray}
-$$(ref14)
+$$(ref-laplace-wedges-14)
 
-Now since $u(r,\theta )<\infty$ as $r\ra 0$ we must exclude
+Now since $u(r,\theta )<\infty$ as $r\rightarrow 0$ we must exclude
 solutions that blow up. Thus $B_0=0$ and $c_n=0$. Therefore
 
 $$
@@ -296,7 +284,7 @@ f(\phi )\cos n(\theta -\phi )\, d\phi\right\}\\
 )\left\{\frac{1}{2}+\sum\limits_{n=1}^\infty
 \left(\frac{r}{a}\right)^n \cos n(\theta - \phi )\right\}\, d\phi
 \end{eqnarray}
-$$(ref16)
+$$(ref-laplace-wedges-16)
 
 Now
 
@@ -327,7 +315,7 @@ z(1-\bar{z})&=&\frac{r}{a}e^{i(\theta -\phi
 \\
 \\
 \\\end{array}\nonumber\end{eqnarray}
-$$(ref17)
+$$(ref-laplace-wedges-17)
 
 Therefore
 
@@ -341,20 +329,20 @@ u(r,\theta ) &=& \frac{1}{\pi}\int\limits_{-\pi}^\pi f(\phi )
   {a^2-2ar\cos (\theta -\phi )+r^2}\right\}\, d\phi\nonumber\\
 &&
 \end{eqnarray}
-$$(ref18)
+$$(ref-laplace-wedges-18)
 
 $$
 \begin{eqnarray}
-\framebox{$\dst u(r,\theta
+\framebox{$\displaystyle u(r,\theta
 )=\frac{1}{2\pi}(a^2-r^2)\int\limits_{-\pi}^\pi \frac{f(\phi
 )}{a^2-2ar\cos (\theta -\phi )+r^2}\, d\phi $}
 \end{eqnarray}
-$$(ref19)
+$$(ref-laplace-wedges-19)
 
 #### Domain Exterior to a Circle
 
 For problem exterior to a circle we require that $u(r,\theta
-)<\infty$ as $r\ra\infty$. In this case we require that $B_0=0$ and
+)<\infty$ as $r\rightarrow\infty$. In this case we require that $B_0=0$ and
 that $d_n=0$ so that $R_0=A_0$ and $R_n=r^{-n}\cdot\big[ a_n\cos
 n\theta +b_n\sin (n\theta )\big]$. In this case the appropriate
 solution to the Dirichlet problem becomes:
@@ -366,9 +354,10 @@ a_n & = & \frac{a^n}{\pi}\int\limits_{-\pi}^\pi f(\theta )\cos
 (n\theta )\, d\theta ,b_n=\frac{a^n}{\pi}\int\limits_{-\pi}^\pi
 f(\theta )\sin (n\theta )\, d\theta .
 \end{eqnarray}
-$$(ref20)
+$$(ref-laplace-wedges-20)
 
 ````{prf:example} Neumann Problem on the Interior of a Circle
+:label: example-laplace-wedges-2 
 ```{figure} ../img/laplace/neumann_circle.png
 :name: neumann_circle
 :align: center
@@ -379,8 +368,8 @@ a circle {eq}`eqLaplaceNeumannfullCircle`.
 
 $$
 \begin{eqnarray}\begin{array}{l}
-u_{rr}+\dst\frac{1}{r}u_r+\dst\frac{1}{r^2}u_{\theta\theta}=0\\
-\dst\frac{\pa u}{\pa r}(a,\theta )=f(\theta )\\
+u_{rr}+\displaystyle\frac{1}{r}u_r+\displaystyle\frac{1}{r^2}u_{\theta\theta}=0\\
+\displaystyle\frac{\partial u}{\partial r}(a,\theta )=f(\theta )\\
 u\quad 2\pi \mbox{ - periodic.}\end{array}
 \label{eqLaplaceNeumannfullCircle}
 \end{eqnarray}
@@ -388,26 +377,26 @@ $$(eqLaplaceNeumannfullCircle)
 
 $$
 \begin{eqnarray}
-u(r,\theta )= &\dst\frac{a_0}{2}& +\sum\limits_{n=1}^\infty r^n
+u(r,\theta )= &\displaystyle\frac{a_0}{2}& +\sum\limits_{n=1}^\infty r^n
   \big[ a_n\cos (n\theta )+b_n\sin (n\theta )\big]\\
-{\left.\frac{\pa u}{\pa r}\right|}_{r=a}= f(\theta ) & = &
+{\left.\frac{\partial u}{\partial r}\right|}_{r=a}= f(\theta ) & = &
    \sum\limits_{n=1}^\infty nr^{n-1} {\left[ a_n\cos (n\theta )+
   b_n\sin (n\theta )\big]\right|}_{r=a}\\
 & = & \sum\limits_{n=1}^\infty na^{n-1}\big[ a_n\cos (n\theta
 )+b_n\sin (n\theta )\big] .
 \end{eqnarray}
-$$(ref22)
+$$(ref-laplace-wedges-22)
 
 A solution will not exist unless
-$a_0=\dst\frac{1}{2\pi}\int\limits_{-\pi}^\pi f(\theta )\, d\theta
+$a_0=\displaystyle\frac{1}{2\pi}\int\limits_{-\pi}^\pi f(\theta )\, d\theta
 =0$. Otherwise there is a net flux of heat across the boundary and
 no steady state solution will exist.
 ````
 
 #### Special Case - Electrical Impedance Tomography (EIT)
 
-Assume that $f(\theta )=I_0\delta \left(\theta -\dst\frac{\pi}{2} \right) -
-I_0\delta\left(\theta +\dst\frac{\pi}{2}\right)$.
+Assume that $f(\theta )=I_0\delta \left(\theta -\displaystyle\frac{\pi}{2} \right) -
+I_0\delta\left(\theta +\displaystyle\frac{\pi}{2}\right)$.
 
 ```{figure} ../img/laplace/EIT_BVP.png
 :name: EIT_BVP
@@ -433,7 +422,7 @@ f(-\theta ) & = & I_0\delta \left( -\left(\theta
 & = & I_0\delta\left(\theta +\frac{\pi}{2}\right) -
 I_0\delta\left(\theta -\frac{\pi}{2}\right) =-f(\theta )
 \end{eqnarray}
-$$(ref23)
+$$(ref-laplace-wedges-23)
 
 Thus $f$ is odd $\Rightarrow a_0=a_n=0$.
 
@@ -445,7 +434,7 @@ u(r,\theta ) & = &
 \frac{2aI_0}{\pi}\sum\limits_{n=1}^\infty\frac{\sin (n\theta
 )}{n}\sin\left(\frac{n\pi}{2}\right) {\left(\frac{r}{a}\right)}^n
 \end{eqnarray}
-$$(ref24)
+$$(ref-laplace-wedges-24)
 
 $$
 \begin{eqnarray}
@@ -465,17 +454,17 @@ z_2&=&\left(\frac{r}{a}\right)\mathrm{e}^{i\left(\theta
 +\frac{\pi}{2}\right)}
 \end{array}.\phantom{\int\int}
 \end{eqnarray}
-$$(ref25)
+$$(ref-laplace-wedges-25)
 
 Now for $\mathbf{|z|<1}$:
 
 $$
 \begin{eqnarray}\begin{array}{rcrcl}
-\dst\frac{1}{1-z}&=&1+z+z^2+\cdots&=&\dst\sum\limits_{k=0}^\infty z^k\\
--\ln (1-z)&=&z+\dst\frac{z^2}{2}+\cdots
-&=&\dst\sum\limits_{n=1}^\infty \dst\frac{z^n}{n}\end{array}.
+\displaystyle\frac{1}{1-z}&=&1+z+z^2+\cdots&=&\displaystyle\sum\limits_{k=0}^\infty z^k\\
+-\ln (1-z)&=&z+\displaystyle\frac{z^2}{2}+\cdots
+&=&\displaystyle\sum\limits_{n=1}^\infty \displaystyle\frac{z^n}{n}\end{array}.
 \end{eqnarray}
-$$(ref26)
+$$(ref-laplace-wedges-26)
 
 Therefore
 
@@ -484,7 +473,7 @@ $$
 u(r,\theta )=-\frac{aI_0}{\pi}R\mathrm{e} \left[
 \ln\left(\frac{1-z_1}{1-z_2}\right)\right] .
 \end{eqnarray}
-$$(ref27)
+$$(ref-laplace-wedges-27)
 
 Now if $(1-z)=A\mathrm{e}^{i\phi}$ then
 
@@ -493,7 +482,7 @@ $$
 R\mathrm{e} \big[\ln (1-z)\big] =R\mathrm{e} \left[\ln \left(
 A\mathrm{e}^{i\phi}\right)\right] =R\mathrm{e} [\ln A+i\phi ]=\ln A.
 \end{eqnarray}
-$$(ref28)
+$$(ref-laplace-wedges-28)
 
 Therefore
 
@@ -502,7 +491,7 @@ $$
 u(r,\theta )=-\frac{aI_0}{2\pi}\ln
 {\left|\frac{1-z_1}{1-z_2}\right|}^2.
 \end{eqnarray}
-$$(ref29)
+$$(ref-laplace-wedges-29)
 
 Now
 
@@ -513,9 +502,9 @@ z_1 & = & \left(\frac{r}{a}\right) \mathrm{e}^{i\left(\theta -\frac{\pi}{2}\righ
 & = & 1-\rho\left( \mathrm{e}^{i\phi_1}+\mathrm{e}^{-i\phi_1}\right) +\rho^2\\
 & = & 1-2\rho\cos\phi_1 +\rho^2 .
 \end{eqnarray}
-$$(ref30)
+$$(ref-laplace-wedges-30)
 
-Similarly $z_2=\left(\dst\frac{r}{a}\right) \mathrm{e}^{i\left(\phi
+Similarly $z_2=\left(\displaystyle\frac{r}{a}\right) \mathrm{e}^{i\left(\phi
 +\frac{\pi}{2}\right)}=\rho \mathrm{e}^{i\phi_2}$ and
 $|1-z_2|^2=1-2\rho\cos\phi_2 +\rho^2$. Therefore
 
