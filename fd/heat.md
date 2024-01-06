@@ -1,0 +1,3 @@
+# Heat Equation
+
+In this lecture we introduce the finite difference method that is widely used for approximating PDEs using the computer. We use the definition of the derivative and Taylor series to derive finite difference approximations to the first and second derivatives of a function. We then use these finite difference quotients to approximate the derivatives in the heat equation and to derive a finite difference approximation to the heat equation.

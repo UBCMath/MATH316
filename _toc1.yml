@@ -1,0 +1,78 @@
+format: jb-book
+root: index
+parts:
+  - caption: Ordinary Differential Equations
+    numbered: True
+    chapters:
+    - file: odes/review/index.md
+      sections:
+      - file: odes/review/first.md
+      - file: odes/review/second.md
+      - file: odes/review/cauchy.md
+    - file: odes/series.md
+    - file: odes/rsps.md
+    - file: odes/frobenius.md
+    - file: odes/bessel.md
+  - caption: Introduction to Partial Differential Equations
+    numbered: True
+    chapters:
+    - file: intro/initial.md
+    - file: intro/continued.md
+    - file: intro/separation.md    
+  - caption: Fourier Series
+    numbered: True
+    chapters:
+    - file: fourier/series.ipynb
+    - file: fourier/separation.md
+    - file: fourier/sine.md
+    - file: fourier/cosine.md
+    - file: fourier/full.md
+    - file: fourier/half.md
+    - file: fourier/convergence.md
+    - file: fourier/bessel-parseval.md
+  - caption: Finite Difference Method
+    numbered: True
+    chapters:
+    - file: fd/fd.md
+    - file: fd/heat.md
+      sections:
+      - file: fd/heat/heat.md
+    - file: fd/wave.md
+    - file: fd/laplace.md
+  - caption: Heat Equation
+    numbered: True
+    chapters:
+    - file: heat/heat.ipynb
+    - file: heat/circular.md
+    - file: heat/inhomogeneous.md
+    - file: heat/distributed.md
+    - file: heat/eigenfunctions.md
+  - caption: Laplace Equation
+    numbered: True
+    chapters:
+    - file: laplace/laplace.md
+    - file: laplace/2d.md
+    - file: laplace/rectangular.md
+    - file: laplace/circular.md
+    - file: laplace/wedges.md
+  - caption: Wave Equation
+    numbered: True
+    chapters:
+    - file: wave/wave.md
+    - file: wave/1d.md
+    - file: wave/dalembert.md
+    - file: wave/finite.md
+  - caption: Sturm-Liouville Theory
+    numbered: True
+    chapters:
+    - file: sturm-liouville/sturm-liouville.md
+    - file: sturm-liouville/robin.md
+    - file: sturm-liouville/cauchy-euler.md
+  - caption: Notebooks
+    numbered: True
+    chapters:
+    - file: notebooks/heat/dirichlet.ipynb
+    - file: scripts/demo.ipynb
+    - file: scripts/heat_demo.ipynb
+    - file: scripts/wave_demo.ipynb
+    - file: scripts/laplace_demo.ipynb
