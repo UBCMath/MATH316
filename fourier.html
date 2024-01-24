@@ -53,7 +53,6 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -67,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'fourier';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Heat Equation" href="heat.html" />
+    <link rel="next" title="Finite Differences" href="fd.html" />
     <link rel="prev" title="Partial Differential Equations" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -147,9 +146,11 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Fourier Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fd.html">Finite Differences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heat.html">Heat Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="laplace.html">Laplace Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wave.html">Wave Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessel.html">Bessel Functions</a></li>
 </ul>
 
     </div>
@@ -319,7 +320,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -335,6 +338,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-coefficients">Computing Coefficients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-series">Computing Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -355,10 +369,14 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="definition">
+<h2>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(f(x)\)</span> be a (piecewise) continuous function on the interval <span class="math notranslate nohighlight">\([-L,L]\)</span>. The <strong>Fourier series</strong> of <span class="math notranslate nohighlight">\(f(x)\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
 f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos \left( \frac{n \pi x}{L} \right) + \sum_{n=1}^{\infty} b_n \sin \left( \frac{n \pi x}{L} \right)
 \]</div>
+<p>where the coefficients are given by the integrals</p>
 <div class="math notranslate nohighlight">
 \[
 a_0 = \frac{1}{L} \int_{-L}^L f(x) dx
@@ -371,6 +389,142 @@ a_n = \frac{1}{L} \int_{-L}^L f(x) \cos \left( \frac{n \pi x}{L} \right) dx
 \[
 b_n = \frac{1}{L} \int_{-L}^L f(x) \sin \left( \frac{n \pi x}{L} \right) dx
 \]</div>
+</section>
+<section id="computing-coefficients">
+<h2>Computing Coefficients<a class="headerlink" href="#computing-coefficients" title="Permalink to this heading">#</a></h2>
+<p>Use the SciPy funciton <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad</span></code> (see <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html">documentation</a>) to numerically approximate a definite integral. For example, let’s approximate the integral</p>
+<div class="math notranslate nohighlight">
+\[
+\int_0^{1} \sin(x^2) dx
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">I</span><span class="p">,</span><span class="n">error</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function returns the approximation and an upper bound for the error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3102683017233811
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">error</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.444670123846428e-15
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s use the function <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad</span></code> to approximate first few Fourier coefficients of the function <span class="math notranslate nohighlight">\(f(x) = 1 - x^2\)</span> on the interval <span class="math notranslate nohighlight">\([-1,1]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I0</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+<span class="n">a0</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">I0</span>
+<span class="n">a0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.3333333333333335
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrand_a1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+<span class="n">Ia1</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">integrand_a1</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">Ia1</span>
+<span class="n">a1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.40528473456935127
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrand_a2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+<span class="n">Ia2</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">integrand_a2</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">Ia2</span>
+<span class="n">a2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.10132118364233778
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrand_b1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+<span class="n">Ib1</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">integrand_b1</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">Ib1</span>
+<span class="n">b1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrand_b2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+<span class="n">Ib2</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">integrand_b2</span><span class="p">,</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">Ib2</span>
+<span class="n">b2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course, all the coefficients <span class="math notranslate nohighlight">\(b_n = 0\)</span> since <span class="math notranslate nohighlight">\(f(x)\)</span> is an even function.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">fourier</span></code> takes input parameters <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">L</span></code> and <code class="docutils literal notranslate"><span class="pre">N</span></code>, and returns a tuple <code class="docutils literal notranslate"><span class="pre">(a0,a,b)</span></code> where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> is a Python function representing <span class="math notranslate nohighlight">\(f(x)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L</span></code> defines the interval <span class="math notranslate nohighlight">\([-L,L]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of coefficients to compute</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a0</span></code> is the constant term <span class="math notranslate nohighlight">\(a_0\)</span> in the Fourier series</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> is a NumPy array of length <span class="math notranslate nohighlight">\(N\)</span> of Fourier coefficients <span class="math notranslate nohighlight">\(a_1,\dots,a_N\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span></code> is a NumPy array of length <span class="math notranslate nohighlight">\(N\)</span> of Fourier coefficients <span class="math notranslate nohighlight">\(b_1,\dots,b_N\)</span></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fourier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
@@ -390,6 +544,54 @@ b_n = \frac{1}{L} \int_{-L}^L f(x) \sin \left( \frac{n \pi x}{L} \right) dx
 </div>
 </div>
 </div>
+<p>For example, let’s apply <code class="docutils literal notranslate"><span class="pre">fourier</span></code> to <span class="math notranslate nohighlight">\(f(x) = 1 - x^2\)</span> on <span class="math notranslate nohighlight">\([-1,1]\)</span> and recover the coefficients computed in the example in the previous section above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">a0</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">fourier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.3333333333333335
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.40528473, -0.10132118,  0.04503164, -0.0253303 ,  0.01621139])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0., 0., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s try an example where <span class="math notranslate nohighlight">\(f(x)\)</span> is a sum of sine and cosine functions to verify that the function <code class="docutils literal notranslate"><span class="pre">fourier</span></code> simply recovers the coefficients in the definition of <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
@@ -436,6 +638,15 @@ b_n = \frac{1}{L} \int_{-L}^L f(x) \sin \left( \frac{n \pi x}{L} \right) dx
 </div>
 </div>
 </div>
+<p>When programming in Python, we can interpret numbers such as <span class="math notranslate nohighlight">\(10^{-16}\)</span> as 0 therefore we have <span class="math notranslate nohighlight">\(a_0 = 2\)</span>, <span class="math notranslate nohighlight">\(a_1 = 1\)</span>, <span class="math notranslate nohighlight">\(a_2 = a_3 = a_4 = 0\)</span>, <span class="math notranslate nohighlight">\(b_1 = 3\)</span>, <span class="math notranslate nohighlight">\(b_2 = b_4 = 0\)</span> and <span class="math notranslate nohighlight">\(b_3 = 3\)</span>.</p>
+</section>
+<section id="computing-series">
+<h2>Computing Series<a class="headerlink" href="#computing-series" title="Permalink to this heading">#</a></h2>
+<p>The function <code class="docutils literal notranslate"><span class="pre">fouriersum</span></code> takes the output <code class="docutils literal notranslate"><span class="pre">a0</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> from the function <code class="docutils literal notranslate"><span class="pre">fourier</span></code> along with array <code class="docutils literal notranslate"><span class="pre">x</span></code> and number <code class="docutils literal notranslate"><span class="pre">L</span></code> and returns the array of <span class="math notranslate nohighlight">\(y\)</span> values given by the sum</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{a_0}{2} + \sum_{n=1}^N a_n \cos \left( \frac{n \pi x}{L} \right) + \sum_{n=1}^N b_n \sin \left( \frac{n \pi x}{L} \right)
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fouriersum</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">L</span><span class="p">):</span>
@@ -446,19 +657,29 @@ b_n = \frac{1}{L} \int_{-L}^L f(x) \sin \left( \frac{n \pi x}{L} \right) dx
 </div>
 </div>
 </div>
+<p>Let’s plot the function <span class="math notranslate nohighlight">\(f(x) = 1 - x^2\)</span> along with the partial Fourier series up to <span class="math notranslate nohighlight">\(N=5\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a0</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">fourier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">fouriersum</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Partial Fourier Series&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Function $f(x) = 1-x^2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3fe92dea329b7be351fed92298fe723abc703c3de22a851b3f2d941ed5c03b33.png" src="_images/3fe92dea329b7be351fed92298fe723abc703c3de22a851b3f2d941ed5c03b33.png" />
+<img alt="_images/34a3138813c9ce5ac22110c4886b61226ed923c3cbebe166f5b5a4ca5745c8ea.png" src="_images/34a3138813c9ce5ac22110c4886b61226ed923c3cbebe166f5b5a4ca5745c8ea.png" />
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">sps</span>
@@ -483,6 +704,7 @@ b_n = \frac{1}{L} \int_{-L}^L f(x) \sin \left( \frac{n \pi x}{L} \right) dx
 <img alt="_images/4ddbc7f3061738af49b67151c5be0f37f9ca1a5817d0822c1f985c575646ea21.png" src="_images/4ddbc7f3061738af49b67151c5be0f37f9ca1a5817d0822c1f985c575646ea21.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -526,11 +748,11 @@ b_n = \frac{1}{L} \int_{-L}^L f(x) \sin \left( \frac{n \pi x}{L} \right) dx
       </div>
     </a>
     <a class="right-next"
-       href="heat.html"
+       href="fd.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Heat Equation</p>
+        <p class="prev-next-title">Finite Differences</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -543,6 +765,23 @@ b_n = \frac{1}{L} \int_{-L}^L f(x) \sin \left( \frac{n \pi x}{L} \right) dx
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-coefficients">Computing Coefficients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-series">Computing Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
@@ -562,7 +801,7 @@ By UBC Math
     
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2024.
       <br/>
     
   </p>
