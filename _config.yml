@@ -1,10 +1,9 @@
 title: UBC MATH 316 Partial Differential Equations
 author: UBC Math
+copyright: "2024"
 sphinx:
   config:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-    html_js_files:
-    - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
 only_build_toc_files: true
 html:
   home_page_in_navbar: false

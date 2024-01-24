@@ -1,5 +1,0 @@
-# Laplace Equation
-
-$$
-\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0
-$$
