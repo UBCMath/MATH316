@@ -354,9 +354,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ftcs-with-neumann-bcs">FTCS with Neumann BCs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Matrix Equations</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
 </ul>
 </li>
@@ -694,9 +692,8 @@ u_{n,k} \approx u(x_n,t_k)
 = \begin{bmatrix} f(x_0) \\ f(x_1) \\ \vdots \\ f(x_N) \end{bmatrix}
 \end{split}\]</div>
 </section>
-</section>
 <section id="id2">
-<h2>Implementation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h3>Implementation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>The function <code class="docutils literal notranslate"><span class="pre">heatFTCSN</span></code> takes input parameters <code class="docutils literal notranslate"><span class="pre">alpha</span></code>, <code class="docutils literal notranslate"><span class="pre">L</span></code>, <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">Q0</span></code>, <code class="docutils literal notranslate"><span class="pre">QL</span></code>, <code class="docutils literal notranslate"><span class="pre">tf</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">M</span></code>, and returns the matrix <code class="docutils literal notranslate"><span class="pre">U</span></code> of approximations where:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> is the diffusion coefficient in the heat equation <span class="math notranslate nohighlight">\(u_t = \alpha^2 u_{xx}\)</span></p></li>
@@ -737,6 +734,7 @@ u_{n,k} \approx u(x_n,t_k)
 </div>
 </div>
 </div>
+</section>
 <section id="id3">
 <h3>Example<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>Consider <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span>, <span class="math notranslate nohighlight">\(L = 1\)</span>, <span class="math notranslate nohighlight">\(f(x) = x(1-x)\)</span>, <span class="math notranslate nohighlight">\(Q_0=Q_L=0\)</span> and <span class="math notranslate nohighlight">\(t_f = 1\)</span>.</p>
@@ -765,7 +763,7 @@ u_{n,k} \approx u(x_n,t_k)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">nframes</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">nframes</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">step</span> <span class="o">=</span> <span class="n">M</span><span class="o">//</span><span class="n">nframes</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nframes</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">[:,</span><span class="n">step</span><span class="o">*</span><span class="n">i</span><span class="p">],</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="n">i</span><span class="o">/</span><span class="n">nframes</span><span class="p">)</span>
@@ -773,7 +771,7 @@ u_{n,k} \approx u(x_n,t_k)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c7987a50fb3b86660e784ef51d9b591d2e7512a65deac8d0c36da45e79b76150.png" src="_images/c7987a50fb3b86660e784ef51d9b591d2e7512a65deac8d0c36da45e79b76150.png" />
+<img alt="_images/d935a81f9f6b75e4d9af9bed251a03d06ca367414d9c2a3255413f75b9b875d0.png" src="_images/d935a81f9f6b75e4d9af9bed251a03d06ca367414d9c2a3255413f75b9b875d0.png" />
 </div>
 </div>
 </section>
@@ -858,9 +856,7 @@ u_{n,k} \approx u(x_n,t_k)
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ftcs-with-neumann-bcs">FTCS with Neumann BCs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Matrix Equations</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
 </ul>
 </li>
