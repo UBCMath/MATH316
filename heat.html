@@ -343,11 +343,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-and-boundary-conditions">Initial and Boundary Conditions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretization">Discretization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulation">Formulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-notation">Matrix Notation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-time-central-space">Forward Time Central Space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ftcs-with-dirichlet-bcs">FTCS with Dirichlet BCs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-equations">Matrix Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ftcs-with-neumann-bcs">FTCS with Neumann BCs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Matrix Equations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -369,164 +381,402 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Consider the initial-boundary value problem</p>
+<p>The <strong>heat equation</strong> (or <strong>diffusion equation</strong>) is given by</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial u}{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2} \ , \ \ 0 \leq x \leq L \ , \ \ t \geq 0 \ , \ \ \alpha \in \mathbb{R}
 \]</div>
-<p>with boundary conditions <span class="math notranslate nohighlight">\(u(0,t) = T_0\)</span> and <span class="math notranslate nohighlight">\(u(L,t) = T_L\)</span>, and initial condition <span class="math notranslate nohighlight">\(u(x,0) = f(x)\)</span>. We assume that <span class="math notranslate nohighlight">\(f(0) = T_0\)</span> and <span class="math notranslate nohighlight">\(f(L) = T_L\)</span>.</p>
+<section id="initial-and-boundary-conditions">
+<h2>Initial and Boundary Conditions<a class="headerlink" href="#initial-and-boundary-conditions" title="Permalink to this heading">#</a></h2>
+<p>The <strong>initial condition</strong> is a function <span class="math notranslate nohighlight">\(f(x)\)</span> which determines the solution <span class="math notranslate nohighlight">\(u(x,0) = f(x)\)</span> at time <span class="math notranslate nohighlight">\(t=0\)</span>.</p>
+<p>There are 2 types of boundary conditions for the heat equation:</p>
+<p><strong>Dirichlet boundary conditions</strong> specify the values of the solution at the endpoints:</p>
+<div class="math notranslate nohighlight">
+\[
+u(0,t) = T_0 \ \ \ \text{and} \ \ \ u(L,t) = T_L
+\]</div>
+<p><strong>Neumann boundary conditions</strong> specify the values of the derivative of the solution at the endpoints:</p>
+<div class="math notranslate nohighlight">
+\[
+u_x(0,t) = Q_0 \ \ \ \text{and} \ \ \ u_x(L,t) = Q_L
+\]</div>
+</section>
 <section id="discretization">
 <h2>Discretization<a class="headerlink" href="#discretization" title="Permalink to this heading">#</a></h2>
-<p>Choose the number of steps <span class="math notranslate nohighlight">\(N\)</span> in the <span class="math notranslate nohighlight">\(x\)</span> direction and the number of steps <span class="math notranslate nohighlight">\(M\)</span> in the <span class="math notranslate nohighlight">\(t\)</span> diection. These choices determine the step size <span class="math notranslate nohighlight">\(h\)</span> in the <span class="math notranslate nohighlight">\(x\)</span> direction, the step size <span class="math notranslate nohighlight">\(k\)</span> in the <span class="math notranslate nohighlight">\(t\)</span> direction and create a grid of points:</p>
+<p>Choose the number of steps <span class="math notranslate nohighlight">\(N\)</span> in the <span class="math notranslate nohighlight">\(x\)</span> direction and the number of steps <span class="math notranslate nohighlight">\(K\)</span> in the <span class="math notranslate nohighlight">\(t\)</span> direction. These choices determine the step sizes <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta t\)</span>, and create a grid of points:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-x_i &amp;= ih \ , \ \ i = 0,1, \dots, N+1 \ , \ \ h = \frac{L}{N + 1} \\
-t_j &amp;= jk \ , \ \ j = 0,1, \dots, M \ , \ \ k=\frac{t_f}{M}
+x_n &amp;= n \Delta x \ , \ \ n = 0,1, \dots, N \ , \ \ \Delta x = \frac{L}{N} \\
+t_k &amp;= k \Delta t \ , \ \ k = 0,1, \dots, K \ , \ \ \Delta t = \frac{t_f}{K}
 \end{align}
 \end{split}\]</div>
-<p>Here we have chosen some final time value <span class="math notranslate nohighlight">\(t_f\)</span> so that the grid is a finite rectangle <span class="math notranslate nohighlight">\([0,L] \times [0,t_f]\)</span>. The goal of a finite difference method is to compute the matrix</p>
+<p>Here we have chosen some final time value <span class="math notranslate nohighlight">\(t_f\)</span> so that the domain of the solution <span class="math notranslate nohighlight">\(u(x,t)\)</span> is a finite rectangle <span class="math notranslate nohighlight">\([0,L] \times [0,t_f]\)</span>. The goal of a finite difference method is to compute the matrix</p>
 <div class="math notranslate nohighlight">
 \[
-U = [u_{i,j}]
+U = [u_{n,k}]
 \]</div>
 <p>which gives approximations of the solution <span class="math notranslate nohighlight">\(u(x,t)\)</span> at the grid points:</p>
 <div class="math notranslate nohighlight">
 \[
-u_{i,j} \approx u(x_i,t_j) = u(ih,jk)
+u_{n,k} \approx u(x_n,t_k) = u(n \Delta x,k \Delta t)
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(x_0 = 0\)</span>, <span class="math notranslate nohighlight">\(x_{N+1}= L\)</span>, <span class="math notranslate nohighlight">\(t_0 = 0\)</span> and <span class="math notranslate nohighlight">\(t_M = t_f\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(x_0 = 0\)</span>, <span class="math notranslate nohighlight">\(x_N = L\)</span>, <span class="math notranslate nohighlight">\(t_0 = 0\)</span> and <span class="math notranslate nohighlight">\(t_M = t_f\)</span>.</p>
 </section>
-<section id="formulation">
-<h2>Formulation<a class="headerlink" href="#formulation" title="Permalink to this heading">#</a></h2>
-<p>Apply the forward difference formula for <span class="math notranslate nohighlight">\(u_t\)</span> at position <span class="math notranslate nohighlight">\(x_i\)</span> and time <span class="math notranslate nohighlight">\(t_j\)</span></p>
+<section id="forward-time-central-space">
+<h2>Forward Time Central Space<a class="headerlink" href="#forward-time-central-space" title="Permalink to this heading">#</a></h2>
+<p>Apply the forward difference formula for <span class="math notranslate nohighlight">\(u_t\)</span> at position <span class="math notranslate nohighlight">\(x_n\)</span> and time <span class="math notranslate nohighlight">\(t_k\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-u_t(x_i,t_j) &amp;= \frac{u(x_i,t_{j+1}) - u(x_i,t_j)}{k} + O(k) \\
-&amp;= \frac{u_{i,j+1} - u_{i,j}}{k} + O(k)
+u_t(x_n,t_k) &amp;= \frac{u(x_n,t_{k+1}) - u(x_n,t_k)}{\Delta t} + O(\Delta t) \\
+&amp;= \frac{u_{n,k+1} - u_{n,k}}{\Delta t} + O(\Delta t)
 \end{align*}
 \end{split}\]</div>
-<p>Apply the central difference formula for <span class="math notranslate nohighlight">\(u_{xx}\)</span> at position <span class="math notranslate nohighlight">\(x_i\)</span> and time <span class="math notranslate nohighlight">\(t_j\)</span></p>
+<p>Apply the central difference formula for <span class="math notranslate nohighlight">\(u_{xx}\)</span> at position <span class="math notranslate nohighlight">\(x_n\)</span> and time <span class="math notranslate nohighlight">\(t_k\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-u_{xx}(x_i,t_j) &amp;= \frac{u(x_{i+1},t_j) - 2u(x_i,t_j) + u(x_{i-1},t_j)}{h^2} + O(h^2) \\
-&amp;= \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{h^2} + O(h^2)
+u_{xx}(x_n,t_k) &amp;= \frac{u(x_{n+1},t_k) - 2u(x_n,t_k) + u(x_{n-1},t_k)}{\Delta x^2} + O(\Delta x^2) \\
+&amp;= \frac{u_{n+1,k} - 2u_{n,k} + u_{n-1,k}}{\Delta x^2} + O(\Delta x^2)
 \end{align*}
 \end{split}\]</div>
-<p>Plug the formulas into the heat equation at position <span class="math notranslate nohighlight">\(x_i\)</span> and time <span class="math notranslate nohighlight">\(t_j\)</span></p>
+<p>Plug the formulas into the heat equation at position <span class="math notranslate nohighlight">\(x_n\)</span> and time <span class="math notranslate nohighlight">\(t_k\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-u_t(x_i,t_j) &amp;= \alpha u_{xx}(x_i,t_j) \\
-\frac{u_{i,j+1} - u_{i,j}}{k}
+u_t(x_n,t_k) &amp;= \alpha^2 u_{xx}(x_n,t_k) \\
+\frac{u_{n,k+1} - u_{n,k}}{\Delta t}
 &amp;=
-\alpha \left( \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{h^2} \right)
+\alpha^2 \left( \frac{u_{n+1,k} - 2u_{n,k} + u_{n-1,k}}{\Delta x^2} \right)
 \end{align*}
 \end{split}\]</div>
-<p>Rearrange to solve for <span class="math notranslate nohighlight">\(u_{i,j+1}\)</span></p>
+<p>Rearrange to solve for <span class="math notranslate nohighlight">\(u_{n,k+1}\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-u_{i,j+1} = r u_{i-1,j} + (1 - 2r) u_{i,j} + r u_{i+1,j} \ \ , \ \ r = \frac{\alpha k}{h^2}
+u_{n,k+1} = r u_{n-1,k} + (1 - 2r) u_{n,k} + r u_{n+1,k} \ \ , \ \ r = \frac{\alpha^2 \Delta t}{\Delta x^2}
 \]</div>
-<p>Write out the equations</p>
+<p>This is the <strong>forward-time-central-space (FTCS)</strong> finite difference method for the heat equation.</p>
+</section>
+<section id="ftcs-with-dirichlet-bcs">
+<h2>FTCS with Dirichlet BCs<a class="headerlink" href="#ftcs-with-dirichlet-bcs" title="Permalink to this heading">#</a></h2>
+<section id="matrix-equations">
+<h3>Matrix Equations<a class="headerlink" href="#matrix-equations" title="Permalink to this heading">#</a></h3>
+<p>Consider Dirichlet boundary conditions <span class="math notranslate nohighlight">\(u(0,t) = T_0\)</span> and <span class="math notranslate nohighlight">\(u(L,t)\)</span>. Let <span class="math notranslate nohighlight">\(u_{0,k} = T_0\)</span> and <span class="math notranslate nohighlight">\(u_{N,k} = T_L\)</span> for all <span class="math notranslate nohighlight">\(k\)</span> and write out the FTCS equations for <span class="math notranslate nohighlight">\(n=1,\dots,N-1\)</span> along with the boundary conditions <span class="math notranslate nohighlight">\(u_{0,k+1} = u_{0,k}\)</span> and <span class="math notranslate nohighlight">\(u_{N,k+1} = u_{N,k}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{cccccccccccccc}
-u_{1,j+1} &amp; = &amp; (1 - 2r) u_{1,j}  &amp; + &amp; \, u_{2,j}  &amp;  &amp; &amp;  &amp; &amp; &amp; &amp; + &amp; r \, T_0 \\
-u_{2,j+1} &amp; = &amp; r \, u_{1,j} &amp; +  &amp; (1 - 2r) u_{2,j}  &amp; +  &amp; r \, u_{3,j} &amp; &amp; &amp; &amp; &amp; &amp; \\
-%u_{3,j+1} &amp; = &amp; &amp; &amp; r \, u_{2,j}  &amp; +  &amp; (1 - 2r) u_{3,j}  &amp; + &amp; r \, u_{4,j} &amp; &amp; &amp; &amp;  \\
- &amp; \vdots &amp;  &amp; &amp;  &amp; &amp; \vdots &amp;  &amp; &amp; &amp;  &amp; \vdots &amp; \\
-u_{N-1,j+1} &amp; = &amp; &amp; &amp; &amp; &amp; r \, u_{N-2,j}  &amp; +  &amp; (1 - 2r) u_{N-1,j}  &amp; +  &amp; r u_{N,j} &amp; &amp; \\
-u_{N,j+1} &amp; = &amp; &amp; &amp; &amp; &amp; &amp; &amp; r \, u_{N-1,j}  &amp; +  &amp; (1 - 2r) u_{N,j}  &amp; +  &amp; r \, T_L
+u_{0,k+1} &amp; = &amp; u_{0,k} &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; \\
+u_{1,k+1} &amp; = &amp; r u_{0,k} &amp; + &amp; (1 - 2r) u_{1,k} &amp; + &amp; r u_{2,k} &amp; &amp; &amp; &amp; &amp; &amp; \\
+u_{2,k+1} &amp; = &amp; &amp; &amp; r u_{1,k} &amp; + &amp; (1 - 2r) u_{2,k}  &amp; +  &amp; r u_{3,k} &amp; &amp; &amp; &amp; \\
+ &amp; \vdots &amp;  &amp; &amp; &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp; &amp; \\
+u_{N-2,k+1} &amp; = &amp; &amp; &amp; &amp; &amp; r u_{N-3,k}  &amp; +  &amp; (1 - 2r) u_{N-2,k}  &amp; +  &amp; r u_{N-1,k} &amp; &amp; \\
+u_{N-1,k+1} &amp; = &amp; &amp; &amp; &amp; &amp; &amp; &amp; r u_{N-2,k}  &amp; +  &amp; (1 - 2r) u_{N-1,k}  &amp; +  &amp; r u_{N,k} \\
+u_{N,k+1} &amp; = &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; u_{N,k}
 \end{array}
 \end{split}\]</div>
-<p>These finite difference equations show us that approximations at time <span class="math notranslate nohighlight">\(t_{j+1}\)</span> are given by matrix multiplication of the vector of approximations at time <span class="math notranslate nohighlight">\(t_j\)</span>. Therefore we can write the FTCS method as an iterative matrix formula.</p>
-</section>
-<section id="matrix-notation">
-<h2>Matrix Notation<a class="headerlink" href="#matrix-notation" title="Permalink to this heading">#</a></h2>
-<p>The forward time central space (FTCS) method for the heat equation is given by the iterative matrix formula</p>
+<p>These finite difference equations show us that approximations at time <span class="math notranslate nohighlight">\(t_{k+1}\)</span> are given by matrix multiplication of the vector of approximations at time <span class="math notranslate nohighlight">\(t_k\)</span>. Therefore we can write the FTCS method as an iterative matrix formula.</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{u}_{j+1} = A \boldsymbol{u}_j + \boldsymbol{g}_j
+\boldsymbol{u}_{k+1} = A \boldsymbol{u}_k
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 A = 
 \left[
-\begin{array}{ccccc}
-1 - 2r &amp; r &amp; &amp; &amp; \\
-r &amp; 1 - 2r &amp; r &amp; &amp; \\
-&amp; &amp; \ddots &amp; &amp; \\
-&amp; &amp; r &amp; 1 - 2r &amp; r \\
-&amp; &amp; &amp; r &amp; 1 - 2r \\
+\begin{array}{ccccccc}
+1 &amp; &amp; &amp; &amp; &amp; \\
+r &amp; 1 - 2r &amp; r &amp; &amp; &amp; &amp; \\
+&amp; r &amp; 1 - 2r &amp; r &amp; &amp; &amp; \\
+&amp; &amp; &amp; \ddots &amp; &amp; &amp; \\
+&amp; &amp; &amp; r &amp; 1 - 2r &amp; r &amp; \\
+&amp; &amp; &amp; &amp; r &amp; 1 - 2r &amp; r \\
+&amp; &amp; &amp; &amp; &amp; &amp; 1
 \end{array}
 \right]
-\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\boldsymbol{u}_j = \begin{bmatrix} u_{1,j} \\ u_{2,j} \\ \vdots \\ u_{N-1,j} \\ u_{N,j} \end{bmatrix}
-\ \ \ \ \
-\boldsymbol{g}_j =
-\begin{bmatrix} r T_0 \\ 0 \\ \vdots \\ 0 \\ r T_L \end{bmatrix}
-\ \ \ \ \
-r = \frac{\alpha k}{h^2}
+\hspace{20mm}
+\boldsymbol{u}_k = \begin{bmatrix} u_{0,k} \\ u_{1,k} \\ \vdots \\ u_{N-1,k} \\ u_{N,k} \end{bmatrix}
+\hspace{20mm}
+r = \frac{\alpha^2 \Delta t}{\Delta x^2}
 \end{split}\]</div>
 <p>The algorithm produces the matrix of approximations</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-U =  [u_{i,j}] = \begin{bmatrix} &amp; &amp; &amp; \\ \boldsymbol{u}_1 &amp; \boldsymbol{u}_2 &amp; \cdots &amp; \boldsymbol{u}_M \\ &amp; &amp; &amp; \end{bmatrix}
+U =  [u_{n,k}] = \begin{bmatrix} &amp; &amp; &amp; \\ \boldsymbol{u}_0 &amp; \boldsymbol{u}_1 &amp; \cdots &amp; \boldsymbol{u}_M \\ &amp; &amp; &amp; \end{bmatrix}
 \ \ , \ \ \
-u_{i,j} \approx u(x_i,t_j)
+u_{n,k} \approx u(x_n,t_k)
 \end{split}\]</div>
 <p>starting from the initial condition</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\boldsymbol{u}_0 = \begin{bmatrix} u_{1,0} \\ u_{2,0} \\ \vdots \\ u_{N,0} \end{bmatrix}
-= \begin{bmatrix} F(x_1) \\ F(x_2) \\ \vdots \\ F(x_N) \end{bmatrix}
+\boldsymbol{u}_0 = \begin{bmatrix} u_{0,0} \\ u_{1,0} \\ \vdots \\ u_{N,0} \end{bmatrix}
+= \begin{bmatrix} f(x_0) \\ f(x_1) \\ \vdots \\ f(x_N) \end{bmatrix}
 \end{split}\]</div>
-</section>
-<section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h2>
+<p>Note that we can create the matrix <span class="math notranslate nohighlight">\(A\)</span> with a for loop. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">heatFTCS</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
-    <span class="n">h</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">tf</span><span class="o">/</span><span class="n">M</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">u</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">];</span> <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">];</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
-        <span class="n">u</span><span class="p">[:,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@u</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">u</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.   0.   0.   0.   0.   0.  ]
+ [0.01 0.98 0.01 0.   0.   0.  ]
+ [0.   0.01 0.98 0.01 0.   0.  ]
+ [0.   0.   0.01 0.98 0.01 0.  ]
+ [0.   0.   0.   0.01 0.98 0.01]
+ [0.   0.   0.   0.   0.   1.  ]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="implementation">
+<h3>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h3>
+<p>The function <code class="docutils literal notranslate"><span class="pre">heatFTCSD</span></code> takes input parameters <code class="docutils literal notranslate"><span class="pre">alpha</span></code>, <code class="docutils literal notranslate"><span class="pre">L</span></code>, <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">T0</span></code>, <code class="docutils literal notranslate"><span class="pre">TL</span></code>, <code class="docutils literal notranslate"><span class="pre">tf</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">M</span></code>, and returns the matrix <code class="docutils literal notranslate"><span class="pre">U</span></code> of approximations where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> is the diffusion coefficient in the heat equation <span class="math notranslate nohighlight">\(u_t = \alpha^2 u_{xx}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L</span></code> is the length of the interval <span class="math notranslate nohighlight">\(0 \leq x \leq L\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> is a Python function whcih represents the initial condition <span class="math notranslate nohighlight">\(u(x,0) = f(x)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T0</span></code> is the boundary condition <span class="math notranslate nohighlight">\(u(0,t) = T_0\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TL</span></code> is the boundary condition <span class="math notranslate nohighlight">\(u(L,t) = T_L\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tf</span></code> is the length of the interval <span class="math notranslate nohighlight">\(0 \leq t \leq t_f\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of steps in the <span class="math notranslate nohighlight">\(x\)</span>-direction of the discretization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> is the number of steps in the <span class="math notranslate nohighlight">\(t\)</span>-direction of the discretization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> is the matrix <span class="math notranslate nohighlight">\(U = [u_{n,k}]\)</span> of size <span class="math notranslate nohighlight">\((N+1) \times (M+1)\)</span> of approximations <span class="math notranslate nohighlight">\(u_{n,k} \approx u(x_n,t_k)\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">heatFTCSD</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">T0</span><span class="p">,</span><span class="n">TL</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="n">N</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">/</span><span class="n">M</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">U</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">T0</span>
+    <span class="n">U</span><span class="p">[</span><span class="n">N</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">TL</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">U</span><span class="p">[:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@U</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">U</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h2>
-<p>Consider <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span>, <span class="math notranslate nohighlight">\(L = 1\)</span>, <span class="math notranslate nohighlight">\(f(x) = x(1-x)\)</span> and <span class="math notranslate nohighlight">\(t_f = 1\)</span>.</p>
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
+<p>Consider <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span>, <span class="math notranslate nohighlight">\(L = 1\)</span>, <span class="math notranslate nohighlight">\(f(x) = x(1-x)\)</span>, <span class="math notranslate nohighlight">\(T_0 = 0\)</span>, <span class="math notranslate nohighlight">\(T_L\)</span> and <span class="math notranslate nohighlight">\(t_f = 1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">heatFTCS</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">TL</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">U</span> <span class="o">=</span> <span class="n">heatFTCSD</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">T0</span><span class="p">,</span><span class="n">TL</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/885138b4ecb799a0572e7c9cbf7b7af291d5203d61862705664bbd3a850a7881.png" src="_images/885138b4ecb799a0572e7c9cbf7b7af291d5203d61862705664bbd3a850a7881.png" />
+<img alt="_images/11c424ae78a17fdd8c87fe714917ce26998c73818737efe817c94a587c26bb90.png" src="_images/11c424ae78a17fdd8c87fe714917ce26998c73818737efe817c94a587c26bb90.png" />
 </div>
 </div>
+</section>
+</section>
+<section id="ftcs-with-neumann-bcs">
+<h2>FTCS with Neumann BCs<a class="headerlink" href="#ftcs-with-neumann-bcs" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h3>Matrix Equations<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Consider Neumann boundary conditions <span class="math notranslate nohighlight">\(u_x(0,t) = Q_0\)</span> and <span class="math notranslate nohighlight">\(u_x(L,t) = Q_L\)</span>. The FTCS finite difference equation at <span class="math notranslate nohighlight">\(n=0\)</span> yields</p>
+<div class="math notranslate nohighlight">
+\[
+u_{0,k+1} = r u_{-1,k} + (1 - 2r) u_{0,k} + r u_{1,k}
+\]</div>
+<p>with the “ghost value” <span class="math notranslate nohighlight">\(u_{-1,k}\)</span>. Use the central difference formula for <span class="math notranslate nohighlight">\(u_x(0,t_k) = Q_0\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+Q_0 = \frac{u_{1,k} - u_{-1,k}}{2 \Delta x}
+\]</div>
+<p>Rearrange for <span class="math notranslate nohighlight">\(u_{-1,k}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+u_{-1,k} = u_{1,k} - 2 \Delta x Q_0
+\]</div>
+<p>and substitute into the FTCS equation</p>
+<div class="math notranslate nohighlight">
+\[
+u_{0,k+1} = (1 - 2r) u_{0,k} + 2 r u_{1,k} - \frac{2 \alpha^2 \Delta t Q_0}{\Delta x}
+\]</div>
+<p>Similarly, the boundary condition <span class="math notranslate nohighlight">\(u_x(L,t) = Q_L\)</span> yields the equation</p>
+<div class="math notranslate nohighlight">
+\[
+u_{N,k+1} = 2r u_{N-1,k} + (1 - 2r)u_{N,k} + \frac{2 \alpha^2 \Delta t Q_L}{\Delta x}
+\]</div>
+<p>Write out the FTCS equations for <span class="math notranslate nohighlight">\(n=1,\dots,N-1\)</span> along with the boundary conditions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{cccccccccccccc}
+u_{0,k+1}   &amp; = &amp; (1 - 2r)u_{0,k} &amp; + &amp; 2r &amp; &amp; &amp; &amp; &amp; &amp; &amp; - \frac{2 \alpha^2 \Delta t Q_0}{\Delta x} \\
+u_{1,k+1}   &amp; = &amp; r u_{0,k} &amp; + &amp; (1 - 2r) u_{1,k} &amp; + &amp; r u_{2,k} \\
+ &amp; \vdots   &amp; &amp; &amp; &amp; &amp; \ddots \\
+u_{N-1,k+1} &amp; = &amp; &amp; &amp; &amp; &amp; r u_{N-2,k}  &amp; +  &amp; (1 - 2r) u_{N-1,k}  &amp; +  &amp; r u_{N,k} \\
+u_{N,k+1}   &amp; = &amp; &amp; &amp; &amp; &amp; &amp; &amp; 2r &amp; + &amp; (1 - 2r)u_{N,k} &amp; + \frac{2 \alpha^2 \Delta t Q_L}{\Delta x}
+\end{array}
+\end{split}\]</div>
+<p>These finite difference equations show us that approximations at time <span class="math notranslate nohighlight">\(t_{k+1}\)</span> are given by matrix multiplication of the vector of approximations at time <span class="math notranslate nohighlight">\(t_k\)</span>. Therefore we can write the FTCS method as an iterative matrix formula.</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{u}_{k+1} = A \boldsymbol{u}_k + \boldsymbol{q}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\left[
+\begin{array}{ccccccc}
+1 - 2r &amp; 2r &amp; &amp; &amp; &amp; \\
+r &amp; 1 - 2r &amp; r &amp; &amp; &amp; &amp; \\
+&amp; r &amp; 1 - 2r &amp; r &amp; &amp; &amp; \\
+&amp; &amp; &amp; \ddots &amp; &amp; &amp; \\
+&amp; &amp; &amp; r &amp; 1 - 2r &amp; r &amp; \\
+&amp; &amp; &amp; &amp; r &amp; 1 - 2r &amp; r \\
+&amp; &amp; &amp; &amp; &amp; 2r &amp; 1 - 2r
+\end{array}
+\right]
+\hspace{20mm}
+\boldsymbol{u}_k = \begin{bmatrix} u_{0,k} \\ u_{1,k} \\ \vdots \\ u_{N-1,k} \\ u_{N,k} \end{bmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{q} = \frac{2 \alpha^2 \Delta t}{\Delta x} \begin{bmatrix} -Q_0 \\ 0 \\ \vdots \\ 0 \\ Q_L \end{bmatrix}
+\hspace{20mm}
+r = \frac{\alpha^2 \Delta t}{\Delta x^2}
+\end{split}\]</div>
+<p>The algorithm produces the matrix of approximations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+U =  [u_{n,k}] = \begin{bmatrix} &amp; &amp; &amp; \\ \boldsymbol{u}_0 &amp; \boldsymbol{u}_1 &amp; \cdots &amp; \boldsymbol{u}_M \\ &amp; &amp; &amp; \end{bmatrix}
+\ \ , \ \ \
+u_{n,k} \approx u(x_n,t_k)
+\end{split}\]</div>
+<p>starting from the initial condition</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{u}_0 = \begin{bmatrix} u_{0,0} \\ u_{1,0} \\ \vdots \\ u_{N,0} \end{bmatrix}
+= \begin{bmatrix} f(x_0) \\ f(x_1) \\ \vdots \\ f(x_N) \end{bmatrix}
+\end{split}\]</div>
+</section>
+</section>
+<section id="id2">
+<h2>Implementation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>The function <code class="docutils literal notranslate"><span class="pre">heatFTCSN</span></code> takes input parameters <code class="docutils literal notranslate"><span class="pre">alpha</span></code>, <code class="docutils literal notranslate"><span class="pre">L</span></code>, <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">Q0</span></code>, <code class="docutils literal notranslate"><span class="pre">QL</span></code>, <code class="docutils literal notranslate"><span class="pre">tf</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">M</span></code>, and returns the matrix <code class="docutils literal notranslate"><span class="pre">U</span></code> of approximations where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> is the diffusion coefficient in the heat equation <span class="math notranslate nohighlight">\(u_t = \alpha^2 u_{xx}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L</span></code> is the length of the interval <span class="math notranslate nohighlight">\(0 \leq x \leq L\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> is a Python function whcih represents the initial condition <span class="math notranslate nohighlight">\(u(x,0) = f(x)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Q0</span></code> is the boundary condition <span class="math notranslate nohighlight">\(u_x(0,t) = Q_0\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QL</span></code> is the boundary condition <span class="math notranslate nohighlight">\(u_x(L,t) = Q_L\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tf</span></code> is the length of the interval <span class="math notranslate nohighlight">\(0 \leq t \leq t_f\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of steps in the <span class="math notranslate nohighlight">\(x\)</span>-direction of the discretization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> is the number of steps in the <span class="math notranslate nohighlight">\(t\)</span>-direction of the discretization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> is the matrix <span class="math notranslate nohighlight">\(U = [u_{n,k}]\)</span> of size <span class="math notranslate nohighlight">\((N+1) \times (M+1)\)</span> of approximations <span class="math notranslate nohighlight">\(u_{n,k} \approx u(x_n,t_k)\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">heatFTCSN</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">Q0</span><span class="p">,</span><span class="n">QL</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="n">N</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">/</span><span class="n">M</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">U</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+    <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">alpha</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">*</span><span class="n">Q0</span>
+    <span class="n">q</span><span class="p">[</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">alpha</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">*</span><span class="n">QL</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">U</span><span class="p">[:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@U</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">q</span>
+    <span class="k">return</span> <span class="n">U</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>Consider <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span>, <span class="math notranslate nohighlight">\(L = 1\)</span>, <span class="math notranslate nohighlight">\(f(x) = x(1-x)\)</span>, <span class="math notranslate nohighlight">\(Q_0=Q_L=0\)</span> and <span class="math notranslate nohighlight">\(t_f = 1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">Q0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">QL</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="n">U</span> <span class="o">=</span> <span class="n">heatFTCSN</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">Q0</span><span class="p">,</span><span class="n">QL</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bd5c8c6d695210308a18d80bf7bea2b6db27cabcfed9bcebf502246dd95fa391.png" src="_images/bd5c8c6d695210308a18d80bf7bea2b6db27cabcfed9bcebf502246dd95fa391.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nframes</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">step</span> <span class="o">=</span> <span class="n">M</span><span class="o">//</span><span class="n">nframes</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nframes</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">[:,</span><span class="n">step</span><span class="o">*</span><span class="n">i</span><span class="p">],</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="n">i</span><span class="o">/</span><span class="n">nframes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c7987a50fb3b86660e784ef51d9b591d2e7512a65deac8d0c36da45e79b76150.png" src="_images/c7987a50fb3b86660e784ef51d9b591d2e7512a65deac8d0c36da45e79b76150.png" />
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -597,11 +847,23 @@ u_{i,j} \approx u(x_i,t_j)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-and-boundary-conditions">Initial and Boundary Conditions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretization">Discretization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulation">Formulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-notation">Matrix Notation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-time-central-space">Forward Time Central Space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ftcs-with-dirichlet-bcs">FTCS with Dirichlet BCs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-equations">Matrix Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ftcs-with-neumann-bcs">FTCS with Neumann BCs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Matrix Equations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
