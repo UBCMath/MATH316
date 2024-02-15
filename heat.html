@@ -358,6 +358,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ftcs-with-mixed-bcs">FTCS with Mixed BCs</a></li>
 </ul>
             </nav>
         </div>
@@ -397,6 +398,11 @@ u(0,t) = T_0 \ \ \ \text{and} \ \ \ u(L,t) = T_L
 <div class="math notranslate nohighlight">
 \[
 u_x(0,t) = Q_0 \ \ \ \text{and} \ \ \ u_x(L,t) = Q_L
+\]</div>
+<p>When one endpoint is a Dirichlet boundary condition and the other is a Neumann boundary condition then we call them <strong>mixed boundary conditions</strong>. For example:</p>
+<div class="math notranslate nohighlight">
+\[
+u(0,t) = T_0 \ \ \ \text{and} \ \ \ u_x(L,t) = Q_L
 \]</div>
 </section>
 <section id="discretization">
@@ -493,7 +499,9 @@ r &amp; 1 - 2r &amp; r &amp; &amp; &amp; &amp; \\
 &amp; &amp; &amp; &amp; &amp; &amp; 1
 \end{array}
 \right]
-\hspace{20mm}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \boldsymbol{u}_k = \begin{bmatrix} u_{0,k} \\ u_{1,k} \\ \vdots \\ u_{N-1,k} \\ u_{N,k} \end{bmatrix}
 \hspace{20mm}
 r = \frac{\alpha^2 \Delta t}{\Delta x^2}
@@ -641,12 +649,12 @@ u_{N,k+1} = 2r u_{N-1,k} + (1 - 2r)u_{N,k} + \frac{2 \alpha^2 \Delta t Q_L}{\Del
 <p>Write out the FTCS equations for <span class="math notranslate nohighlight">\(n=1,\dots,N-1\)</span> along with the boundary conditions:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{array}{cccccccccccccc}
-u_{0,k+1}   &amp; = &amp; (1 - 2r)u_{0,k} &amp; + &amp; 2r &amp; &amp; &amp; &amp; &amp; &amp; &amp; - \frac{2 \alpha^2 \Delta t Q_0}{\Delta x} \\
-u_{1,k+1}   &amp; = &amp; r u_{0,k} &amp; + &amp; (1 - 2r) u_{1,k} &amp; + &amp; r u_{2,k} \\
- &amp; \vdots   &amp; &amp; &amp; &amp; &amp; \ddots \\
-u_{N-1,k+1} &amp; = &amp; &amp; &amp; &amp; &amp; r u_{N-2,k}  &amp; +  &amp; (1 - 2r) u_{N-1,k}  &amp; +  &amp; r u_{N,k} \\
-u_{N,k+1}   &amp; = &amp; &amp; &amp; &amp; &amp; &amp; &amp; 2r &amp; + &amp; (1 - 2r)u_{N,k} &amp; + \frac{2 \alpha^2 \Delta t Q_L}{\Delta x}
+\begin{array}{ccccccccc}
+u_{0,k+1}   &amp; = &amp; (1 - 2r)u_{0,k} &amp; + &amp; 2r u_{1,k} &amp; &amp; &amp; - &amp; \frac{2 \alpha^2 \Delta t Q_0}{\Delta x} \\
+u_{1,k+1}   &amp; = &amp; r u_{0,k} &amp; + &amp; (1 - 2r) u_{1,k} &amp; + &amp; r u_{2,k} &amp; &amp; \\
+            &amp; \vdots &amp; &amp; \vdots &amp; &amp; \vdots &amp; &amp; &amp; \\
+u_{N-1,k+1} &amp; = &amp; r u_{N-2,k} &amp; + &amp; (1 - 2r) u_{N-1,k} &amp; + &amp; r u_{N,k} &amp; &amp; \\
+u_{N,k+1}   &amp; = &amp; &amp; &amp; 2r u_{N-1,k} &amp; + &amp; (1 - 2r)u_{N,k} &amp; + &amp; \frac{2 \alpha^2 \Delta t Q_L}{\Delta x}
 \end{array}
 \end{split}\]</div>
 <p>These finite difference equations show us that approximations at time <span class="math notranslate nohighlight">\(t_{k+1}\)</span> are given by matrix multiplication of the vector of approximations at time <span class="math notranslate nohighlight">\(t_k\)</span>. Therefore we can write the FTCS method as an iterative matrix formula.</p>
@@ -669,11 +677,11 @@ r &amp; 1 - 2r &amp; r &amp; &amp; &amp; &amp; \\
 &amp; &amp; &amp; &amp; &amp; 2r &amp; 1 - 2r
 \end{array}
 \right]
-\hspace{20mm}
-\boldsymbol{u}_k = \begin{bmatrix} u_{0,k} \\ u_{1,k} \\ \vdots \\ u_{N-1,k} \\ u_{N,k} \end{bmatrix}
 \end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}
+\boldsymbol{u}_k = \begin{bmatrix} u_{0,k} \\ u_{1,k} \\ \vdots \\ u_{N-1,k} \\ u_{N,k} \end{bmatrix}
+\hspace{20mm}
 \boldsymbol{q} = \frac{2 \alpha^2 \Delta t}{\Delta x} \begin{bmatrix} -Q_0 \\ 0 \\ \vdots \\ 0 \\ Q_L \end{bmatrix}
 \hspace{20mm}
 r = \frac{\alpha^2 \Delta t}{\Delta x^2}
@@ -762,19 +770,152 @@ u_{n,k} \approx u(x_n,t_k)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">nframes</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">step</span> <span class="o">=</span> <span class="n">M</span><span class="o">//</span><span class="n">nframes</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nframes</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">[:,</span><span class="n">step</span><span class="o">*</span><span class="n">i</span><span class="p">],</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="n">i</span><span class="o">/</span><span class="n">nframes</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nsteps</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">tstep</span> <span class="o">=</span> <span class="n">M</span><span class="o">//</span><span class="n">nsteps</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">tstep</span><span class="o">*</span><span class="n">tf</span><span class="o">/</span><span class="n">M</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">[:,</span><span class="n">k</span><span class="o">*</span><span class="n">tstep</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;t=</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d935a81f9f6b75e4d9af9bed251a03d06ca367414d9c2a3255413f75b9b875d0.png" src="_images/d935a81f9f6b75e4d9af9bed251a03d06ca367414d9c2a3255413f75b9b875d0.png" />
+<img alt="_images/bf336c9dc4e1c1f21a6229fae6d9bd76d0e447749cf2a777dff9afe7a08ec72c.png" src="_images/bf336c9dc4e1c1f21a6229fae6d9bd76d0e447749cf2a777dff9afe7a08ec72c.png" />
 </div>
 </div>
 </section>
+</section>
+<section id="ftcs-with-mixed-bcs">
+<h2>FTCS with Mixed BCs<a class="headerlink" href="#ftcs-with-mixed-bcs" title="Permalink to this heading">#</a></h2>
+<p>Combine both functions <code class="docutils literal notranslate"><span class="pre">heatFTCSD</span></code> and <code class="docutils literal notranslate"><span class="pre">heatFTCSN</span></code> into a single function <code class="docutils literal notranslate"><span class="pre">heat</span></code> which takes input parameters <code class="docutils literal notranslate"><span class="pre">alpha</span></code>, <code class="docutils literal notranslate"><span class="pre">L</span></code>, <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">BCtype0</span></code>, <code class="docutils literal notranslate"><span class="pre">BC0</span></code>, <code class="docutils literal notranslate"><span class="pre">BCtypeL</span></code>, <code class="docutils literal notranslate"><span class="pre">BCL</span></code>, <code class="docutils literal notranslate"><span class="pre">tf</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">M</span></code>, and returns the matrix <code class="docutils literal notranslate"><span class="pre">U</span></code> of approximations where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> is the diffusion coefficient in the heat equation <span class="math notranslate nohighlight">\(u_t = \alpha^2 u_{xx}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L</span></code> is the length of the interval <span class="math notranslate nohighlight">\(0 \leq x \leq L\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> is a Python function whcih represents the initial condition <span class="math notranslate nohighlight">\(u(x,0) = f(x)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BCtype0</span></code> is the type of boundary condition at <span class="math notranslate nohighlight">\(x=0\)</span> (<code class="docutils literal notranslate"><span class="pre">'D'</span></code> for Dirichlet or <code class="docutils literal notranslate"><span class="pre">'N'</span></code> for Neumann)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BC0</span></code> is the value of the boundary condition at <span class="math notranslate nohighlight">\(x=0\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BCtypeL</span></code> is the type of boundary condition at <span class="math notranslate nohighlight">\(x=L\)</span> (<code class="docutils literal notranslate"><span class="pre">'D'</span></code> for Dirichlet or <code class="docutils literal notranslate"><span class="pre">'N'</span></code> for Neumann)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BCL</span></code> is the value of the boundary condition at <span class="math notranslate nohighlight">\(x=L\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tf</span></code> is the length of the interval <span class="math notranslate nohighlight">\(0 \leq t \leq t_f\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of steps in the <span class="math notranslate nohighlight">\(x\)</span>-direction of the discretization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> is the number of steps in the <span class="math notranslate nohighlight">\(t\)</span>-direction of the discretization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> is the matrix <span class="math notranslate nohighlight">\(U = [u_{n,k}]\)</span> of size <span class="math notranslate nohighlight">\((N+1) \times (M+1)\)</span> of approximations <span class="math notranslate nohighlight">\(u_{n,k} \approx u(x_n,t_k)\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">heat</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">BCtype0</span><span class="p">,</span><span class="n">BC0</span><span class="p">,</span><span class="n">BCtypeL</span><span class="p">,</span><span class="n">BCL</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="n">N</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">/</span><span class="n">M</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">U</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">BCtype0</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BCtypeL</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Expecting boundary conditions of type &#39;D&#39; or &#39;N&#39;.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">BCtype0</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+        <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">BC0</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">BCtype0</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+        <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">alpha</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">*</span><span class="n">BC0</span>
+    <span class="k">if</span> <span class="n">BCtypeL</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+        <span class="n">U</span><span class="p">[</span><span class="n">N</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">BCL</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">BCtypeL</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+        <span class="n">q</span><span class="p">[</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">alpha</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">*</span><span class="n">BCL</span>
+    
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+        
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">U</span><span class="p">[:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@U</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">q</span>
+        
+    <span class="k">return</span> <span class="n">U</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consider <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span>, <span class="math notranslate nohighlight">\(L = 1\)</span>, <span class="math notranslate nohighlight">\(f(x) = x(1-x)\)</span>, <span class="math notranslate nohighlight">\(u_x(0,t) = u_x(L,t) = 0\)</span> and <span class="math notranslate nohighlight">\(t_f = 1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">BCtype0</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span>
+<span class="n">Q0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">BCtypeL</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span>
+<span class="n">QL</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="n">U</span> <span class="o">=</span> <span class="n">heat</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">BCtype0</span><span class="p">,</span><span class="n">Q0</span><span class="p">,</span><span class="n">BCtypeL</span><span class="p">,</span><span class="n">QL</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bd5c8c6d695210308a18d80bf7bea2b6db27cabcfed9bcebf502246dd95fa391.png" src="_images/bd5c8c6d695210308a18d80bf7bea2b6db27cabcfed9bcebf502246dd95fa391.png" />
+</div>
+</div>
+<p>Consider <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span>, <span class="math notranslate nohighlight">\(L = 1\)</span>, <span class="math notranslate nohighlight">\(f(x) = 1\)</span>, <span class="math notranslate nohighlight">\(u(0,t)=u_x(L,t)=0\)</span> and <span class="math notranslate nohighlight">\(t_f = 1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">BCtype0</span> <span class="o">=</span> <span class="s1">&#39;D&#39;</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">BCtypeL</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span>
+<span class="n">QL</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="n">U</span> <span class="o">=</span> <span class="n">heat</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">BCtype0</span><span class="p">,</span><span class="n">T0</span><span class="p">,</span><span class="n">BCtypeL</span><span class="p">,</span><span class="n">QL</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aefec2afba7e3ae855b15545f4bd2c0bfeda7175824e473dd3f94c5d80deb801.png" src="_images/aefec2afba7e3ae855b15545f4bd2c0bfeda7175824e473dd3f94c5d80deb801.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nsteps</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">tstep</span> <span class="o">=</span> <span class="n">M</span><span class="o">//</span><span class="n">nsteps</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">tstep</span><span class="o">*</span><span class="n">tf</span><span class="o">/</span><span class="n">M</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">[:,</span><span class="n">k</span><span class="o">*</span><span class="n">tstep</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;t=</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bbe15882eeba4412ac1fa3a7b76678c9d06b4a1e7f3065ca6e673f59cb3c3b75.png" src="_images/bbe15882eeba4412ac1fa3a7b76678c9d06b4a1e7f3065ca6e673f59cb3c3b75.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -860,6 +1001,7 @@ u_{n,k} \approx u(x_n,t_k)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ftcs-with-mixed-bcs">FTCS with Mixed BCs</a></li>
 </ul>
   </nav></div>
 

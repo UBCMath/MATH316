@@ -14,4 +14,5 @@ MATH 316 is an introduction to partial differential equations including:
 
 * All UBC students, faculty and staff can login to [ubc.syzygy.ca](https://ubc.syzygy.ca) with UBC CWL
 * See [Python for UBC Math](https://ubcmath.github.io/python/) to get started with Python and Jupyter
+* See [Mathematical Python](https://patrickwalls.github.io/mathematicalpython/) for a more comprehensive introduction to mathematical computing with Python and Jupyter
 * Click the "rocket ship" icon at the top of the page to open the notebook in Syzygy
