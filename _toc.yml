@@ -4,6 +4,6 @@ chapters:
 - file: fourier.ipynb
 - file: fd.ipynb
 - file: heat.ipynb
-- file: laplace.ipynb
 - file: wave.ipynb
+- file: laplace.ipynb
 - file: bessel.ipynb
