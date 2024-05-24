@@ -581,8 +581,8 @@ u_{n,1} = \frac{1}{2} \left( r^2 u_{n-1,0} + 2(1 - r^2) u_{n,0} + r^2 u_{n+1,0} 
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">c</span></code> is the diffusion coefficient in the wavve equation <span class="math notranslate nohighlight">\(u_{tt} = c^2 u_{xx}\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">L</span></code> is the length of the interval <span class="math notranslate nohighlight">\(0 \leq x \leq L\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> is a Python function whcih represents the initial condition <span class="math notranslate nohighlight">\(u(x,0) = f(x)\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">g</span></code> is a Python function whcih represents the initial condition <span class="math notranslate nohighlight">\(u_t(x,0) = g(x)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> is a Python function which represents the initial condition <span class="math notranslate nohighlight">\(u(x,0) = f(x)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g</span></code> is a Python function which represents the initial condition <span class="math notranslate nohighlight">\(u_t(x,0) = g(x)\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">A0</span></code> is the boundary condition <span class="math notranslate nohighlight">\(u(0,t) = A_0\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">AL</span></code> is the boundary condition <span class="math notranslate nohighlight">\(u(L,t) = A_L\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tf</span></code> is the length of the interval <span class="math notranslate nohighlight">\(0 \leq t \leq t_f\)</span></p></li>
@@ -628,7 +628,7 @@ u_{n,1} = \frac{1}{2} \left( r^2 u_{n-1,0} + 2(1 - r^2) u_{n,0} + r^2 u_{n+1,0} 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="o">*</span><span class="n">x</span>
 <span class="n">A0</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">AL</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">tf</span> <span class="o">=</span> <span class="mi">5</span>
@@ -2073,7 +2073,7 @@ u_{0,k+1} = 2(1 - r^2) u_{0,k} + 2r^2 u_{1,k} - u_{0,k-1} - 2 r^2 (\Delta x) Q_0
 <p>Similarly, the boundary condition <span class="math notranslate nohighlight">\(u_x(L,t) = Q_L\)</span> yields the equation</p>
 <div class="math notranslate nohighlight">
 \[
-u_{N,k+1} = 2r^2 u_{N-1,k} + 2(1 - r^2) u_{N,k} - u_{N,k-1} - 2 r^2 (\Delta x) Q_L
+u_{N,k+1} = 2r^2 u_{N-1,k} + 2(1 - r^2) u_{N,k} - u_{N,k-1} + 2 r^2 (\Delta x) Q_L
 \]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2143,8 +2143,8 @@ u_{N,1} =  r^2 u_{N-1,0} + (1 - r^2) u_{N,0} + r^2(\Delta x)Q_L + (\Delta t) g(x
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">c</span></code> is the diffusion coefficient in the wave equation <span class="math notranslate nohighlight">\(u_{tt} = c^2 u_{xx}\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">L</span></code> is the length of the interval <span class="math notranslate nohighlight">\(0 \leq x \leq L\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> is a Python function whcih represents the initial condition <span class="math notranslate nohighlight">\(u(x,0) = f(x)\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">g</span></code> is a Python function whcih represents the initial condition <span class="math notranslate nohighlight">\(u_t(x,0) = g(x)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> is a Python function which represents the initial condition <span class="math notranslate nohighlight">\(u(x,0) = f(x)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g</span></code> is a Python function which represents the initial condition <span class="math notranslate nohighlight">\(u_t(x,0) = g(x)\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Q0</span></code> is the boundary condition <span class="math notranslate nohighlight">\(u_x(0,t) = Q_0\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">QL</span></code> is the boundary condition <span class="math notranslate nohighlight">\(u_x(L,t) = Q_L\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tf</span></code> is the length of the interval <span class="math notranslate nohighlight">\(0 \leq t \leq t_f\)</span></p></li>
@@ -2186,7 +2186,7 @@ u_{N,1} =  r^2 u_{N-1,0} + (1 - r^2) u_{N,0} + r^2(\Delta x)Q_L + (\Delta t) g(x
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="o">*</span><span class="n">x</span>
 <span class="n">Q0</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">QL</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">tf</span> <span class="o">=</span> <span class="mi">5</span>
@@ -4010,7 +4010,7 @@ AAAAAAAAAC1pbHN0AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjI5LjEwMA==
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="o">*</span><span class="n">x</span>
 <span class="n">A0</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">AL</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">tf</span> <span class="o">=</span> <span class="mi">5</span>
@@ -5413,7 +5413,7 @@ Jal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjI5LjEwMA==
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="o">*</span><span class="n">x</span>
 <span class="n">Q0</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">QL</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">tf</span> <span class="o">=</span> <span class="mi">5</span>
@@ -7167,7 +7167,7 @@ AAAAAAAAAC1pbHN0AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjI5LjEwMA==
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="o">*</span><span class="n">x</span>
 <span class="n">A0</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">QL</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">tf</span> <span class="o">=</span> <span class="mi">10</span>
