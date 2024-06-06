@@ -368,15 +368,19 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary Conditions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretization">Discretization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-space-central-space">Central Space Central Space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cscs-with-dirichlet-bcs">CSCS with Dirichlet BCs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jacobi-iteration">Jacobi Iteration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-formula">Finite Difference Formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-boundary-conditions">Dirichlet Boundary Conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulation">Formulation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cscs-with-neumann-bcs">CSCS with Neumann BCs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cscs-with-mixed-bcs">CSCS with Mixed BCs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">Neumann Boundary Conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Formulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-implementation">General Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -401,56 +405,55 @@ document.write(`
 <p>The <strong>Laplace equation</strong> is given by</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0 \ , \ \ 0 \leq x \leq 1 \ , \ \ 0 \leq y \leq 1
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0 \ , \ \ 0 \leq x \leq L_x \ , \ \ 0 \leq y \leq L_y
 \]</div>
-<p>Note that we are restricting the domain to the unit square <span class="math notranslate nohighlight">\([0,1] \times [0,1]\)</span>.</p>
+<p>where the solution <span class="math notranslate nohighlight">\(u(x,y)\)</span> is defined on the rectangular domain <span class="math notranslate nohighlight">\([0,L_x] \times [0,L_y]\)</span>.</p>
 <section id="boundary-conditions">
 <h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h2>
 <p>Both variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are spatial and there is no time variable <span class="math notranslate nohighlight">\(t\)</span>. Therefore there are only boundary conditions in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions and no initial condition to consider.</p>
 <p><strong>Dirichlet boundary conditions</strong> specify the values of the solution at the endpoints:</p>
 <div class="math notranslate nohighlight">
 \[
-u(x,0) = f_0(x) \ \ \ \text{and} \ \ \ u(x,1) = f_1(x)
+u(0,y) = f_0(y) \hspace{20mm} u(L_x,y) = f_1(y)
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-u(0,y) = g_0(y) \ \ \ \text{and} \ \ \ u(1,y) = g_1(y)
+u(x,0) = g_0(x) \hspace{20mm} u(x,L_y) = g_1(x)
 \]</div>
 <p><strong>Neumann boundary conditions</strong> specify the values of the derivative of the solution at the endpoints:</p>
 <div class="math notranslate nohighlight">
 \[
-u_y(x,0) = p_0(x) \ \ \ \text{and} \ \ \ u_y(x,1) = p_1(x)
+u_x(0,y) = p_0(y) \hspace{20mm} u_x(L_x,y) = p_1(y)
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-u_x(0,y) = q_0(y) \ \ \ \text{and} \ \ \ u_x(1,y) = q_1(y)
+u_y(x,0) = q_0(x) \hspace{20mm} u_y(x,L_y) = q_1(x)
 \]</div>
 <p>When boundary conditions include both Dirichlet and Neumann conditions we call them <strong>mixed boundary conditions</strong>.</p>
 </section>
 <section id="discretization">
 <h2>Discretization<a class="headerlink" href="#discretization" title="Permalink to this heading">#</a></h2>
-<p>Choose the number of steps <span class="math notranslate nohighlight">\(N\)</span> in the <span class="math notranslate nohighlight">\(x\)</span> direction and use the same number of steps <span class="math notranslate nohighlight">\(N\)</span> in the <span class="math notranslate nohighlight">\(y\)</span> direction. These choices determine the step sizes <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta y\)</span>, and create a grid of points:</p>
+<p>Choose the number of steps <span class="math notranslate nohighlight">\(N_x\)</span> in the <span class="math notranslate nohighlight">\(x\)</span> direction and <span class="math notranslate nohighlight">\(N_y\)</span> steps in the <span class="math notranslate nohighlight">\(y\)</span> direction. These choices determine the step sizes <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta y\)</span>, and create a grid of points:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-x_n &amp;= n \Delta x \ , \ \ n = 0,1, \dots, N \ , \ \ \Delta x = \frac{1}{N} \\
-y_m &amp;= m \Delta y \ , \ \ m = 0,1, \dots, N \ , \ \ \Delta y = \frac{1}{N}
+x_n &amp;= n \Delta x \ , \ \ n = 0,1, \dots, N_x \ , \ \ \Delta x = \frac{L_x}{N_x} \\
+y_m &amp;= m \Delta y \ , \ \ m = 0,1, \dots, N_y \ , \ \ \Delta y = \frac{L_y}{N_y}
 \end{align}
 \end{split}\]</div>
-<p>The domain of the solution <span class="math notranslate nohighlight">\(u(x,y)\)</span> is the unit square <span class="math notranslate nohighlight">\([0,1] \times [0,1]\)</span>. The goal of a finite difference method is to compute the matrix</p>
+<p>The domain of the solution <span class="math notranslate nohighlight">\(u(x,y)\)</span> is the rectangle <span class="math notranslate nohighlight">\([0,L_x] \times [0,L_y]\)</span>. The goal of a finite difference method is to compute the matrix</p>
 <div class="math notranslate nohighlight">
 \[
 U = [u_{n,m}]
 \]</div>
-<p>which gives approximations of the solution <span class="math notranslate nohighlight">\(u(x,y)\)</span> at the grid points:</p>
+<p>which gives approximations of the solution <span class="math notranslate nohighlight">\(u(x,y)\)</span> on the grid of points:</p>
 <div class="math notranslate nohighlight">
 \[
 u_{n,m} \approx u(x_n,y_m) = u(n \Delta x,m \Delta y)
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(x_0 = 0\)</span>, <span class="math notranslate nohighlight">\(x_N = 1\)</span>, <span class="math notranslate nohighlight">\(y_0 = 0\)</span> and <span class="math notranslate nohighlight">\(y_N = 1\)</span>.</p>
 </section>
-<section id="central-space-central-space">
-<h2>Central Space Central Space<a class="headerlink" href="#central-space-central-space" title="Permalink to this heading">#</a></h2>
+<section id="finite-difference-formula">
+<h2>Finite Difference Formula<a class="headerlink" href="#finite-difference-formula" title="Permalink to this heading">#</a></h2>
 <p>Apply the central difference formula to both <span class="math notranslate nohighlight">\(u_{xx}\)</span> and <span class="math notranslate nohighlight">\(u_{yy}\)</span> at position <span class="math notranslate nohighlight">\(x_n\)</span> and <span class="math notranslate nohighlight">\(y_m\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -460,74 +463,93 @@ u_{n,m} \approx u(x_n,y_m) = u(n \Delta x,m \Delta y)
 \[
 + \frac{u(x_n,y_{m+1}) - 2 u(x_n,y_m) + u(x_n,y_{m-1})}{(\Delta y)^2} + O((\Delta y)^2) = 0
 \]</div>
-<p>Rearrange using the equality <span class="math notranslate nohighlight">\(\Delta x = \Delta y\)</span> to get the finite difference equation</p>
+<p>Rearrange to get the finite difference equation</p>
+<div class="math notranslate nohighlight">
+\[
+u_{n,m} = \frac{ (\Delta y)^2 \left( u_{n+1,m} + u_{n-1,m} \right) + (\Delta x)^2 \left( u_{n,m+1} + u_{n,m-1} \right) }{2 \left((\Delta x)^2 + (\Delta y)^2 \right)}
+\]</div>
+<p>Note that if <span class="math notranslate nohighlight">\(\Delta x = \Delta y\)</span> then the formula simplifies to</p>
 <div class="math notranslate nohighlight">
 \[
 u_{n,m} = \frac{u_{n+1,m} + u_{n-1,m} + u_{n,m+1} + u_{n,m-1}}{4}
 \]</div>
-<p>Therefore the value at position <span class="math notranslate nohighlight">\((x_n,y_m)\)</span> is the average of the values in adjacent positions. This the <strong>central-space-central-space (CSCS)</strong> finite difference method for the Laplace equation.</p>
+<p>and the value at position <span class="math notranslate nohighlight">\((x_n,y_m)\)</span> is the average of the values in adjacent positions.</p>
 </section>
-<section id="cscs-with-dirichlet-bcs">
-<h2>CSCS with Dirichlet BCs<a class="headerlink" href="#cscs-with-dirichlet-bcs" title="Permalink to this heading">#</a></h2>
-<section id="jacobi-iteration">
-<h3>Jacobi Iteration<a class="headerlink" href="#jacobi-iteration" title="Permalink to this heading">#</a></h3>
-<p>It is possible to setup a large system of linear equations to numerically solve the Laplace equation however a simpler method is to approximate the solution iteratively. In particular, define a sequence of matrices <span class="math notranslate nohighlight">\(U_0,U_1,U_2,\dots\)</span> where <span class="math notranslate nohighlight">\(U_0 = [u_{n,m}^0]\)</span> is the matrix of size <span class="math notranslate nohighlight">\((N + 1) \times (N + 1)\)</span> with boundary values given by the boundary conditions</p>
+<section id="dirichlet-boundary-conditions">
+<h2>Dirichlet Boundary Conditions<a class="headerlink" href="#dirichlet-boundary-conditions" title="Permalink to this heading">#</a></h2>
+<section id="formulation">
+<h3>Formulation<a class="headerlink" href="#formulation" title="Permalink to this heading">#</a></h3>
+<p>Consider the Laplace equation with Dirichlet boundary conditions:</p>
 <div class="math notranslate nohighlight">
 \[
-u^0_{n,0} = f_0(x_n) \ \ , \ \ u^0_{n,N} = f_1(x_n) \ \ , \ \ u^0_{0,m} = g_0(y_m) \ \ , \ \ u^0_{N,m} = g_1(y_m)
+u(0,y) = f_0(y) \hspace{20mm} u(L_x,y) = f_1(y)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+u(x,0) = g_0(x) \hspace{20mm} u(x,L_y) = g_1(x)
+\]</div>
+<p>It is possible to setup a large system of linear equations to numerically solve the Laplace equation however another method is to approximate the solution iteratively. In particular, define a sequence of matrices <span class="math notranslate nohighlight">\(U_0,U_1,U_2,\dots\)</span> where <span class="math notranslate nohighlight">\(U_0 = [u_{n,m}^0]\)</span> is the matrix of size <span class="math notranslate nohighlight">\((N_x + 1) \times (N_y + 1)\)</span> with boundary values given by the boundary conditions</p>
+<div class="math notranslate nohighlight">
+\[
+u^0_{0,m} = f_0(y_m) \ \ , \ \ u^0_{N_x,m} = f_1(y_m) \ \ , \ \ u^0_{n,0} = g_0(x_n) \ \ , \ \ u^0_{n,N_y} = g_1(x_n)
 \]</div>
 <p>and all other values in the interior of the matrix are 0s:</p>
 <div class="math notranslate nohighlight">
 \[
-u_{n,m}^0 = 0 \ \ , \ \ 0 &lt; n &lt; N \ \ , \ \ 0 &lt; m &lt; N
+u_{n,m}^0 = 0 \ \ , \ \ 0 &lt; n &lt; N_x \ \ , \ \ 0 &lt; m &lt; N_y
 \]</div>
 <p>Given the <span class="math notranslate nohighlight">\(k\)</span>th matrix <span class="math notranslate nohighlight">\(U_k = [u_{n,m}^k]\)</span>, compute the next matrix <span class="math notranslate nohighlight">\(U_{k+1} = [u_{n,m}^{k+1}]\)</span> by again setting the boundary values</p>
 <div class="math notranslate nohighlight">
 \[
-u^{k+1}_{n,0} = f_0(x_n) \ \ , \ \
-u^{k+1}_{n,N} = f_1(x_n) \ \ , \ \
-u^{k+1}_{0,m} = g_0(y_m) \ \ , \ \
-u^{k+1}_{N,m} = g_1(y_m)
+u^{k+1}_{0,m} = f_0(y_m) \ \ , \ \
+u^{k+1}_{N_x,m} = f_1(y_m) \ \ , \ \
+u^{k+1}_{n,0} = g_0(x_n) \ \ , \ \
+u^{k+1}_{n,N_y} = g_1(x_n)
 \]</div>
 <p>and then computing the finite difference formula</p>
 <div class="math notranslate nohighlight">
 \[
-u^{k+1}_{n,m} = \frac{u^k_{n+1,m} + u^k_{n-1,m} + u^k_{n,m+1} + u^k_{n,m-1}}{4} \ \ , \ \ 0 &lt; n &lt; N \ \ , \ \ 0 &lt; m &lt; N
+u^{k+1}_{n,m} = \frac{ (\Delta y)^2 \left( u^k_{n+1,m} + u^k_{n-1,m} \right) + (\Delta x)^2 \left( u^k_{n,m+1} + u^k_{n,m-1} \right) }{2 \left((\Delta x)^2 + (\Delta y)^2 \right)} \ \ , \ \ 0 &lt; n &lt; N_x \ \ , \ \ 0 &lt; m &lt; N_y
 \]</div>
 <p>Iterate until the average squared difference <span class="math notranslate nohighlight">\(\Delta U_k\)</span> from iteration <span class="math notranslate nohighlight">\(k\)</span> to <span class="math notranslate nohighlight">\(k+1\)</span> is less than some set value <span class="math notranslate nohighlight">\(D\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-\Delta U_k = \sqrt{\frac{1}{N^2} \sum_{n=0}^{N} \sum_{m=0}^{N} \left( u^{k+1}_{n,m} - u^k_{n,m} \right)^2 } &lt; D
+\Delta U_k = \sqrt{\frac{1}{(N_x+1)(N_y+1)} \sum_{n=0}^{N_x} \sum_{m=0}^{N_y} \left( u^{k+1}_{n,m} - u^k_{n,m} \right)^2 } &lt; D
 \]</div>
 </section>
 <section id="implementation">
 <h3>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h3>
-<p>The function <code class="docutils literal notranslate"><span class="pre">laplace</span></code> takes input parameters <code class="docutils literal notranslate"><span class="pre">f0</span></code>, <code class="docutils literal notranslate"><span class="pre">f1</span></code>, <code class="docutils literal notranslate"><span class="pre">g0</span></code>, <code class="docutils literal notranslate"><span class="pre">g1</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">D</span></code>, and returns the matrix <code class="docutils literal notranslate"><span class="pre">U</span></code> of approximations where:</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">laplaceD</span></code> takes input parameters <code class="docutils literal notranslate"><span class="pre">f0</span></code>, <code class="docutils literal notranslate"><span class="pre">f1</span></code>, <code class="docutils literal notranslate"><span class="pre">g0</span></code>, <code class="docutils literal notranslate"><span class="pre">g1</span></code>, <code class="docutils literal notranslate"><span class="pre">Lx</span></code>, <code class="docutils literal notranslate"><span class="pre">Ly</span></code>, <code class="docutils literal notranslate"><span class="pre">Nx</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny</span></code>, <code class="docutils literal notranslate"><span class="pre">D</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter</span></code> where:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">f0</span></code> is a Python function which represents the boundary condition <span class="math notranslate nohighlight">\(u(x,0) = f_0(x)\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">f1</span></code> is a Python function which represents the boundary condition <span class="math notranslate nohighlight">\(u(x,1) = f_1(x)\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">g0</span></code> is a Python function which represents the boundary condition <span class="math notranslate nohighlight">\(u(0,y) = g_0(y)\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">g1</span></code> is a Python function which represents the boundary condition <span class="math notranslate nohighlight">\(u(1,y) = g_1(y)\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of steps in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions of the discretization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f0</span></code> is a Python function which represents the Dirichlet boundary condition <span class="math notranslate nohighlight">\(u(0,y) = f_0(y)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f1</span></code> is a Python function which represents the Dirichlet boundary condition <span class="math notranslate nohighlight">\(u(L_x,y) = f_1(y)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g0</span></code> is a Python function which represents the Dirichlet boundary condition <span class="math notranslate nohighlight">\(u(x,0) = g_0(x)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g1</span></code> is a Python function which represents the Dirichlet boundary condition <span class="math notranslate nohighlight">\(u(x,L_y) = g_1(x)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Lx</span></code> and <code class="docutils literal notranslate"><span class="pre">Ly</span></code> define the domain <span class="math notranslate nohighlight">\([0,L_x] \times [0,L_y]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Nx</span></code> and <code class="docutils literal notranslate"><span class="pre">Ny</span></code> are the number of steps in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions of the discretization respectively</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">D</span></code> is the stopping criteria <span class="math notranslate nohighlight">\(\Delta U_k &lt; D\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> is the matrix <span class="math notranslate nohighlight">\(U = [u_{n,m}]\)</span> of size <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> of approximations <span class="math notranslate nohighlight">\(u_{n,m} \approx u(x_n,y_m)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_iter</span></code> is the maximum number of iterations before the iteration is forced to stop</p></li>
 </ul>
-<p>Set default values <code class="docutils literal notranslate"><span class="pre">N=50</span></code>, <code class="docutils literal notranslate"><span class="pre">D=0.001</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter=1000</span></code>.</p>
+<p>The function returns the matrix <span class="math notranslate nohighlight">\(U = [u_{n,m}]\)</span> of size <span class="math notranslate nohighlight">\((N_x + 1) \times (N_y + 1)\)</span> of approximations <span class="math notranslate nohighlight">\(u_{n,m} \approx u(x_n,y_m)\)</span>.</p>
+<p>Set default values <code class="docutils literal notranslate"><span class="pre">Lx=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Ly=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Nx=50</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny=50</span></code>, <code class="docutils literal notranslate"><span class="pre">D=0.001</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter=1000</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplace</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
-    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f0</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">f1</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">g0</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
-        <span class="n">U</span><span class="p">[</span><span class="n">N</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">g1</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">max_iter</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplaceD</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Lx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Ly</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">Ny</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">Nx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span><span class="n">Ny</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">Lx</span><span class="o">/</span><span class="n">Nx</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">Ly</span><span class="o">/</span><span class="n">Ny</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">g0</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>
+        <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">Ny</span><span class="p">]</span> <span class="o">=</span> <span class="n">g1</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Ny</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">f0</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">dy</span><span class="p">)</span>
+        <span class="n">U</span><span class="p">[</span><span class="n">Nx</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">f1</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">dy</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
         <span class="n">Uk</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
-                <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">4</span>
-        <span class="n">dU</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">Uk</span> <span class="o">-</span> <span class="n">U</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">N</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Ny</span><span class="p">):</span>
+                <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">])</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">dU</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">Uk</span> <span class="o">-</span> <span class="n">U</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Ny</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">dU</span> <span class="o">&lt;</span> <span class="n">D</span><span class="p">:</span>
             <span class="k">break</span>
     <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">max_iter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
@@ -539,12 +561,12 @@ u^{k+1}_{n,m} = \frac{u^k_{n+1,m} + u^k_{n-1,m} + u^k_{n,m+1} + u^k_{n,m-1}}{4} 
 </div>
 </div>
 </div>
-<p>Note that the row index of <span class="math notranslate nohighlight">\(U\)</span> corresponds to the variable <span class="math notranslate nohighlight">\(x\)</span>. Therefore if we want to visualize the solution with <span class="math notranslate nohighlight">\(x\)</span> in the horizontal direction and <span class="math notranslate nohighlight">\(y\)</span> increasing in the vertical direction then we need to plot the trranpose <span class="math notranslate nohighlight">\(U^T\)</span> with the <span class="math notranslate nohighlight">\(y\)</span> axis flipped. Let’s write a function which does this.</p>
+<p>Note that the row index of <span class="math notranslate nohighlight">\(U\)</span> corresponds to the variable <span class="math notranslate nohighlight">\(x\)</span>. Therefore if we want to visualize the solution with <span class="math notranslate nohighlight">\(x\)</span> in the horizontal direction and <span class="math notranslate nohighlight">\(y\)</span> increasing in the vertical direction then we need to plot the transpose <span class="math notranslate nohighlight">\(U^T\)</span> with the <span class="math notranslate nohighlight">\(y\)</span> axis flipped. Let’s write a function which does this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_laplace</span><span class="p">(</span><span class="n">U</span><span class="p">):</span>
     <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">([</span><span class="o">-</span><span class="n">M</span><span class="p">,</span><span class="n">M</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -555,101 +577,279 @@ u^{k+1}_{n,m} = \frac{u^k_{n+1,m} + u^k_{n-1,m} + u^k_{n,m+1} + u^k_{n,m-1}}{4} 
 <p>Approximate the solution for <span class="math notranslate nohighlight">\(u(x,0) = u(0,y) = u(1,y) = 0\)</span> and <span class="math notranslate nohighlight">\(u(x,1) = 1\)</span>. Note that boundary conditions are always defined as Python functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">0.</span>
-<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">1.</span>
-<span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.</span>
-<span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.</span>
-<span class="n">U</span> <span class="o">=</span> <span class="n">laplace</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.</span>
+<span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">0.</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">1.</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">laplaceD</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">)</span>
 <span class="n">plot_laplace</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.0009989993089566857 after k = 79 iterations.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.000989946333128293 after k = 78 iterations.
 </pre></div>
 </div>
-<img alt="_images/7f233fb398838dc56a5cea52a240a39cfb7b8c45ff734ed14996cfa003cea551.png" src="_images/7f233fb398838dc56a5cea52a240a39cfb7b8c45ff734ed14996cfa003cea551.png" />
+<img alt="_images/2f8e2f5a18991535885a27ffbd07f4dfcd91603a92048091174672ad11a4c211.png" src="_images/2f8e2f5a18991535885a27ffbd07f4dfcd91603a92048091174672ad11a4c211.png" />
 </div>
 </div>
 </section>
 <section id="examples">
 <h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
-<p><strong>Example 1.</strong> Compute the solution for <span class="math notranslate nohighlight">\(u(x,0) = 2x\)</span>, <span class="math notranslate nohighlight">\(u(x,1) = x - 1\)</span>, <span class="math notranslate nohighlight">\(u(0,y) = -y\)</span>, <span class="math notranslate nohighlight">\(u(1,y) = 2(1 - y)\)</span>. Use <span class="math notranslate nohighlight">\(N=100\)</span>.</p>
+<p><strong>Example 1.</strong> Compute the solution for <span class="math notranslate nohighlight">\(u(x,0) = 2x\)</span>, <span class="math notranslate nohighlight">\(u(x,1) = x - 1\)</span>, <span class="math notranslate nohighlight">\(u(0,y) = -y\)</span>, <span class="math notranslate nohighlight">\(u(1,y) = 2(1 - y)\)</span>. Use <span class="math notranslate nohighlight">\(N_x=N_y=100\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
-<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="o">-</span><span class="n">y</span>
-<span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">U</span> <span class="o">=</span> <span class="n">laplace</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">laplaceD</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">Ny</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">plot_laplace</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.0009990046888100365 after k = 134 iterations.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.0009948807049315277 after k = 133 iterations.
 </pre></div>
 </div>
-<img alt="_images/4048da6c1feeba695b9546d6e3acb4c5851fb132d5d4882dd880a1885a365986.png" src="_images/4048da6c1feeba695b9546d6e3acb4c5851fb132d5d4882dd880a1885a365986.png" />
+<img alt="_images/a956a5e604580ae88f4b1ccafa02e0864c73494fa20952976b703ba7afc8cd20.png" src="_images/a956a5e604580ae88f4b1ccafa02e0864c73494fa20952976b703ba7afc8cd20.png" />
 </div>
 </div>
-<p><strong>Example 2.</strong> Compute the solution for <span class="math notranslate nohighlight">\(u(x,0) = x^2 - 1\)</span>, <span class="math notranslate nohighlight">\(u(x,1) = x^2\)</span>, <span class="math notranslate nohighlight">\(u(0,y) = y^2 - 1\)</span>, <span class="math notranslate nohighlight">\(u(1,y) = y^2\)</span>. Use <span class="math notranslate nohighlight">\(N=50\)</span> and <span class="math notranslate nohighlight">\(D = 0.0001\)</span>.</p>
+<p><strong>Example 2.</strong> Compute the solution for <span class="math notranslate nohighlight">\(u(x,0) = x^2 - 1\)</span>, <span class="math notranslate nohighlight">\(u(x,1) = x^2\)</span>, <span class="math notranslate nohighlight">\(u(0,y) = y^2 - 1\)</span>, <span class="math notranslate nohighlight">\(u(1,y) = y^2\)</span>. Use <span class="math notranslate nohighlight">\(D = 0.0001\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">U</span> <span class="o">=</span> <span class="n">laplace</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">laplaceD</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
 <span class="n">plot_laplace</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 9.989795002416083e-05 after k = 672 iterations.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 9.984942556051082e-05 after k = 665 iterations.
 </pre></div>
 </div>
-<img alt="_images/a455a3ab8d2f4ed23aff8a7be2bee90a757249c462313052889488c9d4875535.png" src="_images/a455a3ab8d2f4ed23aff8a7be2bee90a757249c462313052889488c9d4875535.png" />
+<img alt="_images/c4400429fb95cb6233f2b4119b90664099a4bb8f1cf14a6d8c8db8130a2e9e8c.png" src="_images/c4400429fb95cb6233f2b4119b90664099a4bb8f1cf14a6d8c8db8130a2e9e8c.png" />
 </div>
 </div>
-<p><strong>Example 3.</strong> Compute the solution for boundary conditions:</p>
+<p><strong>Example 3.</strong> Compute the solution for boundary conditions <span class="math notranslate nohighlight">\(u(x,0) = \cos(\pi x)\)</span>, <span class="math notranslate nohighlight">\(u(x,1) = \cos(2 \pi x)\)</span>, <span class="math notranslate nohighlight">\(u(0,y) = 1\)</span> and <span class="math notranslate nohighlight">\(u(2,y) = 1\)</span>. Use <span class="math notranslate nohighlight">\(N_x=100\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mf">1.</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mf">1.</span>
+<span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">laplaceD</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Lx</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plot_laplace</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.0009963950622914157 after k = 115 iterations.
+</pre></div>
+</div>
+<img alt="_images/afd63165ec3cf17b82e80c19ea1ecf8a98a7fdb3fe305409504e62bf1f5b96d5.png" src="_images/afd63165ec3cf17b82e80c19ea1ecf8a98a7fdb3fe305409504e62bf1f5b96d5.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="neumann-boundary-conditions">
+<h2>Neumann Boundary Conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h3>Formulation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Consider the Laplace equation with Neumann boundary condition <span class="math notranslate nohighlight">\(u_x(0,y) = p_0(y)\)</span>. Apply the central difference formula:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-u(x,0) &amp;= -1 - \cos(\pi x) \\
-u(x,1) &amp;= 1 - \cos(\pi x) \\
-u(0,y) &amp;= -1 - \cos(\pi y) \\
-u(1,y) &amp;= 1 - \cos(\pi y)
-\end{align*}
-\end{split}\]</div>
-<p>Use <span class="math notranslate nohighlight">\(N=50\)</span> and <span class="math notranslate nohighlight">\(D = 0.0001\)</span>.</p>
+\[
+u_x(0,y) = \frac{u(\Delta x,y) - u(-\Delta x,y)}{2 \Delta x} + O((\Delta x)^2)
+\]</div>
+<p>Introduce the “ghost” value <span class="math notranslate nohighlight">\(u_{-1,m}\)</span> and write the formula</p>
+<div class="math notranslate nohighlight">
+\[
+p_0(y_m) = \frac{u_{1,m} - u_{-1,m}}{2 \Delta x}
+\]</div>
+<p>and rearrange</p>
+<div class="math notranslate nohighlight">
+\[
+u_{-1,m} = u_{1,m} - 2 \Delta x p_0(y_m)
+\]</div>
+<p>The finite difference formula at <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(y=y_m\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
+u_{0,m} = \frac{ (\Delta y)^2 \left( u_{1,m} + u_{-1,m} \right) + (\Delta x)^2 \left( u_{0,m+1} + u_{0,m-1} \right) }{2 \left((\Delta x)^2 + (\Delta y)^2 \right)}
+\]</div>
+<p>and rearrange to get</p>
+<div class="math notranslate nohighlight">
+\[
+u_{0,m} = \frac{ 2 (\Delta y)^2 \left(u_{1,m} - \Delta x p_0(y_m) \right) + (\Delta x)^2 \left( u_{0,m+1} + u_{0,m-1} \right) }{2 \left((\Delta x)^2 + (\Delta y)^2 \right)}
+\]</div>
+<p>Consider the Laplace equation with Neumann boundary condition <span class="math notranslate nohighlight">\(u_x(L_x,y) = p_1(y)\)</span>. The central difference formula gives an expression for the “ghost” value <span class="math notranslate nohighlight">\(u_{N_x + 1,m}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+u_{N_x + 1,m} = u_{N_x - 1,m} + 2 \Delta x p_1(y_m)
+\]</div>
+<p>and the finite difference formula at <span class="math notranslate nohighlight">\(x=L_x\)</span> and <span class="math notranslate nohighlight">\(y=y_m\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
+u_{N_x,m} = \frac{ 2 (\Delta y)^2 \left( u_{N_x - 1,m} + \Delta x p_1(y_m) \right) + (\Delta x)^2 \left( u_{N_x,m+1} + u_{N_x,m-1} \right) }{2 \left((\Delta x)^2 + (\Delta y)^2 \right)}
+\]</div>
+<p>Consider the Laplace equation with Neumann boundary condition <span class="math notranslate nohighlight">\(u_y(x,0) = q_0(x)\)</span>. The central difference formula gives an expression for the “ghost” value <span class="math notranslate nohighlight">\(u_{n,-1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+u_{n,-1} = u_{n,1} - 2 \Delta y q_0(x_n)
+\]</div>
+<p>and the central difference formula at <span class="math notranslate nohighlight">\(x=x_n\)</span> and <span class="math notranslate nohighlight">\(y=0\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
+u_{n,0} = \frac{ (\Delta y)^2 \left( u_{n+1,0} + u_{n-1,0} \right) + 2(\Delta x)^2 \left( u_{n,1} - \Delta y q_0(x_n) \right) }{2 \left((\Delta x)^2 + (\Delta y)^2 \right)}
+\]</div>
+<p>Consider the Laplace equation with Neumann boundary condition <span class="math notranslate nohighlight">\(u_y(x,L_y) = q_1(x)\)</span>. The central difference formula gives an expression for the “ghost” value <span class="math notranslate nohighlight">\(u_{n,N_y+1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+u_{n,N_y+1} = u_{n,N_y-1} + 2 \Delta y q_1(x_n)
+\]</div>
+<p>and the finite difference formula at <span class="math notranslate nohighlight">\(x=x_n\)</span> and <span class="math notranslate nohighlight">\(y=L_y\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
+u_{n,N_y} = \frac{ (\Delta y)^2 \left( u_{n+1,N_y} + u_{n-1,N_y} \right) + 2(\Delta x)^2 \left( u_{n,N_y-1} + \Delta y q_1(x_n) \right) }{2 \left((\Delta x)^2 + (\Delta y)^2 \right)}
+\]</div>
+</section>
+</section>
+<section id="general-implementation">
+<h2>General Implementation<a class="headerlink" href="#general-implementation" title="Permalink to this heading">#</a></h2>
+<p>The function <code class="docutils literal notranslate"><span class="pre">laplace</span></code> takes input parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BCx0</span></code> is the type of boundary condition at <span class="math notranslate nohighlight">\(x=0\)</span> (<code class="docutils literal notranslate"><span class="pre">D</span></code> for Dirichlet or <code class="docutils literal notranslate"><span class="pre">N</span></code> for Neumann)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f0</span></code> is a Python function which represents the boundary condition <span class="math notranslate nohighlight">\(f_0(y)\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BCx1</span></code> is the type of boundary condition at <span class="math notranslate nohighlight">\(x=L_x\)</span> (<code class="docutils literal notranslate"><span class="pre">D</span></code> for Dirichlet or <code class="docutils literal notranslate"><span class="pre">N</span></code> for Neumann)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f1</span></code> is a Python function which represents the boundary condition <span class="math notranslate nohighlight">\(f_1(y)\)</span> at <span class="math notranslate nohighlight">\(x=L_x\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BCy0</span></code> is the type of boundary condition at <span class="math notranslate nohighlight">\(y=0\)</span> (<code class="docutils literal notranslate"><span class="pre">D</span></code> for Dirichlet or <code class="docutils literal notranslate"><span class="pre">N</span></code> for Neumann)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g0</span></code> is a Python function which represents the boundary condition <span class="math notranslate nohighlight">\(g_0(x)\)</span> at <span class="math notranslate nohighlight">\(y=0\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BCy1</span></code> is the type of boundary condition at <span class="math notranslate nohighlight">\(y=L_y\)</span> (<code class="docutils literal notranslate"><span class="pre">D</span></code> for Dirichlet or <code class="docutils literal notranslate"><span class="pre">N</span></code> for Neumann)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g1</span></code> is a Python function which represents the boundary condition <span class="math notranslate nohighlight">\(g_1(x)\)</span> at <span class="math notranslate nohighlight">\(y=L_y\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Lx</span></code> and <code class="docutils literal notranslate"><span class="pre">Ly</span></code> define the domain <span class="math notranslate nohighlight">\([0,L_x] \times [0,L_y]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Nx</span></code> and <code class="docutils literal notranslate"><span class="pre">Ny</span></code> are the number of steps in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions of the discretization respectively</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code> is the stopping criteria <span class="math notranslate nohighlight">\(\Delta U_k &lt; D\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_iter</span></code> is the maximum number of iterations before the iteration is forced to stop</p></li>
+</ul>
+<p>The function returns the matrix <span class="math notranslate nohighlight">\(U = [u_{n,m}]\)</span> of size <span class="math notranslate nohighlight">\((N_x+1) \times (N_y+1)\)</span> of approximations <span class="math notranslate nohighlight">\(u_{n,m} \approx u(x_n,y_m)\)</span>.</p>
+<p>Set default values <code class="docutils literal notranslate"><span class="pre">Lx=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Ly=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Nx=50</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny=50</span></code>, <code class="docutils literal notranslate"><span class="pre">D=0.001</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter=1000</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-<span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
-<span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
-<span class="n">U</span> <span class="o">=</span> <span class="n">laplace</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplace</span><span class="p">(</span><span class="n">BCx0</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">BCx1</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">BCy0</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">BCy1</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Lx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Ly</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">Ny</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">Nx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span><span class="n">Ny</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">Lx</span><span class="o">/</span><span class="n">Nx</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">Ly</span><span class="o">/</span><span class="n">Ny</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">BCx0</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BCx1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BCy0</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BCy1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Expecting boundary conditions of type &#39;D&#39; or &#39;N&#39;.&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        
+        <span class="n">Uk</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="n">BCx0</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Ny</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">f0</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">dy</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">BCx0</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Ny</span><span class="p">):</span>
+                <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">-</span> <span class="n">dx</span><span class="o">*</span><span class="n">f0</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">dy</span><span class="p">))</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">BCx1</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Ny</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">U</span><span class="p">[</span><span class="n">Nx</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">f1</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">dy</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">BCx1</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Ny</span><span class="p">):</span>
+                <span class="n">U</span><span class="p">[</span><span class="n">Nx</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">f1</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">dy</span><span class="p">))</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">Nx</span><span class="p">,</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="n">Nx</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">BCy0</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">g0</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">BCy0</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="p">):</span>
+                <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dy</span><span class="o">*</span><span class="n">g0</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">dx</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">BCy1</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">Ny</span><span class="p">]</span> <span class="o">=</span> <span class="n">g1</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">BCy1</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="p">):</span>
+                <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">Ny</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">Ny</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">Ny</span><span class="p">])</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">Ny</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">g1</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">dx</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">BCx0</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span> <span class="ow">and</span> <span class="n">BCy0</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">dx</span><span class="o">*</span><span class="n">f0</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dy</span><span class="o">*</span><span class="n">g0</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">BCx1</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span> <span class="ow">and</span> <span class="n">BCy0</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="n">U</span><span class="p">[</span><span class="n">Nx</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">f1</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">Nx</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dy</span><span class="o">*</span><span class="n">g0</span><span class="p">(</span><span class="n">Lx</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">BCx0</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span> <span class="ow">and</span> <span class="n">BCy1</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">Ny</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">Ny</span><span class="p">]</span> <span class="o">-</span> <span class="n">dx</span><span class="o">*</span><span class="n">f0</span><span class="p">(</span><span class="n">Ly</span><span class="p">))</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">Ny</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">g1</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">BCx1</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span> <span class="ow">and</span> <span class="n">BCy1</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="n">U</span><span class="p">[</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">Ny</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">f1</span><span class="p">(</span><span class="n">Ly</span><span class="p">))</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">g1</span><span class="p">(</span><span class="n">Ly</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Ny</span><span class="p">):</span>
+                <span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">])</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Uk</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        
+        <span class="n">dU</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">Uk</span> <span class="o">-</span> <span class="n">U</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Ny</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">dU</span> <span class="o">&lt;</span> <span class="n">D</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">max_iter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exceeded maximum iterations.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found approximation U with dUk = </span><span class="si">{</span><span class="n">dU</span><span class="si">}</span><span class="s2"> after k = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> iterations.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">U</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>Examples<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>Approximate the solution for <span class="math notranslate nohighlight">\(u(0,y) = u(2,y) = 1\)</span>, <span class="math notranslate nohighlight">\(u(x,0) = \cos(\pi x)\)</span> and <span class="math notranslate nohighlight">\(u(x,1) = \cos(2 \pi x)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mf">1.</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mf">1.</span>
+<span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">laplace</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Lx</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">plot_laplace</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 9.995457095552456e-05 after k = 689 iterations.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.0009963950622914157 after k = 116 iterations.
 </pre></div>
 </div>
-<img alt="_images/4e80c9cb58858cf6c3b8c38bcef52b290c4e26e2e6b02ea123b1f26697475c2a.png" src="_images/4e80c9cb58858cf6c3b8c38bcef52b290c4e26e2e6b02ea123b1f26697475c2a.png" />
+<img alt="_images/afd63165ec3cf17b82e80c19ea1ecf8a98a7fdb3fe305409504e62bf1f5b96d5.png" src="_images/afd63165ec3cf17b82e80c19ea1ecf8a98a7fdb3fe305409504e62bf1f5b96d5.png" />
 </div>
 </div>
-</section>
-</section>
-<section id="cscs-with-neumann-bcs">
-<h2>CSCS with Neumann BCs<a class="headerlink" href="#cscs-with-neumann-bcs" title="Permalink to this heading">#</a></h2>
-<p><em>Under construction</em></p>
-</section>
-<section id="cscs-with-mixed-bcs">
-<h2>CSCS with Mixed BCs<a class="headerlink" href="#cscs-with-mixed-bcs" title="Permalink to this heading">#</a></h2>
-<p><em>Under construction</em></p>
+<p>The result agrees with our previous example using <code class="docutils literal notranslate"><span class="pre">laplaceD</span></code> above.</p>
+<p>Approximate the solution for <span class="math notranslate nohighlight">\(u_x(0,y) = 0\)</span>, <span class="math notranslate nohighlight">\(u(1,y) = -\cos(\pi y)\)</span>, <span class="math notranslate nohighlight">\(u(x,0) = -1\)</span> and <span class="math notranslate nohighlight">\(u(x,1) = 1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">1.</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">laplace</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="n">g1</span><span class="p">)</span>
+<span class="n">plot_laplace</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.0009962630948015196 after k = 160 iterations.
+</pre></div>
+</div>
+<img alt="_images/7b3b1437409a09ac50c660280e7c554f1b87fb09682f45a80c5b52229414e5f6.png" src="_images/7b3b1437409a09ac50c660280e7c554f1b87fb09682f45a80c5b52229414e5f6.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -719,15 +919,19 @@ u(1,y) &amp;= 1 - \cos(\pi y)
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary Conditions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretization">Discretization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-space-central-space">Central Space Central Space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cscs-with-dirichlet-bcs">CSCS with Dirichlet BCs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jacobi-iteration">Jacobi Iteration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-formula">Finite Difference Formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-boundary-conditions">Dirichlet Boundary Conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulation">Formulation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cscs-with-neumann-bcs">CSCS with Neumann BCs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cscs-with-mixed-bcs">CSCS with Mixed BCs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">Neumann Boundary Conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Formulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-implementation">General Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Examples</a></li>
 </ul>
   </nav></div>
 
