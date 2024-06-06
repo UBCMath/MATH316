@@ -1,2 +1,3 @@
-# MATH316
+# MATH 316
+
 Partial differential equations
