@@ -531,10 +531,10 @@ u^{k+1}_{n,m} = \frac{ (\Delta y)^2 \left( u^k_{n+1,m} + u^k_{n-1,m} \right) + (
 <li><p><code class="docutils literal notranslate"><span class="pre">max_iter</span></code> is the maximum number of iterations before the iteration is forced to stop</p></li>
 </ul>
 <p>The function returns the matrix <span class="math notranslate nohighlight">\(U = [u_{n,m}]\)</span> of size <span class="math notranslate nohighlight">\((N_x + 1) \times (N_y + 1)\)</span> of approximations <span class="math notranslate nohighlight">\(u_{n,m} \approx u(x_n,y_m)\)</span>.</p>
-<p>Set default values <code class="docutils literal notranslate"><span class="pre">Lx=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Ly=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Nx=50</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny=50</span></code>, <code class="docutils literal notranslate"><span class="pre">D=0.001</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter=1000</span></code>.</p>
+<p>Set default values <code class="docutils literal notranslate"><span class="pre">Lx=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Ly=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Nx=50</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny=50</span></code>, <code class="docutils literal notranslate"><span class="pre">D=0.00001</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter=5000</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplaceD</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Lx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Ly</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">Ny</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplaceD</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Lx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Ly</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">Ny</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">):</span>
     <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">Nx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span><span class="n">Ny</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
     <span class="n">dx</span> <span class="o">=</span> <span class="n">Lx</span><span class="o">/</span><span class="n">Nx</span>
     <span class="n">dy</span> <span class="o">=</span> <span class="n">Ly</span><span class="o">/</span><span class="n">Ny</span>
@@ -587,32 +587,32 @@ u^{k+1}_{n,m} = \frac{ (\Delta y)^2 \left( u^k_{n+1,m} + u^k_{n-1,m} \right) + (
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.000989946333128293 after k = 78 iterations.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 9.981637201200734e-06 after k = 1858 iterations.
 </pre></div>
 </div>
-<img alt="_images/2f8e2f5a18991535885a27ffbd07f4dfcd91603a92048091174672ad11a4c211.png" src="_images/2f8e2f5a18991535885a27ffbd07f4dfcd91603a92048091174672ad11a4c211.png" />
+<img alt="_images/66b1181a9428a97e0086f70d909b972849265c28db744dccd8b85b60a6d82bde.png" src="_images/66b1181a9428a97e0086f70d909b972849265c28db744dccd8b85b60a6d82bde.png" />
 </div>
 </div>
 </section>
 <section id="examples">
 <h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
-<p><strong>Example 1.</strong> Compute the solution for <span class="math notranslate nohighlight">\(u(x,0) = 2x\)</span>, <span class="math notranslate nohighlight">\(u(x,1) = x - 1\)</span>, <span class="math notranslate nohighlight">\(u(0,y) = -y\)</span>, <span class="math notranslate nohighlight">\(u(1,y) = 2(1 - y)\)</span>. Use <span class="math notranslate nohighlight">\(N_x=N_y=100\)</span>.</p>
+<p><strong>Example 1.</strong> Compute the solution for <span class="math notranslate nohighlight">\(u(x,0) = 2x\)</span>, <span class="math notranslate nohighlight">\(u(x,1) = x - 1\)</span>, <span class="math notranslate nohighlight">\(u(0,y) = -y\)</span>, <span class="math notranslate nohighlight">\(u(1,y) = 2(1 - y)\)</span>. Use <span class="math notranslate nohighlight">\(N_x=N_y=100\)</span> and <span class="math notranslate nohighlight">\(D=0.0001\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="o">-</span><span class="n">y</span>
 <span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
 <span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="n">U</span> <span class="o">=</span> <span class="n">laplaceD</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">Ny</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">laplaceD</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">Ny</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
 <span class="n">plot_laplace</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.0009948807049315277 after k = 133 iterations.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 9.995969768115448e-05 after k = 1456 iterations.
 </pre></div>
 </div>
-<img alt="_images/a956a5e604580ae88f4b1ccafa02e0864c73494fa20952976b703ba7afc8cd20.png" src="_images/a956a5e604580ae88f4b1ccafa02e0864c73494fa20952976b703ba7afc8cd20.png" />
+<img alt="_images/346dc78a95ac943ff2c9035cef73ab940f11c453a13308421e72f51b45bf06d1.png" src="_images/346dc78a95ac943ff2c9035cef73ab940f11c453a13308421e72f51b45bf06d1.png" />
 </div>
 </div>
 <p><strong>Example 2.</strong> Compute the solution for <span class="math notranslate nohighlight">\(u(x,0) = x^2 - 1\)</span>, <span class="math notranslate nohighlight">\(u(x,1) = x^2\)</span>, <span class="math notranslate nohighlight">\(u(0,y) = y^2 - 1\)</span>, <span class="math notranslate nohighlight">\(u(1,y) = y^2\)</span>. Use <span class="math notranslate nohighlight">\(D = 0.0001\)</span>.</p>
@@ -647,10 +647,10 @@ u^{k+1}_{n,m} = \frac{ (\Delta y)^2 \left( u^k_{n+1,m} + u^k_{n-1,m} \right) + (
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.0009963950622914157 after k = 115 iterations.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 9.99448579108248e-06 after k = 1407 iterations.
 </pre></div>
 </div>
-<img alt="_images/afd63165ec3cf17b82e80c19ea1ecf8a98a7fdb3fe305409504e62bf1f5b96d5.png" src="_images/afd63165ec3cf17b82e80c19ea1ecf8a98a7fdb3fe305409504e62bf1f5b96d5.png" />
+<img alt="_images/46c0ad2ee8f856f06df32dd5bd0ca28434c971a3fd5d417eca335769c456366e.png" src="_images/46c0ad2ee8f856f06df32dd5bd0ca28434c971a3fd5d417eca335769c456366e.png" />
 </div>
 </div>
 </section>
@@ -734,10 +734,10 @@ u_{n,N_y} = \frac{ (\Delta y)^2 \left( u_{n+1,N_y} + u_{n-1,N_y} \right) + 2(\De
 <li><p><code class="docutils literal notranslate"><span class="pre">max_iter</span></code> is the maximum number of iterations before the iteration is forced to stop</p></li>
 </ul>
 <p>The function returns the matrix <span class="math notranslate nohighlight">\(U = [u_{n,m}]\)</span> of size <span class="math notranslate nohighlight">\((N_x+1) \times (N_y+1)\)</span> of approximations <span class="math notranslate nohighlight">\(u_{n,m} \approx u(x_n,y_m)\)</span>.</p>
-<p>Set default values <code class="docutils literal notranslate"><span class="pre">Lx=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Ly=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Nx=50</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny=50</span></code>, <code class="docutils literal notranslate"><span class="pre">D=0.001</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter=1000</span></code>.</p>
+<p>Set default values <code class="docutils literal notranslate"><span class="pre">Lx=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Ly=1</span></code>, <code class="docutils literal notranslate"><span class="pre">Nx=50</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny=50</span></code>, <code class="docutils literal notranslate"><span class="pre">D=0.00001</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter=5000</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplace</span><span class="p">(</span><span class="n">BCx0</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">BCx1</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">BCy0</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">BCy1</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Lx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Ly</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">Ny</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplace</span><span class="p">(</span><span class="n">BCx0</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">BCx1</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">BCy0</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="n">BCy1</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">Lx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Ly</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">Ny</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">):</span>
     
     <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">Nx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span><span class="n">Ny</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
     <span class="n">dx</span> <span class="o">=</span> <span class="n">Lx</span><span class="o">/</span><span class="n">Nx</span>
@@ -824,10 +824,10 @@ u_{n,N_y} = \frac{ (\Delta y)^2 \left( u_{n+1,N_y} + u_{n-1,N_y} \right) + 2(\De
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.0009963950622914157 after k = 116 iterations.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 9.99448579108248e-06 after k = 1408 iterations.
 </pre></div>
 </div>
-<img alt="_images/afd63165ec3cf17b82e80c19ea1ecf8a98a7fdb3fe305409504e62bf1f5b96d5.png" src="_images/afd63165ec3cf17b82e80c19ea1ecf8a98a7fdb3fe305409504e62bf1f5b96d5.png" />
+<img alt="_images/46c0ad2ee8f856f06df32dd5bd0ca28434c971a3fd5d417eca335769c456366e.png" src="_images/46c0ad2ee8f856f06df32dd5bd0ca28434c971a3fd5d417eca335769c456366e.png" />
 </div>
 </div>
 <p>The result agrees with our previous example using <code class="docutils literal notranslate"><span class="pre">laplaceD</span></code> above.</p>
@@ -844,10 +844,10 @@ u_{n,N_y} = \frac{ (\Delta y)^2 \left( u_{n+1,N_y} + u_{n-1,N_y} \right) + 2(\De
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 0.0009962630948015196 after k = 160 iterations.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found approximation U with dUk = 9.95972846485963e-06 after k = 1227 iterations.
 </pre></div>
 </div>
-<img alt="_images/7b3b1437409a09ac50c660280e7c554f1b87fb09682f45a80c5b52229414e5f6.png" src="_images/7b3b1437409a09ac50c660280e7c554f1b87fb09682f45a80c5b52229414e5f6.png" />
+<img alt="_images/509404d044d3e6c4c0595da6158f910d4174ac14b8c2105a097f482644a21944.png" src="_images/509404d044d3e6c4c0595da6158f910d4174ac14b8c2105a097f482644a21944.png" />
 </div>
 </div>
 </section>
